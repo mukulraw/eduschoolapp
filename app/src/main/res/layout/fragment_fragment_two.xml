@@ -1,0 +1,63 @@
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="eskool.com.eskoolapp.QuestionFragment"
+    android:orientation="vertical"
+    >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Que 1="
+            android:textColor="#000000"
+            android:layout_marginLeft="8dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="What is Your Name?"
+            android:layout_marginBottom="25dp"
+            android:textColor="#000000"
+            android:layout_marginLeft="12dp"/>
+    </LinearLayout>
+
+
+    <RadioGroup
+        android:id="@+id/radioOption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="45dp">
+
+        <RadioButton
+            android:id="@+id/a"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Graham Gooch"
+            android:checked="true" />
+
+        <RadioButton
+            android:id="@+id/b"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Matthew Hayden" />
+        <RadioButton
+            android:id="@+id/c"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Brian Lara" />
+        <RadioButton
+            android:id="@+id/d"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sachin Tendulkar " />
+
+    </RadioGroup>
+
+
+</LinearLayout>
