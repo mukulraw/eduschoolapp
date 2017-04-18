@@ -1,0 +1,107 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="eskool.com.eskoolapp.ClassWork.AddClassWork">
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            android:descendantFocusability="beforeDescendants"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/className"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@drawable/viewattendance"
+                android:padding="12dp"
+                android:text="Class"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/sectonName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@drawable/viewattendance"
+                android:padding="12dp"
+                android:text="Section"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/subjectName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@drawable/viewattendance"
+                android:padding="12dp"
+                android:text="Subject"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/index"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@drawable/viewattendance"
+                android:padding="12dp"
+                android:text="Index"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/subindex"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@drawable/viewattendance"
+                android:padding="12dp"
+                android:text="Sub-Index"
+                android:textSize="18dp" />
+
+
+            <Spinner
+                android:id="@+id/status"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/viewattendance">
+
+            </Spinner>
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/viewattendance"
+                android:gravity="top|left"
+                android:hint="Class work......"
+                android:inputType="textMultiLine"
+                android:lines="6"
+                android:maxLines="10"
+                android:minLines="6"
+               android:paddingStart="12dp"
+                android:scrollbars="vertical" />
+
+        </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="#000000"
+            android:text="ADD"
+            android:textColor="#ffffff" />
+    </RelativeLayout>
+
+</LinearLayout>
