@@ -14,9 +14,7 @@ import android.widget.TextView;
 
 
 import eskool.com.eskoolapp.MyViewPager;
-import eskool.com.eskoolapp.QuestionFragment;
 import eskool.com.eskoolapp.R;
-import eskool.com.eskoolapp.QuestionFragment_two;
 
 
 public class OnlineTestActivity extends AppCompatActivity {

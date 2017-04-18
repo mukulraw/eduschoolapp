@@ -1,19 +1,19 @@
 package eskool.com.eskoolapp;
 
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
+import eskool.com.eskoolapp.Attendance.Edit_Attendance;
+import eskool.com.eskoolapp.Attendance.View_attendance;
+import eskool.com.eskoolapp.ClassWork.AddClassWork;
 import eskool.com.eskoolapp.OnlineTest.OnlineTestActivity;
-import eskool.com.eskoolapp.WelcomeSlider.WelcomeActivity;
+import eskool.com.eskoolapp.OnlineTest.OnlineTestSummery;
 
 public class Splash extends AppCompatActivity {
     Timer t;
@@ -32,7 +32,7 @@ public class Splash extends AppCompatActivity {
                 @Override
                 public void run() {
 
-                    Intent intent = new Intent(Splash.this, View_attendance.class);
+                    Intent intent = new Intent(Splash.this, OnlineTestSummery.class);
                     startActivity(intent);
                     finish();
 

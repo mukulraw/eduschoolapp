@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="eskool.com.eskoolapp.Fragment_ViewAttendance">
+    tools:context="eskool.com.eskoolapp.Attendance.Fragment_ViewAttendance">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView

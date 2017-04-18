@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="eskool.com.eskoolapp.View_attendance">
+    tools:context="eskool.com.eskoolapp.Attendance.View_attendance">
 
 
     <TextView
@@ -95,7 +95,8 @@
         <CalendarView
             android:layout_width="match_parent"
             android:layout_height="270dp"
-            android:background="@drawable/viewattendance">
+            android:background="@drawable/viewattendance"
+            android:id="@+id/calender">
 
         </CalendarView>
         <TextView

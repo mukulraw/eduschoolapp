@@ -1,4 +1,4 @@
-package eskool.com.eskoolapp;
+package eskool.com.eskoolapp.Attendance;
 
 import android.content.Context;
 import android.net.Uri;
@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import eskool.com.eskoolapp.R;
 
 
 public class Fragment_ViewAttendance extends Fragment {

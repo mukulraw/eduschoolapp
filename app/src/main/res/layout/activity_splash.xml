@@ -9,7 +9,7 @@
 
     <fragment
         android:id="@+id/fragment3"
-        android:name="eskool.com.eskoolapp.Fragment_Attendance"
+        android:name="eskool.com.eskoolapp.Attendance.Fragment_Attendance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1" />

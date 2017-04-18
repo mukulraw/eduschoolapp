@@ -1,7 +1,9 @@
-package eskool.com.eskoolapp;
+package eskool.com.eskoolapp.Attendance;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import eskool.com.eskoolapp.R;
 
 public class Attendance extends AppCompatActivity {
 
