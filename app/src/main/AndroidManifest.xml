@@ -27,7 +27,7 @@
         </activity>
         <activity
             android:name=".WelcomeSlider.WelcomeActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".MainActivity" />
 
         <service
@@ -51,7 +51,7 @@
         <activity android:name=".recycler" />
         <activity
             android:name=".New"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".OnlineTest.OnlineTestActivity" />
         <activity
             android:name=".Attendance.Attendance"
@@ -61,14 +61,23 @@
         <activity android:name=".Attendance.Edit_Attendance" />
         <activity
             android:name=".ClassWork.AddClassWork"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="adjustResize" />
-        <activity android:name=".OnlineTest.OnlineTestSummery">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".OnlineTest.OnlineTestSummery" />
+        <activity
+            android:name=".Profile.TeacherProfile"
+            android:label="My Profile" />
+        <activity
+            android:name=".Profile.ParentProfile"
+            android:label="My Profile"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".Home.ParentHome"
+            android:label="@string/title_activity_parent_home"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".Login.LoginPage" />
+        <activity android:name=".LoginPages.LoginPage"></activity>
     </application>
 
 </manifest>

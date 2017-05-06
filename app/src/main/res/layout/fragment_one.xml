@@ -6,90 +6,103 @@
     tools:context="eskool.com.eskoolapp.ClassWork.AddClassWork">
 
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:descendantFocusability="beforeDescendants"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical">
 
-        <LinearLayout
+
+        <TextView
+            android:id="@+id/date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="12dp"
-            android:descendantFocusability="beforeDescendants"
-            android:focusableInTouchMode="true"
-            android:orientation="vertical">
+            android:layout_centerInParent="true"
+            android:background="@drawable/viewattendance"
+            android:padding="10dp"
+            android:text="Date"
+            android:textSize="18dp" />
 
-            <TextView
-                android:id="@+id/className"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:background="@drawable/viewattendance"
-                android:padding="12dp"
-                android:text="Class"
-                android:textSize="18dp" />
+        <TextView
+            android:id="@+id/className"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@drawable/viewattendance"
+            android:padding="10dp"
+            android:text="Class"
+            android:textSize="18dp" />
 
-            <TextView
-                android:id="@+id/sectonName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:background="@drawable/viewattendance"
-                android:padding="12dp"
-                android:text="Section"
-                android:textSize="18dp" />
+        <TextView
+            android:id="@+id/sectonName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@drawable/viewattendance"
+            android:padding="10dp"
+            android:text="Section"
+            android:textSize="18dp" />
 
-            <TextView
-                android:id="@+id/subjectName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:background="@drawable/viewattendance"
-                android:padding="12dp"
-                android:text="Subject"
-                android:textSize="18dp" />
+        <TextView
+            android:id="@+id/subjectName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@drawable/viewattendance"
+            android:padding="10dp"
+            android:text="Subject"
+            android:textSize="18dp" />
 
-            <TextView
-                android:id="@+id/index"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:background="@drawable/viewattendance"
-                android:padding="12dp"
-                android:text="Index"
-                android:textSize="18dp" />
+        <TextView
+            android:id="@+id/chapter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@drawable/viewattendance"
+            android:padding="10dp"
+            android:text="Chapter"
+            android:textSize="18dp" />
 
-            <TextView
-                android:id="@+id/subindex"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:background="@drawable/viewattendance"
-                android:padding="12dp"
-                android:text="Sub-Index"
-                android:textSize="18dp" />
+        <TextView
+            android:id="@+id/subtopic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@drawable/viewattendance"
+            android:padding="10dp"
+            android:text="Sub-Topic"
+            android:textSize="18dp" />
 
 
-            <Spinner
-                android:id="@+id/status"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/viewattendance">
+        <TextView
+            android:id="@+id/status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@drawable/viewattendance"
+            android:padding="10dp"
+            android:text="Status"
+            android:textSize="18dp" />
 
-            </Spinner>
 
-            <EditText
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/viewattendance"
-                android:gravity="top|left"
-                android:hint="Class work......"
-                android:inputType="textMultiLine"
-                android:lines="6"
-                android:maxLines="10"
-                android:minLines="6"
-               android:paddingStart="12dp"
-                android:scrollbars="vertical" />
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/viewattendance"
+            android:gravity="top|left"
+            android:hint="Class work......"
+            android:inputType="textMultiLine"
+            android:lines="6"
+            android:maxLines="10"
+            android:minLines="6"
+            android:paddingStart="12dp"
+            android:scrollbars="vertical" />
 
-        </LinearLayout>
 
+    </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -99,9 +112,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
+            android:layout_gravity="bottom"
             android:background="#000000"
             android:text="ADD"
             android:textColor="#ffffff" />
-    </RelativeLayout>
 
+
+    </RelativeLayout>
 </LinearLayout>

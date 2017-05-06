@@ -9,11 +9,9 @@ import android.os.Bundle;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import eskool.com.eskoolapp.Attendance.Edit_Attendance;
-import eskool.com.eskoolapp.Attendance.View_attendance;
-import eskool.com.eskoolapp.ClassWork.AddClassWork;
-import eskool.com.eskoolapp.OnlineTest.OnlineTestActivity;
-import eskool.com.eskoolapp.OnlineTest.OnlineTestSummery;
+import eskool.com.eskoolapp.Home.ParentHome;
+import eskool.com.eskoolapp.LoginPages.LoginPage;
+import eskool.com.eskoolapp.Profile.ParentProfile;
 
 public class Splash extends AppCompatActivity {
     Timer t;
@@ -32,7 +30,7 @@ public class Splash extends AppCompatActivity {
                 @Override
                 public void run() {
 
-                    Intent intent = new Intent(Splash.this, OnlineTestSummery.class);
+                    Intent intent = new Intent(Splash.this, LoginPage.class);
                     startActivity(intent);
                     finish();
 

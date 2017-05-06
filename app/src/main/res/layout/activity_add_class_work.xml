@@ -8,31 +8,31 @@
     tools:context="eskool.com.eskoolapp.ClassWork.AddClassWork">
 
     <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/tool_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:background="@color/colorPrimary"
         android:elevation="4dp"
-        android:id="@+id/tool_bar"
-        app:titleTextColor="#fff"
-        app:title="Orders">
+        app:title="Orders"
+        app:titleTextColor="#fff">
 
     </android.support.v7.widget.Toolbar>
+
     <android.support.design.widget.TabLayout
         android:id="@+id/tabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:tabMode="fixed"
-        app:tabGravity="fill"
         android:background="@color/colorPrimary"
-        app:tabTextColor="#ffffff"
+        app:tabGravity="fill"
+        app:tabMode="fixed"
         app:tabSelectedTextColor="#ffffff"
-       />
+        app:tabTextColor="#ffffff" />
 
 
-<android.support.v4.view.ViewPager
-android:id="@+id/viewpager"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-app:layout_behavior="@string/appbar_scrolling_view_behavior"  />
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 </LinearLayout>
