@@ -65,8 +65,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_margin="20dp"
-            android:foreground="?android:attr/selectableItemBackground"
-           >
+            android:foreground="?android:attr/selectableItemBackground">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -78,7 +77,7 @@
                     android:layout_height="wrap_content"
                     android:background="@color/colorPrimary"
                     android:padding="15dp"
-                    android:text="DAILY REPORT"
+                    android:text="TODAY'S ATTENDANCE SUMMARY"
                     android:textColor="#ffffff" />
 
                 <LinearLayout
@@ -121,8 +120,8 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="70dp"
-                            android:orientation="vertical"
-                            android:gravity="center">
+                            android:gravity="center"
+                            android:orientation="vertical">
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -147,9 +146,9 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="70dp"
-                            android:orientation="vertical"
+                            android:background="@drawable/attendance2"
                             android:gravity="center"
-                            android:background="@drawable/attendance2">
+                            android:orientation="vertical">
 
                             <TextView
                                 android:layout_width="wrap_content"
