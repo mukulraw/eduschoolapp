@@ -1,6 +1,8 @@
 package eskool.com.eskoolapp.OnlineTest;
 
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v4.app.Fragment;
@@ -8,7 +10,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -19,21 +24,85 @@ import eskool.com.eskoolapp.R;
 
 public class OnlineTestActivity extends AppCompatActivity {
     TextView countDown;
-    static final int NUM_ITEMS = 2;
+    Toolbar toolbar;
     MyAdapter mAdapter;
     MyViewPager mPager;
     TextView count;
+    Button start;
     final static Fragment[] layouts = new Fragment[]{QuestionFragment.newInstance(0), QuestionFragment_two.newInstance(1)};
-
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_online_test);
-        count=(TextView)findViewById(R.id.count);
+        toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        toolbar.setTitleTextColor(getResources().getColor(R.color.colorPrimaryDark));
+        toolbar.setTitle("ONLINE TEST");
+        toolbar.setTitleTextColor(0xFFFFFFFF);
 
 
+        android.app.FragmentManager fm = this.getFragmentManager();
+        //TakeTestDailog ratingBarFragment = new TakeTestDailog();
+        //ratingBarFragment.show(fm, "dailog");
+
+
+        final Dialog dialog = new Dialog(OnlineTestActivity.this);
+        dialog.setCancelable(true);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.online_test_dailog);
+
+        dialog.show();
+
+
+        Button start = (Button)dialog.findViewById(R.id.start_test);
+
+        start.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int hoursToGo = 0;
+                int minutesToGo = 0;
+                int secondsToGo = 300;
+                int millisToGo = secondsToGo * 1000 + minutesToGo * 1000 * 60 + hoursToGo * 1000 * 60 * 60;
+
+                dialog.dismiss();
+                new CountDownTimer(millisToGo, 1000) {
+
+                    @Override
+                    public void onTick(long millis) {
+                        int seconds = (int) (millis / 1000) % 60;
+                        int minutes = (int) ((millis / (1000 * 60)) % 60);
+                        int hours = (int) ((millis / (1000 * 60 * 60)) % 24);
+                        String text = String.format("%02d:%02d:%02d", hours, minutes, seconds);
+                        countDown.setText(text);
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        countDown.setText("Done!");
+                    }
+                }.start();
+
+
+            }
+        });
+        dialog.setOnKeyListener(new Dialog.OnKeyListener() {
+
+            @Override
+            public boolean onKey(DialogInterface arg0, int keyCode,
+                                 KeyEvent event) {
+                // TODO Auto-generated method stub
+                if (keyCode == KeyEvent.KEYCODE_BACK) {
+                    finish();
+                    dialog.dismiss();
+                }
+                return true;
+            }
+        });
+
+        count = (TextView) findViewById(R.id.count);
         mAdapter = new MyAdapter(getSupportFragmentManager());
         mPager = (MyViewPager) findViewById(R.id.viewPager);
         mPager.setAdapter(mAdapter);
@@ -56,31 +125,13 @@ public class OnlineTestActivity extends AppCompatActivity {
         });
 
 
-
         countDown = (TextView) findViewById(R.id.countDown);
-        int hoursToGo = 0;
-        int minutesToGo = 0;
-        int secondsToGo = 300;
-
-        int millisToGo = secondsToGo * 1000 + minutesToGo * 1000 * 60 + hoursToGo * 1000 * 60 * 60;
 
 
-        new CountDownTimer(millisToGo, 1000) {
 
-            @Override
-            public void onTick(long millis) {
-                int seconds = (int) (millis / 1000) % 60;
-                int minutes = (int) ((millis / (1000 * 60)) % 60);
-                int hours = (int) ((millis / (1000 * 60 * 60)) % 24);
-                String text = String.format("%02d:%02d:%02d", hours, minutes, seconds);
-                countDown.setText(text);
-            }
 
-            @Override
-            public void onFinish() {
-                countDown.setText("Done!");
-            }
-        }.start();
+
+
 
     }
 

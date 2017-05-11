@@ -49,7 +49,6 @@ public class TwoFragment extends Fragment {
                 FilterDailog ratingBarFragment = new FilterDailog();
 
                 ratingBarFragment.show(fm, "dialog");
-               ;
 
             }
         });

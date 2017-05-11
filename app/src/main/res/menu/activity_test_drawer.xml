@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+
+    <group
+        android:id="@+id/menu_top"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/attendance"
+            android:icon="@drawable/attendance_icon"
+            android:title="Attendance" />
+
+    </group>
+
+    <group
+        android:id="@+id/menu_bottom"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/home_work"
+            android:icon="@drawable/home_work"
+            android:title="Home Work" />
+    </group>
+
+    <group
+        android:id="@+id/menu_bottom1"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/class_work"
+            android:icon="@drawable/class_work"
+            android:title="Class Work" />
+
+    </group>
+
+    <group
+        android:id="@+id/menu_bottom2"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/academic"
+            android:icon="@drawable/academic"
+            android:title="Academic" />
+
+    </group>
+
+    <group
+        android:id="@+id/menu_bottom8"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/gallery"
+            android:icon="@drawable/ic_gallry"
+            android:title="Gallery" />
+
+    </group>
+
+
+    <group
+        android:id="@+id/menu_bottom3"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/online_test"
+            android:icon="@drawable/online"
+            android:title="Online Test" />
+
+    </group>
+
+    <group
+        android:id="@+id/menu_bottom4"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/exam_result"
+            android:icon="@drawable/exam_n_result"
+            android:title="Exam and Result" />
+
+    </group>
+
+
+    <group
+        android:id="@+id/menu_bottom5"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/time_table"
+            android:icon="@drawable/timetable"
+            android:title="Time Table" />
+
+    </group>
+
+    <group
+        android:id="@+id/menu_bottom6"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/raise_request"
+            android:icon="@drawable/raise_request"
+            android:title="Raise Request" />
+
+    </group>
+
+
+    <group
+        android:id="@+id/menu_bottom7"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/log_out"
+            android:icon="@drawable/ic_logout"
+            android:title="Logout" />
+
+    </group>
+</menu>

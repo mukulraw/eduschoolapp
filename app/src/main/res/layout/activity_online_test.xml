@@ -6,6 +6,16 @@
     android:layout_height="match_parent"
     tools:context="eskool.com.eskoolapp.OnlineTest.OnlineTestActivity"
     android:orientation="vertical">
+    <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/tool_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:elevation="4dp"
+        app:title="ONLINE TEST"
+        app:titleTextColor="#fff">
+    </android.support.v7.widget.Toolbar>
 
 
     <LinearLayout

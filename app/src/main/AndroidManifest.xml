@@ -57,7 +57,6 @@
             android:name=".Attendance.Attendance"
             android:label="Attendance" />
         <activity android:name=".Attendance.Mark_attendance" />
-        <activity android:name=".Attendance.View_attendance" />
         <activity android:name=".Attendance.Edit_Attendance" />
         <activity
             android:name=".ClassWork.AddClassWork"
@@ -76,8 +75,8 @@
             android:name=".Home.ParentHome"
             android:label="@string/title_activity_parent_home"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".Login.LoginPage" />
         <activity android:name=".LoginPages.LoginPage"></activity>
+        <activity android:name=".RaiseRequest.RaiseRequestActivity"></activity>
     </application>
 
 </manifest>

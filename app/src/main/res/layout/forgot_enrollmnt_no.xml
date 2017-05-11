@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#04365F">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#ffff"
+        android:layout_margin="12dp">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logo1"
+            android:layout_gravity="center"
+            android:layout_marginBottom="35dp"
+            android:layout_marginTop="35dp"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email ID or Phone No."
+            android:padding="12dp"
+            android:background="@drawable/viewattendance"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SUBMIT"
+            android:textColor="#ffffff"
+            android:background="#1EBE0D"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginTop="18dp"/>
+    </LinearLayout>
+
+</LinearLayout>

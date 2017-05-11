@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
         android:elevation="4dp"
-        app:title="Orders"
+        app:title="Class Work"
         app:titleTextColor="#fff">
 
     </android.support.v7.widget.Toolbar>

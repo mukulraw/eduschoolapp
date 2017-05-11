@@ -1,39 +1,41 @@
 package eskool.com.eskoolapp.OnlineTest;
 
 
-import android.content.Context;
-import android.graphics.Canvas;
+import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.text.TextPaint;
-import android.util.AttributeSet;
-import android.view.Gravity;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
-
 import eskool.com.eskoolapp.R;
 
-public class OnlineTestSummery extends AppCompatActivity {
-    Toolbar toolbar;
+public class OnlineTestSummery extends Fragment {
+    TextView take_test;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.class_work_edit);
-        toolbar = (Toolbar) findViewById(R.id.tool_bar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
-        toolbar.setTitleTextColor(getResources().getColor(R.color.colorPrimaryDark));
-        toolbar.setTitle("ONLINE TEST");
-        toolbar.setTitleTextColor(0xFFFFFFFF);
-
-
-
+    public OnlineTestSummery() {
 
     }
 
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        View view = inflater.inflate(R.layout.activity_online_test_summery, container, false);
+        take_test = (TextView) view.findViewById(R.id.take_test);
+        take_test.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getActivity(),OnlineTestActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
+        return view;
 
-
+    }
 }
+
