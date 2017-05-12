@@ -75,8 +75,12 @@
             android:name=".Home.ParentHome"
             android:label="@string/title_activity_parent_home"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".LoginPages.LoginPage"></activity>
-        <activity android:name=".RaiseRequest.RaiseRequestActivity"></activity>
+        <activity android:name=".LoginPages.LoginPage" />
+        <activity android:name=".RaiseRequest.RaiseRequestActivity" />
+        <activity
+            android:name=".Home.TeacherHome"
+            android:label="@string/title_activity_teacher_home"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
     </application>
 
 </manifest>

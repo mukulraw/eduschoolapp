@@ -1,4 +1,4 @@
-package eskool.com.eskoolapp.Home;
+package eskool.com.eskoolapp.Attendance;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

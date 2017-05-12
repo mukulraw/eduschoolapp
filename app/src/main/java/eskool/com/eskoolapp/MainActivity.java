@@ -21,7 +21,6 @@ import eskool.com.eskoolapp.R;
 
 public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
-    CollapsingToolbarLayout collapsingToolbarLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -23,7 +23,6 @@ public class Splash extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
 
-
         t = new Timer();
         try {
             t.schedule(new TimerTask() {

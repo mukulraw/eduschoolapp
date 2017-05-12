@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,6 +16,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 
@@ -23,29 +25,28 @@ import java.util.List;
 
 import eskool.com.eskoolapp.R;
 
-public class ParentProfile extends AppCompatActivity {
-    Toolbar toolbar;
+public class ParentProfile extends Fragment {
     private TabLayout tabLayout;
     private ViewPager viewPager;
     Button change_password;
 
+    public ParentProfile() {
+
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_test);
-        toolbar = (Toolbar) findViewById(R.id.tool_bar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
-        toolbar.setTitleTextColor(getResources().getColor(R.color.colorPrimaryDark));
-        toolbar.setTitle("My Profile");
-        toolbar.setTitleTextColor(0xFFFFFFFF);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
 
-        change_password = (Button) findViewById(R.id.change_password);
-        viewPager = (ViewPager) findViewById(R.id.viewpager);
+        View v = inflater.inflate(R.layout.parent_profile, container, false);
+
+
+        change_password = (Button)v.findViewById(R.id.change_password);
+        viewPager = (ViewPager)v.findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
-        tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout = (TabLayout)v.findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
 
@@ -55,7 +56,7 @@ public class ParentProfile extends AppCompatActivity {
             public void onClick(View arg0) {
 
                 // custom dialog
-                final Dialog dialog = new Dialog(ParentProfile.this);
+                final Dialog dialog = new Dialog(getActivity());
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setContentView(R.layout.parent_profile_popup);
 
@@ -65,11 +66,11 @@ public class ParentProfile extends AppCompatActivity {
                 dialog.show();
             }
         });
-
+        return v;
     }
 
     private void setupViewPager(ViewPager viewPager) {
-        ParentProfile.ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        ParentProfile.ViewPagerAdapter adapter = new ViewPagerAdapter(getFragmentManager());
         adapter.addFragment(new ParentFragmentOne(), "Contact Info");
         adapter.addFragment(new ParentFragmentTwo(), "Child Info");
         viewPager.setAdapter(adapter);

@@ -97,19 +97,10 @@
         <item
             android:id="@+id/raise_request"
             android:icon="@drawable/raise_request"
-            android:title="Raise Request" />
+            android:title="Communication" />
 
     </group>
-    <group
-        android:id="@+id/menu_bottom9"
-        android:checkableBehavior="single">
 
-        <item
-            android:id="@+id/profile"
-            android:icon="@drawable/ic_profile"
-            android:title="Profile" />
-
-    </group>
 
     <group
         android:id="@+id/menu_bottom7"
@@ -121,6 +112,4 @@
             android:title="Logout" />
 
     </group>
-
-
 </menu>

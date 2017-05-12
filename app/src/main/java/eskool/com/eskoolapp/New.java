@@ -21,11 +21,8 @@ import java.util.ArrayList;
 public class New extends AppCompatActivity {
 
 
-
     ViewPager viewPager;
     MyPagerAdapter myPagerAdapter;
-    Context context;
-    public  ArrayList res1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,15 +33,12 @@ public class New extends AppCompatActivity {
         setContentView(R.layout.activity_new);
 
 
-        viewPager = (ViewPager)findViewById(R.id.view);
+        viewPager = (ViewPager) findViewById(R.id.view);
         myPagerAdapter = new MyPagerAdapter();
         viewPager.setAdapter(myPagerAdapter);
 
 
-        /*int pos = Integer.parseInt(getIntent().getStringExtra("position"));*/
-        int pos=getIntent().getIntExtra("position",0);
-
-
+        int pos = getIntent().getIntExtra("position", 0);
         viewPager.setCurrentItem(pos);
 
 
@@ -53,20 +47,13 @@ public class New extends AppCompatActivity {
 
     private class MyPagerAdapter extends PagerAdapter {
 
-        ArrayList<String> arrayList;
-
-
-
-
-        Intent intent=getIntent();
-
 
         int[] res = {
-                android.R.drawable.ic_dialog_alert,
-                android.R.drawable.ic_menu_camera,
-                android.R.drawable.ic_menu_compass,
-                android.R.drawable.ic_menu_directions,
-                android.R.drawable.ic_menu_gallery};
+                R.drawable.teacher,
+                R.drawable.studentimage,
+                R.drawable.logo1,
+                R.drawable.school,
+                R.drawable.logo1};
 
         int[] backgroundcolor = {
                 0xFF101010,
@@ -104,20 +91,19 @@ public class New extends AppCompatActivity {
             layout.addView(imageView);
 
             final int page = position;
-            layout.setOnClickListener(new View.OnClickListener(){
+            layout.setOnClickListener(new View.OnClickListener() {
 
                 @Override
                 public void onClick(View v) {
                     Toast.makeText(New.this,
                             "Page " + page + " clicked",
                             Toast.LENGTH_LONG).show();
-                }});
-
+                }
+            });
 
 
             container.addView(layout);
             return layout;
-
 
 
         }
@@ -125,7 +111,7 @@ public class New extends AppCompatActivity {
 
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
-            container.removeView((LinearLayout)object);
+            container.removeView((LinearLayout) object);
         }
 
     }

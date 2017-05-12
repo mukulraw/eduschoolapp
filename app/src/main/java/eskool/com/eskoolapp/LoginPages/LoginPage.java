@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import eskool.com.eskoolapp.Home.ParentHome;
+import eskool.com.eskoolapp.Home.TeacherHome;
+import eskool.com.eskoolapp.Profile.ParentProfile;
 import eskool.com.eskoolapp.R;
 
 public class LoginPage extends AppCompatActivity {

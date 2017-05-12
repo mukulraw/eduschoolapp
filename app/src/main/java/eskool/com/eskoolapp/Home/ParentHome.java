@@ -4,7 +4,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -12,7 +11,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.widget.LinearLayout;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
@@ -23,10 +21,13 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 import java.util.ArrayList;
 
 import eskool.com.eskoolapp.Academic.ParentAcademic;
+import eskool.com.eskoolapp.Attendance.ParentAttendanceFrgmnt;
 import eskool.com.eskoolapp.ClassWork.ClassWorkFrgmnt;
 import eskool.com.eskoolapp.ExamAndResults.ExamFrgmntOne;
+import eskool.com.eskoolapp.Gallery.GalleryParent;
 import eskool.com.eskoolapp.HomeWork.HomeWorkFrgmnt;
 import eskool.com.eskoolapp.OnlineTest.OnlineTestSummery;
+import eskool.com.eskoolapp.Profile.ParentProfile;
 import eskool.com.eskoolapp.R;
 import eskool.com.eskoolapp.RaiseRequest.RaiseReqquestHome;
 import eskool.com.eskoolapp.TimeTable.TimeTableParent;
@@ -208,6 +209,27 @@ public class ParentHome extends AppCompatActivity
             FragmentManager fm = getSupportFragmentManager();
             FragmentTransaction ft = fm.beginTransaction();
             TimeTableParent frag1 =new TimeTableParent();
+            ft.replace(R.id.replace, frag1);
+            ft.addToBackStack(null);
+            ft.commit();
+        }
+        else if (id == R.id.gallery) {
+
+
+            FragmentManager fm = getSupportFragmentManager();
+            FragmentTransaction ft = fm.beginTransaction();
+            GalleryParent frag1 =new GalleryParent();
+            ft.replace(R.id.replace, frag1);
+            ft.addToBackStack(null);
+            ft.commit();
+        }
+
+        else if (id == R.id.profile) {
+
+
+            FragmentManager fm = getSupportFragmentManager();
+            FragmentTransaction ft = fm.beginTransaction();
+            ParentProfile frag1 =new ParentProfile();
             ft.replace(R.id.replace, frag1);
             ft.addToBackStack(null);
             ft.commit();
