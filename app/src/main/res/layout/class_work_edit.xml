@@ -6,7 +6,7 @@
     android:gravity="center"
     android:orientation="vertical"
     android:padding="12dp"
-    android:minWidth="300dp">
+    android:minWidth="340dp">
 
     <TextView
         android:layout_width="match_parent"

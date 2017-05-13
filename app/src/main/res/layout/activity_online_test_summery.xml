@@ -8,16 +8,6 @@
     android:orientation="vertical"
     tools:context="eskool.com.eskoolapp.OnlineTest.OnlineTestSummery">
 
-    <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/tool_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        app:title="Online Test"
-        app:titleTextColor="#fff">
-
-    </android.support.v7.widget.Toolbar>
 
     <ScrollView
         android:layout_width="match_parent"

@@ -8,11 +8,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 ;
 
+import eskool.com.eskoolapp.Home.ParentHome;
 import eskool.com.eskoolapp.R;
 
 /**
@@ -21,6 +23,7 @@ import eskool.com.eskoolapp.R;
 
 public class HomeWorkFrgmntTwo extends Fragment {
     CardView card;
+    Toolbar toolbar;
 
     public HomeWorkFrgmntTwo() {
 
@@ -33,6 +36,7 @@ public class HomeWorkFrgmntTwo extends Fragment {
         View view = inflater.inflate(R.layout.parent_hw2, container, false);
 
         FloatingActionButton button = (FloatingActionButton) view.findViewById(R.id.fab);
+        toolbar = (Toolbar) ((ParentHome) getContext()).findViewById(R.id.tool_bar);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,5 +65,11 @@ public class HomeWorkFrgmntTwo extends Fragment {
 
         return view;
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        toolbar.setTitle("Home Work");
     }
 }

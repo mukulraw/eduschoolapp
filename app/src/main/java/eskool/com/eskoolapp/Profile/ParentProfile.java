@@ -23,12 +23,14 @@ import android.widget.Button;
 import java.util.ArrayList;
 import java.util.List;
 
+import eskool.com.eskoolapp.Home.ParentHome;
 import eskool.com.eskoolapp.R;
 
 public class ParentProfile extends Fragment {
     private TabLayout tabLayout;
     private ViewPager viewPager;
     Button change_password;
+    Toolbar toolbar;
 
     public ParentProfile() {
 
@@ -41,7 +43,7 @@ public class ParentProfile extends Fragment {
 
         View v = inflater.inflate(R.layout.parent_profile, container, false);
 
-
+        toolbar = (Toolbar) ((ParentHome) getContext()).findViewById(R.id.tool_bar);
         change_password = (Button)v.findViewById(R.id.change_password);
         viewPager = (ViewPager)v.findViewById(R.id.viewpager);
         setupViewPager(viewPager);
@@ -67,6 +69,11 @@ public class ParentProfile extends Fragment {
             }
         });
         return v;
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        toolbar.setTitle("My Profile");
     }
 
     private void setupViewPager(ViewPager viewPager) {

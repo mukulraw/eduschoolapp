@@ -7,10 +7,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import eskool.com.eskoolapp.Home.ParentHome;
 import eskool.com.eskoolapp.HomeWork.HomeWrkFrgmntThree;
 import eskool.com.eskoolapp.R;
 
@@ -20,6 +22,7 @@ import eskool.com.eskoolapp.R;
 
 public class ClassWorkFrgmntTwo extends Fragment {
     CardView card;
+    Toolbar toolbar;
 
     public ClassWorkFrgmntTwo() {
 
@@ -30,7 +33,7 @@ public class ClassWorkFrgmntTwo extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.parent_hw2, container, false);
-
+        toolbar = (Toolbar) ((ParentHome) getContext()).findViewById(R.id.tool_bar);
         FloatingActionButton button = (FloatingActionButton) view.findViewById(R.id.fab);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,5 +61,11 @@ public class ClassWorkFrgmntTwo extends Fragment {
 
         return view;
 
+    }
+    @Override
+    public void onResume() {
+
+        super.onResume();
+        toolbar.setTitle("Class Work");
     }
 }

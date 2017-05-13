@@ -8,11 +8,15 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import eskool.com.eskoolapp.Home.ParentHome;
 import eskool.com.eskoolapp.R;
 
 /**
@@ -22,14 +26,17 @@ import eskool.com.eskoolapp.R;
 public class RaiseReqquestHome extends Fragment {
     private TabLayout tabLayout;
     ViewPager viewPager;
+    Toolbar toolbar;
+
 
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.raise_request, container, false);
 
+        View view = inflater.inflate(R.layout.raise_request, container, false);
+        toolbar = (Toolbar) ((ParentHome) getContext()).findViewById(R.id.tool_bar);
 
         viewPager = (ViewPager) view.findViewById(R.id.viewpager);
         setupViewPager(viewPager);
@@ -48,6 +55,12 @@ public class RaiseReqquestHome extends Fragment {
         });
 
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        toolbar.setTitle("Request");
     }
 
     private void setupViewPager(ViewPager viewPager) {
