@@ -21,7 +21,6 @@ import eskool.com.eskoolapp.R;
 public class ClassWorkFrgmnt extends Fragment {
 
     TextView subject;
-    Context myContext;
 
     public ClassWorkFrgmnt() {
 

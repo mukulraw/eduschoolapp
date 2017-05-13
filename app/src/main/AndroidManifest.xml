@@ -56,7 +56,7 @@
         <activity
             android:name=".Attendance.Attendance"
             android:label="Attendance" />
-        <activity android:name=".Attendance.Mark_attendance" />
+        <activity android:name=".Attendance.MarkAttendance" />
         <activity android:name=".Attendance.Edit_Attendance" />
         <activity
             android:name=".ClassWork.AddClassWork"

@@ -3,6 +3,7 @@ package eskool.com.eskoolapp.Attendance;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,7 +11,8 @@ import android.widget.TextView;
 
 import eskool.com.eskoolapp.R;
 
-public class Mark_attendance extends AppCompatActivity {
+public class MarkAttendance extends AppCompatActivity {
+
     TextView p,a,l;
     boolean aBoolean=false,pBoolean=true,lBoolean=false;
 
