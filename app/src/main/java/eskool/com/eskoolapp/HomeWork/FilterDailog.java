@@ -19,7 +19,7 @@ import java.util.Calendar;
 import eskool.com.eskoolapp.R;
 
 /**
- * Created by user on 5/8/2017.
+ * Created by User on 5/8/2017.
  */
 
 @RequiresApi(api = Build.VERSION_CODES.N)
@@ -67,8 +67,6 @@ public class FilterDailog extends DialogFragment implements DatePickerDialog.OnD
 
 
     }
-
-
 
 
     @SuppressLint("ValidFragment")

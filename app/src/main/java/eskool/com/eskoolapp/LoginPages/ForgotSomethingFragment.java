@@ -15,7 +15,7 @@ import android.widget.Button;
 import eskool.com.eskoolapp.R;
 
 /**
- * Created by user on 5/6/2017.
+ * Created by User on 5/6/2017.
  */
 
 public class ForgotSomethingFragment extends Fragment {

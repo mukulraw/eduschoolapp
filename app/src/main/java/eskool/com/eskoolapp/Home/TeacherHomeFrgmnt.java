@@ -1,4 +1,4 @@
-package eskool.com.eskoolapp.Academic;
+package eskool.com.eskoolapp.Home;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,20 +7,20 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Spinner;
 
-import eskool.com.eskoolapp.Home.ParentHome;
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.data.BarData;
+
 import eskool.com.eskoolapp.R;
-import eskool.com.eskoolapp.User;
 
 /**
- * Created by User on 5/8/2017.
+ * Created by User on 5/13/2017.
  */
 
-public class ParentAcademic extends Fragment {
+public class TeacherHomeFrgmnt extends Fragment {
     Toolbar toolbar;
 
-    public ParentAcademic() {
+    public TeacherHomeFrgmnt() {
 
     }
 
@@ -28,8 +28,10 @@ public class ParentAcademic extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.parent_academic, container, false);
-        toolbar = (Toolbar) ((ParentHome) getContext()).findViewById(R.id.tool_bar);
+        View view = inflater.inflate(R.layout.teacher_home_frgmnt, container, false);
+        toolbar = (Toolbar) ((TeacherHome) getContext()).findViewById(R.id.tool_bar);
+
+
         return view;
 
     }
@@ -37,9 +39,6 @@ public class ParentAcademic extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        toolbar.setTitle("Academic");
-        User u = (User) getContext().getApplicationContext();
-
-        u.back = true;
+        toolbar.setTitle("Home");
     }
 }

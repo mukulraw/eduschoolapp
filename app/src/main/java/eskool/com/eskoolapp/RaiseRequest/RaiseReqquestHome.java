@@ -18,9 +18,10 @@ import java.util.List;
 
 import eskool.com.eskoolapp.Home.ParentHome;
 import eskool.com.eskoolapp.R;
+import eskool.com.eskoolapp.User;
 
 /**
- * Created by user on 5/10/2017.
+ * Created by User on 5/10/2017.
  */
 
 public class RaiseReqquestHome extends Fragment {
@@ -61,6 +62,10 @@ public class RaiseReqquestHome extends Fragment {
     public void onResume() {
         super.onResume();
         toolbar.setTitle("Request");
+
+        User u = (User) getContext().getApplicationContext();
+
+        u.back = true;
     }
 
     private void setupViewPager(ViewPager viewPager) {

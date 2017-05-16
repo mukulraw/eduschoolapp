@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import eskool.com.eskoolapp.R;
 
 /**
- * Created by user on 4/12/2017.
+ * Created by User on 4/12/2017.
  */
 
 public class TwoFragment extends Fragment {

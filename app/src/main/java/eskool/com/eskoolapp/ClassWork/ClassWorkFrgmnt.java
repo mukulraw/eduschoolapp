@@ -15,9 +15,10 @@ import android.widget.TextView;
 
 import eskool.com.eskoolapp.Home.ParentHome;
 import eskool.com.eskoolapp.R;
+import eskool.com.eskoolapp.User;
 
 /**
- * Created by user on 5/8/2017.
+ * Created by User on 5/8/2017.
  */
 
 public class ClassWorkFrgmnt extends Fragment {
@@ -61,5 +62,9 @@ public class ClassWorkFrgmnt extends Fragment {
 
         super.onResume();
         toolbar.setTitle("Class Work");
+
+        User u = (User) getContext().getApplicationContext();
+
+        u.back = true;
     }
 }

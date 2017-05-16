@@ -11,9 +11,10 @@ import android.widget.TextView;
 
 import eskool.com.eskoolapp.Home.ParentHome;
 import eskool.com.eskoolapp.R;
+import eskool.com.eskoolapp.User;
 
 /**
- * Created by user on 5/8/2017.
+ * Created by User on 5/8/2017.
  */
 
 public class HomeWrkFrgmntThree extends Fragment {
@@ -38,5 +39,8 @@ public class HomeWrkFrgmntThree extends Fragment {
     public void onResume() {
         super.onResume();
         toolbar.setTitle("Home Work Details");
+        User u = (User) getContext().getApplicationContext();
+
+        u.back = false;
     }
 }

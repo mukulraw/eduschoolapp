@@ -10,9 +10,10 @@ import android.view.ViewGroup;
 
 import eskool.com.eskoolapp.Home.ParentHome;
 import eskool.com.eskoolapp.R;
+import eskool.com.eskoolapp.User;
 
 /**
- * Created by user on 5/10/2017.
+ * Created by User on 5/10/2017.
  */
 
 public class TimeTableParent extends Fragment{
@@ -35,5 +36,8 @@ public class TimeTableParent extends Fragment{
     public void onResume() {
         super.onResume();
         toolbar.setTitle("Time Table");
+        User u = (User) getContext().getApplicationContext();
+
+        u.back = true;
     }
 }

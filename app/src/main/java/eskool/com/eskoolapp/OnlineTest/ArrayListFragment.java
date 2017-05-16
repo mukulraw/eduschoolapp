@@ -13,7 +13,7 @@ import android.widget.TextView;
 import eskool.com.eskoolapp.R;
 
 /**
- * Created by user on 4/5/2017.
+ * Created by User on 4/5/2017.
  */
 
 

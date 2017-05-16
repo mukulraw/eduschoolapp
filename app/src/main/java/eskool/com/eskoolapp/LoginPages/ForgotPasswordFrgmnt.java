@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import eskool.com.eskoolapp.R;
 
 /**
- * Created by user on 5/6/2017.
+ * Created by User on 5/6/2017.
  */
 
 public class ForgotPasswordFrgmnt extends Fragment {

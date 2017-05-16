@@ -19,7 +19,7 @@ import java.util.List;
 import eskool.com.eskoolapp.R;
 
 /**
- * Created by user on 5/5/2017.
+ * Created by User on 5/5/2017.
  */
 
 public class TeacherProfile extends AppCompatActivity {

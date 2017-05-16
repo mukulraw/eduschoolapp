@@ -15,9 +15,10 @@ import android.widget.TextView;
 
 import eskool.com.eskoolapp.Home.ParentHome;
 import eskool.com.eskoolapp.R;
+import eskool.com.eskoolapp.User;
 
 /**
- * Created by user on 5/9/2017.
+ * Created by User on 5/9/2017.
  */
 
 public class ExamFrgmntOne extends Fragment {
@@ -55,6 +56,9 @@ public class ExamFrgmntOne extends Fragment {
     public void onResume() {
         super.onResume();
         toolbar.setTitle("Exam");
+        User u = (User) getContext().getApplicationContext();
+
+        u.back = true;
     }
 }
 

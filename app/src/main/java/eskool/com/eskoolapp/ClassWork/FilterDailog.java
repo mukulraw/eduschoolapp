@@ -27,7 +27,7 @@ import java.util.Locale;
 import eskool.com.eskoolapp.R;
 
 /**
- * Created by user on 4/21/2017.
+ * Created by User on 4/21/2017.
  */
 
 @RequiresApi(api = Build.VERSION_CODES.N)

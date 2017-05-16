@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 
 /**
- * Created by user on 3/27/2017.
+ * Created by User on 3/27/2017.
  */
 
 public class receive extends BroadcastReceiver {

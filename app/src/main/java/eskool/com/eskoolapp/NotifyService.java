@@ -20,7 +20,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 /**
- * Created by user on 3/27/2017.
+ * Created by User on 3/27/2017.
  */
 
 public class NotifyService extends Service {

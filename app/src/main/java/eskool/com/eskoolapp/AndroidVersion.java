@@ -1,7 +1,7 @@
 package eskool.com.eskoolapp;
 
 /**
- * Created by user on 4/1/2017.
+ * Created by User on 4/1/2017.
  */
 
 public class AndroidVersion {

@@ -25,6 +25,7 @@ import java.util.List;
 
 import eskool.com.eskoolapp.Home.ParentHome;
 import eskool.com.eskoolapp.R;
+import eskool.com.eskoolapp.User;
 
 public class ParentProfile extends Fragment {
     private TabLayout tabLayout;
@@ -74,6 +75,10 @@ public class ParentProfile extends Fragment {
     public void onResume() {
         super.onResume();
         toolbar.setTitle("My Profile");
+
+        User u = (User) getContext().getApplicationContext();
+
+        u.back = true;
     }
 
     private void setupViewPager(ViewPager viewPager) {

@@ -35,6 +35,13 @@ public class TeacherHome extends AppCompatActivity
         toolbar.setTitleTextColor(0xFFFFFFFF);
 
 
+
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        TeacherHomeFrgmnt frag1 =new TeacherHomeFrgmnt();
+        ft.replace(R.id.replace, frag1);
+        ft.commit();
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);

@@ -15,9 +15,10 @@ import android.widget.TextView;
 
 import eskool.com.eskoolapp.Home.ParentHome;
 import eskool.com.eskoolapp.R;
+import eskool.com.eskoolapp.User;
 
 /**
- * Created by user on 5/8/2017.
+ * Created by User on 5/8/2017.
  */
 
 public class HomeWorkFrgmnt extends Fragment {
@@ -42,19 +43,28 @@ public class HomeWorkFrgmnt extends Fragment {
             public void onClick(View view) {
                 FragmentManager fm = getFragmentManager();
                 FragmentTransaction ft = fm.beginTransaction();
-                HomeWorkFrgmntTwo frag1 =new HomeWorkFrgmntTwo();
+                HomeWorkFrgmntTwo frag1 = new HomeWorkFrgmntTwo();
                 ft.replace(R.id.replace, frag1);
                 ft.addToBackStack(null);
                 ft.commit();
             }
         });
+
+
         return view;
 
     }
+
     @Override
     public void onResume() {
         super.onResume();
         toolbar.setTitle("Home Work");
+
+        User u = (User) getContext().getApplicationContext();
+
+        u.back = true;
+
+
     }
 
 }

@@ -22,7 +22,7 @@ import eskool.com.eskoolapp.MainActivity;
 import eskool.com.eskoolapp.R;
 
 /**
- * Created by user on 3/27/2017.
+ * Created by User on 3/27/2017.
  */
 
 public class WelcomeActivity extends AppCompatActivity {

@@ -1,30 +1,27 @@
-package eskool.com.eskoolapp.Gallery;
+package eskool.com.eskoolapp.Attendance;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import eskool.com.eskoolapp.Home.ParentHome;
-import eskool.com.eskoolapp.New;
+import eskool.com.eskoolapp.Home.TeacherHome;
 import eskool.com.eskoolapp.R;
-import eskool.com.eskoolapp.User;
 
 /**
- * Created by User on 5/12/2017.
+ * Created by User on 5/15/2017.
  */
 
-public class GalleryParent2 extends Fragment {
-    ImageView image;
+public class ViewOwnClassFrgmnt extends Fragment {
     Toolbar toolbar;
 
-
-    public GalleryParent2() {
+    public ViewOwnClassFrgmnt() {
 
     }
 
@@ -32,14 +29,14 @@ public class GalleryParent2 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.gallery_parent2, container, false);
-        image = (ImageView) view.findViewById(R.id.image);
-        toolbar = (Toolbar) ((ParentHome) getContext()).findViewById(R.id.tool_bar);
+        View view = inflater.inflate(R.layout.activity_edit__attendance, container, false);
+        toolbar = (Toolbar) ((TeacherHome) getContext()).findViewById(R.id.tool_bar);
+        FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
 
-        image.setOnClickListener(new View.OnClickListener() {
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(getActivity(), New.class);
+                Intent intent=new Intent(getActivity(),MarkAttendance.class);
                 startActivity(intent);
             }
         });
@@ -51,9 +48,7 @@ public class GalleryParent2 extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        toolbar.setTitle("Gallery");
-        User u = (User) getContext().getApplicationContext();
-
-        u.back = false;
+        toolbar.setTitle("Attendance");
     }
 }
+

@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import eskool.com.eskoolapp.Home.ParentHome;
 import eskool.com.eskoolapp.R;
+import eskool.com.eskoolapp.User;
 
 public class OnlineTestSummery extends Fragment {
     TextView take_test;
@@ -45,6 +46,10 @@ Toolbar toolbar;
     public void onResume() {
         super.onResume();
         toolbar.setTitle("Online Test");
+
+        User u = (User) getContext().getApplicationContext();
+
+        u.back = true;
     }
 }
 
