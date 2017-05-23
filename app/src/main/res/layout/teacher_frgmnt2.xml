@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffff">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="12dp"
+        android:layout_marginBottom="12dp"
+        android:layout_marginLeft="12dp"
+        android:orientation="vertical"
+        android:layout_marginTop="22dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/viewattendance1"
+            android:padding="15dp"
+            android:text="OWN CLASS"
+            android:textAlignment="center"
+            android:textColor="#ffffff"
+            android:id="@+id/own_class"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/viewattendance1"
+            android:padding="15dp"
+            android:text="DIFFERENT CLASS"
+            android:textAlignment="center"
+            android:textColor="#ffffff"
+            android:id="@+id/diff_class"/>
+
+    </LinearLayout>
+</LinearLayout>

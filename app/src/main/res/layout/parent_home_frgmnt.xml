@@ -9,7 +9,6 @@
         android:orientation="vertical">
 
 
-
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -24,13 +23,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="12dp"
                     android:layout_marginTop="15dp"
-
                     android:text="Events Notification" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="12dp">
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="22dp">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -89,14 +90,16 @@
                     android:paddingRight="12dp"
                     android:paddingTop="12dp"
                     android:text="Teacher's Profile"
-                    android:textColor="#ffffff" />
+                    android:textColor="#ffffff"
+                    android:visibility="gone"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="12dp"
                     android:layout_marginRight="12dp"
-                    android:background="@drawable/viewattendance">
+                    android:background="@drawable/viewattendance"
+                    android:visibility="gone">
 
                     <ImageView
                         android:layout_width="0dp"
@@ -139,35 +142,42 @@
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <RelativeLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:id="@+id/attendance">
+                    android:id="@+id/layout_attendance"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="12dp"
+                    >
 
-                    <TextView
-                        android:layout_width="match_parent"
+                    <LinearLayout
+                        android:id="@+id/attendance"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="12dp"
-                        android:layout_marginRight="12dp"
-                        android:layout_marginTop="12dp"
-                        android:background="@drawable/viewattendance1"
-                        android:paddingBottom="12dp"
-                        android:paddingLeft="12dp"
-                        android:paddingRight="12dp"
-                        android:paddingTop="12dp"
-                        android:text="Attendance"
-                        android:textColor="#ffffff" />
+                        android:orientation="vertical"
+                        android:layout_alignParentBottom="true"
+                        android:gravity="bottom"
+                        >
 
-                    <com.github.mikephil.charting.charts.BarChart
-                        android:id="@+id/chart"
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:layout_marginBottom="12dp"
-                        android:layout_marginLeft="12dp"
-                        android:layout_marginRight="12dp"
-                        android:background="@drawable/viewattendance" />
-                </LinearLayout>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/viewattendance1"
+                            android:paddingBottom="12dp"
+                            android:paddingLeft="12dp"
+                            android:paddingRight="12dp"
+                            android:paddingTop="12dp"
+                            android:text="Attendance"
+                            android:textColor="#ffffff" />
+
+                        <com.github.mikephil.charting.charts.BarChart
+                            android:id="@+id/chart"
+                            android:layout_width="match_parent"
+                            android:layout_height="200dp"
+                            android:layout_marginBottom="12dp"
+                            android:background="@drawable/viewattendance" />
+                    </LinearLayout>
+                </RelativeLayout>
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

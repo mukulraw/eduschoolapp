@@ -40,8 +40,15 @@ public class OnlineTestActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         toolbar.setTitleTextColor(getResources().getColor(R.color.colorPrimaryDark));
-        toolbar.setTitle("ONLINE TEST");
+        toolbar.setTitle("Raise Request");
         toolbar.setTitleTextColor(0xFFFFFFFF);
+        toolbar.setNavigationIcon(R.drawable.back);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
 
         android.app.FragmentManager fm = this.getFragmentManager();

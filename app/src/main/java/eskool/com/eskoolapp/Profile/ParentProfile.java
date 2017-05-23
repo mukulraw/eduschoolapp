@@ -5,24 +5,14 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import eskool.com.eskoolapp.Home.ParentHome;
 import eskool.com.eskoolapp.R;
 import eskool.com.eskoolapp.User;
@@ -45,11 +35,21 @@ public class ParentProfile extends Fragment {
         View v = inflater.inflate(R.layout.parent_profile, container, false);
 
         toolbar = (Toolbar) ((ParentHome) getContext()).findViewById(R.id.tool_bar);
-        change_password = (Button)v.findViewById(R.id.change_password);
-        viewPager = (ViewPager)v.findViewById(R.id.viewpager);
-        setupViewPager(viewPager);
+        change_password = (Button) v.findViewById(R.id.change_password);
+        viewPager = (ViewPager) v.findViewById(R.id.viewpager);
+        tabLayout = (TabLayout) v.findViewById(R.id.tabs);
 
-        tabLayout = (TabLayout)v.findViewById(R.id.tabs);
+        tabLayout.addTab(tabLayout.newTab().setText("Contact Info"));
+        tabLayout.addTab(tabLayout.newTab().setText("Child Info"));
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+
+        final PagerAdapter adapter = new PagerAdapter
+                (getChildFragmentManager(), tabLayout.getTabCount());
+        viewPager.setAdapter(adapter);
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
+
+
         tabLayout.setupWithViewPager(viewPager);
 
 
@@ -71,6 +71,7 @@ public class ParentProfile extends Fragment {
         });
         return v;
     }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -81,41 +82,40 @@ public class ParentProfile extends Fragment {
         u.back = true;
     }
 
-    private void setupViewPager(ViewPager viewPager) {
-        ParentProfile.ViewPagerAdapter adapter = new ViewPagerAdapter(getFragmentManager());
-        adapter.addFragment(new ParentFragmentOne(), "Contact Info");
-        adapter.addFragment(new ParentFragmentTwo(), "Child Info");
-        viewPager.setAdapter(adapter);
-    }
 
-    class ViewPagerAdapter extends FragmentPagerAdapter {
-        private final List<Fragment> mFragmentList = new ArrayList<>();
-        private final List<String> mFragmentTitleList = new ArrayList<>();
+    public class PagerAdapter extends FragmentStatePagerAdapter {
+        int mNumOfTabs;
+        private String[] tabTitles = new String[]{"Contact Info", "Child Info"};
 
-        public ViewPagerAdapter(FragmentManager manager) {
-            super(manager);
+        public PagerAdapter(FragmentManager fm, int NumOfTabs) {
+            super(fm);
+            this.mNumOfTabs = NumOfTabs;
         }
 
         @Override
         public Fragment getItem(int position) {
-            return mFragmentList.get(position);
-        }
 
-        @Override
-        public int getCount() {
-            return mFragmentList.size();
-        }
+            switch (position) {
+                case 0:
+                    ParentFragmentOne tab1 = new ParentFragmentOne();
+                    return tab1;
+                case 1:
+                    ParentFragmentTwo tab2 = new ParentFragmentTwo();
+                    return tab2;
 
-        public void addFragment(Fragment fragment, String title) {
-            mFragmentList.add(fragment);
-            mFragmentTitleList.add(title);
+                default:
+                    return null;
+            }
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
-            return mFragmentTitleList.get(position);
+            return tabTitles[position];
+        }
+
+        @Override
+        public int getCount() {
+            return mNumOfTabs;
         }
     }
-
-
 }

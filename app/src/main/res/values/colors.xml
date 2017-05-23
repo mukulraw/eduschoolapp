@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#01A8DD</color>
     <color name="colorPrimaryDark">#0070AF</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#066FA4</color>
 
 
 
@@ -33,4 +33,6 @@
         <item>@color/dot_dark_screen3</item>
         <item>@color/dot_dark_screen4</item>
     </array>
+
+
 </resources>

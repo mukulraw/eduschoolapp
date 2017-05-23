@@ -12,6 +12,7 @@ import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
 
 import eskool.com.eskoolapp.R;
+import eskool.com.eskoolapp.User;
 
 /**
  * Created by User on 5/13/2017.
@@ -40,5 +41,8 @@ public class TeacherHomeFrgmnt extends Fragment {
     public void onResume() {
         super.onResume();
         toolbar.setTitle("Home");
+        User u = (User) getContext().getApplicationContext();
+
+        u.back = true;
     }
 }

@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import eskool.com.eskoolapp.Home.ParentHome;
 import eskool.com.eskoolapp.Home.TeacherHome;
 import eskool.com.eskoolapp.R;
+import eskool.com.eskoolapp.User;
 
 /**
  * Created by User on 5/15/2017.
@@ -45,10 +46,14 @@ public class ViewOwnClassFrgmnt extends Fragment {
 
     }
 
+
     @Override
     public void onResume() {
         super.onResume();
         toolbar.setTitle("Attendance");
+        User u = (User) getContext().getApplicationContext();
+
+        u.back = false;
     }
 }
 

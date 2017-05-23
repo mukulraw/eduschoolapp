@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="12dp"
-        android:layout_marginTop="22dp"
+        android:layout_marginTop="32dp"
         android:text="class"
         android:textSize="22sp" />
 
@@ -50,5 +50,16 @@
 
         </Spinner>
     </RelativeLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="23dp"
+        android:background="#1CBE0C"
+        android:text="SUBMIT"
+        android:layout_gravity="center"
+        android:textColor="#ffffff"
+        android:id="@+id/submit"
+        android:layout_marginBottom="32dp"/>
 
 </LinearLayout>

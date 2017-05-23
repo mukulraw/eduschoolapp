@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import eskool.com.eskoolapp.LoginPages.LoginPage;
 import eskool.com.eskoolapp.MainActivity;
 import eskool.com.eskoolapp.R;
 
@@ -126,7 +127,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
     private void launchHomeScreen() {
         prefManager.setFirstTimeLaunch(false);
-        startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
+        startActivity(new Intent(WelcomeActivity.this, LoginPage.class));
         finish();
     }
 

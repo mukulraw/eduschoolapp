@@ -29,6 +29,7 @@ import eskool.com.eskoolapp.Academic.ParentAcademic;
 import eskool.com.eskoolapp.Attendance.ParentAttendanceFrgmnt;
 import eskool.com.eskoolapp.ClassWork.ClassWorkFrgmnt;
 import eskool.com.eskoolapp.ExamAndResults.ExamFrgmntOne;
+import eskool.com.eskoolapp.Fees.Fees;
 import eskool.com.eskoolapp.Gallery.GalleryParent;
 import eskool.com.eskoolapp.HomeWork.HomeWorkFrgmnt;
 import eskool.com.eskoolapp.OnBackPressedListener;
@@ -37,6 +38,7 @@ import eskool.com.eskoolapp.Profile.ParentProfile;
 import eskool.com.eskoolapp.R;
 import eskool.com.eskoolapp.RaiseRequest.RaiseReqquestHome;
 import eskool.com.eskoolapp.TimeTable.TimeTableParent;
+import eskool.com.eskoolapp.Transport.TransportParent;
 import eskool.com.eskoolapp.User;
 
 public class ParentHome extends AppCompatActivity
@@ -88,14 +90,15 @@ public class ParentHome extends AppCompatActivity
         User u = (User) getApplicationContext();
         b = u.back;
 
-        if (b == false) {
+        if (!b) {
             super.onBackPressed();
-
-
         } else {
 
             if (doubleBackToExitPressedOnce) {
-                super.onBackPressed();
+                //super.onBackPressed();
+
+                finish();
+
                 return;
             }
 
@@ -218,6 +221,24 @@ public class ParentHome extends AppCompatActivity
             ft.replace(R.id.replace, frag1);
             //ft.addToBackStack(null);
             ft.commit();
+        } else if (id == R.id.transport) {
+
+
+            FragmentManager fm = getSupportFragmentManager();
+            FragmentTransaction ft = fm.beginTransaction();
+            TransportParent frag1 = new TransportParent();
+            ft.replace(R.id.replace, frag1);
+            //ft.addToBackStack(null);
+            ft.commit();
+        } else if (id == R.id.fees) {
+
+
+            FragmentManager fm = getSupportFragmentManager();
+            FragmentTransaction ft = fm.beginTransaction();
+            Fees frag1 = new Fees();
+            ft.replace(R.id.replace, frag1);
+            //ft.addToBackStack(null);
+            ft.commit();
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -228,6 +249,9 @@ public class ParentHome extends AppCompatActivity
     public void onResume() {
         super.onResume();
         toolbar.setTitle("Home");
+        User u = (User) getApplicationContext();
+
+        u.back = true;
     }
 
 }

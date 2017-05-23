@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import eskool.com.eskoolapp.R;
+import eskool.com.eskoolapp.User;
 
 /**
  * Created by User on 5/4/2017.
@@ -25,6 +26,13 @@ public class ParentFragmentOne extends Fragment {
 
         View v = inflater.inflate(R.layout.parent_profile_frgmnt1, container, false);
         return v;
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
     }
 }
 

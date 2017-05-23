@@ -2,9 +2,21 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
 
+
     <group
         android:id="@+id/menu_top"
-        android:checkableBehavior="single">
+        >
+        <item
+            android:id="@+id/home"
+            android:icon="@drawable/ic_home"
+            android:title="Home" />
+
+    </group>
+
+
+    <group
+        android:id="@+id/menu_top1"
+        >
         <item
             android:id="@+id/attendance"
             android:icon="@drawable/attendance_icon"
@@ -14,7 +26,7 @@
 
     <group
         android:id="@+id/menu_bottom"
-        android:checkableBehavior="single">
+        >
 
         <item
             android:id="@+id/home_work"
@@ -23,8 +35,7 @@
     </group>
 
     <group
-        android:id="@+id/menu_bottom1"
-        android:checkableBehavior="single">
+        android:id="@+id/menu_bottom1">
 
         <item
             android:id="@+id/class_work"
@@ -35,7 +46,7 @@
 
     <group
         android:id="@+id/menu_bottom2"
-        android:checkableBehavior="single">
+        android:checkableBehavior="none">
 
         <item
             android:id="@+id/academic"
@@ -46,7 +57,7 @@
 
     <group
         android:id="@+id/menu_bottom8"
-        android:checkableBehavior="single">
+        android:checkableBehavior="none">
 
         <item
             android:id="@+id/gallery"
@@ -58,7 +69,7 @@
 
     <group
         android:id="@+id/menu_bottom4"
-        android:checkableBehavior="single">
+        android:checkableBehavior="none">
 
         <item
             android:id="@+id/exam_result"
@@ -70,7 +81,7 @@
 
     <group
         android:id="@+id/menu_bottom5"
-        android:checkableBehavior="single">
+        android:checkableBehavior="none">
 
         <item
             android:id="@+id/time_table"
@@ -81,7 +92,7 @@
 
     <group
         android:id="@+id/menu_bottom6"
-        android:checkableBehavior="single">
+        android:checkableBehavior="none">
 
         <item
             android:id="@+id/raise_request"
@@ -92,7 +103,7 @@
 
     <group
         android:id="@+id/menu_bottom9"
-        android:checkableBehavior="single">
+        android:checkableBehavior="none">
 
         <item
             android:id="@+id/profile"
@@ -103,7 +114,7 @@
 
     <group
         android:id="@+id/menu_bottom7"
-        android:checkableBehavior="single">
+        android:checkableBehavior="none">
 
         <item
             android:id="@+id/log_out"

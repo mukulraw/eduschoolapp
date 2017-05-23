@@ -7,19 +7,20 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    />
     <application
+        android:name=".User"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:name=".User"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+        android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
         <activity
             android:name=".Splash"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,7 +29,7 @@
         </activity>
         <activity
             android:name=".WelcomeSlider.WelcomeActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity android:name=".MainActivity" />
 
         <service
@@ -50,9 +51,10 @@
         <activity android:name=".Login" />
         <activity android:name=".fab" />
         <activity android:name=".recycler" />
+        <activity android:name=".Gallery.demo" />
         <activity
             android:name=".New"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity android:name=".OnlineTest.OnlineTestActivity" />
         <activity
             android:name=".Attendance.Attendance"
@@ -62,7 +64,7 @@
         <activity
             android:name=".ClassWork.AddClassWork"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustResize" />
         <activity android:name=".OnlineTest.OnlineTestSummery" />
         <activity
@@ -71,17 +73,18 @@
         <activity
             android:name=".Profile.ParentProfile"
             android:label="My Profile"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".Home.ParentHome"
             android:label="@string/title_activity_parent_home"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity android:name=".LoginPages.LoginPage" />
         <activity android:name=".RaiseRequest.RaiseRequestActivity" />
         <activity
             android:name=".Home.TeacherHome"
             android:label="@string/title_activity_teacher_home"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".Gallery.AddAlbum" />
     </application>
 
 </manifest>

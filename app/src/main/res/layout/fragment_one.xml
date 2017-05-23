@@ -1,122 +1,133 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="eskool.com.eskoolapp.ClassWork.AddClassWork">
+    >
 
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="12dp"
-        android:descendantFocusability="beforeDescendants"
-        android:focusableInTouchMode="true"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-
-        <TextView
-            android:id="@+id/date"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:background="@drawable/viewattendance"
-            android:padding="10dp"
-            android:text="Date"
-            android:textSize="18dp" />
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/className"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:background="@drawable/viewattendance"
-            android:padding="10dp"
-            android:text="Class"
-            android:textSize="18dp" />
-
-        <TextView
-            android:id="@+id/sectonName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:background="@drawable/viewattendance"
-            android:padding="10dp"
-            android:text="Section"
-            android:textSize="18dp" />
-
-        <TextView
-            android:id="@+id/subjectName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:background="@drawable/viewattendance"
-            android:padding="10dp"
-            android:text="Subject"
-            android:textSize="18dp" />
-
-        <TextView
-            android:id="@+id/chapter"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:background="@drawable/viewattendance"
-            android:padding="10dp"
-            android:text="Chapter"
-            android:textSize="18dp" />
-
-        <TextView
-            android:id="@+id/subtopic"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:background="@drawable/viewattendance"
-            android:padding="10dp"
-            android:text="Sub-Topic"
-            android:textSize="18dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="12dp"
+                android:layout_marginBottom="12dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="12dp"
+                android:orientation="vertical"
+                android:paddingBottom="50dp">
 
 
-        <TextView
-            android:id="@+id/status"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:background="@drawable/viewattendance"
-            android:padding="10dp"
-            android:text="Status"
-            android:textSize="18dp" />
+                <TextView
+                    android:id="@+id/date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/viewattendance"
+                    android:padding="12dp"
+                    android:text="Date"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/className"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/viewattendance"
+                    android:padding="12dp"
+                    android:text="Class"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/sectonName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/viewattendance"
+                    android:padding="12dp"
+                    android:text="Section"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/subjectName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/viewattendance"
+                    android:padding="12dp"
+                    android:text="Subject"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/chapter"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/viewattendance"
+                    android:padding="12dp"
+                    android:text="Chapter"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/subtopic"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/viewattendance"
+                    android:padding="12dp"
+                    android:text="Sub-Topic"
+                    android:textSize="18dp" />
 
 
-        <EditText
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/viewattendance"
-            android:gravity="top|left"
-            android:hint="Class work......"
-            android:inputType="textMultiLine"
-            android:lines="6"
-            android:maxLines="10"
-            android:minLines="6"
-            android:paddingStart="12dp"
-            android:scrollbars="vertical" />
+                <TextView
+                    android:id="@+id/status"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/viewattendance"
+                    android:padding="12dp"
+                    android:text="Status"
+                    android:textSize="18dp" />
 
 
-    </LinearLayout>
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/viewattendance"
+                    android:gravity="top|left"
+                    android:hint="Class work......"
+                    android:inputType="textMultiLine"
+                    android:lines="6"
+                    android:focusableInTouchMode="true"
+                    android:maxLines="10"
+                    android:minLines="6"
+                    android:padding="12dp"
+                    android:scrollbars="vertical" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        >
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_gravity="bottom"
             android:background="#000000"
             android:text="ADD"
+            android:layout_alignParentBottom="true"
+            android:padding="18dp"
             android:textColor="#ffffff" />
 
 
     </RelativeLayout>
-</LinearLayout>
+
+</RelativeLayout>

@@ -4,9 +4,8 @@
     xmlns:pp="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    android:orientation="vertical"
-    android:background="#ffffff">
+    android:background="#ffffff"
+    android:orientation="vertical">
 
 
     <RelativeLayout
@@ -28,8 +27,8 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_marginLeft="3dp"
-            android:padding="6dp"
             android:layout_marginStart="6dp"
+            android:padding="6dp"
             android:text="Student Name"
             android:textColor="#ffffff"
             android:textSize="22sp" />
@@ -41,18 +40,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:tabGravity="fill"
-        app:tabMode="fixed" />
+        app:tabMode="fixed"
+        app:tabTextColor="#000"
+        app:tabSelectedTextColor="#000" />
 
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
-        android:layout_height="238dp"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        android:layout_height="238dp" />
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <Button
@@ -61,6 +61,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:background="#000000"
+            android:padding="18dp"
             android:text="Change Password"
             android:textColor="#ffffff" />
 

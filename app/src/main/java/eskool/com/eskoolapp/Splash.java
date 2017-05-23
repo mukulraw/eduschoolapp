@@ -12,6 +12,7 @@ import java.util.TimerTask;
 import eskool.com.eskoolapp.Home.ParentHome;
 import eskool.com.eskoolapp.LoginPages.LoginPage;
 import eskool.com.eskoolapp.Profile.ParentProfile;
+import eskool.com.eskoolapp.WelcomeSlider.WelcomeActivity;
 
 public class Splash extends AppCompatActivity {
     Timer t;
@@ -29,12 +30,12 @@ public class Splash extends AppCompatActivity {
                 @Override
                 public void run() {
 
-                    Intent intent = new Intent(Splash.this, LoginPage.class);
+                    Intent intent = new Intent(Splash.this, WelcomeActivity.class);
                     startActivity(intent);
                     finish();
 
                 }
-            }, 1500);
+            }, 2500);
         } catch (ActivityNotFoundException e) {
 
         }

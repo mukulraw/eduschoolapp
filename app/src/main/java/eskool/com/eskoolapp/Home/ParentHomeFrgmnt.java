@@ -4,10 +4,13 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
@@ -17,6 +20,8 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
 
+import eskool.com.eskoolapp.Attendance.ParentAttendanceFrgmnt;
+import eskool.com.eskoolapp.Attendance.ViewOwnClassFrgmnt;
 import eskool.com.eskoolapp.R;
 import eskool.com.eskoolapp.User;
 
@@ -26,6 +31,7 @@ import eskool.com.eskoolapp.User;
 
 public class ParentHomeFrgmnt extends Fragment{
     Toolbar toolbar;
+    RelativeLayout layout_attendance;
     public ParentHomeFrgmnt() {
 
     }
@@ -43,6 +49,20 @@ public class ParentHomeFrgmnt extends Fragment{
         chart.setData(data);
         chart.animateXY(2000, 2000);
         chart.invalidate();
+
+        layout_attendance=(RelativeLayout)view.findViewById(R.id.layout_attendance);
+        layout_attendance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                FragmentManager fm = getFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+                ParentAttendanceFrgmnt frag1 = new ParentAttendanceFrgmnt();
+                ft.replace(R.id.replace, frag1);
+                ft.addToBackStack(null);
+                ft.commit();
+            }
+        });
 
 
         return view;

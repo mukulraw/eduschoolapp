@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import eskool.com.eskoolapp.Home.TeacherHome;
 import eskool.com.eskoolapp.R;
+import eskool.com.eskoolapp.User;
 
 public class Attendance extends Fragment {
     Button mark_attendance,edit_attendance,view_attendance;
@@ -40,8 +41,16 @@ public class Attendance extends Fragment {
         mark_attendance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(getActivity(),MarkAttendance.class);
-                startActivity(intent);
+               /* Intent intent=new Intent(getActivity(),MarkAttendance.class);
+                startActivity(intent);*/
+
+
+                FragmentManager fm = getFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+                MrkAttndnceFrgmnt2 frag1 =new MrkAttndnceFrgmnt2();
+                ft.replace(R.id.replace, frag1);
+                ft.addToBackStack(null);
+                ft.commit();
             }
         });
 
@@ -79,5 +88,8 @@ public class Attendance extends Fragment {
     public void onResume() {
         super.onResume();
         toolbar.setTitle("Attendance");
+        User u = (User) getContext().getApplicationContext();
+
+        u.back = true;
     }
 }

@@ -1,78 +1,117 @@
 package eskool.com.eskoolapp.ClassWork;
 
 
+import android.os.Build;
+import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 
 import java.util.ArrayList;
 import java.util.List;
 
+import eskool.com.eskoolapp.Home.ParentHome;
+import eskool.com.eskoolapp.Home.TeacherHome;
 import eskool.com.eskoolapp.R;
+import eskool.com.eskoolapp.RaiseRequest.FrgmntOne;
+import eskool.com.eskoolapp.RaiseRequest.FrgmntTwo;
+import eskool.com.eskoolapp.RaiseRequest.RaiseReqquestHome;
+import eskool.com.eskoolapp.User;
 
-public class AddClassWork extends AppCompatActivity {
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
-    private Toolbar toolbar;
+public class AddClassWork extends Fragment {
+    TabLayout tabLayout;
+    ViewPager viewPager;
+    Toolbar toolbar;
 
+    public AddClassWork() {
+
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_class_work);
-        toolbar = (Toolbar) findViewById(R.id.tool_bar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
-        toolbar.setTitleTextColor(getResources().getColor(R.color.colorPrimaryDark));
-        toolbar.setTitle("CLASS WORK");
-        toolbar.setTitleTextColor(0xFFFFFFFF);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        View view = inflater.inflate(R.layout.activity_add_class_work, container, false);
+        toolbar = (Toolbar) ((TeacherHome) getContext()).findViewById(R.id.tool_bar);
 
 
-        viewPager = (ViewPager) findViewById(R.id.viewpager);
-        setupViewPager(viewPager);
+        viewPager = (ViewPager) view.findViewById(R.id.viewpager);
+        tabLayout = (TabLayout) view.findViewById(R.id.tabs);
 
-        tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(viewPager);
-    }
+        tabLayout.addTab(tabLayout.newTab().setText("RECEIVED"));
+        tabLayout.addTab(tabLayout.newTab().setText("SENT"));
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
-    private void setupViewPager(ViewPager viewPager) {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new OneFragment(), "ADD");
-        adapter.addFragment(new TwoFragment(), "VIEW");
+        final PagerAdapter adapter = new PagerAdapter
+                (getChildFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
+        tabLayout.setupWithViewPager(viewPager);
+
+        return view;
     }
 
-    class ViewPagerAdapter extends FragmentPagerAdapter {
-        private final List<Fragment> mFragmentList = new ArrayList<>();
-        private final List<String> mFragmentTitleList = new ArrayList<>();
 
-        public ViewPagerAdapter(FragmentManager manager) {
-            super(manager);
+    public class PagerAdapter extends FragmentStatePagerAdapter {
+        int mNumOfTabs;
+        private String[] tabTitles = new String[]{"ADD", "VIEW"};
+
+
+        public PagerAdapter(FragmentManager fm, int NumOfTabs) {
+            super(fm);
+            this.mNumOfTabs = NumOfTabs;
         }
 
         @Override
         public Fragment getItem(int position) {
-            return mFragmentList.get(position);
-        }
 
-        @Override
-        public int getCount() {
-            return mFragmentList.size();
-        }
+            switch (position) {
+                case 0:
+                    OneFragment tab1 = new OneFragment();
+                    return tab1;
+                case 1:
+                    TwoFragment tab2 = new TwoFragment();
+                    return tab2;
 
-        public void addFragment(Fragment fragment, String title) {
-            mFragmentList.add(fragment);
-            mFragmentTitleList.add(title);
+                default:
+                    return null;
+            }
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
-            return mFragmentTitleList.get(position);
+            return tabTitles[position];
+        }
+
+        @Override
+        public int getCount() {
+            return mNumOfTabs;
         }
     }
+
+
+    @Override
+    public void onResume() {
+
+        super.onResume();
+        toolbar.setTitle("Class Work");
+
+        User u = (User) getContext().getApplicationContext();
+
+        u.back = true;
+    }
+
 }

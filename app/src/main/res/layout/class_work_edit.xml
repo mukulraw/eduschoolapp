@@ -6,7 +6,7 @@
     android:gravity="center"
     android:orientation="vertical"
     android:padding="12dp"
-    android:minWidth="340dp">
+    android:minWidth="300dp">
 
     <TextView
         android:layout_width="match_parent"
@@ -43,45 +43,6 @@
             />
     </LinearLayout>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="12dp"
-        android:text="Class" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/viewattendance">
-
-        <Spinner
-            android:id="@+id/cls"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="12dp">
-
-        </Spinner>
-    </RelativeLayout>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="12dp"
-        android:text="Section" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/viewattendance">
-
-        <Spinner
-            android:id="@+id/section"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="12dp">
-
-        </Spinner>
-    </RelativeLayout>
 
     <TextView
         android:layout_width="match_parent"
@@ -109,6 +70,7 @@
         android:layout_marginTop="23dp"
         android:background="#1CBE0C"
         android:text="SUBMIT"
-        android:textColor="#ffffff" />
+        android:textColor="#ffffff"
+        android:id="@+id/filter"/>
 
 </LinearLayout>

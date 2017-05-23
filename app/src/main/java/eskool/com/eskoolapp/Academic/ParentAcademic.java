@@ -37,7 +37,7 @@ public class ParentAcademic extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        toolbar.setTitle("Academic");
+        toolbar.setTitle("My Progress");
         User u = (User) getContext().getApplicationContext();
 
         u.back = true;

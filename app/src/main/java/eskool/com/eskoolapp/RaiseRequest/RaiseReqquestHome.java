@@ -7,6 +7,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -17,6 +18,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import eskool.com.eskoolapp.Home.ParentHome;
+import eskool.com.eskoolapp.Profile.ParentFragmentOne;
+import eskool.com.eskoolapp.Profile.ParentFragmentTwo;
+import eskool.com.eskoolapp.Profile.ParentProfile;
 import eskool.com.eskoolapp.R;
 import eskool.com.eskoolapp.User;
 
@@ -40,9 +44,17 @@ public class RaiseReqquestHome extends Fragment {
         toolbar = (Toolbar) ((ParentHome) getContext()).findViewById(R.id.tool_bar);
 
         viewPager = (ViewPager) view.findViewById(R.id.viewpager);
-        setupViewPager(viewPager);
-
         tabLayout = (TabLayout) view.findViewById(R.id.tabs);
+
+        tabLayout.addTab(tabLayout.newTab().setText("RECEIVED"));
+        tabLayout.addTab(tabLayout.newTab().setText("SENT"));
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+
+        final PagerAdapter adapter = new PagerAdapter
+                (getChildFragmentManager(), tabLayout.getTabCount());
+        viewPager.setAdapter(adapter);
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
         tabLayout.setupWithViewPager(viewPager);
 
         FloatingActionButton button = (FloatingActionButton) view.findViewById(R.id.fab);
@@ -58,6 +70,45 @@ public class RaiseReqquestHome extends Fragment {
         return view;
     }
 
+
+    public class PagerAdapter extends FragmentStatePagerAdapter {
+        int mNumOfTabs;
+        private String[] tabTitles = new String[]{"RECEIVED", "SENT"};
+
+
+        public PagerAdapter(FragmentManager fm, int NumOfTabs) {
+            super(fm);
+            this.mNumOfTabs = NumOfTabs;
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+
+            switch (position) {
+                case 0:
+                    FrgmntOne tab1 = new FrgmntOne();
+                    return tab1;
+                case 1:
+                    FrgmntTwo tab2 = new FrgmntTwo();
+                    return tab2;
+
+                default:
+                    return null;
+            }
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return tabTitles[position];
+        }
+
+        @Override
+        public int getCount() {
+            return mNumOfTabs;
+        }
+    }
+
+
     @Override
     public void onResume() {
         super.onResume();
@@ -66,41 +117,5 @@ public class RaiseReqquestHome extends Fragment {
         User u = (User) getContext().getApplicationContext();
 
         u.back = true;
-    }
-
-    private void setupViewPager(ViewPager viewPager) {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getFragmentManager());
-        adapter.addFragment(new FrgmntOne(), "RECEIVED");
-        adapter.addFragment(new FrgmntTwo(), "SENT");
-        viewPager.setAdapter(adapter);
-    }
-
-    class ViewPagerAdapter extends FragmentPagerAdapter {
-        private final List<Fragment> mFragmentList = new ArrayList<>();
-        private final List<String> mFragmentTitleList = new ArrayList<>();
-
-        public ViewPagerAdapter(FragmentManager manager) {
-            super(manager);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return mFragmentList.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return mFragmentList.size();
-        }
-
-        public void addFragment(Fragment fragment, String title) {
-            mFragmentList.add(fragment);
-            mFragmentTitleList.add(title);
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return mFragmentTitleList.get(position);
-        }
     }
 }

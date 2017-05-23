@@ -6,12 +6,14 @@ import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 
 import eskool.com.eskoolapp.R;
 
 public class MarkAttendance extends AppCompatActivity {
+    Toolbar toolbar;
 
     TextView p,a,l;
     boolean aBoolean=false,pBoolean=true,lBoolean=false;
@@ -21,6 +23,22 @@ public class MarkAttendance extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mark_attendance);
+
+        toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        toolbar.setTitleTextColor(getResources().getColor(R.color.colorPrimaryDark));
+        toolbar.setTitle("Mark Attendance");
+        toolbar.setTitleTextColor(0xFFFFFFFF);
+        toolbar.setNavigationIcon(R.drawable.back);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+
 
 
         p=(TextView)findViewById(R.id.p);

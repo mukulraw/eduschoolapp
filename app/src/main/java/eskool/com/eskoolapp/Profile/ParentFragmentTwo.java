@@ -26,4 +26,10 @@ public class ParentFragmentTwo extends Fragment {
         View v = inflater.inflate(R.layout.parent_profile_frgmnt2, container, false);
         return v;
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+    }
 }
