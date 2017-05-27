@@ -1,5 +1,6 @@
 package eskool.com.eskoolapp.ExamAndResults;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,8 +10,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.TextView;
 
+import eskool.com.eskoolapp.Attendance.ViewOwnClassFrgmnt;
 import eskool.com.eskoolapp.Home.ParentHome;
 import eskool.com.eskoolapp.Home.TeacherHome;
 import eskool.com.eskoolapp.R;
@@ -25,7 +29,6 @@ public class TeacherFrgmnt2 extends Fragment {
     Toolbar toolbar;
 
     public TeacherFrgmnt2() {
-
     }
 
     @Nullable
@@ -50,6 +53,34 @@ public class TeacherFrgmnt2 extends Fragment {
                 ft.commit();
             }
         });
+
+        diff_class.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                final Dialog dialog = new Dialog(getActivity());
+                dialog.setCancelable(true);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.attendance_diff_class_dialog);
+                Button submit = (Button) dialog.findViewById(R.id.submit);
+                submit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                        FragmentManager fm =getFragmentManager();
+                        FragmentTransaction ft = fm.beginTransaction();
+                        TeacherOwnCls frag1 =new TeacherOwnCls();
+                        ft.replace(R.id.replace, frag1);
+                        ft.addToBackStack(null);
+                        ft.commit();
+                    }
+                });
+
+                dialog.show();
+
+            }
+        });
+
         return view;
 
     }

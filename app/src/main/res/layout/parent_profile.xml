@@ -60,7 +60,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:background="#000000"
+            android:background="#F0920A"
             android:padding="18dp"
             android:text="Change Password"
             android:textColor="#ffffff" />

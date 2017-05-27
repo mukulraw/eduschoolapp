@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -113,7 +113,7 @@
 
 
                         <TextView
-                            android:layout_width="85dp"
+                            android:layout_width="100dp"
                             android:layout_height="match_parent"
                             android:background="@drawable/background"
                             android:gravity="center"
@@ -183,8 +183,6 @@
                 </LinearLayout>
 
 
-
-
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -212,7 +210,7 @@
                             android:background="@drawable/background"
                             android:gravity="center"
                             android:padding="9dp"
-                            android:text="Akash chandra bhatt mathews" />
+                            android:text="Akash" />
 
 
                         <TextView
@@ -305,48 +303,55 @@
                                 android:layout_width="100dp"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
+                                android:background="@drawable/background"
                                 android:gravity="center"
                                 android:padding="8dp"
-                                android:text="MONDAY"
+                                android:text="ENGLISH"
                                 android:textStyle="bold" />
 
                             <TextView
                                 android:layout_width="100dp"
                                 android:layout_height="wrap_content"
+                                android:background="@drawable/background"
                                 android:gravity="center"
                                 android:padding="8dp"
-                                android:text="TUESDAY"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:padding="8dp"
-                                android:text="WEDNESDAY"
+                                android:text="HINDI"
                                 android:textStyle="bold" />
 
                             <TextView
                                 android:layout_width="100dp"
                                 android:layout_height="wrap_content"
+                                android:background="@drawable/background"
                                 android:gravity="center"
                                 android:padding="8dp"
-                                android:text="THURSDAY"
+                                android:text="MATHS"
                                 android:textStyle="bold" />
 
                             <TextView
                                 android:layout_width="100dp"
                                 android:layout_height="wrap_content"
+                                android:background="@drawable/background"
                                 android:gravity="center"
                                 android:padding="8dp"
-                                android:text="FRIDAY"
+                                android:text="PHYICS"
                                 android:textStyle="bold" />
 
                             <TextView
                                 android:layout_width="100dp"
                                 android:layout_height="wrap_content"
+                                android:background="@drawable/background"
                                 android:gravity="center"
                                 android:padding="8dp"
-                                android:text="SATURDAY"
+                                android:text="CHEMISTRY"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/background"
+                                android:gravity="center"
+                                android:padding="8dp"
+                                android:text="BIOLOGY"
                                 android:textStyle="bold" />
 
                         </LinearLayout>
@@ -355,9 +360,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:orientation="horizontal">
-
-
-                            //0
 
 
                             //1
@@ -378,13 +380,8 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Maths" />
+                                        android:text="70" />
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="BALBIR"
-                                        android:textColor="#F0920A" />
                                 </LinearLayout>
 
                                 <LinearLayout
@@ -398,13 +395,9 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Maths" />
+                                        android:text="70" />
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="BALBIR"
-                                        android:textColor="#F0920A" />
+
                                 </LinearLayout>
 
 
@@ -419,13 +412,8 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Maths" />
+                                        android:text="70" />
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="BALBIR"
-                                        android:textColor="#F0920A" />
                                 </LinearLayout>
 
 
@@ -440,13 +428,8 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Maths" />
+                                        android:text="70" />
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="BALBIR"
-                                        android:textColor="#F0920A" />
                                 </LinearLayout>
 
 
@@ -461,13 +444,8 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Maths" />
+                                        android:text="70" />
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="BALBIR"
-                                        android:textColor="#F0920A" />
                                 </LinearLayout>
 
 
@@ -482,13 +460,8 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Maths" />
+                                        android:text="70" />
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="BALBIR"
-                                        android:textColor="#F0920A" />
                                 </LinearLayout>
 
 
@@ -503,13 +476,9 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Maths" />
+                                        android:text="70" />
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="BALBIR"
-                                        android:textColor="#F0920A" />
+
                                 </LinearLayout>
 
 
@@ -524,13 +493,8 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Maths" />
+                                        android:text="70" />
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="BALBIR"
-                                        android:textColor="#F0920A" />
                                 </LinearLayout>
                             </LinearLayout>
                             //2
@@ -552,13 +516,8 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Maths" />
+                                        android:text="70" />
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="BALBIR"
-                                        android:textColor="#F0920A" />
                                 </LinearLayout>
 
                                 <LinearLayout
@@ -572,13 +531,9 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Maths" />
+                                        android:text="70" />
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="BALBIR"
-                                        android:textColor="#F0920A" />
+
                                 </LinearLayout>
 
 
@@ -593,13 +548,8 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Maths" />
+                                        android:text="70" />
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="BALBIR"
-                                        android:textColor="#F0920A" />
                                 </LinearLayout>
 
 
@@ -614,13 +564,8 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Maths" />
+                                        android:text="70" />
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="BALBIR"
-                                        android:textColor="#F0920A" />
                                 </LinearLayout>
 
 
@@ -635,13 +580,8 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Maths" />
+                                        android:text="70" />
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="BALBIR"
-                                        android:textColor="#F0920A" />
                                 </LinearLayout>
 
 
@@ -656,13 +596,8 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Maths" />
+                                        android:text="70" />
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="BALBIR"
-                                        android:textColor="#F0920A" />
                                 </LinearLayout>
 
 
@@ -677,13 +612,9 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Maths" />
+                                        android:text="70" />
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="BALBIR"
-                                        android:textColor="#F0920A" />
+
                                 </LinearLayout>
 
 
@@ -698,13 +629,8 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Maths" />
+                                        android:text="70" />
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="BALBIR"
-                                        android:textColor="#F0920A" />
                                 </LinearLayout>
                             </LinearLayout>
                             //3
@@ -726,13 +652,8 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Maths" />
+                                        android:text="70" />
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="BALBIR"
-                                        android:textColor="#F0920A" />
                                 </LinearLayout>
 
                                 <LinearLayout
@@ -746,13 +667,9 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Maths" />
+                                        android:text="70" />
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="BALBIR"
-                                        android:textColor="#F0920A" />
+
                                 </LinearLayout>
 
 
@@ -767,13 +684,8 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Maths" />
+                                        android:text="70" />
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="BALBIR"
-                                        android:textColor="#F0920A" />
                                 </LinearLayout>
 
 
@@ -788,13 +700,8 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Maths" />
+                                        android:text="70" />
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="BALBIR"
-                                        android:textColor="#F0920A" />
                                 </LinearLayout>
 
 
@@ -809,13 +716,8 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Maths" />
+                                        android:text="70" />
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="BALBIR"
-                                        android:textColor="#F0920A" />
                                 </LinearLayout>
 
 
@@ -830,13 +732,8 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Maths" />
+                                        android:text="70" />
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="BALBIR"
-                                        android:textColor="#F0920A" />
                                 </LinearLayout>
 
 
@@ -851,13 +748,9 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Maths" />
+                                        android:text="70" />
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="BALBIR"
-                                        android:textColor="#F0920A" />
+
                                 </LinearLayout>
 
 
@@ -872,13 +765,8 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Maths" />
+                                        android:text="70" />
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="BALBIR"
-                                        android:textColor="#F0920A" />
                                 </LinearLayout>
                             </LinearLayout>
                             //4
@@ -900,13 +788,8 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Maths" />
+                                        android:text="70" />
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="BALBIR"
-                                        android:textColor="#F0920A" />
                                 </LinearLayout>
 
                                 <LinearLayout
@@ -920,13 +803,9 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Maths" />
+                                        android:text="70" />
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="BALBIR"
-                                        android:textColor="#F0920A" />
+
                                 </LinearLayout>
 
 
@@ -941,13 +820,8 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Maths" />
+                                        android:text="70" />
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="BALBIR"
-                                        android:textColor="#F0920A" />
                                 </LinearLayout>
 
 
@@ -962,13 +836,8 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Maths" />
+                                        android:text="70" />
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="BALBIR"
-                                        android:textColor="#F0920A" />
                                 </LinearLayout>
 
 
@@ -983,13 +852,8 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Maths" />
+                                        android:text="70" />
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="BALBIR"
-                                        android:textColor="#F0920A" />
                                 </LinearLayout>
 
 
@@ -1004,13 +868,8 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Maths" />
+                                        android:text="70" />
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="BALBIR"
-                                        android:textColor="#F0920A" />
                                 </LinearLayout>
 
 
@@ -1025,13 +884,9 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Maths" />
+                                        android:text="70" />
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="BALBIR"
-                                        android:textColor="#F0920A" />
+
                                 </LinearLayout>
 
 
@@ -1046,18 +901,12 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Maths" />
+                                        android:text="70" />
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="BALBIR"
-                                        android:textColor="#F0920A" />
                                 </LinearLayout>
                             </LinearLayout>
                             //5
 
-
                             <LinearLayout
                                 android:layout_width="100dp"
                                 android:layout_height="wrap_content"
@@ -1074,13 +923,8 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Maths" />
+                                        android:text="70" />
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="BALBIR"
-                                        android:textColor="#F0920A" />
                                 </LinearLayout>
 
                                 <LinearLayout
@@ -1094,13 +938,9 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Maths" />
+                                        android:text="70" />
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="BALBIR"
-                                        android:textColor="#F0920A" />
+
                                 </LinearLayout>
 
 
@@ -1115,13 +955,8 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Maths" />
+                                        android:text="70" />
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="BALBIR"
-                                        android:textColor="#F0920A" />
                                 </LinearLayout>
 
 
@@ -1136,13 +971,8 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Maths" />
+                                        android:text="70" />
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="BALBIR"
-                                        android:textColor="#F0920A" />
                                 </LinearLayout>
 
 
@@ -1157,13 +987,8 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Maths" />
+                                        android:text="70" />
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="BALBIR"
-                                        android:textColor="#F0920A" />
                                 </LinearLayout>
 
 
@@ -1178,13 +1003,8 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Maths" />
+                                        android:text="70" />
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="BALBIR"
-                                        android:textColor="#F0920A" />
                                 </LinearLayout>
 
 
@@ -1199,13 +1019,9 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Maths" />
+                                        android:text="70" />
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="BALBIR"
-                                        android:textColor="#F0920A" />
+
                                 </LinearLayout>
 
 
@@ -1220,18 +1036,12 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Maths" />
+                                        android:text="70" />
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="BALBIR"
-                                        android:textColor="#F0920A" />
                                 </LinearLayout>
                             </LinearLayout>
                             //6
 
-
                             <LinearLayout
                                 android:layout_width="100dp"
                                 android:layout_height="wrap_content"
@@ -1248,13 +1058,8 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Maths" />
+                                        android:text="70" />
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="BALBIR"
-                                        android:textColor="#F0920A" />
                                 </LinearLayout>
 
                                 <LinearLayout
@@ -1268,13 +1073,9 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Maths" />
+                                        android:text="70" />
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="BALBIR"
-                                        android:textColor="#F0920A" />
+
                                 </LinearLayout>
 
 
@@ -1289,13 +1090,8 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Maths" />
+                                        android:text="70" />
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="BALBIR"
-                                        android:textColor="#F0920A" />
                                 </LinearLayout>
 
 
@@ -1310,13 +1106,8 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Maths" />
+                                        android:text="70" />
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="BALBIR"
-                                        android:textColor="#F0920A" />
                                 </LinearLayout>
 
 
@@ -1331,13 +1122,8 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Maths" />
+                                        android:text="70" />
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="BALBIR"
-                                        android:textColor="#F0920A" />
                                 </LinearLayout>
 
 
@@ -1352,13 +1138,8 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Maths" />
+                                        android:text="70" />
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="BALBIR"
-                                        android:textColor="#F0920A" />
                                 </LinearLayout>
 
 
@@ -1373,13 +1154,9 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Maths" />
+                                        android:text="70" />
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="BALBIR"
-                                        android:textColor="#F0920A" />
+
                                 </LinearLayout>
 
 
@@ -1394,15 +1171,11 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Maths" />
+                                        android:text="70" />
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="BALBIR"
-                                        android:textColor="#F0920A" />
                                 </LinearLayout>
                             </LinearLayout>
+
                         </LinearLayout>
                     </LinearLayout>
                 </ScrollView>
@@ -1413,4 +1186,127 @@
 
     </LinearLayout>
 
-</RelativeLayout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/bottom_sheet1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:background="#fff"
+        android:clipToPadding="true"
+        android:orientation="vertical"
+        app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
+
+        <TextView
+            android:id="@+id/tvresult"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="bottom"
+            android:background="@color/colorPrimary"
+            android:padding="12dp"
+            android:text="RESULT"
+            android:textColor="#fff" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/viewattendance">
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="43"
+                    android:textColor="#000000"
+                    android:textSize="32sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="TOTAL STUDENT"
+                    android:textColor="#000000"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:background="@drawable/viewattendance"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="PASS STUDENT"
+                        android:textAlignment="center"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:text="40"
+                        android:textAlignment="center"
+                        android:textColor="#000000"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:background="@drawable/viewattendance"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="FAIL STUDENT"
+                        android:textAlignment="center"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:text="03"
+                        android:textAlignment="center"
+                        android:textColor="#000000"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>

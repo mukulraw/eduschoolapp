@@ -106,11 +106,24 @@
                                     android:paddingTop="5dp"
                                     android:text="Unit:4.1" />
 
-                                <TextView
+                                <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:paddingTop="5dp"
-                                    android:text="Status : Reading" />
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingTop="5dp"
+                                        android:text="Due Date:" />
+
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:paddingTop="5dp"
+                                        android:text=" 01-June-2017" />
+                                </LinearLayout>
                             </LinearLayout>
 
                         </LinearLayout>
@@ -120,8 +133,9 @@
 
                     //2
 
+
                     <android.support.v7.widget.CardView
-                        android:id="@+id/card1"
+                        android:id="@+id/card"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:cardUseCompatPadding="true"
@@ -177,22 +191,35 @@
                                     android:paddingTop="5dp"
                                     android:text="Unit:4.1" />
 
-                                <TextView
+                                <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:paddingTop="5dp"
-                                    android:text="Status : Reading" />
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingTop="5dp"
+                                        android:text="Due Date:" />
+
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:paddingTop="5dp"
+                                        android:text=" 01-June-2017" />
+                                </LinearLayout>
                             </LinearLayout>
 
                         </LinearLayout>
 
 
                     </android.support.v7.widget.CardView>
-
                     //3
 
+
                     <android.support.v7.widget.CardView
-                        android:id="@+id/card2"
+                        android:id="@+id/card"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:cardUseCompatPadding="true"
@@ -248,11 +275,24 @@
                                     android:paddingTop="5dp"
                                     android:text="Unit:4.1" />
 
-                                <TextView
+                                <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:paddingTop="5dp"
-                                    android:text="Status : Reading" />
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingTop="5dp"
+                                        android:text="Due Date:" />
+
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:paddingTop="5dp"
+                                        android:text=" 01-June-2017" />
+                                </LinearLayout>
                             </LinearLayout>
 
                         </LinearLayout>
@@ -261,8 +301,9 @@
                     </android.support.v7.widget.CardView>
                     //4
 
+
                     <android.support.v7.widget.CardView
-                        android:id="@+id/card3"
+                        android:id="@+id/card"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:cardUseCompatPadding="true"
@@ -318,22 +359,35 @@
                                     android:paddingTop="5dp"
                                     android:text="Unit:4.1" />
 
-                                <TextView
+                                <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:paddingTop="5dp"
-                                    android:text="Status : Reading" />
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingTop="5dp"
+                                        android:text="Due Date:" />
+
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:paddingTop="5dp"
+                                        android:text=" 01-June-2017" />
+                                </LinearLayout>
                             </LinearLayout>
 
                         </LinearLayout>
 
 
                     </android.support.v7.widget.CardView>
-
                     //5
 
+
                     <android.support.v7.widget.CardView
-                        android:id="@+id/card5"
+                        android:id="@+id/card"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:cardUseCompatPadding="true"
@@ -389,22 +443,35 @@
                                     android:paddingTop="5dp"
                                     android:text="Unit:4.1" />
 
-                                <TextView
+                                <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:paddingTop="5dp"
-                                    android:text="Status : Reading" />
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingTop="5dp"
+                                        android:text="Due Date:" />
+
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:paddingTop="5dp"
+                                        android:text=" 01-June-2017" />
+                                </LinearLayout>
                             </LinearLayout>
 
                         </LinearLayout>
 
 
                     </android.support.v7.widget.CardView>
-
                     //6
 
+
                     <android.support.v7.widget.CardView
-                        android:id="@+id/card7"
+                        android:id="@+id/card"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:cardUseCompatPadding="true"
@@ -460,18 +527,30 @@
                                     android:paddingTop="5dp"
                                     android:text="Unit:4.1" />
 
-                                <TextView
+                                <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:paddingTop="5dp"
-                                    android:text="Status : Reading" />
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingTop="5dp"
+                                        android:text="Due Date:" />
+
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:paddingTop="5dp"
+                                        android:text=" 01-June-2017" />
+                                </LinearLayout>
                             </LinearLayout>
 
                         </LinearLayout>
 
 
                     </android.support.v7.widget.CardView>
-
                 </LinearLayout>
 
 

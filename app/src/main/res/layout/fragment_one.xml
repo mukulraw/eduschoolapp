@@ -121,7 +121,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#000000"
+            android:background="#F0920A"
             android:text="ADD"
             android:layout_alignParentBottom="true"
             android:padding="18dp"

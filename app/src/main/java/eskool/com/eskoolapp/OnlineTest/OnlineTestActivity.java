@@ -40,7 +40,7 @@ public class OnlineTestActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         toolbar.setTitleTextColor(getResources().getColor(R.color.colorPrimaryDark));
-        toolbar.setTitle("Raise Request");
+        toolbar.setTitle("Online Test Heading");
         toolbar.setTitleTextColor(0xFFFFFFFF);
         toolbar.setNavigationIcon(R.drawable.back);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -82,7 +82,7 @@ public class OnlineTestActivity extends AppCompatActivity {
                         int seconds = (int) (millis / 1000) % 60;
                         int minutes = (int) ((millis / (1000 * 60)) % 60);
                         int hours = (int) ((millis / (1000 * 60 * 60)) % 24);
-                        String text = String.format("%02d:%02d:%02d", hours, minutes, seconds);
+                        String text = String.format("Time Remaining:%02d:%02d:%02d ", hours, minutes, seconds);
                         countDown.setText(text);
                     }
 

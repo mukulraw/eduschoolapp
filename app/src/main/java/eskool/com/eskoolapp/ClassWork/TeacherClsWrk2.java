@@ -34,7 +34,10 @@ public class TeacherClsWrk2 extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.teacher_cls_wrk2, container, false);
+
         toolbar = (Toolbar) ((TeacherHome) getContext()).findViewById(R.id.tool_bar);
+
+
         edit = (Button) view.findViewById(R.id.edit);
 
 
@@ -47,7 +50,7 @@ public class TeacherClsWrk2 extends Fragment {
                 FragmentTransaction ft = fm.beginTransaction();
                 TeacherClsWrk3 frag1 = new TeacherClsWrk3();
                 ft.replace(R.id.replace, frag1);
-                ft.addToBackStack(null);
+                //ft.addToBackStack(null);
                 ft.commit();
             }
         });

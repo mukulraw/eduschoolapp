@@ -69,12 +69,12 @@
     </RelativeLayout>
 
     <Button
+        android:id="@+id/submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="23dp"
-        android:background="#1CBE0C"
+        android:background="#F0920A"
         android:text="SUBMIT"
-        android:textColor="#ffffff"
-        android:id="@+id/submit"/>
+        android:textColor="#ffffff" />
 
 </LinearLayout>

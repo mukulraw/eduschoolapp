@@ -44,7 +44,7 @@ public class LoginPage extends AppCompatActivity {
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LoginPage.this, ParentHome.class);
+                Intent intent = new Intent(LoginPage.this, TeacherHome.class);
                 startActivity(intent);
                 finish();
 

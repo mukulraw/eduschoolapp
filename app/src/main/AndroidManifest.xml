@@ -85,6 +85,7 @@
             android:label="@string/title_activity_teacher_home"
             android:theme="@style/AppTheme" />
         <activity android:name=".Gallery.AddAlbum" />
+        <activity android:name=".Communication.ComposeMessage"></activity>
     </application>
 
 </manifest>

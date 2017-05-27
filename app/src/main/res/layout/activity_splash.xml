@@ -4,18 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/splashback"
+    android:gravity="center"
     tools:context="eskool.com.eskoolapp.Splash">
 
-
-
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/splash"
-        app:layout_collapseMode="parallax"
-        android:fitsSystemWindows="true"
-        android:scaleType="centerCrop"/>
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:src="@drawable/logonew"
 
+        />
 
 
 </LinearLayout>

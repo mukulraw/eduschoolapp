@@ -1,54 +1,58 @@
-package eskool.com.eskoolapp.ClassWork;
+package eskool.com.eskoolapp.Communication;
 
-
-import android.os.Build;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-
-import java.util.ArrayList;
-import java.util.List;
-
-import eskool.com.eskoolapp.Home.ParentHome;
 import eskool.com.eskoolapp.Home.TeacherHome;
+import eskool.com.eskoolapp.Profile.ParentFragmentOne;
+import eskool.com.eskoolapp.Profile.ParentFragmentTwo;
 import eskool.com.eskoolapp.R;
-import eskool.com.eskoolapp.RaiseRequest.FrgmntOne;
-import eskool.com.eskoolapp.RaiseRequest.FrgmntTwo;
-import eskool.com.eskoolapp.RaiseRequest.RaiseReqquestHome;
 import eskool.com.eskoolapp.User;
 
-public class AddClassWork extends Fragment {
-    TabLayout tabLayout;
-    ViewPager viewPager;
-    Toolbar toolbar;
+/**
+ * Created by user on 5/25/2017.
+ */
 
-    public AddClassWork() {
+public class Frgmnt1 extends Fragment {
+    Toolbar toolbar;
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
+
+    public Frgmnt1() {
 
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    @Nullable
+
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.activity_add_class_work, container, false);
+        View v = inflater.inflate(R.layout.communication_frgmnt1, container, false);
         toolbar = (Toolbar) ((TeacherHome) getContext()).findViewById(R.id.tool_bar);
+        FloatingActionButton fab = (FloatingActionButton) v.findViewById(R.id.fab);
 
 
-        viewPager = (ViewPager) view.findViewById(R.id.viewpager);
-        tabLayout = (TabLayout) view.findViewById(R.id.tabs);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getActivity(),ComposeMessage.class);
+                startActivity(intent);
+            }
+        });
+
+
+        viewPager = (ViewPager) v.findViewById(R.id.viewpager);
+        tabLayout = (TabLayout) v.findViewById(R.id.tabs);
 
         tabLayout.addTab(tabLayout.newTab().setText("RECEIVED"));
         tabLayout.addTab(tabLayout.newTab().setText("SENT"));
@@ -59,16 +63,27 @@ public class AddClassWork extends Fragment {
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
+
         tabLayout.setupWithViewPager(viewPager);
 
-        return view;
+        return v;
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        toolbar.setTitle("Parent Request");
+
+        User u = (User) getContext().getApplicationContext();
+
+        u.back = true;
     }
 
 
     public class PagerAdapter extends FragmentStatePagerAdapter {
         int mNumOfTabs;
-        private String[] tabTitles = new String[]{"ADD", "VIEW"};
-
+        private String[] tabTitles = new String[]{"RECEIVED", "SENT"};
 
         public PagerAdapter(FragmentManager fm, int NumOfTabs) {
             super(fm);
@@ -80,10 +95,10 @@ public class AddClassWork extends Fragment {
 
             switch (position) {
                 case 0:
-                    OneFragment tab1 = new OneFragment();
+                    One tab1 = new One();
                     return tab1;
                 case 1:
-                    TwoFragment tab2 = new TwoFragment();
+                    Two tab2 = new Two();
                     return tab2;
 
                 default:
@@ -101,17 +116,4 @@ public class AddClassWork extends Fragment {
             return mNumOfTabs;
         }
     }
-
-
-    @Override
-    public void onResume() {
-
-        super.onResume();
-        toolbar.setTitle("Class Work");
-
-        User u = (User) getContext().getApplicationContext();
-
-        u.back = true;
-    }
-
 }

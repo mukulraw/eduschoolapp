@@ -30,13 +30,16 @@ public class TeacherClsWrk3  extends Fragment{
         View view = inflater.inflate(R.layout.teacher_cls_wrk3, container, false);
         toolbar = (Toolbar) ((TeacherHome) getContext()).findViewById(R.id.tool_bar);
 
+
         return view;
 
     }
     @Override
     public void onResume() {
+
         super.onResume();
-        toolbar.setTitle("Class Work Details");
+        toolbar.setTitle("Class Work");
+
         User u = (User) getContext().getApplicationContext();
 
         u.back = false;

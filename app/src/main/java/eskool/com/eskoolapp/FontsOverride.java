@@ -14,7 +14,7 @@ public class FontsOverride {
     public static void setDefaultFont(Context context,
                                       String staticTypefaceFieldName, String fontAssetName) {
         final Typeface regular = Typeface.createFromAsset(context.getAssets(),
-                "fonts/fonty.ttf");
+                "fonts/calibri.ttf");
         replaceFont(staticTypefaceFieldName, regular);
     }
 

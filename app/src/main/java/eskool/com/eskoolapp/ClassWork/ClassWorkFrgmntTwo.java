@@ -33,7 +33,7 @@ public class ClassWorkFrgmntTwo extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.parent_hw2, container, false);
+        View view = inflater.inflate(R.layout.class_wrk_frgmnt_two, container, false);
         toolbar = (Toolbar) ((ParentHome) getContext()).findViewById(R.id.tool_bar);
         FloatingActionButton button = (FloatingActionButton) view.findViewById(R.id.fab);
         button.setOnClickListener(new View.OnClickListener() {

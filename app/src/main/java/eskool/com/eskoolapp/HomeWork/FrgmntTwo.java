@@ -51,9 +51,9 @@ public class FrgmntTwo extends Fragment {
 
                 FragmentManager fm = getFragmentManager();
                 FragmentTransaction ft = fm.beginTransaction();
-                TeacherClsWrk2 frag1 = new TeacherClsWrk2();
+                TeacherHwFrgmntTwo frag1 = new TeacherHwFrgmntTwo();
                 ft.replace(R.id.replace, frag1);
-                //ft.addToBackStack(null);
+                ft.addToBackStack(null);
                 ft.commit();
             }
         });

@@ -95,7 +95,7 @@
         android:checkableBehavior="none">
 
         <item
-            android:id="@+id/raise_request"
+            android:id="@+id/communication"
             android:icon="@drawable/raise_request"
             android:title="Communication" />
 
