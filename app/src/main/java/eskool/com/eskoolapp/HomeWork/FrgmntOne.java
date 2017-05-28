@@ -26,7 +26,7 @@ import eskool.com.eskoolapp.User;
 
 public class FrgmntOne extends Fragment {
     Toolbar toolbar;
-    TextView className, sectionName, status1, date;
+    TextView className, sectionName, date;
     AlertDialog.Builder alertDialog;
     View convertView;
 
@@ -45,7 +45,6 @@ public class FrgmntOne extends Fragment {
         className = (TextView) v.findViewById(R.id.className);
         date = (TextView) v.findViewById(R.id.date);
         sectionName = (TextView) v.findViewById(R.id.sectonName);
-        status1 = (TextView) v.findViewById(R.id.status);
         final String classes[] = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "12"};
         final String section[] = {"A", "B", "C", "D", "E", "F", "G", "H"};
         final String status[] = {"Status", "a", "sdcs", "sds", "sdd", "sdf", "sd", "sdfd"};
@@ -82,24 +81,6 @@ public class FrgmntOne extends Fragment {
             }
         });
 
-        status1.setOnClickListener(new View.OnClickListener() {
-
-
-            @Override
-            public void onClick(View view) {
-
-                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setTitle("Select Status");
-                builder.setItems(status, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int item) {
-                        // Do something with the selection
-                        className.setText(status[item]);
-                    }
-                });
-                AlertDialog alert = builder.create();
-                alert.show();
-            }
-        });
 
 
         sectionName.setOnClickListener(new View.OnClickListener() {

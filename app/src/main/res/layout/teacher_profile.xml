@@ -60,7 +60,6 @@
             android:layout_alignParentBottom="true"
             android:background="#F0920A"
             android:text="Change Password"
-
             android:textColor="#ffffff" />
 
     </RelativeLayout>

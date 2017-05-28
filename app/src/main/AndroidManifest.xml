@@ -20,7 +20,8 @@
         tools:replace="android:allowBackup">
         <activity
             android:name=".Splash"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,8 +30,10 @@
         </activity>
         <activity
             android:name=".WelcomeSlider.WelcomeActivity"
-            android:theme="@style/AppTheme" />
-        <activity android:name=".MainActivity" />
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait"/>
 
         <service
             android:name=".NotifyService"
@@ -47,45 +50,67 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".Chat" />
-        <activity android:name=".Login" />
-        <activity android:name=".fab" />
-        <activity android:name=".recycler" />
-        <activity android:name=".Gallery.demo" />
+        <activity android:name=".Chat"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Login"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".fab"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".recycler"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Gallery.demo"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".New"
-            android:theme="@style/AppTheme" />
-        <activity android:name=".OnlineTest.OnlineTestActivity" />
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".OnlineTest.OnlineTestActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Attendance.Attendance"
+            android:screenOrientation="portrait"
             android:label="Attendance" />
-        <activity android:name=".Attendance.MarkAttendance" />
-        <activity android:name=".Attendance.Edit_Attendance" />
+        <activity android:name=".Attendance.MarkAttendance"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Attendance.Edit_Attendance"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".ClassWork.AddClassWork"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustResize" />
-        <activity android:name=".OnlineTest.OnlineTestSummery" />
+        <activity android:name=".OnlineTest.OnlineTestSummery"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Profile.TeacherProfile"
+            android:screenOrientation="portrait"
             android:label="My Profile" />
         <activity
             android:name=".Profile.ParentProfile"
+            android:screenOrientation="portrait"
             android:label="My Profile"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".Home.ParentHome"
             android:label="@string/title_activity_parent_home"
-            android:theme="@style/AppTheme" />
-        <activity android:name=".LoginPages.LoginPage" />
-        <activity android:name=".RaiseRequest.RaiseRequestActivity" />
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".LoginPages.LoginPage"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".RaiseRequest.RaiseRequestActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Home.TeacherHome"
             android:label="@string/title_activity_teacher_home"
-            android:theme="@style/AppTheme" />
-        <activity android:name=".Gallery.AddAlbum" />
-        <activity android:name=".Communication.ComposeMessage"></activity>
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Gallery.AddAlbum"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Communication.ComposeMessage"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".LoginPages.MainLogin"
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>
