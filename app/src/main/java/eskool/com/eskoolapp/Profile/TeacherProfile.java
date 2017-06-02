@@ -96,7 +96,7 @@ public class TeacherProfile extends Fragment {
 
     public class PagerAdapter extends FragmentStatePagerAdapter {
         int mNumOfTabs;
-        private String[] tabTitles = new String[]{"Personal Info", "Conatct Info","Work Info"};
+        private String[] tabTitles = new String[]{"Personal Info", "Contact Info","Work Info"};
 
         public PagerAdapter(FragmentManager fm, int NumOfTabs) {
             super(fm);

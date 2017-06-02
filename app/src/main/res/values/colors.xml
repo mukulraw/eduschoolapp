@@ -3,6 +3,8 @@
     <color name="colorPrimary">#01A8DD</color>
     <color name="colorPrimaryDark">#0070AF</color>
     <color name="colorAccent">#066FA4</color>
+    <color name="btn">#ffce86</color>
+    <color name="txtColor">#cdcdcd</color>
 
 
 
