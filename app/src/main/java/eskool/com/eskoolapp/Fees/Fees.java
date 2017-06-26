@@ -46,7 +46,7 @@ Fees extends Fragment {
             public void onClick(View view) {
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                Fees2 fees2 = new Fees2();
+                FeesFrgmnt2 fees2 = new FeesFrgmnt2();
                 fragmentTransaction.replace(R.id.replace, fees2);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();

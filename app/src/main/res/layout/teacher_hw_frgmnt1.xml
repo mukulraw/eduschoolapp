@@ -2,8 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -17,9 +16,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="12dp"
                 android:layout_marginBottom="12dp"
                 android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
                 android:layout_marginTop="12dp"
                 android:orientation="vertical"
                 android:paddingBottom="50dp">
@@ -31,8 +30,9 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:background="@drawable/viewattendance"
+                    android:hint="Date"
                     android:padding="12dp"
-                    android:text="Date"
+                    android:textColorHint="#c9c8c8"
                     android:textSize="18dp" />
 
                 <TextView
@@ -41,8 +41,10 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:background="@drawable/viewattendance"
+                    android:hint="Class"
+
                     android:padding="12dp"
-                    android:text="Class"
+                    android:textColorHint="#c9c8c8"
                     android:textSize="18dp" />
 
                 <TextView
@@ -52,7 +54,9 @@
                     android:layout_centerInParent="true"
                     android:background="@drawable/viewattendance"
                     android:padding="12dp"
-                    android:text="Section"
+                    android:hint="Section"
+                    android:textColorHint="#c9c8c8"
+
                     android:textSize="18dp" />
 
                 <TextView
@@ -62,7 +66,8 @@
                     android:layout_centerInParent="true"
                     android:background="@drawable/viewattendance"
                     android:padding="12dp"
-                    android:text="Subject"
+                    android:hint="Subject"
+                    android:textColorHint="#c9c8c8"
                     android:textSize="18dp" />
 
                 <TextView
@@ -72,7 +77,8 @@
                     android:layout_centerInParent="true"
                     android:background="@drawable/viewattendance"
                     android:padding="12dp"
-                    android:text="Chapter"
+                    android:hint="Chapter"
+                    android:textColorHint="#c9c8c8"
                     android:textSize="18dp" />
 
                 <TextView
@@ -82,7 +88,8 @@
                     android:layout_centerInParent="true"
                     android:background="@drawable/viewattendance"
                     android:padding="12dp"
-                    android:text="Sub-Topic"
+                    android:hint="Sub-Topic"
+                    android:textColorHint="#c9c8c8"
                     android:textSize="18dp" />
 
 
@@ -93,7 +100,8 @@
                     android:layout_centerInParent="true"
                     android:background="@drawable/viewattendance"
                     android:padding="12dp"
-                    android:text="Due Date"
+                    android:hint="Due Date"
+                    android:textColorHint="#c9c8c8"
                     android:textSize="18dp" />
 
 
@@ -102,27 +110,28 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:background="@drawable/viewattendance1"
-                    android:padding="12dp"
-                    android:textColor="#fff"
                     android:layout_marginTop="10dp"
+                    android:background="@drawable/viewattendance1"
                     android:gravity="center"
+                    android:padding="12dp"
                     android:text="UPLOAD FILE"
+                    android:textColor="#fff"
                     android:textSize="18dp" />
 
                 <EditText
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/viewattendance"
+                    android:focusableInTouchMode="true"
                     android:gravity="top|left"
-                    android:hint="Extra Note......"
+                    android:hint="Add Notes.."
                     android:inputType="textMultiLine"
                     android:lines="6"
-                    android:focusableInTouchMode="true"
                     android:maxLines="10"
                     android:minLines="4"
                     android:padding="12dp"
-                    android:scrollbars="vertical" />
+                    android:scrollbars="vertical"
+                    android:textColorHint="#c9c8c8" />
 
 
             </LinearLayout>
@@ -133,17 +142,16 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:background="#F0920A"
-            android:text="ADD"
             android:layout_marginTop="34dp"
+            android:background="#F0920A"
             android:padding="18dp"
+            android:text="ADD"
             android:textColor="#ffffff" />
 
 

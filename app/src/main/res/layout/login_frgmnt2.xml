@@ -27,20 +27,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="6dp"
-
                 android:layout_marginLeft="12dp"
                 android:layout_marginRight="12dp"
-                android:text="Enrollment No." />
+                android:text="Enrollment No."
+                android:textSize="18sp"/>
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
+                android:layout_marginBottom="6dp"
                 android:layout_marginLeft="12dp"
                 android:layout_marginRight="12dp"
                 android:background="@drawable/login_backgrnd"
                 android:hint="Enrollment No."
                 android:maxLines="1"
+                android:textColorHint="#e4e2e2"
                 android:padding="12dp" />
 
 
@@ -50,16 +51,18 @@
                 android:layout_marginBottom="6dp"
                 android:layout_marginLeft="12dp"
                 android:layout_marginRight="12dp"
-                android:text="Password" />
+                android:text="Password"
+                android:textSize="18sp"/>
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="18dp"
+                android:layout_marginBottom="6dp"
                 android:layout_marginLeft="12dp"
-                android:layout_marginRight="15dp"
+                android:layout_marginRight="12dp"
                 android:background="@drawable/login_backgrnd"
                 android:hint="Password"
+                android:textColorHint="#e4e2e2"
                 android:inputType="textPassword"
                 android:maxLines="1"
                 android:padding="12dp" />
@@ -69,7 +72,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="6dp"
-
+                android:textSize="18sp"
                 android:layout_marginLeft="12dp"
                 android:layout_marginRight="12dp"
                 android:text="School Code " />
@@ -79,11 +82,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
                 android:layout_marginLeft="12dp"
-                android:layout_marginRight="15dp"
-                android:layout_weight="4"
+                android:layout_marginRight="12dp"
                 android:background="@drawable/login_backgrnd"
                 android:hint="School Code"
                 android:maxLines="1"
+                android:textColorHint="#e4e2e2"
                 android:padding="12dp" />
 
 

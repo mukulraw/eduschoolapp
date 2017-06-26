@@ -43,7 +43,7 @@ public class HomeWorkFrgmntTwo extends Fragment {
             @Override
             public void onClick(View v) {
                 android.app.FragmentManager fm = getActivity().getFragmentManager();
-                eskool.com.eskoolapp.HomeWork.FilterDailog ratingBarFragment = new eskool.com.eskoolapp.HomeWork.FilterDailog();
+                eskool.com.eskoolapp.ClassWork.FilterDailog ratingBarFragment = new eskool.com.eskoolapp.ClassWork.FilterDailog();
 
                 ratingBarFragment.show(fm, "dialog");
 

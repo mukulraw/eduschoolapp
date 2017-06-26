@@ -272,7 +272,8 @@
                         android:layout_marginLeft="12dp"
                         android:layout_marginRight="12dp"
                         android:gravity="bottom"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:id="@+id/complited">
 
                         <TextView
                             android:layout_width="0dp"
@@ -303,6 +304,7 @@
                         android:layout_marginLeft="12dp"
                         android:layout_marginRight="12dp"
                         android:gravity="bottom"
+                        android:id="@+id/incomplited"
                         android:orientation="horizontal">
 
                         <TextView
@@ -312,7 +314,7 @@
                             android:background="@drawable/background"
                             android:gravity="center"
                             android:padding="12dp"
-                            android:text="INCOMPLETED"
+                            android:text="INCOMPLETE"
                             android:textColor="@android:color/holo_red_light" />
 
                         <TextView
@@ -331,19 +333,16 @@
         </ScrollView>
     </LinearLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true">
+
 
         <Button
             android:id="@+id/edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
             android:background="#F0920A"
             android:text="EDIT"
-            android:textColor="#fff" />
-    </RelativeLayout>
+            android:textColor="#fff"
+            android:layout_alignParentBottom="true"/>
+
 
 </RelativeLayout>

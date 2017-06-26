@@ -1,5 +1,7 @@
 package eskool.com.eskoolapp.Communication;
 
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -10,6 +12,7 @@ import eskool.com.eskoolapp.R;
 public class ComposeMessage extends AppCompatActivity {
     Toolbar toolbar;
 
+    @RequiresApi(api = Build.VERSION_CODES.GINGERBREAD)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -8,6 +8,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import eskool.com.eskoolapp.Home.TeacherHome;
+import eskool.com.eskoolapp.LoginPages.ForgotPasswordFrgmnt;
 import eskool.com.eskoolapp.Profile.ParentFragmentOne;
 import eskool.com.eskoolapp.Profile.ParentFragmentTwo;
 import eskool.com.eskoolapp.R;
@@ -45,8 +47,15 @@ public class Frgmnt1 extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(getActivity(),ComposeMessage.class);
-                startActivity(intent);
+                /*Intent intent=new Intent(getActivity(),ComposeMessage.class);
+                startActivity(intent);*/
+
+                FragmentManager fm = getFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+                Frgmnt2 frag1 = new Frgmnt2();
+                ft.replace(R.id.replace, frag1);
+                ft.addToBackStack(null);
+                ft.commit();
             }
         });
 

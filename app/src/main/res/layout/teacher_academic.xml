@@ -18,6 +18,7 @@
         android:layout_marginRight="12dp"
         android:layout_marginTop="15dp"
         android:gravity="center"
+        android:background="@drawable/viewattendance"
         android:orientation="horizontal"
         android:layout_marginBottom="12dp">
 
@@ -35,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="8A"
-                android:textColor="#000000"
+                android:textColor="#398DBF"
                 android:textSize="38sp"
                 android:textStyle="bold" />
 
@@ -50,27 +51,36 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="3"
-            android:background="@drawable/viewattendance"
+
             android:gravity="center">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="12sp"
+                android:layout_gravity="center"
                 android:text="BIOLOGY"
+                android:gravity="center"
                 android:textColor="#000000"
-                android:textSize="28sp" />
+                android:textSize="28sp"
+             android:id="@+id/sub"/>
+
+        </LinearLayout>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Change"
+               android:gravity="bottom"
                 android:layout_gravity="bottom"
                 android:textColor="@color/colorPrimary"
-                android:id="@+id/change"/>
-        </LinearLayout>
+                android:id="@+id/change"
+              android:layout_alignParentBottom="true"/>
+
 
 
     </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"

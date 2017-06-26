@@ -1,4 +1,4 @@
-package eskool.com.eskoolapp.Academic;
+package eskool.com.eskoolapp.SyllabusManagement;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,7 +7,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Spinner;
 
 import eskool.com.eskoolapp.Home.ParentHome;
 import eskool.com.eskoolapp.R;

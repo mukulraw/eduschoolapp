@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
+
 import eskool.com.eskoolapp.Home.TeacherHome;
 import eskool.com.eskoolapp.R;
 import eskool.com.eskoolapp.User;
@@ -38,14 +39,14 @@ public class TeacherProfile extends Fragment {
         toolbar = (Toolbar) ((TeacherHome) getContext()).findViewById(R.id.tool_bar);
 
 
-        change_password = (Button)v.findViewById(R.id.change_password);
+        change_password = (Button) v.findViewById(R.id.change_password);
         toolbar = (Toolbar) ((TeacherHome) getContext()).findViewById(R.id.tool_bar);
         change_password = (Button) v.findViewById(R.id.change_password);
         viewPager = (ViewPager) v.findViewById(R.id.viewpager);
         tabLayout = (TabLayout) v.findViewById(R.id.tabs);
 
         tabLayout.addTab(tabLayout.newTab().setText("Personal Info"));
-        tabLayout.addTab(tabLayout.newTab().setText("Contact Info"));
+        tabLayout.addTab(tabLayout.newTab().setText("Emergency Contact Info"));
         tabLayout.addTab(tabLayout.newTab().setText("Work Info"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
@@ -55,11 +56,7 @@ public class TeacherProfile extends Fragment {
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
 
-
         tabLayout.setupWithViewPager(viewPager);
-
-
-
 
 
         change_password.setOnClickListener(new View.OnClickListener() {
@@ -96,7 +93,7 @@ public class TeacherProfile extends Fragment {
 
     public class PagerAdapter extends FragmentStatePagerAdapter {
         int mNumOfTabs;
-        private String[] tabTitles = new String[]{"Personal Info", "Contact Info","Work Info"};
+        private String[] tabTitles = new String[]{"Work Info","Personal Info", "Emergency Contact Info"};
 
         public PagerAdapter(FragmentManager fm, int NumOfTabs) {
             super(fm);

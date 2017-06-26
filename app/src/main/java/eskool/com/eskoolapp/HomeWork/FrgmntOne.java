@@ -1,5 +1,9 @@
 package eskool.com.eskoolapp.HomeWork;
 
+import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.app.FragmentManager;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,11 +15,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import eskool.com.eskoolapp.ClassWork.OneFragment;
-import eskool.com.eskoolapp.Home.ParentHome;
+
+import java.util.Calendar;
+
+import eskool.com.eskoolapp.Attendance.AttendanceFrgmnt2;
 import eskool.com.eskoolapp.Home.TeacherHome;
 import eskool.com.eskoolapp.R;
 import eskool.com.eskoolapp.User;
@@ -24,7 +31,7 @@ import eskool.com.eskoolapp.User;
  * Created by user on 5/20/2017.
  */
 
-public class FrgmntOne extends Fragment {
+public class FrgmntOne extends Fragment implements DatePickerDialog.OnDateSetListener {
     Toolbar toolbar;
     TextView className, sectionName, date;
     AlertDialog.Builder alertDialog;
@@ -110,8 +117,11 @@ public class FrgmntOne extends Fragment {
             @Override
             public void onClick(View view) {
 
-                DialogFragment picker = new OneFragment.DatePickerFragment();
-                picker.show(getFragmentManager(),"datePicker");
+                android.app.DialogFragment newFragment = new DatePickerFragment2();
+                newFragment.show(getActivity().getFragmentManager(), "df");
+
+
+
 
             }
         });
@@ -121,6 +131,55 @@ public class FrgmntOne extends Fragment {
         return v;
 
     }
+
+    @SuppressLint("ValidFragment")
+    public  class DatePickerFragment2 extends android.app.DialogFragment implements    DatePickerDialog.OnDateSetListener{
+        @Override
+        public void onDateSet(DatePicker view, int year, int monthOfYear, int  day) {
+            String years=""+year;
+            String months=""+(monthOfYear+1);
+            String days=""+day;
+            if(monthOfYear>=0 && monthOfYear<9){
+                months="0"+(monthOfYear+1);
+            }
+            if(day>0 && day<10){
+                days="0"+day;
+
+            }
+            date.setText(days+"/"+months+"/"+years);
+        }
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            //use the current date as the default date in the picker
+            Calendar c=Calendar.getInstance();
+            int year=c.get(Calendar.YEAR);
+            int month=c.get(Calendar.MONTH);
+            int day=c.get(Calendar.DAY_OF_MONTH);
+            DatePickerDialog datePickerDialog=null;
+            datePickerDialog=new DatePickerDialog(getActivity(), this, year,  month, day);
+
+            return datePickerDialog;
+        }
+
+    }
+
+    @Override
+    public void onDateSet(DatePicker view, int year, int monthOfYear, int  day) {
+        String years=""+year;
+        String months=""+(monthOfYear+1);
+        String days=""+day;
+        if(monthOfYear>=0 && monthOfYear<9){
+            months="0"+(monthOfYear+1);
+        }
+        if(day>0 && day<10){
+            days="0"+day;
+
+        }
+        date.setText(days+"/"+months+"/"+years);
+    }
+
+
 
 }
 

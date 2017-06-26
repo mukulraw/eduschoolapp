@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:layout_marginTop="15dp"
+    android:layout_marginTop="10dp"
     android:gravity="center"
     android:minWidth="340dp"
     android:orientation="vertical"
@@ -13,21 +13,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp"
         android:background="@drawable/background"
         android:gravity="center"
         android:hint="Old Password"
+        android:maxLines="1"
         android:padding="12dp" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp"
         android:background="@drawable/background"
         android:gravity="center"
+        android:maxLines="1"
         android:hint="New Password"
         android:padding="12dp" />
 
@@ -35,10 +33,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp"
         android:background="@drawable/background"
         android:gravity="center"
+        android:maxLines="1"
         android:hint="Confirm Password"
         android:padding="12dp" />
 
@@ -48,8 +45,11 @@
         android:layout_marginBottom="15dp"
         android:layout_marginTop="18dp"
         android:background="#F0920A"
+        android:minHeight="0dp"
         android:paddingLeft="7dp"
         android:paddingRight="7dp"
+        android:paddingTop="9dp"
+        android:paddingBottom="9dp"
         android:text="SUBMIT"
         android:textColor="#ffffff" />
 </LinearLayout>

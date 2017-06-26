@@ -49,9 +49,19 @@
         >
 
         <item
-            android:id="@+id/academic"
+            android:id="@+id/syllabus_management"
             android:icon="@drawable/academic"
-            android:title="Academic" />
+            android:title="Syllabus Management" />
+
+    </group>
+    <group
+        android:id="@+id/menu_bottom14"
+        android:checkableBehavior="none">
+
+        <item
+            android:id="@+id/library"
+            android:icon="@drawable/ic_lib"
+            android:title="Library" />
 
     </group>
 
@@ -62,6 +72,17 @@
             android:id="@+id/gallery"
             android:icon="@drawable/ic_gallry"
             android:title="Gallery" />
+
+    </group>
+
+    <group
+        android:id="@+id/menu_bottom13"
+        android:checkableBehavior="none">
+
+        <item
+            android:id="@+id/survey"
+            android:icon="@drawable/survey"
+            android:title="Survey" />
 
     </group>
 
@@ -85,6 +106,17 @@
             android:id="@+id/exam_result"
             android:icon="@drawable/exam_n_result"
             android:title="Exam and Result" />
+
+    </group>
+
+    <group
+        android:id="@+id/menu_bottom15"
+        android:checkableBehavior="none">
+
+        <item
+            android:id="@+id/stay_ahead"
+            android:icon="@drawable/ic_trophy"
+            android:title="Stay Ahead / Score More" />
 
     </group>
 

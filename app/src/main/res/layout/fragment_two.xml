@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="eskool.com.eskoolapp.ClassWork.AddClassWork">
+    android:layout_height="match_parent">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -14,19 +13,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginRight="12dp"
-            android:layout_marginLeft="12dp"
-            android:layout_marginTop="12dp"
-            android:paddingBottom="24dp">
+            android:orientation="vertical">
 
 
             <android.support.v7.widget.CardView
+                android:id="@+id/card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardUseCompatPadding="true"
-                android:id="@+id/card"
-              >
+                app:cardUseCompatPadding="true">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -35,7 +29,7 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/background"
+                        android:background="@drawable/back1"
                         android:orientation="vertical"
                         android:padding="12dp">
 
@@ -68,9 +62,9 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Mathematics Class Test"
                             android:paddingBottom="6dp"
-                            android:textStyle="bold"/>
+                            android:text="Mathematics Class Test"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -88,8 +82,7 @@
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardUseCompatPadding="true"
-                >
+                app:cardUseCompatPadding="true">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -98,7 +91,7 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/background"
+                        android:background="@drawable/back1"
                         android:orientation="vertical"
                         android:padding="12dp">
 
@@ -131,9 +124,9 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:paddingBottom="6dp"
                             android:text="Mathematics Class Test"
-                            android:textStyle="bold"
-                            android:paddingBottom="6dp"/>
+                            android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -149,8 +142,7 @@
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardUseCompatPadding="true"
-                >
+                app:cardUseCompatPadding="true">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -159,7 +151,7 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/background"
+                        android:background="@drawable/back1"
                         android:orientation="vertical"
                         android:padding="12dp">
 
@@ -192,9 +184,9 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:paddingBottom="6dp"
                             android:text="Mathematics Class Test"
-                            android:textStyle="bold"
-                            android:paddingBottom="6dp"/>
+                            android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -210,8 +202,7 @@
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardUseCompatPadding="true"
-                >
+                app:cardUseCompatPadding="true">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -220,7 +211,7 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/background"
+                        android:background="@drawable/back1"
                         android:orientation="vertical"
                         android:padding="12dp">
 
@@ -253,9 +244,9 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:paddingBottom="6dp"
                             android:text="Mathematics Class Test"
-                            android:textStyle="bold"
-                            android:paddingBottom="6dp"/>
+                            android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -271,8 +262,7 @@
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardUseCompatPadding="true"
-                >
+                app:cardUseCompatPadding="true">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -281,7 +271,7 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/background"
+                        android:background="@drawable/back1"
                         android:orientation="vertical"
                         android:padding="12dp">
 
@@ -314,9 +304,9 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:paddingBottom="6dp"
                             android:text="Mathematics Class Test"
-                            android:textStyle="bold"
-                            android:paddingBottom="6dp"/>
+                            android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -331,8 +321,7 @@
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardUseCompatPadding="true"
-                >
+                app:cardUseCompatPadding="true">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -341,7 +330,7 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/background"
+                        android:background="@drawable/back1"
                         android:orientation="vertical"
                         android:padding="12dp">
 
@@ -374,9 +363,9 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:paddingBottom="6dp"
                             android:text="Mathematics Class Test"
-                            android:textStyle="bold"
-                            android:paddingBottom="6dp"/>
+                            android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -391,8 +380,7 @@
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardUseCompatPadding="true"
-                >
+                app:cardUseCompatPadding="true">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -401,7 +389,7 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/background"
+                        android:background="@drawable/back1"
                         android:orientation="vertical"
                         android:padding="12dp">
 
@@ -434,9 +422,9 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:paddingBottom="6dp"
                             android:text="Mathematics Class Test"
-                            android:textStyle="bold"
-                            android:paddingBottom="6dp"/>
+                            android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -453,8 +441,7 @@
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardUseCompatPadding="true"
-                >
+                app:cardUseCompatPadding="true">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -463,7 +450,7 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/background"
+                        android:background="@drawable/back1"
                         android:orientation="vertical"
                         android:padding="12dp">
 
@@ -496,9 +483,9 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:paddingBottom="6dp"
                             android:text="Mathematics Class Test"
-                            android:textStyle="bold"
-                            android:paddingBottom="6dp"/>
+                            android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"

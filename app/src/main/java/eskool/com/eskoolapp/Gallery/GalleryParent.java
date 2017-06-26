@@ -19,14 +19,10 @@ import android.widget.ImageView;
 
 import java.util.Calendar;
 
-import eskool.com.eskoolapp.ClassWork.FilterDailog;
 import eskool.com.eskoolapp.Home.ParentHome;
 import eskool.com.eskoolapp.R;
 import eskool.com.eskoolapp.User;
 
-/**
- * Created by User on 5/11/2017.
- */
 
 public class GalleryParent extends Fragment {
     ImageView album1;
@@ -48,8 +44,9 @@ public class GalleryParent extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DialogFragment newFragment= new DatePickerFragment();
-                newFragment.show(getActivity().getFragmentManager(), "datepicker");
+                android.app.FragmentManager fm = getActivity().getFragmentManager();
+                FilterDailog filterDailog = new FilterDailog();
+                filterDailog.show(fm, "dialog");
             }
         });
 

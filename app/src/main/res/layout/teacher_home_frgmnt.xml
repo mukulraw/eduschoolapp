@@ -98,7 +98,8 @@
                 android:paddingBottom="12dp"
                 android:paddingLeft="12dp"
                 android:paddingRight="12dp"
-                android:paddingTop="12dp">
+                android:paddingTop="12dp"
+                android:id="@+id/attendance">
 
                 <TextView
                     android:layout_width="0dp"
@@ -234,7 +235,8 @@
                     android:paddingRight="12dp"
                     android:paddingTop="12dp"
                     android:text="ACADEMIC"
-                    android:textColor="#ffffff" />
+                    android:textColor="#ffffff"
+                    android:id="@+id/academic"/>
 
 
                 <LinearLayout
@@ -357,7 +359,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/classwork"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="12dp"

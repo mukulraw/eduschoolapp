@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="eskool.com.eskoolapp.RaiseRequest.RaiseRequestActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
@@ -18,104 +19,116 @@
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
             app:title="Raise Request"
-            app:titleTextColor="#fff">
+            app:titleTextColor="#fff"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="0dp">
 
         </android.support.v7.widget.Toolbar>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="12dp"
-            android:layout_marginRight="12dp"
-            android:layout_marginTop="22dp"
-            android:background="@drawable/viewattendance"
             android:orientation="vertical"
-            android:padding="22dp">
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="8dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                android:text="Request Type" />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/background">
-
-                <Spinner
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/request_type"/>
-            </RelativeLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                android:layout_marginTop="12dp"
-                android:text="Request Details" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="22dp"
+                android:background="@drawable/viewattendance"
+                android:orientation="vertical"
+                android:padding="22dp">
 
                 <TextView
-                    android:id="@+id/start"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/viewattendance"
-                    android:drawablePadding="10dp"
-                    android:drawableStart="@drawable/calendar"
-                    android:padding="12dp"
-                    android:text="Start Date" />
+                    android:layout_marginBottom="12dp"
+                    android:text="Request Type"
+                    android:textSize="18dp" />
 
-                <TextView
-                    android:id="@+id/end"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/viewattendance"
-                    android:drawablePadding="10dp"
-                    android:drawableStart="@drawable/calendar"
-                    android:padding="12dp"
-                    android:text="End Date" />
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                android:layout_marginTop="12dp"
-                android:text="Reason" />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/background">
-
-                <Spinner
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/reaason" />
-            </RelativeLayout>
+                    android:background="@drawable/background">
+
+                    <Spinner
+                        android:id="@+id/request_type"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:layout_marginTop="12dp"
+                    android:text="Request Details"
+                    android:textSize="18dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/start"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/viewattendance"
+                        android:drawablePadding="10dp"
+                        android:drawableStart="@drawable/calendar"
+                        android:gravity="center_vertical"
+                        android:padding="12dp"
+                        android:text="Start Date" />
+
+                    <TextView
+                        android:id="@+id/end"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:background="@drawable/viewattendance"
+                        android:drawablePadding="10dp"
+                        android:drawableStart="@drawable/calendar"
+                        android:gravity="center_vertical"
+                        android:padding="12dp"
+                        android:text="End Date" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:layout_marginTop="12dp"
+                    android:text="Reason"
+                    android:textSize="18dp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/background">
+
+                    <Spinner
+                        android:id="@+id/reaason"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+            </LinearLayout>
         </LinearLayout>
+
+
     </LinearLayout>
 
-    <RelativeLayout
+    <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="0dp">
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:background="#F0920A"
-            android:text="SEND"
-            android:padding="18dp"
-            android:textColor="#ffffff" />
-    </RelativeLayout>
-</android.support.constraint.ConstraintLayout>
+        android:layout_alignParentBottom="true"
+        android:background="#F0920A"
+        android:padding="18dp"
+        android:text="SEND"
+        android:textColor="#ffffff" />
+</RelativeLayout>

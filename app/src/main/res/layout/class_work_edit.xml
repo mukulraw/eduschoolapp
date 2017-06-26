@@ -4,43 +4,48 @@
     android:layout_height="match_parent"
     android:layout_gravity="center"
     android:gravity="center"
-    android:orientation="vertical"
-    android:padding="12dp"
-    android:minWidth="300dp">
+    android:minWidth="340dp"
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="6dp"
         android:padding="12dp"
+        android:textSize="15dp"
         android:text="Date Details" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
 
         <TextView
+            android:id="@+id/start"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
             android:layout_weight="1"
             android:background="@drawable/viewattendance"
             android:drawablePadding="10dp"
             android:drawableStart="@drawable/calendar"
+            android:gravity="center_vertical"
             android:padding="12dp"
-            android:id="@+id/start"
             android:text="Start Date" />
 
         <TextView
+            android:id="@+id/end"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginRight="6dp"
             android:layout_weight="1"
             android:background="@drawable/viewattendance"
             android:drawablePadding="10dp"
             android:drawableStart="@drawable/calendar"
+            android:gravity="center_vertical"
             android:padding="12dp"
-            android:text="End Date"
-            android:id="@+id/end"
-            />
+            android:text="End Date" />
     </LinearLayout>
 
 
@@ -48,29 +53,38 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="12dp"
+        android:textSize="15dp"
         android:text="Subject" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/viewattendance">
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
+        android:background="@drawable/viewattendance"
+        android:padding="8dp">
 
         <Spinner
             android:id="@+id/subject"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="12dp">
+            android:layout_height="wrap_content">
 
         </Spinner>
     </RelativeLayout>
 
     <Button
+        android:id="@+id/filter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="23dp"
+        android:layout_marginBottom="12dp"
+        android:layout_marginTop="12dp"
         android:background="#F0920A"
+        android:minHeight="0dp"
+        android:paddingBottom="6dp"
+        android:paddingLeft="7dp"
+        android:paddingRight="7dp"
+        android:paddingTop="6dp"
         android:text="SUBMIT"
-        android:textColor="#ffffff"
-        android:id="@+id/filter"/>
+        android:textColor="#ffffff" />
 
 </LinearLayout>

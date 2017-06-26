@@ -1,4 +1,4 @@
-package eskool.com.eskoolapp.Academic;
+package eskool.com.eskoolapp.SyllabusManagement;
 
 import android.app.Dialog;
 import android.os.Bundle;
@@ -12,7 +12,6 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 
-import eskool.com.eskoolapp.Home.ParentHome;
 import eskool.com.eskoolapp.Home.TeacherHome;
 import eskool.com.eskoolapp.R;
 import eskool.com.eskoolapp.User;
@@ -64,7 +63,7 @@ public class TeacherAcademic extends Fragment{
     @Override
     public void onResume() {
         super.onResume();
-        toolbar.setTitle("Academic");
+        toolbar.setTitle("Syllabus Management");
         User u = (User) getContext().getApplicationContext();
 
         u.back = true;

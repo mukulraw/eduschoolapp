@@ -1,42 +1,38 @@
 package eskool.com.eskoolapp.Home;
 
 import android.annotation.SuppressLint;
-import android.graphics.Color;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
-import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.utils.ColorTemplate;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import eskool.com.eskoolapp.Academic.ParentAcademic;
+import eskool.com.eskoolapp.Library.ParentLibrary1;
+import eskool.com.eskoolapp.Library.TeacherLibrary1;
+import eskool.com.eskoolapp.LoginPages.MainLogin;
+import eskool.com.eskoolapp.StayAhead.StayAheadHome;
+import eskool.com.eskoolapp.SyllabusManagement.ParentAcademic;
 import eskool.com.eskoolapp.Attendance.ParentAttendanceFrgmnt;
 import eskool.com.eskoolapp.ClassWork.ClassWorkFrgmnt;
 import eskool.com.eskoolapp.ExamAndResults.ExamFrgmntOne;
 import eskool.com.eskoolapp.Fees.Fees;
 import eskool.com.eskoolapp.Gallery.GalleryParent;
 import eskool.com.eskoolapp.HomeWork.HomeWorkFrgmnt;
-import eskool.com.eskoolapp.OnBackPressedListener;
 import eskool.com.eskoolapp.OnlineTest.OnlineTestSummery;
 import eskool.com.eskoolapp.Profile.ParentProfile;
 import eskool.com.eskoolapp.R;
 import eskool.com.eskoolapp.RaiseRequest.RaiseReqquestHome;
+import eskool.com.eskoolapp.Survey.SurveyFrgmntParent1;
 import eskool.com.eskoolapp.TimeTable.TimeTableParent;
 import eskool.com.eskoolapp.Transport.TransportParent;
 import eskool.com.eskoolapp.User;
@@ -150,13 +146,22 @@ public class ParentHome extends AppCompatActivity
             //ft.addToBackStack(null);
             ft.commit();
 
-        } else if (id == R.id.academic) {
+        } else if (id == R.id.syllabus_management) {
 
             FragmentManager fm = getSupportFragmentManager();
             FragmentTransaction ft = fm.beginTransaction();
             ParentAcademic frag1 = new ParentAcademic();
             ft.replace(R.id.replace, frag1);
             // ft.addToBackStack(null);
+            ft.commit();
+
+        } else if (id == R.id.survey) {
+
+            FragmentManager fm = getSupportFragmentManager();
+            FragmentTransaction ft = fm.beginTransaction();
+            SurveyFrgmntParent1 frag1 = new SurveyFrgmntParent1();
+            ft.replace(R.id.replace, frag1);
+            //ft.addToBackStack(null);
             ft.commit();
 
         } else if (id == R.id.online_test) {
@@ -176,7 +181,25 @@ public class ParentHome extends AppCompatActivity
             ft.replace(R.id.replace, frag1);
             //ft.addToBackStack(null);
             ft.commit();
-        } else if (id == R.id.raise_request) {
+        } else if (id == R.id.library) {
+
+            FragmentManager fm = getSupportFragmentManager();
+            FragmentTransaction ft = fm.beginTransaction();
+            ParentLibrary1 frag1 = new ParentLibrary1();
+            ft.replace(R.id.replace, frag1);
+            //ft.addToBackStack(null);
+            ft.commit();
+        }
+        else if (id == R.id.stay_ahead) {
+
+            FragmentManager fm = getSupportFragmentManager();
+            FragmentTransaction ft = fm.beginTransaction();
+            StayAheadHome frag1 = new StayAheadHome();
+            ft.replace(R.id.replace, frag1);
+            //ft.addToBackStack(null);
+            ft.commit();
+        }
+        else if (id == R.id.raise_request) {
 
 
             FragmentManager fm = getSupportFragmentManager();
@@ -239,7 +262,43 @@ public class ParentHome extends AppCompatActivity
             ft.replace(R.id.replace, frag1);
             //ft.addToBackStack(null);
             ft.commit();
+        } else if (id == R.id.log_out) {
+
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(ParentHome.this);
+
+            builder.setTitle("Confirm");
+            builder.setMessage("Are you sure you want to log out?");
+
+            builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+
+                public void onClick(DialogInterface dialog, int which) {
+                    // Do nothing but close the dialog
+
+                    dialog.dismiss();
+                    Intent intent = new Intent(ParentHome.this, MainLogin.class);
+                    startActivity(intent);
+
+
+                }
+            });
+
+            builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                    // Do nothing
+                    dialog.dismiss();
+                }
+            });
+
+            AlertDialog alert = builder.create();
+            alert.show();
+
+
         }
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

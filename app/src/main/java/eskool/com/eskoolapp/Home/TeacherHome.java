@@ -1,6 +1,8 @@
 package eskool.com.eskoolapp.Home;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.FragmentManager;
@@ -9,20 +11,27 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import eskool.com.eskoolapp.Academic.TeacherAcademic;
+import eskool.com.eskoolapp.Library.TeacherLibrary1;
+import eskool.com.eskoolapp.LoginPages.MainLogin;
+import eskool.com.eskoolapp.StayAhead.StayAheadHome;
+import eskool.com.eskoolapp.StayAhead.StayAheadHomeTeacher;
+import eskool.com.eskoolapp.SyllabusManagement.TeacherAcademic;
 import eskool.com.eskoolapp.Attendance.Attendance;
 import eskool.com.eskoolapp.ClassWork.Teacherclswrk;
 import eskool.com.eskoolapp.Communication.Frgmnt1;
+import eskool.com.eskoolapp.Events.EventsFrgmnt1;
 import eskool.com.eskoolapp.ExamAndResults.TeacherFrgmnt1;
 import eskool.com.eskoolapp.Gallery.GalleryTeacher;
 import eskool.com.eskoolapp.HomeWork.TeacherHw;
 import eskool.com.eskoolapp.Profile.TeacherProfile;
 import eskool.com.eskoolapp.R;
+import eskool.com.eskoolapp.Survey.SurveyFrgmnt1;
 import eskool.com.eskoolapp.TimeTable.TimeTableTeacher;
 import eskool.com.eskoolapp.User;
 
@@ -131,7 +140,7 @@ public class TeacherHome extends AppCompatActivity
             //ft.addToBackStack(null);
             ft.commit();
 
-        } else if (id == R.id.academic) {
+        } else if (id == R.id.syllabus_management) {
 
             FragmentManager fm = getSupportFragmentManager();
             FragmentTransaction ft = fm.beginTransaction();
@@ -140,20 +149,50 @@ public class TeacherHome extends AppCompatActivity
             //ft.addToBackStack(null);
             ft.commit();
 
-        }
+        } else if (id == R.id.survey) {
 
-        else if (id == R.id.profile) {
+            FragmentManager fm = getSupportFragmentManager();
+            FragmentTransaction ft = fm.beginTransaction();
+            SurveyFrgmnt1 frag1 = new SurveyFrgmnt1();
+            ft.replace(R.id.replace, frag1);
+            //ft.addToBackStack(null);
+            ft.commit();
+
+        } else if (id == R.id.events) {
+
+            FragmentManager fm = getSupportFragmentManager();
+            FragmentTransaction ft = fm.beginTransaction();
+            EventsFrgmnt1 frag1 = new EventsFrgmnt1();
+            ft.replace(R.id.replace, frag1);
+            //ft.addToBackStack(null);
+            ft.commit();
+
+        } else if (id == R.id.library) {
+
+            FragmentManager fm = getSupportFragmentManager();
+            FragmentTransaction ft = fm.beginTransaction();
+            TeacherLibrary1 frag1 = new TeacherLibrary1();
+            ft.replace(R.id.replace, frag1);
+            //ft.addToBackStack(null);
+            ft.commit();
+        } else if (id == R.id.stay_ahead) {
+
+            FragmentManager fm = getSupportFragmentManager();
+            FragmentTransaction ft = fm.beginTransaction();
+            StayAheadHomeTeacher frag1 = new StayAheadHomeTeacher();
+            ft.replace(R.id.replace, frag1);
+            //ft.addToBackStack(null);
+            ft.commit();
+        } else if (id == R.id.profile) {
 
 
             FragmentManager fm = getSupportFragmentManager();
             FragmentTransaction ft = fm.beginTransaction();
-           TeacherProfile frag1 = new TeacherProfile();
+            TeacherProfile frag1 = new TeacherProfile();
             ft.replace(R.id.replace, frag1);
             //ft.addToBackStack(null);
             ft.commit();
-        }
-
-        else if (id == R.id.time_table) {
+        } else if (id == R.id.time_table) {
 
             FragmentManager fm = getSupportFragmentManager();
             FragmentTransaction ft = fm.beginTransaction();
@@ -180,9 +219,7 @@ public class TeacherHome extends AppCompatActivity
             ft.replace(R.id.replace, frag1);
             //ft.addToBackStack(null);
             ft.commit();
-        }
-
-        else if (id == R.id.exam_result) {
+        } else if (id == R.id.exam_result) {
 
 
             FragmentManager fm = getSupportFragmentManager();
@@ -191,10 +228,7 @@ public class TeacherHome extends AppCompatActivity
             ft.replace(R.id.replace, frag1);
             //ft.addToBackStack(null);
             ft.commit();
-        }
-
-
-        else if (id == R.id.communication) {
+        } else if (id == R.id.communication) {
 
 
             FragmentManager fm = getSupportFragmentManager();
@@ -203,7 +237,43 @@ public class TeacherHome extends AppCompatActivity
             ft.replace(R.id.replace, frag1);
             //ft.addToBackStack(null);
             ft.commit();
+        } else if (id == R.id.log_out) {
+
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(TeacherHome.this);
+
+            builder.setTitle("Confirm");
+            builder.setMessage("Are you sure you want to log out?");
+
+            builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+
+                public void onClick(DialogInterface dialog, int which) {
+                    // Do nothing but close the dialog
+
+                    dialog.dismiss();
+                    Intent intent = new Intent(TeacherHome.this, MainLogin.class);
+                    startActivity(intent);
+
+
+                }
+            });
+
+            builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                    // Do nothing
+                    dialog.dismiss();
+                }
+            });
+
+            AlertDialog alert = builder.create();
+            alert.show();
+
+
         }
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

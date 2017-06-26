@@ -80,7 +80,7 @@ public class FilterDailog extends DialogFragment implements DatePickerDialog.OnD
 
 
     @SuppressLint("ValidFragment")
-    public class DatePickerFragment2 extends DialogFragment implements    DatePickerDialog.OnDateSetListener{
+    public  class DatePickerFragment2 extends DialogFragment implements    DatePickerDialog.OnDateSetListener{
         @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear, int  day) {
             String years=""+year;

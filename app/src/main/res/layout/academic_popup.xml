@@ -17,6 +17,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="9dp"
         android:background="@drawable/viewattendance">
 
         <Spinner
@@ -37,6 +38,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="9dp"
         android:background="@drawable/viewattendance">
 
         <Spinner
@@ -57,6 +59,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="9dp"
         android:background="@drawable/viewattendance">
 
         <Spinner
@@ -74,7 +77,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="23dp"
         android:background="#F0920A"
+        android:minHeight="0dp"
+        android:paddingTop="7dp"
+        android:paddingBottom="7dp"
         android:text="SUBMIT"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
         android:textColor="#ffffff" />
 
 </LinearLayout>

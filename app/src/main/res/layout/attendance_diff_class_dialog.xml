@@ -3,46 +3,51 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
+    android:gravity="center"
     android:minWidth="340dp"
     android:orientation="vertical">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="6dp"
+        android:padding="12dp"
         android:text="Class"
-        android:textSize="22sp" />
+        android:textSize="18sp"
+        android:typeface="monospace" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/viewattendance">
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
+        android:background="@drawable/viewattendance"
+        android:padding="8dp">
 
         <Spinner
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"></Spinner>
+            android:layout_height="wrap_content">
+
+        </Spinner>
     </RelativeLayout>
 
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="22dp"
+        android:padding="12dp"
         android:text="Section"
-        android:textSize="22sp" />
+        android:textSize="18sp"
+        android:typeface="monospace" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/viewattendance">
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
+        android:background="@drawable/viewattendance"
+
+        android:padding="8dp">
 
         <Spinner
             android:layout_width="match_parent"
@@ -52,14 +57,19 @@
     </RelativeLayout>
 
     <Button
+        android:id="@+id/submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="23dp"
+        android:layout_marginBottom="12dp"
+        android:layout_marginTop="12dp"
         android:background="#F0920A"
+        android:minHeight="0dp"
+        android:paddingBottom="6dp"
+        android:paddingLeft="7dp"
+        android:paddingRight="7dp"
+        android:paddingTop="6dp"
         android:text="SUBMIT"
-        android:layout_gravity="center"
-        android:textColor="#ffffff"
-        android:id="@+id/submit"
-        android:layout_marginBottom="32dp"/>
+        android:textColor="#ffffff" />
+
 
 </LinearLayout>

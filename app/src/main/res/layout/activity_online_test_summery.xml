@@ -168,9 +168,13 @@
                                 android:layout_gravity="center|center_vertical"
                                 android:background="@drawable/start_test"
                                 android:gravity="center|center_vertical"
-                                android:padding="8dp"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp"
+                                android:paddingLeft="8dp"
+                                android:paddingRight="8dp"
                                 android:minHeight="0dp"
                                 android:text="TAKE TEST"
+                                android:textStyle="bold"
                                 android:textColor="#ffffff"
                                 android:textSize="10sp" />
                         </LinearLayout>
@@ -267,7 +271,11 @@
                                 android:layout_gravity="center|center_vertical"
                                 android:background="@drawable/start_test"
                                 android:gravity="center|center_vertical"
-                                android:padding="8dp"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp"
+                                android:paddingLeft="8dp"
+                                android:paddingRight="8dp"
+                                android:textStyle="bold"
                                 android:minHeight="0dp"
                                 android:text="TAKE TEST"
                                 android:textColor="#ffffff"
@@ -281,7 +289,7 @@
                 //3
 
                 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:id="@+id/card"
+
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:cardUseCompatPadding="true">
@@ -366,8 +374,12 @@
                                 android:layout_gravity="center|center_vertical"
                                 android:background="@drawable/start_test"
                                 android:gravity="center|center_vertical"
-                                android:padding="8dp"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp"
+                                android:paddingLeft="8dp"
+                                android:paddingRight="8dp"
                                 android:minHeight="0dp"
+                                android:textStyle="bold"
                                 android:text="TAKE TEST"
                                 android:textColor="#ffffff"
                                 android:textSize="10sp" />
