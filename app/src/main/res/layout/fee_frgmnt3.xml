@@ -208,7 +208,23 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="12dp"
                             android:layout_marginTop="6dp"
-                            android:text="Admission Fees"
+                            android:text="Tution Fees"
+                            android:textStyle="bold"
+                            android:textSize="15dp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginTop="6dp"
+                            android:text="Exam Fees"
+                            android:textStyle="bold"
+                            android:textSize="15dp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginTop="6dp"
+                            android:text="Lab Fees"
                             android:textStyle="bold"
                             android:textSize="15dp" />
                     </LinearLayout>
@@ -248,7 +264,23 @@
                             android:layout_marginLeft="12dp"
                             android:layout_marginRight="12dp"
                             android:layout_marginTop="6dp"
-                            android:text="5000"
+                            android:text="25000"
+                            android:textSize="15dp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginRight="12dp"
+                            android:layout_marginTop="6dp"
+                            android:text="5600"
+                            android:textSize="15dp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginRight="12dp"
+                            android:layout_marginTop="6dp"
+                            android:text="8000"
                             android:textSize="15dp" />
                     </LinearLayout>
                 </LinearLayout>
@@ -285,14 +317,6 @@
                             android:textStyle="bold"
                             android:textSize="15dp" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="12dp"
-                            android:layout_marginTop="6dp"
-                            android:text="Amount to be Paid"
-                            android:textStyle="bold"
-                            android:textSize="15dp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -324,14 +348,7 @@
                             android:text="3000"
                             android:textSize="15dp" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="12dp"
-                            android:layout_marginRight="12dp"
-                            android:layout_marginTop="6dp"
-                            android:text="5000"
-                            android:textSize="15dp" />
+
                     </LinearLayout>
                 </LinearLayout>
 
@@ -377,7 +394,7 @@
                             android:layout_marginLeft="12dp"
                             android:layout_marginRight="12dp"
                             android:layout_marginTop="6dp"
-                            android:text="50,000"
+                            android:text="47,000"
                             android:textSize="15dp" />
 
 
@@ -389,11 +406,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginBottom="12dp"
-                android:layout_marginTop="12dp"
                 android:background="@drawable/viewattendance1"
+                android:minHeight="0dp"
+                android:paddingBottom="7dp"
+                android:paddingLeft="6dp"
+                android:layout_marginTop="12dp"
+                android:paddingRight="6dp"
+                android:paddingTop="7dp"
                 android:text="Pay Now"
-                android:textColor="#fff" />
+                android:id="@+id/view"
+                android:textColor="#fff"
+                android:layout_marginBottom="12dp"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

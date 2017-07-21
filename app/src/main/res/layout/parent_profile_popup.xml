@@ -5,7 +5,7 @@
     android:layout_gravity="center"
     android:layout_marginTop="10dp"
     android:gravity="center"
-    android:minWidth="340dp"
+    android:minWidth="300dp"
     android:orientation="vertical"
     android:padding="12dp">
 
@@ -16,6 +16,8 @@
         android:background="@drawable/background"
         android:gravity="center"
         android:hint="Old Password"
+        android:id="@+id/oldpass"
+        android:inputType="textPassword"
         android:maxLines="1"
         android:padding="12dp" />
 
@@ -23,6 +25,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:inputType="textPassword"
+        android:id="@+id/newpass"
         android:background="@drawable/background"
         android:gravity="center"
         android:maxLines="1"
@@ -36,9 +40,16 @@
         android:background="@drawable/background"
         android:gravity="center"
         android:maxLines="1"
+        android:id="@+id/confrmpass"
+        android:inputType="textPassword"
         android:hint="Confirm Password"
         android:padding="12dp" />
 
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progress"
+        android:visibility="gone"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -51,5 +62,6 @@
         android:paddingTop="9dp"
         android:paddingBottom="9dp"
         android:text="SUBMIT"
+        android:id="@+id/submit"
         android:textColor="#ffffff" />
 </LinearLayout>

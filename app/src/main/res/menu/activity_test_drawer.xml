@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
+
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
 
@@ -10,6 +13,15 @@
             android:id="@+id/home"
             android:icon="@drawable/ic_home"
             android:title="Home" />
+
+    </group>
+    <group
+        android:id="@+id/menu_top2"
+        >
+        <item
+            android:id="@+id/notification"
+            android:icon="@drawable/ic_notification"
+            android:title="Notifications" />
 
     </group>
 
@@ -55,6 +67,15 @@
 
     </group>
     <group
+        android:id="@+id/menu_bottom16"
+        >
+        <item
+            android:id="@+id/student_summery"
+            android:icon="@drawable/ic_summary"
+            android:title="Student Summary" />
+
+    </group>
+    <group
         android:id="@+id/menu_bottom14"
         android:checkableBehavior="none">
 
@@ -76,13 +97,33 @@
     </group>
 
     <group
+        android:id="@+id/menu_bottom12">
+
+        <item
+            android:id="@+id/wishing_cards"
+            android:icon="@drawable/ic_cards"
+            android:title="Send Wishing Cards" />
+
+    </group>
+
+    <group
         android:id="@+id/menu_bottom13"
         android:checkableBehavior="none">
 
         <item
             android:id="@+id/survey"
-            android:icon="@drawable/survey"
+            android:icon="@drawable/ic_survey"
             android:title="Survey" />
+
+    </group>
+    <group
+        android:id="@+id/menu_bottom17"
+        android:checkableBehavior="none">
+
+        <item
+            android:id="@+id/calender"
+            android:icon="@drawable/ic_calendar"
+            android:title="Calendar" />
 
     </group>
 

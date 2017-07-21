@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:background="@drawable/splashback"
     android:gravity="center"
-    tools:context="eskool.com.eskoolapp.Splash">
+    android:orientation="vertical"
+    tools:context="com.eduschool.eduschoolapp.Splash">
 
     <ImageView
         android:layout_width="300dp"
@@ -15,5 +16,11 @@
 
         />
 
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_centerInParent="true" />
 
 </LinearLayout>

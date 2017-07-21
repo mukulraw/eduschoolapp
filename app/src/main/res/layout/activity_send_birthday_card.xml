@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="eskool.com.eskoolapp.Communication.ComposeMessage">
+    tools:context="com.eduschool.eduschoolapp.Communication.ComposeMessage">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
-            app:title="Send Birthday Card"
+            app:title="Send Wishing Card"
             app:titleTextColor="#fff">
 
         </android.support.v7.widget.Toolbar>
@@ -28,7 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clipToPadding="false"
-            android:paddingBottom="55dp">
+            android:paddingBottom="70dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -40,7 +40,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="6dp"
                     android:layout_marginRight="6dp"
-                    android:layout_marginTop="22dp"
+                    android:layout_marginTop="12dp"
                     android:text="Class"
                     android:textSize="18dp" />
 
@@ -51,7 +51,7 @@
                     android:layout_marginRight="6dp"
                     android:layout_marginTop="6dp"
                     android:background="@drawable/viewattendance"
-                    android:padding="9dp">
+                    android:padding="8dp">
 
                     <Spinner
                         android:layout_width="match_parent"
@@ -74,7 +74,7 @@
                     android:layout_marginRight="6dp"
                     android:layout_marginTop="6dp"
                     android:background="@drawable/viewattendance"
-                    android:padding="9dp">
+                    android:padding="8dp">
 
                     <Spinner
                         android:layout_width="match_parent"
@@ -97,7 +97,7 @@
                     android:layout_marginRight="6dp"
                     android:layout_marginTop="6dp"
                     android:background="@drawable/viewattendance"
-                    android:padding="9dp">
+                    android:padding="8dp">
 
                     <Spinner
                         android:layout_width="match_parent"
@@ -121,6 +121,31 @@
                     android:layout_marginTop="6dp"
                     android:background="@drawable/viewattendance"
                     android:padding="9dp"
+                    android:textColorHint="#c9c8c8"
+
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
+                    android:layout_marginRight="6dp"
+                    android:layout_marginTop="6dp"
+                    android:text="Content"
+                    android:textSize="18dp" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
+                    android:layout_marginRight="6dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/viewattendance"
+                    android:padding="6dp"
+                    android:minLines="6"
+                    android:layout_marginBottom="6dp"
+                    android:hint="Content..."
+                    android:gravity="left|top"
                     android:textColorHint="#c9c8c8"
 
                     />

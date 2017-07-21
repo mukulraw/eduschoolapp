@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/name"
         app:tabGravity="fill"
-        app:tabMode="fixed"
+        app:tabMode="scrollable"
         android:background="@color/colorPrimary"
         app:tabSelectedTextColor="#fff"
         app:tabTextColor="#fff" />

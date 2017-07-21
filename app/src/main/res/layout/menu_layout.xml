@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:background="#fff"
+    android:clickable="true"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include layout="@layout/nav_header_parent_home" />
+
+        <TextView
+            android:id="@+id/home1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="18dp"
+            android:drawableStart="@drawable/ic_home1"
+            android:gravity="center_vertical"
+            android:padding="12dp"
+            android:paddingBottom="12dp"
+            android:paddingEnd="12dp"
+            android:paddingStart="12dp"
+            android:paddingTop="12dp"
+            android:text="Home"
+            android:textColor="#808080" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#cdcdcd" />
+
+        <TextView
+            android:id="@+id/notification1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="12dp"
+            android:drawableStart="@drawable/ic_notification"
+            android:gravity="center_vertical"
+            android:paddingBottom="12dp"
+            android:paddingEnd="12dp"
+            android:paddingStart="12dp"
+            android:paddingTop="12dp"
+            android:text="Notifications"
+            android:textColor="#808080" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#cdcdcd" />
+
+        <TextView
+            android:id="@+id/attendance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="12dp"
+            android:drawableStart="@drawable/attendance"
+            android:gravity="center_vertical"
+            android:padding="12dp"
+            android:paddingBottom="12dp"
+            android:paddingEnd="12dp"
+            android:paddingStart="12dp"
+            android:paddingTop="12dp"
+            android:text="Attendance"
+            android:textColor="#808080" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#cdcdcd" />
+
+        <TextView
+            android:id="@+id/academic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="12dp"
+            android:drawableStart="@drawable/academic"
+            android:gravity="center_vertical"
+            android:padding="12dp"
+            android:paddingBottom="12dp"
+            android:paddingEnd="12dp"
+            android:paddingStart="12dp"
+            android:paddingTop="12dp"
+            android:text="Academics"
+            android:textColor="#808080"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#cdcdcd" />
+
+        <LinearLayout
+            android:id="@+id/hotel_name_menu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="12dp"
+                android:drawableStart="@drawable/ic_homewrk"
+                android:gravity="center_vertical"
+                android:padding="12dp"
+                android:paddingBottom="12dp"
+                android:paddingEnd="12dp"
+                android:id="@+id/homewrk"
+                android:paddingStart="55dp"
+                android:paddingTop="12dp"
+                android:text="Homework"
+                android:textColor="#808080" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#cdcdcd" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="12dp"
+                android:drawableStart="@drawable/ic_clsswrk"
+                android:gravity="center_vertical"
+                android:padding="12dp"
+                android:id="@+id/classwrk"
+                android:paddingBottom="12dp"
+                android:paddingEnd="12dp"
+                android:paddingStart="55dp"
+                android:paddingTop="12dp"
+                android:text="Classwork"
+                android:textColor="#808080" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#cdcdcd" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="12dp"
+                android:drawableStart="@drawable/academic"
+                android:gravity="center_vertical"
+                android:padding="12dp"
+                android:paddingBottom="12dp"
+                android:paddingEnd="12dp"
+                android:id="@+id/syllabus"
+                android:paddingStart="55dp"
+                android:paddingTop="12dp"
+                android:text="Syllabus management"
+                android:textColor="#808080" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#cdcdcd" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="12dp"
+                android:drawableStart="@drawable/exam_n_result"
+                android:gravity="center_vertical"
+                android:padding="12dp"
+                android:paddingBottom="12dp"
+                android:id="@+id/exm"
+                android:paddingEnd="12dp"
+                android:paddingStart="55dp"
+                android:paddingTop="12dp"
+                android:text="Exam and Result"
+                android:textColor="#808080" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#cdcdcd" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="12dp"
+                android:drawableStart="@drawable/ic_summary"
+                android:gravity="center_vertical"
+                android:padding="12dp"
+                android:paddingBottom="12dp"
+                android:paddingEnd="12dp"
+                android:id="@+id/studentSummary"
+                android:paddingStart="55dp"
+                android:paddingTop="12dp"
+                android:text="Student Summary"
+                android:textColor="#808080" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#cdcdcd" />
+
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="12dp"
+            android:drawableStart="@drawable/ic_lib"
+            android:gravity="center_vertical"
+            android:paddingBottom="12dp"
+            android:paddingEnd="12dp"
+            android:paddingStart="12dp"
+            android:paddingTop="12dp"
+            android:id="@+id/library1"
+            android:text="Library"
+            android:textColor="#808080" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#cdcdcd" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="12dp"
+            android:drawableStart="@drawable/timetable"
+            android:gravity="center_vertical"
+            android:paddingBottom="12dp"
+            android:paddingEnd="12dp"
+            android:paddingStart="12dp"
+            android:paddingTop="12dp"
+            android:text="Time Table"
+            android:id="@+id/timeTable"
+            android:textColor="#808080" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#cdcdcd" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="12dp"
+            android:drawableStart="@drawable/ic_gallery"
+            android:gravity="center_vertical"
+            android:paddingBottom="12dp"
+            android:paddingEnd="12dp"
+            android:paddingStart="12dp"
+            android:paddingTop="12dp"
+            android:text="Gallery"
+            android:id="@+id/gallery1"
+            android:textColor="#808080" />
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#cdcdcd" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="12dp"
+            android:drawableStart="@drawable/ic_cards"
+            android:gravity="center_vertical"
+            android:paddingBottom="12dp"
+            android:paddingEnd="12dp"
+            android:paddingStart="12dp"
+            android:paddingTop="12dp"
+            android:id="@+id/sendCards"
+            android:text="Send Birthday Cards"
+            android:textColor="#808080" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#cdcdcd" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="12dp"
+            android:drawableStart="@drawable/ic_survey"
+            android:gravity="center_vertical"
+            android:paddingBottom="12dp"
+            android:paddingEnd="12dp"
+            android:paddingStart="12dp"
+            android:paddingTop="12dp"
+            android:id="@+id/survey1"
+            android:text="Survey"
+            android:textColor="#808080" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#cdcdcd" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="12dp"
+            android:drawableStart="@drawable/ic_cal"
+            android:gravity="center_vertical"
+            android:paddingBottom="12dp"
+            android:paddingEnd="12dp"
+            android:id="@+id/calendar"
+            android:paddingStart="12dp"
+            android:paddingTop="12dp"
+            android:text="Calendar"
+            android:textColor="#808080" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#cdcdcd" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="12dp"
+            android:drawableStart="@drawable/ic_trophy"
+            android:gravity="center_vertical"
+            android:paddingBottom="12dp"
+            android:paddingEnd="12dp"
+            android:paddingStart="12dp"
+            android:paddingTop="12dp"
+            android:id="@+id/stayAhead"
+            android:text="Stay Ahead / Score More"
+            android:textColor="#808080" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#cdcdcd" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="12dp"
+            android:drawableStart="@drawable/online"
+            android:gravity="center_vertical"
+            android:paddingBottom="12dp"
+            android:paddingEnd="12dp"
+            android:paddingStart="12dp"
+            android:paddingTop="12dp"
+            android:text="Online Test"
+            android:id="@+id/onlineTest"
+            android:textColor="#808080" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#cdcdcd" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="12dp"
+            android:drawableStart="@drawable/ic_request"
+            android:gravity="center_vertical"
+            android:paddingBottom="12dp"
+            android:paddingEnd="12dp"
+            android:id="@+id/raiseRequest"
+            android:paddingStart="12dp"
+            android:paddingTop="12dp"
+            android:text="Raise Request"
+            android:textColor="#808080" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#cdcdcd" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="12dp"
+            android:drawableStart="@drawable/ic_fee"
+            android:gravity="center_vertical"
+            android:paddingBottom="12dp"
+            android:paddingEnd="12dp"
+            android:paddingStart="12dp"
+            android:paddingTop="12dp"
+            android:text="Fees"
+            android:id="@+id/fees"
+            android:textColor="#808080" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#cdcdcd" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="12dp"
+            android:drawableStart="@drawable/ic_bus"
+            android:gravity="center_vertical"
+            android:paddingBottom="12dp"
+            android:paddingEnd="12dp"
+            android:paddingStart="12dp"
+            android:paddingTop="12dp"
+            android:text="Transport"
+            android:id="@+id/transport"
+            android:textColor="#808080" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#cdcdcd" />
+
+        <TextView
+            android:id="@+id/profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="12dp"
+            android:drawableStart="@drawable/ic_profile1"
+            android:gravity="center_vertical"
+            android:paddingBottom="12dp"
+            android:paddingEnd="12dp"
+            android:paddingStart="12dp"
+            android:paddingTop="12dp"
+            android:text="Profile"
+            android:textColor="#808080" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#cdcdcd" />
+
+
+        <TextView
+            android:id="@+id/logout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="12dp"
+            android:drawableStart="@drawable/ic_logout"
+            android:gravity="center_vertical"
+            android:paddingBottom="12dp"
+            android:paddingEnd="12dp"
+            android:paddingStart="12dp"
+            android:paddingTop="12dp"
+            android:text="Log out"
+            android:textColor="#808080"
+
+            />
+
+
+    </LinearLayout>
+</ScrollView>

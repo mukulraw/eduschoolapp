@@ -1,10 +1,10 @@
-<eskool.com.eskoolapp.RapidFloatingActionLayout xmlns:rfal="http://schemas.android.com/apk/res-auto"
+<com.eduschool.eduschoolapp.RapidFloatingActionLayout xmlns:rfal="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/activity_main_rfal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-    <eskool.com.eskoolapp.RapidFloatingActionButton
+    <com.eduschool.eduschoolapp.RapidFloatingActionButton
         xmlns:rfab="http://schemas.android.com/apk/res-auto"
         android:id="@+id/activity_main_rfab"
         android:layout_width="wrap_content"
@@ -16,4 +16,4 @@
         android:padding="8dp"
 
         />
-</eskool.com.eskoolapp.RapidFloatingActionLayout>
+</com.eduschool.eduschoolapp.RapidFloatingActionLayout>

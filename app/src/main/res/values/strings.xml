@@ -12,4 +12,6 @@
     <string name="title_activity_test">Test</string>
     <string name="title_activity_parent_home">ParentHome</string>
     <string name="title_activity_teacher_home">TeacherHome</string>
+    <string name="view_receipt"><u>View Receipt</u></string>
+
 </resources>

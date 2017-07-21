@@ -15,8 +15,7 @@
             android:layout_height="wrap_content"
             android:hint="Search by Book Name,Author,Category..."
             android:padding="12dp"
-
-            android:textColorHint="#e4e2e2" />
+            android:textColorHint="#cfcfcf" />
 
         <ImageView
             android:layout_width="wrap_content"

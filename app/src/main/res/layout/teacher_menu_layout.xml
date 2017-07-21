@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:background="#fff"
+    android:clickable="true"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include layout="@layout/nav_header_teacher_home" />
+
+        <TextView
+            android:id="@+id/home1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="18dp"
+            android:drawableStart="@drawable/ic_home1"
+            android:gravity="center_vertical"
+            android:padding="12dp"
+            android:paddingBottom="12dp"
+            android:paddingEnd="12dp"
+            android:paddingStart="12dp"
+            android:paddingTop="12dp"
+            android:text="Home"
+            android:textColor="#808080" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#cdcdcd" />
+
+        <TextView
+            android:id="@+id/notification1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="12dp"
+            android:drawableStart="@drawable/ic_notification"
+            android:gravity="center_vertical"
+            android:paddingBottom="12dp"
+            android:paddingEnd="12dp"
+            android:paddingStart="12dp"
+            android:paddingTop="12dp"
+            android:text="Notifications"
+            android:textColor="#808080" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#cdcdcd" />
+
+        <TextView
+            android:id="@+id/attendance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="12dp"
+            android:drawableStart="@drawable/attendance"
+            android:gravity="center_vertical"
+            android:padding="12dp"
+            android:paddingBottom="12dp"
+            android:paddingEnd="12dp"
+            android:paddingStart="12dp"
+            android:paddingTop="12dp"
+            android:text="Attendance"
+            android:textColor="#808080" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#cdcdcd" />
+
+        <TextView
+            android:id="@+id/timeTable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="12dp"
+            android:drawableStart="@drawable/timetable"
+            android:gravity="center_vertical"
+            android:paddingBottom="12dp"
+            android:paddingEnd="12dp"
+            android:paddingStart="12dp"
+            android:paddingTop="12dp"
+            android:text="Time Table"
+            android:textColor="#808080" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#cdcdcd" />
+
+        <TextView
+            android:id="@+id/library1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="12dp"
+            android:drawableStart="@drawable/ic_lib"
+            android:gravity="center_vertical"
+            android:paddingBottom="12dp"
+            android:paddingEnd="12dp"
+            android:paddingStart="12dp"
+            android:paddingTop="12dp"
+            android:text="Library"
+            android:textColor="#808080" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#cdcdcd" />
+
+
+        <TextView
+            android:id="@+id/academic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="12dp"
+            android:drawableStart="@drawable/academic"
+            android:gravity="center_vertical"
+            android:padding="12dp"
+            android:paddingBottom="12dp"
+            android:paddingEnd="12dp"
+            android:paddingStart="12dp"
+            android:paddingTop="12dp"
+            android:text="Academics"
+            android:textColor="#808080"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#cdcdcd" />
+
+
+        <LinearLayout
+            android:id="@+id/hotel_name_menu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/homewrk"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="12dp"
+                android:drawableStart="@drawable/ic_homewrk"
+                android:gravity="center_vertical"
+                android:padding="12dp"
+                android:paddingBottom="12dp"
+                android:paddingEnd="12dp"
+                android:paddingStart="55dp"
+                android:paddingTop="12dp"
+                android:text="Homework"
+                android:textColor="#808080" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#cdcdcd" />
+
+            <TextView
+                android:id="@+id/classwrk"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="12dp"
+                android:drawableStart="@drawable/ic_clsswrk"
+                android:gravity="center_vertical"
+                android:padding="12dp"
+                android:paddingBottom="12dp"
+                android:paddingEnd="12dp"
+                android:paddingStart="55dp"
+                android:paddingTop="12dp"
+                android:text="Classwork"
+                android:textColor="#808080" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#cdcdcd" />
+
+            <TextView
+                android:id="@+id/syllabus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="12dp"
+                android:drawableStart="@drawable/academic"
+                android:gravity="center_vertical"
+                android:padding="12dp"
+                android:paddingBottom="12dp"
+                android:paddingEnd="12dp"
+                android:paddingStart="55dp"
+                android:paddingTop="12dp"
+                android:text="Syllabus management"
+                android:textColor="#808080" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#cdcdcd" />
+
+            <TextView
+                android:id="@+id/exm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="12dp"
+                android:drawableStart="@drawable/exam_n_result"
+                android:gravity="center_vertical"
+                android:padding="12dp"
+                android:paddingBottom="12dp"
+                android:paddingEnd="12dp"
+                android:paddingStart="55dp"
+                android:paddingTop="12dp"
+                android:text="Exam and Result"
+                android:textColor="#808080" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#cdcdcd" />
+
+            <TextView
+                android:id="@+id/studentSummary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="12dp"
+                android:drawableStart="@drawable/ic_summary"
+                android:gravity="center_vertical"
+                android:padding="12dp"
+                android:paddingBottom="12dp"
+                android:paddingEnd="12dp"
+                android:paddingStart="55dp"
+                android:paddingTop="12dp"
+                android:text="Student Summary"
+                android:textColor="#808080" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#cdcdcd" />
+
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/comm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="12dp"
+            android:drawableStart="@drawable/academic"
+            android:gravity="center_vertical"
+            android:padding="12dp"
+            android:paddingBottom="12dp"
+            android:paddingEnd="12dp"
+            android:paddingStart="12dp"
+            android:paddingTop="12dp"
+            android:text="Communication And Events"
+            android:textColor="#808080"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#cdcdcd" />
+
+
+        <LinearLayout
+            android:id="@+id/comm_lay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/communication1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="12dp"
+                android:drawableStart="@drawable/ic_communication"
+                android:gravity="center_vertical"
+                android:paddingBottom="12dp"
+                android:paddingEnd="12dp"
+                android:paddingStart="55dp"
+                android:paddingTop="12dp"
+                android:text="Communication"
+                android:textColor="#808080" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#cdcdcd" />
+
+            <TextView
+                android:id="@+id/event"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="12dp"
+                android:drawableStart="@drawable/ic_events"
+                android:gravity="center_vertical"
+                android:paddingBottom="12dp"
+                android:paddingEnd="12dp"
+                android:paddingStart="55dp"
+                android:paddingTop="12dp"
+                android:text="Events"
+                android:textColor="#808080" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#cdcdcd" />
+
+            <TextView
+                android:id="@+id/calendar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="12dp"
+                android:drawableStart="@drawable/ic_cal"
+                android:gravity="center_vertical"
+                android:paddingBottom="12dp"
+                android:paddingEnd="12dp"
+                android:paddingStart="55dp"
+                android:paddingTop="12dp"
+                android:text="Calendar"
+                android:textColor="#808080" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#cdcdcd" />
+
+        </LinearLayout>
+
+
+
+
+
+        <TextView
+            android:id="@+id/gallery1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="12dp"
+            android:drawableStart="@drawable/ic_gallery"
+            android:gravity="center_vertical"
+            android:paddingBottom="12dp"
+            android:paddingEnd="12dp"
+            android:paddingStart="12dp"
+            android:paddingTop="12dp"
+            android:text="Gallery"
+            android:textColor="#808080" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#cdcdcd" />
+
+        <TextView
+            android:id="@+id/survey1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="12dp"
+            android:drawableStart="@drawable/ic_survey"
+            android:gravity="center_vertical"
+            android:paddingBottom="12dp"
+            android:paddingEnd="12dp"
+            android:paddingStart="12dp"
+            android:paddingTop="12dp"
+            android:text="Survey"
+            android:textColor="#808080" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#cdcdcd" />
+
+        <TextView
+            android:id="@+id/stayAhead"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="12dp"
+            android:drawableStart="@drawable/ic_trophy"
+            android:gravity="center_vertical"
+            android:paddingBottom="12dp"
+            android:paddingEnd="12dp"
+            android:paddingStart="12dp"
+            android:paddingTop="12dp"
+            android:text="Reference Link"
+            android:textColor="#808080" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#cdcdcd" />
+
+
+        <TextView
+            android:id="@+id/profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="12dp"
+            android:drawableStart="@drawable/ic_profile1"
+            android:gravity="center_vertical"
+            android:paddingBottom="12dp"
+            android:paddingEnd="12dp"
+            android:paddingStart="12dp"
+            android:paddingTop="12dp"
+            android:text="Profile"
+            android:textColor="#808080" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#cdcdcd" />
+
+
+        <TextView
+            android:id="@+id/logout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="12dp"
+            android:drawableStart="@drawable/ic_logout"
+            android:gravity="center_vertical"
+            android:paddingBottom="12dp"
+            android:paddingEnd="12dp"
+            android:paddingStart="12dp"
+            android:paddingTop="12dp"
+            android:text="Log out"
+            android:textColor="#808080"
+
+            />
+
+
+    </LinearLayout>
+</ScrollView>

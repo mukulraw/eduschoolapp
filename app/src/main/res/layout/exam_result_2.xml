@@ -6,8 +6,16 @@
     android:background="#ffffff"
     android:orientation="vertical">
 
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/chart"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/viewattendance" />
 
-    <LinearLayout
+
+    <!--<LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -154,7 +162,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="Your Score"
+                            android:text="Student Score"
                             android:textColor="#ffffff"
                             android:paddingBottom="2dp"
                             />
@@ -297,7 +305,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="Your Score"
+                            android:text="Student Score"
                             android:textColor="#ffffff"
                             android:paddingBottom="2dp"
                             />
@@ -440,7 +448,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="Your Score"
+                            android:text="Student Score"
                             android:textColor="#ffffff"
                             android:paddingBottom="2dp"
                             />
@@ -582,7 +590,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="Your Score"
+                            android:text="Student Score"
                             android:textColor="#ffffff"
                             android:paddingBottom="2dp"
                             />
@@ -768,5 +776,5 @@
             </LinearLayout>
         </RelativeLayout>
     </LinearLayout>
-
+-->
 </LinearLayout>

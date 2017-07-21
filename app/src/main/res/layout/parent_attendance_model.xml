@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="4dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/viewattendance1"
+        android:gravity="center"
+        android:padding="12dp"
+        android:text="JULY 2017"
+        android:textColor="#fff" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#a3d5ec">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+           android:layout_marginTop="12dp"
+            android:layout_marginBottom="6dp"
+            android:text="WORK DAYS"
+            android:gravity="center_horizontal"
+            android:textSize="22sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="10"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="12dp"
+            android:textSize="22sp"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+       >
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="PRESENT 5"
+            android:gravity="center_horizontal"
+            android:textSize="12sp"
+            android:background="#f4ea8d"
+            android:padding="12dp"/>
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:background="#ffc488"
+            android:padding="12dp"
+            android:textSize="12sp"
+            android:gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:text="ABSENT 5"/>
+    </LinearLayout>
+</LinearLayout>

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#ffffffff"
     android:orientation="vertical"
-    tools:context="eskool.com.eskoolapp.OnlineTest.OnlineTestSummery">
+    tools:context="com.eduschool.eduschoolapp.OnlineTest.OnlineTestSummery">
 
 
     <ScrollView
@@ -186,7 +186,7 @@
                 //2
 
                 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:id="@+id/card"
+
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:cardUseCompatPadding="true">
@@ -607,7 +607,7 @@
                                     android:orientation="vertical">
 
                                     <TextView
-                                        android:id="@+id/textView"
+
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
                                         android:gravity="center"
@@ -730,7 +730,7 @@
                                     android:orientation="vertical">
 
                                     <TextView
-                                        android:id="@+id/textView"
+
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
                                         android:gravity="center"

@@ -3,395 +3,255 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:paddingBottom="22dp">
 
-
-        <ScrollView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginTop="15dp"
-                    android:text="Events Notification" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="22dp"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginRight="12dp"
-                    android:layout_marginTop="12dp">
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
-                    <LinearLayout
-                        android:layout_width="0dp"
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:background="@drawable/background"
-                        android:orientation="vertical"
-                        android:padding="12dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="10"
-                            android:textColor="#000000"
-                            android:textSize="28sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="March 2017"
-                            android:textColor="#000000" />
-                    </LinearLayout>
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginTop="15dp"
+                        android:text=" Events Notification / Reminders" />
 
                     <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="2"
-                        android:background="@drawable/viewattendance"
-                        android:gravity="center"
-                        android:padding="12dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="PICNIC"
-                            android:textColor="#000000"
-                            android:textSize="32sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginRight="12dp"
-                    android:layout_marginTop="2dp"
-                    android:background="@drawable/viewattendance1"
-                    android:paddingBottom="12dp"
-                    android:paddingLeft="12dp"
-                    android:paddingRight="12dp"
-                    android:paddingTop="12dp"
-                    android:text="Teacher's Profile"
-                    android:textColor="#ffffff"
-                    android:visibility="gone" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginRight="12dp"
-                    android:background="@drawable/viewattendance"
-                    android:visibility="gone">
-
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_height="120dp"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:padding="12dp"
-                        android:src="@drawable/teacher" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="2"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Shital Sharma" />
+                        android:layout_marginBottom="22dp"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginRight="12dp"
+                        android:layout_marginTop="12dp">
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:paddingTop="8dp">
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:background="@drawable/background"
+                            android:orientation="vertical"
+                            android:padding="12dp">
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Contact No:" />
+                                android:layout_gravity="center"
+                                android:text="10"
+                                android:textColor="#000000"
+                                android:textSize="28sp"
+                                android:textStyle="bold" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text=" +919876543210"
-                                android:textColor="#368DC0" />
+                                android:layout_gravity="center"
+                                android:text="March 2017"
+                                android:textColor="#000000" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:background="@drawable/viewattendance"
+                            android:gravity="center"
+                            android:padding="12dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="PICNIC"
+                                android:textColor="#000000"
+                                android:textSize="32sp"
+                                android:textStyle="bold" />
                         </LinearLayout>
                     </LinearLayout>
 
-
-                </LinearLayout>
-
-                <RelativeLayout
-                    android:id="@+id/layout_attendance"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginRight="12dp">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginRight="12dp"
+                        android:layout_marginTop="2dp"
+                        android:background="@drawable/viewattendance1"
+                        android:paddingBottom="12dp"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        android:paddingTop="12dp"
+                        android:text="Teacher's Profile"
+                        android:textColor="#ffffff"
+                        android:visibility="gone" />
 
                     <LinearLayout
-                        android:id="@+id/attendance"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:gravity="bottom"
-                        android:orientation="vertical">
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginRight="12dp"
+                        android:background="@drawable/viewattendance"
+                        android:visibility="gone">
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/viewattendance1"
-                            android:paddingBottom="12dp"
-                            android:paddingLeft="12dp"
-                            android:paddingRight="12dp"
-                            android:paddingTop="12dp"
-                            android:text="ATTENDANCE"
-                            android:textColor="#ffffff" />
-
-                        <com.github.mikephil.charting.charts.BarChart
-                            android:id="@+id/chart"
-                            android:layout_width="match_parent"
-                            android:layout_height="200dp"
-                            android:layout_marginBottom="12dp"
-                            android:background="@drawable/viewattendance" />
-                    </LinearLayout>
-                </RelativeLayout>
-
-
-                //
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="12dp"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginTop="12dp"
-                    android:background="@drawable/viewattendance1"
-                    android:padding="12dp"
-                    android:text="WEEKLY TIME TABLE"
-                    android:textColor="#ffffff" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginBottom="12dp"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/background"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="100dp"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:padding="8dp"
-                            android:text="PERIOD"
-                            android:textStyle="bold" />
-
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="120dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:padding="12dp"
+                            android:src="@drawable/teacher" />
 
                         <LinearLayout
-                            android:layout_width="100dp"
-                            android:layout_height="match_parent"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="2"
                             android:orientation="vertical">
 
-                            <LinearLayout
-                                android:layout_width="match_parent"
+                            <TextView
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:background="@drawable/background"
-                                android:orientation="vertical"
-                                android:padding="9dp">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="4dp"
-                                    android:text=" 09:00AM" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="-09:30AM" />
-
-                            </LinearLayout>
+                                android:text="Shital Sharma" />
 
                             <LinearLayout
-                                android:layout_width="match_parent"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:background="@drawable/background"
-                                android:orientation="vertical"
-                                android:padding="9dp">
+                                android:paddingTop="8dp">
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginLeft="4dp"
-                                    android:text=" 09:00AM" />
+                                    android:text="Contact No:" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="-09:30AM" />
-
+                                    android:text=" +919876543210"
+                                    android:textColor="#368DC0" />
                             </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/background"
-                                android:orientation="vertical"
-                                android:padding="9dp">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="4dp"
-                                    android:text=" 09:00AM" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="-09:30AM" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/background"
-                                android:orientation="vertical"
-                                android:padding="9dp">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="4dp"
-                                    android:text=" 09:00AM" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="-09:30AM" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/background"
-                                android:orientation="vertical"
-                                android:padding="9dp">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="4dp"
-                                    android:text=" 09:00AM" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="-09:30AM" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/background"
-                                android:orientation="vertical"
-                                android:padding="9dp">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="4dp"
-                                    android:text=" 09:00AM" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="-09:30AM" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/background"
-                                android:orientation="vertical"
-                                android:padding="9dp">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="4dp"
-                                    android:text=" 09:00AM" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="-09:30AM" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/background"
-                                android:orientation="vertical"
-                                android:padding="9dp">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="4dp"
-                                    android:text=" 09:00AM" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="-09:30AM" />
-
-                            </LinearLayout>
-
                         </LinearLayout>
 
 
                     </LinearLayout>
 
+                    <RelativeLayout
+                        android:id="@+id/layout_attendance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginRight="12dp">
 
-                    <HorizontalScrollView
-                        android:id="@+id/scrollView"
+                        <LinearLayout
+                            android:id="@+id/attendance"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:gravity="bottom"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/viewattendance1"
+                                android:paddingBottom="12dp"
+                                android:paddingLeft="12dp"
+                                android:paddingRight="12dp"
+                                android:paddingTop="12dp"
+                                android:text="ATTENDANCE"
+                                android:textColor="#ffffff" />
+
+                            <com.github.mikephil.charting.charts.BarChart
+                                android:id="@+id/chart"
+                                android:layout_width="match_parent"
+                                android:layout_height="200dp"
+                                android:layout_marginBottom="12dp"
+                                android:background="@drawable/viewattendance" />
+                        </LinearLayout>
+                    </RelativeLayout>
+
+
+                    //
+
+                    <TextView
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginTop="12dp"
+                        android:background="@drawable/viewattendance1"
+                        android:padding="12dp"
+                        android:text="TODAY'S TIME TABLE"
+                        android:textColor="#ffffff" />
 
-                        <ScrollView
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        android:layout_marginLeft="12dp"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/background"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="100dp"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:padding="20dp"
+                                android:text="TIME"
+                                android:textStyle="bold" />
+
+
+                            <LinearLayout
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/background"
+                                    android:orientation="vertical"
+                                    android:padding="19dp">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:layout_marginLeft="4dp"
+                                        android:text="PERIOD" />
+
+
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+
+                        <HorizontalScrollView
+                            android:id="@+id/scrollView"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
+
 
                             <LinearLayout
                                 android:layout_width="wrap_content"
@@ -400,58 +260,138 @@
 
                                 <LinearLayout
                                     android:layout_width="wrap_content"
-                                    android:layout_height="match_parent"
-                                    android:background="@drawable/background"
-                                    android:orientation="horizontal">
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    >
 
 
-                                    <TextView
+                                    <LinearLayout
                                         android:layout_width="100dp"
                                         android:layout_height="wrap_content"
-                                        android:layout_gravity="center"
+                                        android:background="@drawable/background"
                                         android:gravity="center"
-                                        android:padding="8dp"
-                                        android:text="MONDAY"
-                                        android:textStyle="bold" />
+                                        android:padding="12dp"
+                                        android:orientation="vertical"
+                                      >
 
-                                    <TextView
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="4dp"
+                                            android:text=" 09:00AM" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="-09:30AM" />
+
+                                    </LinearLayout>
+
+
+                                    <LinearLayout
                                         android:layout_width="100dp"
-                                        android:layout_height="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:background="@drawable/background"
                                         android:gravity="center"
-                                        android:padding="8dp"
-                                        android:text="TUESDAY"
-                                        android:textStyle="bold" />
+                                        android:orientation="vertical">
 
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:padding="8dp"
-                                        android:text="WEDNESDAY"
-                                        android:textStyle="bold" />
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="4dp"
+                                            android:text=" 09:00AM" />
 
-                                    <TextView
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="-09:30AM" />
+
+                                    </LinearLayout>
+
+
+                                    <LinearLayout
                                         android:layout_width="100dp"
-                                        android:layout_height="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:background="@drawable/background"
                                         android:gravity="center"
-                                        android:padding="8dp"
-                                        android:text="THURSDAY"
-                                        android:textStyle="bold" />
+                                        android:orientation="vertical">
 
-                                    <TextView
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="4dp"
+                                            android:text=" 09:00AM" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="-09:30AM" />
+
+                                    </LinearLayout>
+
+
+                                    <LinearLayout
                                         android:layout_width="100dp"
-                                        android:layout_height="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:background="@drawable/background"
                                         android:gravity="center"
-                                        android:padding="8dp"
-                                        android:text="FRIDAY"
-                                        android:textStyle="bold" />
+                                        android:orientation="vertical">
 
-                                    <TextView
-                                        android:layout_width="110dp"
-                                        android:layout_height="wrap_content"
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="4dp"
+                                            android:text=" 09:00AM" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="-09:30AM" />
+
+                                    </LinearLayout>
+
+
+                                    <LinearLayout
+                                        android:layout_width="100dp"
+                                        android:layout_height="match_parent"
+                                        android:background="@drawable/background"
                                         android:gravity="center"
-                                        android:padding="8dp"
-                                        android:text="SATURDAY"
-                                        android:textStyle="bold" />
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="4dp"
+                                            android:text=" 09:00AM" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="-09:30AM" />
+
+                                    </LinearLayout>
+
+
+                                    <LinearLayout
+                                        android:layout_width="100dp"
+                                        android:layout_height="match_parent"
+                                        android:background="@drawable/background"
+                                        android:gravity="center"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="4dp"
+                                            android:text=" 09:00AM" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="-09:30AM" />
+
+                                    </LinearLayout>
+
 
                                 </LinearLayout>
 
@@ -459,17 +399,15 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
                                     android:orientation="horizontal">
-
-
-                                    //0
-
+                                    android:background="@drawable/viewattendance"
 
                                     //1
 
                                     <LinearLayout
                                         android:layout_width="100dp"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="vertical">
+                                        android:layout_height="match_parent"
+                                        android:background="@drawable/viewattendance"
+                                        android:orientation="horizontal">
 
                                         <LinearLayout
                                             android:layout_width="match_parent"
@@ -477,27 +415,7 @@
                                             android:background="@drawable/viewattendance"
                                             android:gravity="center"
                                             android:orientation="vertical"
-                                            android:padding="9dp">
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="Maths" />
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="BALBIR"
-                                                android:textColor="#F0920A" />
-                                        </LinearLayout>
-
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:background="@drawable/viewattendance"
-                                            android:gravity="center"
-                                            android:orientation="vertical"
-                                            android:padding="9dp">
+                                            android:padding="11.2dp">
 
                                             <TextView
                                                 android:layout_width="wrap_content"
@@ -512,138 +430,14 @@
                                         </LinearLayout>
 
 
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:background="@drawable/viewattendance"
-                                            android:gravity="center"
-                                            android:orientation="vertical"
-                                            android:padding="9dp">
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="Maths" />
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="BALBIR"
-                                                android:textColor="#F0920A" />
-                                        </LinearLayout>
-
-
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:background="@drawable/viewattendance"
-                                            android:gravity="center"
-                                            android:orientation="vertical"
-                                            android:padding="9dp">
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="Maths" />
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="BALBIR"
-                                                android:textColor="#F0920A" />
-                                        </LinearLayout>
-
-
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:background="@drawable/viewattendance"
-                                            android:gravity="center"
-                                            android:orientation="vertical"
-                                            android:padding="9dp">
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="Maths" />
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="BALBIR"
-                                                android:textColor="#F0920A" />
-                                        </LinearLayout>
-
-
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:background="@drawable/viewattendance"
-                                            android:gravity="center"
-                                            android:orientation="vertical"
-                                            android:padding="9dp">
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="Maths" />
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="BALBIR"
-                                                android:textColor="#F0920A" />
-                                        </LinearLayout>
-
-
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:background="@drawable/viewattendance"
-                                            android:gravity="center"
-                                            android:orientation="vertical"
-                                            android:padding="9dp">
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="Maths" />
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="BALBIR"
-                                                android:textColor="#F0920A" />
-                                        </LinearLayout>
-
-
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:background="@drawable/viewattendance"
-                                            android:gravity="center"
-                                            android:orientation="vertical"
-                                            android:padding="9dp">
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="Maths" />
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="BALBIR"
-                                                android:textColor="#F0920A" />
-                                        </LinearLayout>
                                     </LinearLayout>
-                                    //2
 
+                                    //2
 
                                     <LinearLayout
                                         android:layout_width="100dp"
                                         android:layout_height="wrap_content"
-                                        android:orientation="vertical">
+                                        android:orientation="horizontal">
 
                                         <LinearLayout
                                             android:layout_width="match_parent"
@@ -651,7 +445,7 @@
                                             android:background="@drawable/viewattendance"
                                             android:gravity="center"
                                             android:orientation="vertical"
-                                            android:padding="9dp">
+                                            android:padding="11.2dp">
 
                                             <TextView
                                                 android:layout_width="wrap_content"
@@ -665,159 +459,13 @@
                                                 android:textColor="#F0920A" />
                                         </LinearLayout>
 
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:background="@drawable/viewattendance"
-                                            android:gravity="center"
-                                            android:orientation="vertical"
-                                            android:padding="9dp">
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="Maths" />
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="BALBIR"
-                                                android:textColor="#F0920A" />
-                                        </LinearLayout>
-
-
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:background="@drawable/viewattendance"
-                                            android:gravity="center"
-                                            android:orientation="vertical"
-                                            android:padding="9dp">
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="Maths" />
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="BALBIR"
-                                                android:textColor="#F0920A" />
-                                        </LinearLayout>
-
-
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:background="@drawable/viewattendance"
-                                            android:gravity="center"
-                                            android:orientation="vertical"
-                                            android:padding="9dp">
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="Maths" />
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="BALBIR"
-                                                android:textColor="#F0920A" />
-                                        </LinearLayout>
-
-
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:background="@drawable/viewattendance"
-                                            android:gravity="center"
-                                            android:orientation="vertical"
-                                            android:padding="9dp">
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="Maths" />
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="BALBIR"
-                                                android:textColor="#F0920A" />
-                                        </LinearLayout>
-
-
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:background="@drawable/viewattendance"
-                                            android:gravity="center"
-                                            android:orientation="vertical"
-                                            android:padding="9dp">
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="Maths" />
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="BALBIR"
-                                                android:textColor="#F0920A" />
-                                        </LinearLayout>
-
-
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:background="@drawable/viewattendance"
-                                            android:gravity="center"
-                                            android:orientation="vertical"
-                                            android:padding="9dp">
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="Maths" />
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="BALBIR"
-                                                android:textColor="#F0920A" />
-                                        </LinearLayout>
-
-
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:background="@drawable/viewattendance"
-                                            android:gravity="center"
-                                            android:orientation="vertical"
-                                            android:padding="9dp">
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="Maths" />
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="BALBIR"
-                                                android:textColor="#F0920A" />
-                                        </LinearLayout>
                                     </LinearLayout>
                                     //3
 
-
                                     <LinearLayout
                                         android:layout_width="100dp"
                                         android:layout_height="wrap_content"
-                                        android:orientation="vertical">
+                                        android:orientation="horizontal">
 
                                         <LinearLayout
                                             android:layout_width="match_parent"
@@ -825,7 +473,7 @@
                                             android:background="@drawable/viewattendance"
                                             android:gravity="center"
                                             android:orientation="vertical"
-                                            android:padding="9dp">
+                                            android:padding="11.2dp">
 
                                             <TextView
                                                 android:layout_width="wrap_content"
@@ -839,159 +487,14 @@
                                                 android:textColor="#F0920A" />
                                         </LinearLayout>
 
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:background="@drawable/viewattendance"
-                                            android:gravity="center"
-                                            android:orientation="vertical"
-                                            android:padding="9dp">
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="Maths" />
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="BALBIR"
-                                                android:textColor="#F0920A" />
-                                        </LinearLayout>
-
-
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:background="@drawable/viewattendance"
-                                            android:gravity="center"
-                                            android:orientation="vertical"
-                                            android:padding="9dp">
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="Maths" />
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="BALBIR"
-                                                android:textColor="#F0920A" />
-                                        </LinearLayout>
-
-
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:background="@drawable/viewattendance"
-                                            android:gravity="center"
-                                            android:orientation="vertical"
-                                            android:padding="9dp">
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="Maths" />
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="BALBIR"
-                                                android:textColor="#F0920A" />
-                                        </LinearLayout>
-
-
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:background="@drawable/viewattendance"
-                                            android:gravity="center"
-                                            android:orientation="vertical"
-                                            android:padding="9dp">
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="Maths" />
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="BALBIR"
-                                                android:textColor="#F0920A" />
-                                        </LinearLayout>
-
-
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:background="@drawable/viewattendance"
-                                            android:gravity="center"
-                                            android:orientation="vertical"
-                                            android:padding="9dp">
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="Maths" />
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="BALBIR"
-                                                android:textColor="#F0920A" />
-                                        </LinearLayout>
-
-
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:background="@drawable/viewattendance"
-                                            android:gravity="center"
-                                            android:orientation="vertical"
-                                            android:padding="9dp">
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="Maths" />
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="BALBIR"
-                                                android:textColor="#F0920A" />
-                                        </LinearLayout>
-
-
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:background="@drawable/viewattendance"
-                                            android:gravity="center"
-                                            android:orientation="vertical"
-                                            android:padding="9dp">
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="Maths" />
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="BALBIR"
-                                                android:textColor="#F0920A" />
-                                        </LinearLayout>
                                     </LinearLayout>
+
                                     //4
 
-
                                     <LinearLayout
                                         android:layout_width="100dp"
                                         android:layout_height="wrap_content"
-                                        android:orientation="vertical">
+                                        android:orientation="horizontal">
 
                                         <LinearLayout
                                             android:layout_width="match_parent"
@@ -999,7 +502,7 @@
                                             android:background="@drawable/viewattendance"
                                             android:gravity="center"
                                             android:orientation="vertical"
-                                            android:padding="9dp">
+                                            android:padding="11.2dp">
 
                                             <TextView
                                                 android:layout_width="wrap_content"
@@ -1013,159 +516,14 @@
                                                 android:textColor="#F0920A" />
                                         </LinearLayout>
 
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:background="@drawable/viewattendance"
-                                            android:gravity="center"
-                                            android:orientation="vertical"
-                                            android:padding="9dp">
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="Maths" />
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="BALBIR"
-                                                android:textColor="#F0920A" />
-                                        </LinearLayout>
-
-
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:background="@drawable/viewattendance"
-                                            android:gravity="center"
-                                            android:orientation="vertical"
-                                            android:padding="9dp">
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="Maths" />
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="BALBIR"
-                                                android:textColor="#F0920A" />
-                                        </LinearLayout>
-
-
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:background="@drawable/viewattendance"
-                                            android:gravity="center"
-                                            android:orientation="vertical"
-                                            android:padding="9dp">
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="Maths" />
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="BALBIR"
-                                                android:textColor="#F0920A" />
-                                        </LinearLayout>
-
-
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:background="@drawable/viewattendance"
-                                            android:gravity="center"
-                                            android:orientation="vertical"
-                                            android:padding="9dp">
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="Maths" />
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="BALBIR"
-                                                android:textColor="#F0920A" />
-                                        </LinearLayout>
-
-
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:background="@drawable/viewattendance"
-                                            android:gravity="center"
-                                            android:orientation="vertical"
-                                            android:padding="9dp">
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="Maths" />
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="BALBIR"
-                                                android:textColor="#F0920A" />
-                                        </LinearLayout>
-
-
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:background="@drawable/viewattendance"
-                                            android:gravity="center"
-                                            android:orientation="vertical"
-                                            android:padding="9dp">
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="Maths" />
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="BALBIR"
-                                                android:textColor="#F0920A" />
-                                        </LinearLayout>
-
-
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:background="@drawable/viewattendance"
-                                            android:gravity="center"
-                                            android:orientation="vertical"
-                                            android:padding="9dp">
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="Maths" />
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="BALBIR"
-                                                android:textColor="#F0920A" />
-                                        </LinearLayout>
                                     </LinearLayout>
+
                                     //5
 
-
                                     <LinearLayout
                                         android:layout_width="100dp"
                                         android:layout_height="wrap_content"
-                                        android:orientation="vertical">
+                                        android:orientation="horizontal">
 
                                         <LinearLayout
                                             android:layout_width="match_parent"
@@ -1173,7 +531,7 @@
                                             android:background="@drawable/viewattendance"
                                             android:gravity="center"
                                             android:orientation="vertical"
-                                            android:padding="9dp">
+                                            android:padding="11.2dp">
 
                                             <TextView
                                                 android:layout_width="wrap_content"
@@ -1187,160 +545,14 @@
                                                 android:textColor="#F0920A" />
                                         </LinearLayout>
 
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:background="@drawable/viewattendance"
-                                            android:gravity="center"
-                                            android:orientation="vertical"
-                                            android:padding="9dp">
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="Maths" />
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="BALBIR"
-                                                android:textColor="#F0920A" />
-                                        </LinearLayout>
-
-
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:background="@drawable/viewattendance"
-                                            android:gravity="center"
-                                            android:orientation="vertical"
-                                            android:padding="9dp">
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="Maths" />
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="BALBIR"
-                                                android:textColor="#F0920A" />
-                                        </LinearLayout>
-
-
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:background="@drawable/viewattendance"
-                                            android:gravity="center"
-                                            android:orientation="vertical"
-                                            android:padding="9dp">
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="Maths" />
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="BALBIR"
-                                                android:textColor="#F0920A" />
-                                        </LinearLayout>
-
-
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:background="@drawable/viewattendance"
-                                            android:gravity="center"
-                                            android:orientation="vertical"
-                                            android:padding="9dp">
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="Maths" />
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="BALBIR"
-                                                android:textColor="#F0920A" />
-                                        </LinearLayout>
-
-
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:background="@drawable/viewattendance"
-                                            android:gravity="center"
-                                            android:orientation="vertical"
-                                            android:padding="9dp">
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="Maths" />
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="BALBIR"
-                                                android:textColor="#F0920A" />
-                                        </LinearLayout>
-
-
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:background="@drawable/viewattendance"
-                                            android:gravity="center"
-                                            android:orientation="vertical"
-                                            android:padding="9dp">
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="Maths" />
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="BALBIR"
-                                                android:textColor="#F0920A" />
-                                        </LinearLayout>
-
-
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:background="@drawable/viewattendance"
-                                            android:gravity="center"
-                                            android:orientation="vertical"
-                                            android:padding="9dp">
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="Maths" />
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="BALBIR"
-                                                android:textColor="#F0920A" />
-                                        </LinearLayout>
                                     </LinearLayout>
+
                                     //6
 
-
                                     <LinearLayout
                                         android:layout_width="100dp"
                                         android:layout_height="wrap_content"
-                                        android:orientation="vertical"
-                                        android:layout_marginRight="12dp">
+                                        android:orientation="horizontal">
 
                                         <LinearLayout
                                             android:layout_width="match_parent"
@@ -1348,7 +560,7 @@
                                             android:background="@drawable/viewattendance"
                                             android:gravity="center"
                                             android:orientation="vertical"
-                                            android:padding="9dp">
+                                            android:padding="11.2dp">
 
                                             <TextView
                                                 android:layout_width="wrap_content"
@@ -1362,177 +574,32 @@
                                                 android:textColor="#F0920A" />
                                         </LinearLayout>
 
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:background="@drawable/viewattendance"
-                                            android:gravity="center"
-                                            android:orientation="vertical"
-                                            android:padding="9dp">
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="Maths" />
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="BALBIR"
-                                                android:textColor="#F0920A" />
-                                        </LinearLayout>
-
-
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:background="@drawable/viewattendance"
-                                            android:gravity="center"
-                                            android:orientation="vertical"
-                                            android:padding="9dp">
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="Maths" />
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="BALBIR"
-                                                android:textColor="#F0920A" />
-                                        </LinearLayout>
-
-
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:background="@drawable/viewattendance"
-                                            android:gravity="center"
-                                            android:orientation="vertical"
-                                            android:padding="9dp">
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="Maths" />
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="BALBIR"
-                                                android:textColor="#F0920A" />
-                                        </LinearLayout>
-
-
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:background="@drawable/viewattendance"
-                                            android:gravity="center"
-                                            android:orientation="vertical"
-                                            android:padding="9dp">
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="Maths" />
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="BALBIR"
-                                                android:textColor="#F0920A" />
-                                        </LinearLayout>
-
-
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:background="@drawable/viewattendance"
-                                            android:gravity="center"
-                                            android:orientation="vertical"
-                                            android:padding="9dp">
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="Maths" />
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="BALBIR"
-                                                android:textColor="#F0920A" />
-                                        </LinearLayout>
-
-
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:background="@drawable/viewattendance"
-                                            android:gravity="center"
-                                            android:orientation="vertical"
-                                            android:padding="9dp">
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="Maths" />
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="BALBIR"
-                                                android:textColor="#F0920A" />
-                                        </LinearLayout>
-
-
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:background="@drawable/viewattendance"
-                                            android:gravity="center"
-                                            android:orientation="vertical"
-                                            android:padding="9dp">
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="Maths" />
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="BALBIR"
-                                                android:textColor="#F0920A" />
-                                        </LinearLayout>
                                     </LinearLayout>
                                 </LinearLayout>
                             </LinearLayout>
-                        </ScrollView>
 
-                    </HorizontalScrollView>
+                        </HorizontalScrollView>
+                    </LinearLayout>
+
+
                 </LinearLayout>
 
 
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-        </ScrollView>
-    </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/replace"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <LinearLayout
-            android:id="@+id/replace"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
+    </ScrollView>
 </RelativeLayout>
