@@ -144,8 +144,7 @@ public class AttendanceFrgmnt2 extends Fragment implements DatePickerDialog.OnDa
 
                     @Override
                     public void onFailure(Call<ClassListbean> call, Throwable throwable) {
-
-                       // progress.setVisibility(View.GONE);
+                        //progress.setVisibility(View.GONE);
 
                     }
                 });

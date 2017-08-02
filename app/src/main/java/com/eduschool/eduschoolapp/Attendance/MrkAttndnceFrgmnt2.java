@@ -140,20 +140,15 @@ public class MrkAttndnceFrgmnt2 extends Fragment implements DatePickerDialog.OnD
                         classId.clear();
                         classlist.add("Select Class");
                         sectionlist.add("Select Section");
-                        try {
-                            for (int i = 0; i < list.size(); i++) {
 
-                                if (list.get(i).getClassName() != null && list.get(i).getClassId() != null) {
+                        for (int i = 0; i < list.size(); i++) {
 
-                                    classlist.add(list.get(i).getClassName());
-                                    classId.add(list.get(i).getClassId());
-                                }
+                            if (list.get(i).getClassName() != null && list.get(i).getClassId() != null) {
 
+                                classlist.add(list.get(i).getClassName());
+                                classId.add(list.get(i).getClassId());
                             }
 
-
-                        } catch (Exception e) {
-                            e.printStackTrace();
                         }
 
                         ArrayAdapter<String> adp1 = new ArrayAdapter<String>(getContext(),
@@ -177,7 +172,7 @@ public class MrkAttndnceFrgmnt2 extends Fragment implements DatePickerDialog.OnD
                     @Override
                     public void onFailure(Call<ClassListbean> call, Throwable throwable) {
 
-                        // progress.setVisibility(View.GONE);
+                        progress.setVisibility(View.GONE);
 
                     }
                 });
@@ -217,18 +212,14 @@ public class MrkAttndnceFrgmnt2 extends Fragment implements DatePickerDialog.OnD
                                     sectionid.clear();
 
 
-                                    try {
-                                        for (int i = 0; i < response.body().getSectionList().size(); i++) {
+                                    for (int i = 0; i < response.body().getSectionList().size(); i++) {
 
-                                            sectionlist.add(response.body().getSectionList().get(i).getSectionName());
+                                        sectionlist.add(response.body().getSectionList().get(i).getSectionName());
 
-                                            sectionid.add(response.body().getSectionList().get(i).getSectionId());
+                                        sectionid.add(response.body().getSectionList().get(i).getSectionId());
 
-                                            Log.d("aaaaa", String.valueOf(response.body().getSectionList().get(i).getSectionId()));
+                                        Log.d("aaaaa", String.valueOf(response.body().getSectionList().get(i).getSectionId()));
 
-                                        }
-                                    } catch (Exception e) {
-                                        e.printStackTrace();
                                     }
 
 
@@ -245,8 +236,7 @@ public class MrkAttndnceFrgmnt2 extends Fragment implements DatePickerDialog.OnD
 
                                 @Override
                                 public void onFailure(Call<SectionListbean> call, Throwable throwable) {
-
-                                    // progress.setVisibility(View.GONE);
+                                    progress.setVisibility(View.GONE);
 
                                 }
                             });

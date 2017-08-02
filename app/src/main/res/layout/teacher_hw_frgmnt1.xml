@@ -1,4 +1,5 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -6,7 +7,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="55dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -30,65 +32,46 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:background="@drawable/viewattendance"
-                    android:hint="Date"
+                    android:text="Date"
                     android:padding="12dp"
-                    android:textColorHint="#c9c8c8"
                     android:textSize="18dp" />
 
-                <TextView
+                <Spinner
                     android:id="@+id/className"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:background="@drawable/viewattendance"
-                    android:hint="Class"
-
-                    android:padding="12dp"
                     android:textColorHint="#c9c8c8"
                     android:textSize="18dp" />
 
-                <TextView
+                <Spinner
                     android:id="@+id/sectonName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:background="@drawable/viewattendance"
-                    android:padding="12dp"
-                    android:hint="Section"
                     android:textColorHint="#c9c8c8"
 
                     android:textSize="18dp" />
 
-                <TextView
+                <Spinner
                     android:id="@+id/subjectName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:background="@drawable/viewattendance"
-                    android:padding="12dp"
                     android:hint="Subject"
                     android:textColorHint="#c9c8c8"
                     android:textSize="18dp" />
 
-                <TextView
+                <Spinner
                     android:id="@+id/chapter"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:background="@drawable/viewattendance"
-                    android:padding="12dp"
                     android:hint="Chapter"
-                    android:textColorHint="#c9c8c8"
-                    android:textSize="18dp" />
-
-                <TextView
-                    android:id="@+id/subtopic"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:background="@drawable/viewattendance"
-                    android:padding="12dp"
-                    android:hint="Sub-Topic"
                     android:textColorHint="#c9c8c8"
                     android:textSize="18dp" />
 
@@ -99,8 +82,8 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:background="@drawable/viewattendance"
+                    android:text="Due Date"
                     android:padding="12dp"
-                    android:hint="Due Date"
                     android:textColorHint="#c9c8c8"
                     android:textSize="18dp" />
 
@@ -115,6 +98,7 @@
                     android:gravity="center"
                     android:padding="12dp"
                     android:text="UPLOAD FILE"
+                    android:id="@+id/upload"
                     android:textColor="#fff"
                     android:textSize="18dp" />
 
@@ -128,6 +112,7 @@
                     android:inputType="textMultiLine"
                     android:lines="6"
                     android:maxLines="10"
+                    android:id="@+id/note"
                     android:minLines="4"
                     android:padding="12dp"
                     android:scrollbars="vertical"
@@ -140,21 +125,24 @@
 
     </ScrollView>
 
-    <RelativeLayout
+
+    <Button
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginTop="34dp"
-            android:background="#F0920A"
-            android:padding="18dp"
-            android:text="ADD"
-            android:textColor="#ffffff" />
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="34dp"
+        android:background="#F0920A"
+        android:padding="18dp"
+        android:text="ADD"
+        android:id="@+id/submit"
+        android:textColor="#ffffff" />
 
 
-    </RelativeLayout>
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
 
 </RelativeLayout>
