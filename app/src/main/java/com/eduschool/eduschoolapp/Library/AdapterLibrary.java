@@ -11,7 +11,6 @@ import android.widget.TextView;
 import java.util.List;
 
 import com.eduschool.eduschoolapp.R;
-import com.eduschool.eduschoolapp.Survey.Album;
 
 /**
  * Created by user on 6/24/2017.
@@ -71,7 +70,11 @@ public class AdapterLibrary extends RecyclerView.Adapter<AdapterLibrary.myviewho
                 @Override
                 public void onClick(View view) {
 
-                context.startActivity(new Intent(context, ParentLibrary2.class));
+                    Intent intent = new Intent(context,ParentLibrary2.class);
+
+                    context.startActivity(intent);
+
+
                 }
             });
         }

@@ -16,9 +16,9 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal"
-        android:layout_marginTop="22dp"
-        android:layout_marginRight="12dp"
-        android:layout_marginLeft="12dp">
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="6dp"
+        android:layout_marginLeft="6dp">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -35,6 +35,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="10"
+                android:id="@+id/day"
                 android:textColor="#000000"
                 android:textSize="38sp"
                 android:textStyle="bold"
@@ -44,6 +45,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="March 2017"
+                android:id="@+id/month"
                 android:textColor="#000000" />
 
 
@@ -67,6 +69,7 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="12sp"
                 android:text="8A"
+                android:id="@+id/classSection"
                 android:textStyle="bold"
                 android:textColor="#398DBF"
                 android:textSize="32sp" />
@@ -79,7 +82,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="10dp">
+       android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
+        android:layout_marginTop="12dp">
 
         <TextView
             android:layout_width="match_parent"
@@ -119,47 +124,15 @@
 
         </LinearLayout>
 
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#ffffff"
-            android:orientation="horizontal"
-            android:padding="12dp">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:text="1" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="4"
-                android:text="ANKUR" />
-
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
-
-                <TextView
-                    android:id="@+id/p"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:background="@drawable/checkbox"
-                    android:gravity="center"
-                    android:paddingBottom="5dp"
-                    android:paddingEnd="10dp"
-                    android:paddingStart="10dp"
-                    android:paddingTop="5dp"
-                    android:text="P"
-                    android:textColor="#ffff" />
-            </RelativeLayout>
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="6dp">
 
 
-        </LinearLayout>
+        </android.support.v7.widget.RecyclerView>
 
 
     </LinearLayout>
@@ -167,7 +140,7 @@
 </LinearLayout>
 
 
-    <android.support.design.widget.FloatingActionButton
+   <!-- <android.support.design.widget.FloatingActionButton
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/fab"
         android:layout_width="wrap_content"
@@ -177,8 +150,13 @@
         app:backgroundTint="@color/colorPrimary"
         app:borderWidth="0dp"
         android:layout_gravity="bottom|right"
-        />
-
+        />-->
+<ProgressBar
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:id="@+id/progress"
+    android:visibility="gone"/>
 
 </android.support.design.widget.CoordinatorLayout>
 

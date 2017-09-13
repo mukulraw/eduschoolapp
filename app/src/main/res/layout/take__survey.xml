@@ -39,19 +39,20 @@
                 android:layout_marginBottom="22dp"
                 android:layout_marginLeft="6dp"
                 android:padding="6dp"
-                android:text="Q. Mauris vel feugiat enim. Ut in rhoncus est. Fusce in ex vitae magna auctor semper et in nisl. Cras in rhoncus mauris. Nullam scelerisque ligula eget nibh dictum tristique. In dignissim quam nec diam lobortis aliquam. Nulla at mi bibendum, sollicitudin diam pharetra, scelerisque est?"
+                android:id="@+id/qus"
+                android:text="Q. "
                 android:textColor="#000"
                 android:textSize="18sp" />
 
 
             <RadioGroup
-                android:id="@+id/radioSex"
+                android:id="@+id/radio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
                 >
 
-                <RadioButton
+               <!-- <RadioButton
                     android:id="@+id/radioMale"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -85,7 +86,7 @@
                     android:padding="4dp"
                     android:text="site"
                     android:textSize="18sp" />
-
+-->
             </RadioGroup>
         </LinearLayout>
     </LinearLayout>
@@ -98,4 +99,10 @@
         android:text="SUBMIT"
         android:textColor="#fff"
         android:id="@+id/submit"/>
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progress"
+        android:visibility="gone"
+        android:layout_centerInParent="true"/>
 </RelativeLayout>

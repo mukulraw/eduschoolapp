@@ -113,8 +113,6 @@ public class FrgmntTwo extends Fragment {
         subjectId = new ArrayList<>();
 
 
-
-
         if (isSearch = false) {
 
             User b = (User) getActivity().getApplicationContext();
@@ -250,9 +248,9 @@ public class FrgmntTwo extends Fragment {
 
                 className.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
-                    public void onItemSelected(AdapterView<?> adapterView, View view, final int i, long l) {
+                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
-
+                        cId = classId.get(i);
 
                         Retrofit retrofit = new Retrofit.Builder()
                                 .baseUrl(b.baseURL)
@@ -292,7 +290,6 @@ public class FrgmntTwo extends Fragment {
                                 sectionName.setAdapter(adp);
 
 
-                                cId = classId.get(i);
                                 Log.d("Cid", String.valueOf(cId));
 
                                 progress.setVisibility(View.GONE);
@@ -307,49 +304,6 @@ public class FrgmntTwo extends Fragment {
                         });
 
 
-                        Call<SubjectListBean> call1 = cr.subjectList(b.school_id, classId.get(i));
-
-                        progress.setVisibility(View.VISIBLE);
-
-                        call1.enqueue(new Callback<SubjectListBean>() {
-
-                            @Override
-                            public void onResponse(Call<SubjectListBean> call, Response<SubjectListBean> response) {
-
-                                listSubject = response.body().getSubjectList();
-                                subjectlist.clear();
-                                subjectId.clear();
-
-
-                                for (int i = 0; i < response.body().getSubjectList().size(); i++) {
-
-                                    subjectlist.add(response.body().getSubjectList().get(i).getSubjectName());
-                                    subjectId.add(response.body().getSubjectList().get(i).getSubjectId());
-                                }
-
-                                ArrayAdapter<String> adp = new ArrayAdapter<String>(getContext(),
-                                        android.R.layout.simple_list_item_1, subjectlist);
-
-                                adp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-                                subjectName.setAdapter(adp);
-                                progress.setVisibility(View.GONE);
-
-
-
-                            }
-
-                            @Override
-                            public void onFailure(Call<SubjectListBean> call, Throwable throwable) {
-                                progress.setVisibility(View.GONE);
-
-                            }
-                        });
-
-
-                       /* } else {
-                            isFirst = true;
-                        }*/
 
                     }
 
@@ -364,14 +318,14 @@ public class FrgmntTwo extends Fragment {
                     @Override
                     public void onItemSelected(AdapterView<?> adapterView, View view, final int i, long l) {
 
-
+                        sId = sectionid.get(i);
                         Retrofit retrofit = new Retrofit.Builder()
                                 .baseUrl(b.baseURL)
                                 .addConverterFactory(ScalarsConverterFactory.create())
                                 .addConverterFactory(GsonConverterFactory.create())
                                 .build();
 
-                        AllAPIs cr = retrofit.create(AllAPIs.class);
+                        final AllAPIs cr = retrofit.create(AllAPIs.class);
 
                         Call<SectionListbean> call2 = cr.sectionList(b.school_id, classId.get(i));
 
@@ -384,12 +338,51 @@ public class FrgmntTwo extends Fragment {
                             public void onResponse(Call<SectionListbean> call, Response<SectionListbean> response) {
 
 
-                                for (int i = 0; i < response.body().getSectionList().size(); i++) {
+                                Retrofit retrofit = new Retrofit.Builder()
+                                        .baseUrl(b.baseURL)
+                                        .addConverterFactory(ScalarsConverterFactory.create())
+                                        .addConverterFactory(GsonConverterFactory.create())
+                                        .build();
+
+                                AllAPIs cr = retrofit.create(AllAPIs.class);
+
+                                Call<SubjectListBean> call1 = cr.subjectList(b.school_id, classId.get(i),sectionid.get(i));
+
+                                progress.setVisibility(View.VISIBLE);
+
+                                call1.enqueue(new Callback<SubjectListBean>() {
+
+                                    @Override
+                                    public void onResponse(Call<SubjectListBean> call, Response<SubjectListBean> response) {
+
+                                        listSubject = response.body().getSubjectList();
+                                        subjectlist.clear();
+                                        subjectId.clear();
 
 
-                                }
-                                Log.d("section", String.valueOf(sectionid.get(i)));
-                                sId = sectionid.get(i);
+                                        for (int i = 0; i < response.body().getSubjectList().size(); i++) {
+
+                                            subjectlist.add(response.body().getSubjectList().get(i).getSubjectName());
+                                            subjectId.add(response.body().getSubjectList().get(i).getSubjectId());
+                                        }
+
+                                        ArrayAdapter<String> adp = new ArrayAdapter<String>(getContext(),
+                                                android.R.layout.simple_list_item_1, subjectlist);
+
+                                        adp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+                                        subjectName.setAdapter(adp);
+                                        progress.setVisibility(View.GONE);
+
+
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<SubjectListBean> call, Throwable throwable) {
+                                        progress.setVisibility(View.GONE);
+
+                                    }
+                                });
 
                                 progress.setVisibility(View.GONE);
 
@@ -415,35 +408,11 @@ public class FrgmntTwo extends Fragment {
 
                 subjectName.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
-                    public void onItemSelected(AdapterView<?> adapterView, View view, final int i, long l) {
+                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
-                        Call<SubjectListBean> call1 = cr.subjectList(b.school_id, classId.get(i));
-
-                        progress.setVisibility(View.VISIBLE);
-
-                        call1.enqueue(new Callback<SubjectListBean>() {
-
-                            @Override
-                            public void onResponse(Call<SubjectListBean> call, Response<SubjectListBean> response) {
-
-                                for (int i = 0; i < response.body().getSubjectList().size(); i++) {
+                        ssId = subjectId.get(i);
 
 
-                                }
-
-
-                                progress.setVisibility(View.GONE);
-
-                                ssId = subjectId.get(i);
-                                Log.d("subject",ssId);
-                            }
-
-                            @Override
-                            public void onFailure(Call<SubjectListBean> call, Throwable throwable) {
-                                progress.setVisibility(View.GONE);
-
-                            }
-                        });
                     }
 
                     @Override

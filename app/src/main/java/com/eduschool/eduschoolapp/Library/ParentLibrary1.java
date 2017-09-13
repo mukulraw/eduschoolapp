@@ -15,7 +15,6 @@ import java.util.List;
 
 import com.eduschool.eduschoolapp.Home.ParentHome;
 import com.eduschool.eduschoolapp.R;
-import com.eduschool.eduschoolapp.Survey.Album;
 import com.eduschool.eduschoolapp.User;
 
 /**
