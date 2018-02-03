@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2"
+        android:orientation="horizontal"
+        >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Period 1"
+                android:gravity="center_horizontal"
+                android:textStyle="bold"
+                android:paddingStart="10dp"
+                android:id="@+id/num"
+                android:textColor="#000000"
+                android:paddingEnd="10dp"
+                android:paddingBottom="5dp"
+                android:paddingTop="10dp"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:layout_gravity="center_vertical"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:textColor="@color/colorPrimary"
+                android:id="@+id/period"
+                android:text="9:15 - 10:15"
+                />
+
+
+        </LinearLayout>
+
+
+
+        <TextView
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:background="#cdcdcd"
+            />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Hindi"
+                android:textStyle="bold"
+                android:gravity="center_horizontal"
+                android:paddingStart="10dp"
+                android:id="@+id/subject"
+                android:paddingEnd="10dp"
+                android:paddingTop="10dp"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Teacher"
+                android:paddingTop="5dp"
+                android:paddingStart="10dp"
+                android:id="@+id/teacher"
+                android:gravity="center_horizontal"
+                android:paddingEnd="10dp"
+                android:paddingBottom="10dp"
+                />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#cdcdcd"
+        />
+
+
+</LinearLayout>
