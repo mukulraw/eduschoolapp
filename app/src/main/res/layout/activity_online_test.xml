@@ -15,7 +15,7 @@
         android:background="@color/colorPrimary"
         android:elevation="4dp"
         app:title="ONLINE TEST"
-        app:titleTextColor="#fff"></android.support.v7.widget.Toolbar>
+        app:titleTextColor="#fff"/>
 
 
     <LinearLayout
@@ -53,7 +53,7 @@
         <com.eduschool.eduschoolapp.MyViewPager
             android:id="@+id/viewPager"
             android:layout_width="match_parent"
-            android:layout_height="380dp">
+            android:layout_height="200dp">
 
             <LinearLayout
                 android:id="@+id/pagerQuestion"

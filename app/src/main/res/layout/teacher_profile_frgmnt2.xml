@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="12dp"
     android:orientation="vertical"
+    android:background="@color/bach_color"
     android:padding="12dp">
 
 
@@ -11,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="@drawable/viewattendance"
+        android:background="@drawable/white_round"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="12dp">
@@ -44,12 +45,11 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/mobile"
+                        android:id="@+id/dob"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-
-                        android:text="12-3-2014" />
+                        />
                 </LinearLayout>
 
                 <LinearLayout
@@ -67,34 +67,13 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/phone"
+                        android:id="@+id/marital"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Married" />
+                        />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp"
-                    android:layout_marginLeft="6dp"
-                    android:layout_marginRight="6dp">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="No. Of Kids"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/userId"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="3" />
-                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -111,54 +90,11 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/password"
+                        android:id="@+id/spouse"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="xyz" />
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp"
-                    android:layout_marginLeft="6dp"
-                    android:layout_marginRight="6dp">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Blood Group"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="O+" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp"
-                    android:layout_marginLeft="6dp"
-                    android:layout_marginRight="6dp">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Anniversary Date"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="12-2-2015" />
+                        />
                 </LinearLayout>
 
 
@@ -178,9 +114,10 @@
 
                     <TextView
                         android:layout_width="0dp"
+                        android:id="@+id/address"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Saket" />
+                        />
                 </LinearLayout>
 
 
@@ -200,9 +137,10 @@
 
                     <TextView
                         android:layout_width="0dp"
+                        android:id="@+id/city"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Delhi" />
+                        />
                 </LinearLayout>
 
 
@@ -224,7 +162,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="New Delhi" />
+                        android:id="@+id/state"
+                        />
                 </LinearLayout>
 
                 <LinearLayout
@@ -245,7 +184,9 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="India" />
+                        android:id="@+id/country"
+                        />
+
                 </LinearLayout>
 
 

@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,8 +51,12 @@ public class TeacherClsWrk3 extends Fragment {
     Button update;
     ProgressBar progress;
     String Id;
-    Spinner status, chapter;
+    Spinner status;
+    TextView chapter;
     EditText note;
+
+    String chapId;
+
     String cId, ssId, sId, hId, sChapter, sNote, sStatus;
     List<String> chapterlist, studentlist, chapterId, studentId;
     public List<StudentList> listStudent;
@@ -77,7 +82,7 @@ public class TeacherClsWrk3 extends Fragment {
         classSection = (TextView) view.findViewById(R.id.className);
         date = (TextView) view.findViewById(R.id.date);
         status = (Spinner) view.findViewById(R.id.status);
-        chapter = (Spinner) view.findViewById(R.id.chapter);
+        chapter = (TextView) view.findViewById(R.id.chapter);
         note = (EditText) view.findViewById(R.id.note);
         update = (Button) view.findViewById(R.id.update);
 
@@ -118,7 +123,10 @@ public class TeacherClsWrk3 extends Fragment {
 
                 chapterlist.add(response.body().getClassworkData().get(0).getChapter());
 
-                chapterId.add(response.body().getClassworkData().get(0).getChapterId());
+                chapter.setText(response.body().getClassworkData().get(0).getChapter());
+
+
+                chapId = response.body().getClassworkData().get(0).getChapterId();
 
 
                 ArrayAdapter<String> adp2 = new ArrayAdapter<String>(getContext(),
@@ -126,7 +134,7 @@ public class TeacherClsWrk3 extends Fragment {
 
                 adp2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 adp2.notifyDataSetChanged();
-                chapter.setAdapter(adp2);
+
 
                 listStatus.add(response.body().getClassworkData().get(0).getClassStatus());
 
@@ -154,83 +162,7 @@ public class TeacherClsWrk3 extends Fragment {
             }
         });
 
-        chapter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, final int i, long l) {
 
-                Call<ChapterListbean> call = cr.chapterList(b.school_id, cId, ssId);
-
-                progress.setVisibility(View.VISIBLE);
-
-
-                call.enqueue(new Callback<ChapterListbean>() {
-
-                    @Override
-                    public void onResponse(Call<ChapterListbean> call, Response<ChapterListbean> response) {
-
-                        sChapter = chapterId.get(i);
-
-                        listChapter = response.body().getChapterList();
-                        chapterlist.clear();
-                        chapterId.clear();
-                        for (int i = 0; i < response.body().getChapterList().size(); i++) {
-
-                            chapterlist.add(response.body().getChapterList().get(i).getChapterName());
-
-                            chapterId.add(response.body().getChapterList().get(i).getChapterId());
-
-                        }
-
-                        progress.setVisibility(View.GONE);
-
-                        Call<StudentListbean> call3 = cr.student_list(b.school_id, cId, sId);
-
-                        progress.setVisibility(View.VISIBLE);
-
-                        call3.enqueue(new Callback<StudentListbean>() {
-
-                            @Override
-                            public void onResponse(Call<StudentListbean> call3, Response<StudentListbean> response) {
-
-
-                                listStudent = response.body().getStudentList();
-                                studentlist.clear();
-                                studentId.clear();
-                                for (int i = 0; i < response.body().getStudentList().size(); i++) {
-
-                                    studentlist.add(response.body().getStudentList().get(i).getStudentName());
-
-                                    studentId.add(response.body().getStudentList().get(i).getStudentId());
-                                }
-
-                                Log.d("studenttt", String.valueOf(studentId.size()));
-                                progress.setVisibility(View.GONE);
-                            }
-
-                            @Override
-                            public void onFailure(Call<StudentListbean> call, Throwable throwable) {
-                                progress.setVisibility(View.GONE);
-
-                            }
-                        });
-
-                    }
-
-                    @Override
-                    public void onFailure(Call<ChapterListbean> call, Throwable throwable) {
-                        progress.setVisibility(View.GONE);
-
-                    }
-                });
-
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
 
 
         status.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -267,8 +199,8 @@ public class TeacherClsWrk3 extends Fragment {
                         sNote = note.getText().toString().trim();
 
 
-                        Call<UpdateCwBean> call = cr.update_cw(hId, b.school_id, b.user_id, cId, sId, ssId, sChapter, sNote, sStatus, studentId, "Image");
-                        Log.d("dddfer", sChapter);
+                        Call<UpdateCwBean> call = cr.update_cw(hId, b.school_id, b.user_id, cId, sId, ssId, chapId, sNote, sStatus, TextUtils.join(",", studentId), "Image");
+
 
                         progress.setVisibility(View.VISIBLE);
 
@@ -323,7 +255,7 @@ public class TeacherClsWrk3 extends Fragment {
     public void onResume() {
 
         super.onResume();
-        toolbar.setTitle("Class Work");
+        toolbar.setTitle("Class Work Edit");
         User u = (User) getContext().getApplicationContext();
         u.back = false;
     }

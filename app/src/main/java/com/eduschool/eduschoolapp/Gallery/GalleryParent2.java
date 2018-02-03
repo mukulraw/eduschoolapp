@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -48,7 +49,7 @@ public class GalleryParent2 extends Fragment {
     RecyclerView recyclerView;
     GridLayoutManager manager;
     ProgressBar progress;
-    List<GalleryImage> list;
+    List<GalleryList> list;
     String albumId;
     TextView date, name, album;
 
@@ -106,12 +107,31 @@ public class GalleryParent2 extends Fragment {
             @Override
             public void onResponse(Call<GalleryListBean> call, Response<GalleryListBean> response) {
 
+                try {
 
-                date.setText(response.body().getGalleryList().get(0).getCreateDate());
-                album.setText(response.body().getGalleryList().get(0).getAlbumName());
-                name.setText(response.body().getGalleryList().get(0).getAlbumName());
-                adapter.setGridData(response.body().getGalleryList().get(0).getGalleryImage());
-                adapter.notifyDataSetChanged();
+                    if (response.body().getGalleryList().size() > 0)
+                    {
+                        date.setText(response.body().getGalleryList().get(0).getCreateDate());
+                        album.setText(response.body().getGalleryList().get(0).getAlbumName());
+                        name.setText(response.body().getGalleryList().get(0).getAlbumName());
+                        adapter.setGridData(response.body().getGalleryList());
+                        adapter.notifyDataSetChanged();
+                    }
+                    else
+                    {
+                        List<GalleryList> ll = new ArrayList<>();
+                        adapter.setGridData(ll);
+                        adapter.notifyDataSetChanged();
+                        Toast.makeText(getContext() , "No Data Found" , Toast.LENGTH_SHORT).show();
+                    }
+
+
+                }catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
+
+
                 progress.setVisibility(View.GONE);
                 Log.d("sdvs","sdvsdv");
 
@@ -136,6 +156,17 @@ public class GalleryParent2 extends Fragment {
         super.onResume();
         toolbar.setTitle("Gallery");
         User u = (User) getContext().getApplicationContext();
+
+        toolbar.setNavigationIcon(R.drawable.back);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                FragmentManager fm = ((ParentHome) getContext()).getSupportFragmentManager();
+                fm.popBackStack();
+
+            }
+        });
 
         u.back = false;
     }

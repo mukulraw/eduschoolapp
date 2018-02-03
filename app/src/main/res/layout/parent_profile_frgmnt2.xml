@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="12dp"
+    android:layout_height="match_parent"
+    android:background="@color/bach_color"
     android:orientation="vertical"
     android:padding="12dp">
 
@@ -19,7 +19,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:background="@drawable/viewattendance"
+                android:background="@drawable/white_round"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:padding="12dp">
@@ -37,7 +37,7 @@
                         android:textStyle="bold"/>
 
                     <TextView
-                        android:id="@+id/className"
+                        android:id="@+id/classs"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -124,45 +124,7 @@
                         android:text="12345" />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="8dp">
 
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Contact No."
-                        android:textStyle="bold"/>
-
-                    <TextView
-                        android:id="@+id/contactNo"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="+918826601886" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="8dp">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Description"
-                        android:textStyle="bold"/>
-
-                    <TextView
-                        android:id="@+id/description"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="N/A" />
-                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -180,9 +142,19 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:id="@+id/dob"
                         android:text="03-Sep-1990" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
-</LinearLayout>
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:id="@+id/progress"
+        android:visibility="gone"
+        />
+
+</RelativeLayout>

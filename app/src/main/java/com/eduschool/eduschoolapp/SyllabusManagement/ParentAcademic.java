@@ -15,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.eduschool.eduschoolapp.AllAPIs;
 import com.eduschool.eduschoolapp.ClassWork.AdapterCwParent;
@@ -26,7 +27,9 @@ import com.eduschool.eduschoolapp.SyllabusPOJO.SyllabusList;
 import com.eduschool.eduschoolapp.SyllabusPOJO.SyllabusListBean;
 import com.eduschool.eduschoolapp.User;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;
@@ -48,9 +51,27 @@ public class ParentAcademic extends Fragment {
     public List<SubjectList> listSubject;
     public List<SyllabusList> list;
     AdapterParent adapter;
+    TextView teacherName;
     public List<String> subjectlist, subjectId;
     Spinner subject;
     String subjectID;
+
+    TextView date , month;
+    String[] mon = {
+            "Jan",
+            "Feb",
+            "Mar",
+            "Apr",
+            "May",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sep",
+            "Oct",
+            "Nov",
+            "Dec",
+    };
+    String date1;
 
     public ParentAcademic() {
 
@@ -63,6 +84,20 @@ public class ParentAcademic extends Fragment {
         View view = inflater.inflate(R.layout.parent_academic, container, false);
         toolbar = (Toolbar) ((ParentHome) getContext()).findViewById(R.id.toolbar);
         subject = (Spinner) view.findViewById(R.id.subject);
+
+        date = (TextView)view.findViewById(R.id.date);
+        month = (TextView)view.findViewById(R.id.month);
+
+        teacherName = (TextView)view.findViewById(R.id.teacher_name);
+
+        date1 = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+
+
+        String[] d1 = date1.split("-");
+
+        date.setText(d1[2]);
+
+        month.setText(mon[Integer.parseInt(d1[1]) - 1] + " " + d1[0]);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler);
         progress = (ProgressBar) view.findViewById(R.id.progress);
@@ -114,9 +149,10 @@ public class ParentAcademic extends Fragment {
                 }
 
                 ArrayAdapter<String> adp1 = new ArrayAdapter<String>(getContext(),
-                        android.R.layout.simple_list_item_1, subjectlist);
+                        R.layout.academic_spinner_model, subjectlist);
 
-                adp1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                adp1.setDropDownViewResource(R.layout.academic_spinner_model);
+
                 subject.setAdapter(adp1);
                 adp1.notifyDataSetChanged();
 
@@ -135,7 +171,7 @@ public class ParentAcademic extends Fragment {
 
         subject.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+            public void onItemSelected(final AdapterView<?> adapterView, View view, int i, long l) {
 
                 subjectID = subjectId.get(i);
 
@@ -159,8 +195,29 @@ public class ParentAcademic extends Fragment {
                     @Override
                     public void onResponse(Call<SyllabusListBean> call, Response<SyllabusListBean> response) {
 
-                        adapter.setGridData(response.body().getSyllabusList());
-                        adapter.notifyDataSetChanged();
+                        teacherName.setText(response.body().getTeacherName());
+
+                        try {
+
+                            if (response.body().getSyllabusList().size() > 0)
+                            {
+                                adapter.setGridData(response.body().getSyllabusList());
+                                adapter.notifyDataSetChanged();
+                            }
+                            else
+                            {
+                                List<SyllabusList> ll = new ArrayList<>();
+                                adapter.setGridData(ll);
+                                adapter.notifyDataSetChanged();
+                                Toast.makeText(getContext() , "No Data Found" , Toast.LENGTH_SHORT).show();
+                            }
+
+                        }catch (Exception e)
+                        {
+                            e.printStackTrace();
+                        }
+
+
                         progress.setVisibility(View.GONE);
 
 

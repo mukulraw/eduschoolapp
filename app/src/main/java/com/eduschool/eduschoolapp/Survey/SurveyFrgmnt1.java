@@ -1,5 +1,7 @@
 package com.eduschool.eduschoolapp.Survey;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,17 +12,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import com.eduschool.eduschoolapp.AllAPIs;
 import com.eduschool.eduschoolapp.ClassWrkListPOJO.ClassWrkListbean;
 import com.eduschool.eduschoolapp.Home.TeacherHome;
 import com.eduschool.eduschoolapp.R;
-import com.eduschool.eduschoolapp.SurveyListPOJO.SurveyListBean;
-import com.eduschool.eduschoolapp.SurveyListPOJO.SurveyListteacher;
 import com.eduschool.eduschoolapp.User;
+import com.eduschool.eduschoolapp.teacherSurveyPOJO.SurveyListteacher;
+import com.eduschool.eduschoolapp.teacherSurveyPOJO.teacherSurveryBean;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -73,11 +77,11 @@ public class SurveyFrgmnt1 extends Fragment {
         AllAPIs cr = retrofit.create(AllAPIs.class);
         progress.setVisibility(View.VISIBLE);
 
-        Call<SurveyListBean> call = cr.survey_list(b.school_id,"Teacher", b.user_id);
+        Call<teacherSurveryBean> call = cr.survey_list(b.school_id,"Teacher", b.user_id);
 
-        call.enqueue(new Callback<SurveyListBean>() {
+        call.enqueue(new Callback<teacherSurveryBean>() {
             @Override
-            public void onResponse(Call<SurveyListBean> call, Response<SurveyListBean> response) {
+            public void onResponse(Call<teacherSurveryBean> call, Response<teacherSurveryBean> response) {
 
 
                 adapter.setGridData(response.body().getSurveyListteacher());
@@ -87,7 +91,7 @@ public class SurveyFrgmnt1 extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<SurveyListBean> call, Throwable throwable) {
+            public void onFailure(Call<teacherSurveryBean> call, Throwable throwable) {
 
                 progress.setVisibility(View.GONE);
 
@@ -120,11 +124,11 @@ public class SurveyFrgmnt1 extends Fragment {
         AllAPIs cr = retrofit.create(AllAPIs.class);
         progress.setVisibility(View.VISIBLE);
 
-        Call<SurveyListBean> call = cr.survey_list(b.school_id,"Teacher", b.user_id);
+        Call<teacherSurveryBean> call = cr.survey_list(b.school_id,"Teacher", b.user_id);
 
-        call.enqueue(new Callback<SurveyListBean>() {
+        call.enqueue(new Callback<teacherSurveryBean>() {
             @Override
-            public void onResponse(Call<SurveyListBean> call, Response<SurveyListBean> response) {
+            public void onResponse(Call<teacherSurveryBean> call, Response<teacherSurveryBean> response) {
 
 
                 adapter.setGridData(response.body().getSurveyListteacher());
@@ -134,7 +138,7 @@ public class SurveyFrgmnt1 extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<SurveyListBean> call, Throwable throwable) {
+            public void onFailure(Call<teacherSurveryBean> call, Throwable throwable) {
 
                 progress.setVisibility(View.GONE);
 
@@ -143,4 +147,99 @@ public class SurveyFrgmnt1 extends Fragment {
 
 
     }
+
+
+
+    public class AdapterSurvey extends RecyclerView.Adapter<AdapterSurvey.myviewholder> {
+
+        Context context;
+        private List<SurveyListteacher> list;
+
+        public AdapterSurvey(Context context, List<SurveyListteacher> albumList) {
+            this.context = context;
+            this.list = albumList;
+
+        }
+
+        public void setGridData(List<SurveyListteacher> list) {
+            this.list = list;
+            notifyDataSetChanged();
+        }
+
+        @Override
+        public myviewholder onCreateViewHolder(ViewGroup parent, int viewType) {
+
+            View itemView = LayoutInflater.from(context)
+                    .inflate(R.layout.survey_frgmnt_model, parent, false);
+
+            return new myviewholder(itemView);
+        }
+
+
+        @Override
+        public void onBindViewHolder(final myviewholder holder, final int position) {
+            SurveyListteacher item = list.get(position);
+
+            holder.qus.setText(item.getSurveyTitle());
+
+            for (int i = 0 ; i < item.getServeyData().size() ; i++)
+            {
+                if (Objects.equals(item.getServeyData().get(i).getQuestionStatus(), "Pending"))
+                {
+                    holder.status.setText("Pending");
+                }
+                else
+                {
+                    holder.status.setText("Complete");
+                }
+            }
+
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    String Id = list.get(position).getSurveyId();
+
+
+
+
+                   // ts.setData(list.get(position).getServeyData());
+
+                    Intent intent = new Intent(context, Take_Survey.class);
+                    intent.putExtra("Id", Id);
+                    intent.putExtra("title" , list.get(position).getSurveyTitle());
+                    context.startActivity(intent);
+
+
+                }
+            });
+
+        }
+
+        @Override
+        public int getItemCount() {
+            return list.size();
+        }
+
+        public class myviewholder extends RecyclerView.ViewHolder {
+
+
+            TextView status, qus;
+
+            public myviewholder(View itemView) {
+                super(itemView);
+
+                status = (TextView) itemView.findViewById(R.id.status);
+                qus = (TextView) itemView.findViewById(R.id.qus);
+
+
+
+            }
+
+        }
+
+
+    }
+
+
 }

@@ -4,15 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bach_color"
     android:orientation="vertical"
     tools:context="com.eduschool.eduschoolapp.Attendance.MarkAttendance">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+        <android.support.v7.widget.Toolbar
+            xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/tool_bar"
             android:layout_width="match_parent"
@@ -27,7 +29,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginLeft="6dp"
             android:layout_marginRight="6dp"
             android:layout_marginTop="12dp"
@@ -37,60 +39,89 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
-                android:background="@drawable/viewattendance"
+                android:background="@drawable/stroke"
                 android:gravity="center"
+                android:padding="1dp"
+                android:weightSum="3"
                 android:orientation="horizontal">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/background"
                     android:gravity="center"
                     android:orientation="vertical"
-                    android:padding="15dp">
+                    android:padding="10dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="10"
                         android:id="@+id/day"
                         android:textColor="#000000"
+                        android:layout_gravity="center_horizontal"
                         android:textSize="38sp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="March 2017"
                         android:id="@+id/month"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center_horizontal"
                         android:textColor="#000000" />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                <TextView
+                    android:layout_width="1dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="3"
-                    android:background="@drawable/viewattendance"
-                    android:gravity="center">
+                    android:background="#cdcdcd"
+                    />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Class"
-                        android:textSize="32sp" />
 
-                    <TextView
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:background="@drawable/viewattendance2"
+                    >
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="12sp"
-                        android:text="8A"
-                        android:id="@+id/classSection"
-                        android:textColor="#398DBF"
-                        android:textSize="32sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
+                        android:layout_height="match_parent"
+                        android:layout_centerHorizontal="true"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="32sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            android:gravity="center"
+                            android:id="@+id/classSection"
+                            android:textColor="#398DBF"
+                            android:textSize="32sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <ImageButton
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentEnd="true"
+                        android:id="@+id/edit"
+                        android:visibility="gone"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/edit_blue"
+                        />
+
+                </RelativeLayout>
 
             </LinearLayout>
 
@@ -103,17 +134,30 @@
                 android:text="STUDENT ATTENDANCE"
                 android:textColor="#ffffff" />
 
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="1dp"
+                android:background="@drawable/white_bottom_round"
+                >
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#F2F2F2"
                 android:orientation="horizontal"
-                android:padding="12dp">
+                android:weightSum="9"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                >
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
+                    android:paddingStart="10dp"
                     android:text="ROLL NO." />
 
                 <TextView
@@ -127,6 +171,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:gravity="center_horizontal"
                     android:text="P" />
 
 
@@ -134,276 +179,33 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:gravity="center_horizontal"
                     android:text="A" />
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.5"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
                     android:text="L" />
 
             </LinearLayout>
 
-            <!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#ffffff"
-                android:orientation="horizontal"
-                android:padding="12dp">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:text="1" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:text="ANKUR" />
-
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1">
-
-                    <TextView
-                        android:id="@+id/p"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:background="@drawable/checkbox"
-                        android:gravity="center"
-                        android:paddingBottom="5dp"
-                        android:paddingEnd="10dp"
-                        android:paddingStart="10dp"
-                        android:paddingTop="5dp"
-                        android:text="P"
-                         />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1">
-
-                    <TextView
-                        android:id="@+id/a"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:background="@drawable/defaultcheckbox"
-                        android:gravity="center"
-                        android:paddingBottom="5dp"
-                        android:paddingEnd="10dp"
-                        android:paddingStart="10dp"
-                        android:paddingTop="5dp"
-                        android:text="A" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1">
-
-                    <TextView
-                        android:id="@+id/l"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:background="@drawable/defaultcheckbox"
-                        android:gravity="center"
-                        android:paddingBottom="5dp"
-                        android:paddingEnd="10dp"
-                        android:paddingStart="10dp"
-                        android:paddingTop="5dp"
-                        android:text="L" />
-                </RelativeLayout>
-
-
-            </LinearLayout>
-
-
-            //second
-
-
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#ffffff"
-                android:orientation="horizontal"
-                android:padding="12dp">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:text="2" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:text="AKARSHIT" />
-
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:background="@drawable/defaultcheckbox"
-                        android:gravity="center"
-                        android:paddingBottom="5dp"
-                        android:paddingEnd="10dp"
-                        android:paddingStart="10dp"
-                        android:paddingTop="5dp"
-                        android:text="P" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:background="@drawable/absentcheckbox"
-                        android:gravity="center"
-                        android:paddingBottom="5dp"
-                        android:paddingEnd="10dp"
-                        android:paddingStart="10dp"
-                        android:paddingTop="5dp"
-                        android:text="A"
-                        />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:background="@drawable/defaultcheckbox"
-                        android:gravity="center"
-                        android:paddingBottom="5dp"
-                        android:paddingEnd="10dp"
-                        android:paddingStart="10dp"
-                        android:paddingTop="5dp"
-                        android:text="L" />
-                </RelativeLayout>
-
-
-            </LinearLayout>
-
-
-            //third
-
-
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#ffffff"
-                android:orientation="horizontal"
-                android:padding="12dp">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:text="3" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:text="Anita patel" />
-
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:background="@drawable/defaultcheckbox"
-                        android:gravity="center"
-                        android:paddingBottom="5dp"
-                        android:paddingEnd="10dp"
-                        android:paddingStart="10dp"
-                        android:paddingTop="5dp"
-                        android:text="P" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:background="@drawable/defaultcheckbox"
-                        android:gravity="center"
-                        android:paddingBottom="5dp"
-                        android:paddingEnd="10dp"
-                        android:paddingStart="10dp"
-                        android:paddingTop="5dp"
-                        android:text="A" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:background="@drawable/leavecheckbox"
-                        android:gravity="center"
-                        android:paddingBottom="5dp"
-                        android:paddingEnd="10dp"
-                        android:paddingStart="10dp"
-                        android:paddingTop="5dp"
-                        android:text="L"
-                         />
-                </RelativeLayout>
-
-
-            </LinearLayout>-->
-
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycler"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="6dp"
-                android:layout_marginRight="6dp">
+                android:layout_height="match_parent"
+                android:paddingBottom="50dp"
+                android:clipToPadding="false"
+                />
 
+            </LinearLayout>
 
-            </android.support.v7.widget.RecyclerView>
-            <!--      <android.support.v7.widget.RecyclerView
-                      android:layout_width="match_parent"
-                      android:layout_height="wrap_content"
-                      android:id="@+id/recycler_view">
-
-
-                  </android.support.v7.widget.RecyclerView>-->
         </LinearLayout>
+
+
     </LinearLayout>
+
 
     <ProgressBar
         android:layout_width="wrap_content"
@@ -411,6 +213,8 @@
         android:id="@+id/progress"
         android:layout_centerInParent="true"
         android:visibility="gone"/>
+
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

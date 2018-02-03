@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
+    android:background="@color/bach_color"
     android:orientation="vertical">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp">
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -23,63 +20,71 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
                 android:layout_marginLeft="12dp"
+                android:id="@+id/name"
                 android:layout_marginTop="22dp"
-                android:text="Student Name"
+                android:text="Name of Student"
                 android:textColor="#000000" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                android:background="@drawable/viewattendance"
-                android:gravity="center"
-                android:layout_marginLeft="6dp"
-                android:layout_marginRight="6dp"
-                android:orientation="horizontal">
+                android:background="@drawable/white_round"
+                android:padding="1dp"
+                android:layout_margin="6dp">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_weight="1"
                     android:background="@drawable/background"
-                    android:gravity="center"
                     android:orientation="vertical"
-                    android:padding="15dp">
+                    android:padding="12dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="10"
+                        android:layout_gravity="center"
+                        android:id="@+id/day"
                         android:textColor="#000000"
-                        android:textSize="38sp"
+                        android:textSize="30sp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="March 2017"
+                        android:layout_gravity="center"
+                        android:id="@+id/month"
                         android:textColor="#000000" />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                <TextView
+                    android:layout_width="1dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="3"
-                    android:background="@drawable/viewattendance"
-                    android:gravity="center">
+                    android:background="#cdcdcd"
+                    />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:background="@drawable/viewattendance2"
+                    android:gravity="center"
+                    android:padding="12dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Class"
+                        android:layout_gravity="center"
                         android:textSize="32sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="12sp"
-                        android:text="8A"
+                        android:layout_gravity="center"
+                        android:paddingLeft="8dp"
+
+                        android:id="@+id/classection"
                         android:textColor="#398DBF"
                         android:textSize="32sp"
                         android:textStyle="bold" />
@@ -167,5 +172,13 @@
 
             </LinearLayout>
         </LinearLayout>
-    </ScrollView>
-</LinearLayout>
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:id="@+id/progress"
+        android:visibility="gone"
+        />
+
+</RelativeLayout>

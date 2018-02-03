@@ -3,17 +3,33 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/bach_color"
     android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="18dp"
+            android:id="@+id/no"
+            android:visibility="gone"
+            android:text="No Classwork found"
+            android:gravity="center"
+            />
 
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/recycler"
-        android:layout_marginTop="6dp">
+        android:layout_height="match_parent"
+        android:id="@+id/recycler"/>
 
 
-    </android.support.v7.widget.RecyclerView>
+    </RelativeLayout>
+
     <ProgressBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

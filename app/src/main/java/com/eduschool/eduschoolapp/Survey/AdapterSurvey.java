@@ -33,11 +33,10 @@ public class AdapterSurvey extends RecyclerView.Adapter<AdapterSurvey.myviewhold
 
     }
 
-     public void setGridData(List<SurveyListteacher> list)
-      {
-          this.list = list;
-          notifyDataSetChanged();
-      }
+    public void setGridData(List<SurveyListteacher> list) {
+        this.list = list;
+        notifyDataSetChanged();
+    }
 
     @Override
     public AdapterSurvey.myviewholder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -66,7 +65,7 @@ public class AdapterSurvey extends RecyclerView.Adapter<AdapterSurvey.myviewhold
     public class myviewholder extends RecyclerView.ViewHolder {
 
 
-        TextView date,status,qus;
+        TextView date, status, qus;
 
         public myviewholder(View itemView) {
             super(itemView);
@@ -76,7 +75,6 @@ public class AdapterSurvey extends RecyclerView.Adapter<AdapterSurvey.myviewhold
             qus = (TextView) itemView.findViewById(R.id.qus);
 
 
-
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -84,20 +82,18 @@ public class AdapterSurvey extends RecyclerView.Adapter<AdapterSurvey.myviewhold
                     String Id = list.get(getAdapterPosition()).getSurveyId();
                     String qusId = list.get(getAdapterPosition()).getQuestionId();
 
-                    Intent intent=new Intent(context,Take_Survey.class);
+                    Intent intent = new Intent(context, Take_Survey.class);
                     intent.putExtra("Id", Id);
                     intent.putExtra("QusId", qusId);
                     context.startActivity(intent);
-
-
 
 
                 }
             });
         }
 
-        }
-
-
     }
+
+
+}
 

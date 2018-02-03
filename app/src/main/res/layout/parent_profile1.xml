@@ -1,7 +1,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/bach_color"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,7 +29,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_marginLeft="100dp"
-                    android:text="Sonam Gupta"
+                    android:id="@+id/name"
                     android:layout_marginBottom="5dp"
                     android:textColor="#fff"
                     android:textSize="20sp"
@@ -41,12 +43,10 @@
                 app:layout_anchorGravity="bottom|left">
 
                 <com.eduschool.eduschoolapp.RoundedImageView
-                    android:id="@+id/imageView_round"
+                    android:id="@+id/image"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_marginLeft="12dp"
-                    android:src="@drawable/studentimage"
-
                     />
 
             </RelativeLayout>
@@ -65,7 +65,6 @@
                 android:id="@+id/tabs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/name"
                 android:layout_marginTop="6dp"
                 app:tabGravity="fill"
                 app:tabMode="fixed"
@@ -95,5 +94,13 @@
         android:text="Change Password"
         android:textColor="#ffffff"
         android:visibility="gone"/>
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progress"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        />
 
 </RelativeLayout>

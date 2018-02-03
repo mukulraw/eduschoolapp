@@ -27,7 +27,6 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_marginLeft="100dp"
-                    android:text="Sonam Gupta"
                     android:layout_marginBottom="5dp"
                     android:textColor="#fff"
                     android:textSize="20sp"
@@ -45,7 +44,6 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_marginLeft="12dp"
-                    android:src="@drawable/studentimage"
 
                     />
 
@@ -81,6 +79,14 @@
 
 
     </LinearLayout>
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:id="@+id/progress"
+        android:visibility="gone"
+        />
 
     <Button
         android:id="@+id/change_password"

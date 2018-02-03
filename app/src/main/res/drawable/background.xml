@@ -4,10 +4,14 @@
 
 
 
-    <stroke
+    <!--<stroke
         android:width="0.5dp"
         android:color="#cdcdcd"
-        />
-    <solid android:color="#F3F1F3" />
+        />-->
+    <solid android:color="@color/date_color" />
+
+    <corners
+        android:bottomLeftRadius="3dp"
+        android:topLeftRadius="3dp"/>
 
 </shape>

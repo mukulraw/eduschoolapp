@@ -4,105 +4,104 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bach_color"
     android:orientation="vertical"
     tools:context="com.eduschool.eduschoolapp.Survey.Take_Survey">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
+        <android.support.v7.widget.Toolbar
             android:id="@+id/tool_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
-            app:title="Take Survey"
-            app:titleTextColor="#fff">
-
-        </android.support.v7.widget.Toolbar>
+            app:titleTextColor="#fff"/>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            android:layout_marginLeft="6dp"
-            android:layout_marginRight="6dp"
-            android:layout_marginTop="12dp"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
 
-
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="22dp"
+                android:weightSum="7"
                 android:layout_marginLeft="6dp"
-                android:padding="6dp"
-                android:id="@+id/qus"
-                android:text="Q. "
-                android:textColor="#000"
-                android:textSize="18sp" />
+                android:layout_marginRight="6dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/viewattendance1">
 
-
-            <RadioGroup
-                android:id="@+id/radio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-                >
-
-               <!-- <RadioButton
-                    android:id="@+id/radioMale"
-                    android:layout_width="wrap_content"
+                <ImageView
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_margin="6dp"
-                    android:checked="true"
-                    android:padding="4dp"
-                    android:text="perspiciatis"
-                    android:textSize="18sp" />
+                    android:layout_weight="1.5"
+                    android:src="@drawable/left"
+                    android:id="@+id/left"
+                    android:layout_gravity="center_vertical"
+                    />
 
-                <RadioButton
-                    android:layout_width="wrap_content"
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="4"
                     android:layout_height="wrap_content"
-                    android:layout_margin="6dp"
-                    android:padding="4dp"
-                    android:text="omnis"
-                    android:textSize="18sp" />
+                    android:textColor="#ffffff"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:textSize="14sp"
+                    android:id="@+id/date"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_horizontal"
+                    />
 
-                <RadioButton
-                    android:layout_width="wrap_content"
+                <ImageView
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_margin="6dp"
-                    android:padding="4dp"
-                    android:text="accum"
-                    android:textSize="18sp" />
+                    android:src="@drawable/right"
+                    android:layout_weight="1.5"
+                    android:id="@+id/right"
+                    android:layout_gravity="center_vertical"
+                    />
 
-                <RadioButton
-                    android:id="@+id/radioFemale"
-                    android:layout_width="wrap_content"
+            </LinearLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <com.eduschool.eduschoolapp.CustomViewPager
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/pager"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="6dp"
-                    android:padding="4dp"
-                    android:text="site"
-                    android:textSize="18sp" />
--->
-            </RadioGroup>
+                    android:padding="10dp"
+                    android:visibility="gone"
+                    android:text="No Time Table available"
+                    android:gravity="center_horizontal"
+                    android:id="@+id/text"
+                    />
+
+            </RelativeLayout>
+
         </LinearLayout>
+
+
     </LinearLayout>
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/viewattendance1"
-        android:text="SUBMIT"
-        android:textColor="#fff"
-        android:id="@+id/submit"/>
     <ProgressBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/progress"
         android:visibility="gone"
         android:layout_centerInParent="true"/>
+
 </RelativeLayout>

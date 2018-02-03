@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -19,6 +21,7 @@ import android.widget.TextView;
 import com.eduschool.eduschoolapp.AllAPIs;
 import com.eduschool.eduschoolapp.AttendanceSummaryPOJO.AttendanceSummary;
 import com.eduschool.eduschoolapp.AttendanceSummaryPOJO.AttendanceSummaryBean;
+import com.eduschool.eduschoolapp.Home.ParentHome;
 import com.eduschool.eduschoolapp.Home.TeacherHome;
 import com.eduschool.eduschoolapp.R;
 import com.eduschool.eduschoolapp.StudentListPOJO.StudentListbean;
@@ -36,7 +39,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class Attendance extends Fragment {
-    Button mark_attendance, edit_attendance, view_attendance;
+    TextView mark_attendance, edit_attendance, view_attendance;
     Toolbar toolbar;
     ProgressBar progress;
     CardView cardView;
@@ -56,9 +59,9 @@ public class Attendance extends Fragment {
 
         toolbar = (Toolbar) ((TeacherHome) getContext()).findViewById(R.id.tool_bar);
 
-        mark_attendance = (Button) view.findViewById(R.id.mark_attendance);
-        view_attendance = (Button) view.findViewById(R.id.view_attendance);
-        edit_attendance = (Button) view.findViewById(R.id.edit_attendance);
+        mark_attendance = (TextView) view.findViewById(R.id.mark_attendance);
+        view_attendance = (TextView) view.findViewById(R.id.view_attendance);
+        edit_attendance = (TextView) view.findViewById(R.id.edit_attendance);
         absent=(TextView)view.findViewById(R.id.absent);
         present=(TextView)view.findViewById(R.id.present);
         leave=(TextView)view.findViewById(R.id.leave);
@@ -161,6 +164,15 @@ public class Attendance extends Fragment {
     public void onResume() {
         super.onResume();
         toolbar.setTitle("Attendance");
+
+        DrawerLayout drawer = (DrawerLayout)((TeacherHome) getContext()).findViewById(R.id.drawer_asiana);
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                getActivity(), drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+
         User u = (User) getContext().getApplicationContext();
 
         u.back = true;

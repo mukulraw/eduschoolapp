@@ -24,9 +24,9 @@ public class ParentResultFrgmnt  extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.exam_result_1, container, false);
-        exam = (TextView) view.findViewById(R.id.exam);
-        exam.setOnClickListener(new View.OnClickListener() {
+        View view = inflater.inflate(R.layout.parent_exm_result, container, false);
+        //exam = (TextView) view.findViewById(R.id.exam);
+        /*exam.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -37,7 +37,7 @@ public class ParentResultFrgmnt  extends Fragment {
                 ft.addToBackStack(null);
                 ft.commit();
             }
-        });
+        });*/
         return view;
 
     }

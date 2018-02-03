@@ -1,14 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
-    signingConfigs {
+    /*signingConfigs {
         config {
             keyAlias 'gobble'
             keyPassword 'Zedistark1@'
             storeFile file('C:/Users/user/Downloads/KeyStore.jks')
             storePassword 'Zedistark1@'
         }
-    }
+    }*/
     compileSdkVersion 25
     buildToolsVersion "25.0.0"
     defaultConfig {
@@ -18,11 +18,11 @@ android {
         versionCode 3
         versionName "1.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        signingConfig signingConfigs.config
+        //signingConfig signingConfigs.config
     }
     buildTypes {
         release {
-            debuggable false
+            debuggable true
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
@@ -42,6 +42,7 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    compile project(':multispinner')
     compile 'com.android.support:appcompat-v7:25.3.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha4'
     compile 'com.android.support:recyclerview-v7:25.3.0'
@@ -56,9 +57,20 @@ dependencies {
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     compile 'com.squareup.retrofit2:converter-scalars:2.1.0'
     compile 'com.google.android.gms:play-services-auth:9.8.0'
-
+    compile 'com.prolificinteractive:material-calendarview:1.4.3'
     compile 'com.github.npanigrahy:Custom-Calendar-View:v1.0'
     compile 'com.github.sundeepk:compact-calendar-view:2.0.2.2'
+    compile 'com.makeramen:roundedimageview:2.3.0'
+    compile 'im.dacer:AndroidCharts:1.0.4'
+
+    compile 'com.android.volley:volley:1.0.0'
+
+    compile 'com.github.PhilJay:MPAndroidChart:v3.0.2'
+
+    compile 'io.apptik.widget:multiselectspinner:1.0.12'
+
+    compile 'com.prolificinteractive:material-calendarview:1.4.3'
+    compile 'com.github.miguelbcr:TableFixHeaders-Wrapper:0.2.0'
 
     testCompile 'junit:junit:4.12'
 }

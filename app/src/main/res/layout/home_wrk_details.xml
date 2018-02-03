@@ -2,16 +2,13 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
+    android:background="@color/bach_color"
     android:orientation="vertical">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
 
@@ -25,6 +22,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="6dp"
                     android:layout_marginRight="6dp"
+                    android:background="@drawable/white_round"
+                    android:padding="1dp"
                     android:layout_marginTop="20dp">
 
                     <LinearLayout
@@ -40,7 +39,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="8A"
                             android:id="@+id/classSection"
                             android:textColor="#398DBF"
                             android:textSize="32sp"
@@ -50,16 +48,21 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="10 March 2017"
                             android:id="@+id/date"
                             android:textColor="#000000" />
                     </LinearLayout>
+
+                    <TextView
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="#cdcdcd"
+                        />
 
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="3"
-                        android:background="@drawable/viewattendance"
+                        android:background="@drawable/viewattendance2"
                         android:gravity="center"
                         android:padding="12dp">
 
@@ -68,7 +71,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:paddingLeft="8dp"
-                            android:text=" "
+                            android:textAllCaps="true"
                             android:id="@+id/subject"
                             android:textColor="#000000"
                             android:textSize="32sp"
@@ -83,10 +86,9 @@
                     android:layout_marginLeft="6dp"
                     android:layout_marginRight="6dp"
                     android:layout_marginTop="16dp"
-                    android:background="@drawable/viewattendance1"
+                    android:background="@drawable/viewattendance4"
                     android:padding="12dp"
                     android:id="@+id/title"
-                    android:text="Biology_08-Mar-17_Chapter Water Plants"
                     android:textColor="#ffffff" />
 
                 <LinearLayout
@@ -95,29 +97,21 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="6dp"
                     android:layout_marginRight="6dp"
-                    android:layout_marginTop="3dp"
-                    android:background="@drawable/viewattendance"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/white_round"
                     android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:drawableLeft="@drawable/calendar"
-                        android:drawablePadding="12dp"
-                        android:gravity="center_vertical"
-                        android:padding="12dp"
-                        android:text="Due Date"
-                        android:textColor="#000000" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:padding="12dp"
+                        android:drawablePadding="10dp"
+                        android:gravity="center_vertical"
                         android:id="@+id/due_date"
-                        android:text="(10-March-2017)"
-                        android:textColor="#000000" />
+                        android:drawableStart="@drawable/calendar"
+                        />
 
 
                 </LinearLayout>
@@ -127,86 +121,35 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="6dp"
                     android:layout_marginRight="6dp"
-                    android:layout_marginTop="3dp"
-                    android:background="@drawable/viewattendance"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="6dp"
+                    android:background="@drawable/white_round"
                     android:minLines="4"
                     android:padding="12dp"
                     android:id="@+id/note"
                     android:text="Extra Notes"
-                    android:textColor="#000000" />
+                     />
 
-                <!--<LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="6dp"
-                    android:layout_marginRight="6dp"
-                    android:layout_marginTop="3dp"
-                    android:background="@drawable/viewattendance"
-                    android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/subject"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:padding="12dp"
-                        android:text="Pdf-1"
-                        android:textColor="#000000" />
 
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_gravity="center"
-                        android:layout_marginRight="9dp"
-                        android:gravity="center"
-                        android:paddingBottom="4dp"
-                        android:paddingLeft="5dp"
-                        android:paddingRight="5dp"
 
-                        android:paddingTop="4dp"
-                        android:src="@drawable/download" />
-                </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="6dp"
-                    android:layout_marginRight="6dp"
-                    android:layout_marginTop="3dp"
-                    android:background="@drawable/viewattendance"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/subject1"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:padding="12dp"
-                        android:text="Pdf-2"
-                        android:textColor="#000000" />
-
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_gravity="center"
-                        android:layout_marginRight="9dp"
-                        android:gravity="center"
-                        android:paddingBottom="4dp"
-                        android:paddingLeft="5dp"
-                        android:paddingRight="5dp"
-                        android:paddingTop="4dp"
-                        android:src="@drawable/download" />
-                </LinearLayout>-->
             </LinearLayout>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
 
-            </RelativeLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:padding="1dp"
+                android:layout_height="match_parent"
+                android:id="@+id/grid"
+                />
+
 
         </LinearLayout>
-    </ScrollView>
+
+
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -216,7 +159,7 @@
             android:layout_height="wrap_content"
             android:textColor="#fff"
             android:text="COMPLETED"
-            android:background="@drawable/viewattendance1"
+            android:background="@drawable/viewattendance3"
             android:id="@+id/btn_complted"
             />
 

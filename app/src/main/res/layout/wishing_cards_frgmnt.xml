@@ -3,13 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/bach_color"
     android:layout_height="match_parent"
     tools:context="com.eduschool.eduschoolapp.Communication.ComposeMessage">
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
 
@@ -72,42 +73,52 @@
                                 android:layout_marginRight="6dp">
 
 
-                                <ImageView
+                                <com.makeramen.roundedimageview.RoundedImageView
                                     android:layout_width="200dp"
                                     android:layout_height="200dp"
                                     android:layout_marginRight="6dp"
                                     android:src="@drawable/b1"
+                                    app:riv_border_width="0dp"
+                                    app:riv_corner_radius="3dp"
                                     android:id="@+id/img1"/>
 
 
-                                <ImageView
+                                <com.makeramen.roundedimageview.RoundedImageView
                                     android:layout_width="200dp"
+                                    app:riv_border_width="0dp"
+                                    app:riv_corner_radius="3dp"
                                     android:layout_height="200dp"
                                     android:layout_marginRight="6dp"
                                     android:src="@drawable/b2"
                                     android:id="@+id/img2"/>
 
 
-                                <ImageView
+                                <com.makeramen.roundedimageview.RoundedImageView
                                     android:layout_width="200dp"
                                     android:layout_height="200dp"
+                                    app:riv_border_width="0dp"
+                                    app:riv_corner_radius="3dp"
                                     android:layout_marginRight="6dp"
                                     android:src="@drawable/b3"
                                     android:id="@+id/img3"/>
 
 
-                                <ImageView
+                                <com.makeramen.roundedimageview.RoundedImageView
                                     android:layout_width="200dp"
                                     android:layout_height="200dp"
+                                    app:riv_border_width="0dp"
+                                    app:riv_corner_radius="3dp"
                                     android:layout_marginRight="6dp"
                                     android:src="@drawable/b4"
                                     android:id="@+id/img4"/>
 
 
-                                <ImageView
+                                <com.makeramen.roundedimageview.RoundedImageView
                                     android:layout_width="200dp"
                                     android:layout_height="200dp"
                                     android:padding="6dp"
+                                    app:riv_border_width="0dp"
+                                    app:riv_corner_radius="3dp"
                                     android:src="@drawable/b5"
                                     android:id="@+id/img5"/>
                             </LinearLayout>

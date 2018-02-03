@@ -21,6 +21,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="6dp"
                 android:layout_marginRight="6dp"
+                android:background="@drawable/white_round"
+                android:padding="1dp"
                 android:layout_marginTop="12dp">
 
                 <LinearLayout
@@ -37,7 +39,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="8A"
                         android:textColor="#398DBF"
                         android:textSize="28sp"
                         android:textStyle="bold" />
@@ -47,9 +48,15 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="10 March 2017"
                         android:textColor="#000000" />
                 </LinearLayout>
+
+                <TextView
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="#cdcdcd"
+                    />
+
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -72,26 +79,43 @@
 
             </LinearLayout>
 
-            <Spinner
-                android:id="@+id/chapter"
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="6dp"
-                android:layout_marginRight="6dp"
-                android:layout_marginTop="22dp"
-                android:background="@drawable/viewattendance"
-                android:text="Chapter" />
+                android:layout_gravity="center"
+                android:gravity="center_vertical"
+                android:padding="12dp"
+                android:textColor="#000000"
+                android:id="@+id/chapter"
+                android:background="@drawable/white_round"
+                android:layout_marginStart="6dp"
+                android:layout_marginEnd="6dp"
+                android:layout_marginBottom="12dp"
+                android:layout_marginTop="12dp"
+                />
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/white_round"
+                android:layout_marginLeft="6dp"
+                android:minHeight="50dp"
+                android:layout_marginRight="6dp"
+                >
 
             <Spinner
                 android:id="@+id/status"
                 android:layout_width="match_parent"
+                android:layout_marginStart="6dp"
+                android:layout_marginEnd="6dp"
+                android:layout_centerVertical="true"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="6dp"
-                android:layout_marginRight="6dp"
-                android:background="@drawable/viewattendance">
+                >
 
             </Spinner>
+
+
+            </RelativeLayout>
 
 
             <EditText
@@ -101,11 +125,14 @@
                 android:layout_marginLeft="6dp"
                 android:layout_marginRight="6dp"
                 android:layout_marginTop="3dp"
-                android:background="@drawable/viewattendance"
+                android:background="@drawable/white_round"
                 android:gravity="top|left"
-                android:hint="Learn unit 10 and read unit 9"
                 android:minLines="6"
-                android:padding="5dp" />
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                />
 
         </LinearLayout>
     </ScrollView>

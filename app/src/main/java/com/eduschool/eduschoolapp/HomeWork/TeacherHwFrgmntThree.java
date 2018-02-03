@@ -18,7 +18,9 @@ import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.text.format.DateFormat;
 import android.text.format.Time;
 import android.util.Log;
@@ -30,6 +32,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -45,13 +50,19 @@ import com.eduschool.eduschoolapp.StudentListPOJO.StudentList;
 import com.eduschool.eduschoolapp.StudentListPOJO.StudentListbean;
 import com.eduschool.eduschoolapp.UpdateHwPOJO.UpdateHwBean;
 import com.eduschool.eduschoolapp.User;
+import com.eduschool.eduschoolapp.deleteFileBean;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -60,6 +71,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 import static android.app.Activity.RESULT_OK;
+import static com.eduschool.eduschoolapp.R.id.transition_current_scene;
 import static com.eduschool.eduschoolapp.R.id.view;
 
 /**
@@ -70,7 +82,7 @@ public class TeacherHwFrgmntThree extends Fragment {
     Toolbar toolbar;
     TextView subjectName, classSection, createDate, DueDate, file;
     EditText note;
-    Spinner chapter;
+    TextView chapter;
     Button update;
     Bitmap bmp;
     String mCurrentPhotoPath;
@@ -83,6 +95,18 @@ public class TeacherHwFrgmntThree extends Fragment {
     public List<ChapterList> listChapter;
     private final int PICK_IMAGE_REQUEST = 2;
 
+    LinearLayout downloadLayout;
+
+    int fileCount = 0;
+
+    TextView fileName;
+    ImageView cross;
+
+    String chapId;
+
+    String fileId;
+
+    String strtext;
 
     public TeacherHwFrgmntThree() {
 
@@ -94,16 +118,21 @@ public class TeacherHwFrgmntThree extends Fragment {
 
         View view = inflater.inflate(R.layout.teacher_hw_frgmnt_three, container, false);
         toolbar = (Toolbar) ((TeacherHome) getContext()).findViewById(R.id.tool_bar);
-        final String strtext = getArguments().getString("message");
+        strtext = getArguments().getString("message");
         progress = (ProgressBar) view.findViewById(R.id.progress);
         //Toast.makeText(getActivity(),String.valueOf(strtext), Toast.LENGTH_SHORT).show();
+
+        downloadLayout = (LinearLayout)view.findViewById(R.id.download_layout);
+
+        fileName = (TextView)view.findViewById(R.id.file_name);
+        cross = (ImageView)view.findViewById(R.id.cross);
 
         subjectName = (TextView) view.findViewById(R.id.subject);
         note = (EditText) view.findViewById(R.id.note);
         classSection = (TextView) view.findViewById(R.id.className);
         createDate = (TextView) view.findViewById(R.id.date);
         file = (TextView) view.findViewById(R.id.file);
-        chapter = (Spinner) view.findViewById(R.id.chapter);
+        chapter = (TextView) view.findViewById(R.id.chapter);
         DueDate = (TextView) view.findViewById(R.id.dueDate);
         chapterlist = new ArrayList<>();
         listChapter = new ArrayList<>();
@@ -118,154 +147,94 @@ public class TeacherHwFrgmntThree extends Fragment {
             @Override
             public void onClick(View view) {
 
+                if (fileCount > 0)
+                {
+                    Toast.makeText(getContext() , "Can attach one File only" , Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    Intent intent = new Intent();
+                    intent.setAction(Intent.ACTION_GET_CONTENT);
+                    intent.setType("image/*");
+                    startActivityForResult(Intent.createChooser(intent, "Select File"), PICK_IMAGE_REQUEST);
+                }
 
-                Intent intent = new Intent();
 
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                intent.setType("image/*");
-                startActivityForResult(Intent.createChooser(intent, "Select File"), PICK_IMAGE_REQUEST);
 
             }
         });
 
 
-        final User b = (User) getActivity().getApplicationContext();
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(b.baseURL)
-                .addConverterFactory(ScalarsConverterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        final AllAPIs cr = retrofit.create(AllAPIs.class);
-        Call<HomewrkBean> call2 = cr.homewrk(b.school_id, strtext);
-        progress.setVisibility(View.VISIBLE);
 
 
-        call2.enqueue(new Callback<HomewrkBean>() {
+        loadData();
 
+
+
+
+        cross.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onResponse(Call<HomewrkBean> call, Response<HomewrkBean> response) {
-
-                subjectName.setText(response.body().getHomeworkData().get(0).getSubject());
-                classSection.setText(response.body().getHomeworkData().get(0).getClass_() + " " + response.body().getHomeworkData().get(0).getSection());
-                createDate.setText(response.body().getHomeworkData().get(0).getCreateDate());
-                DueDate.setText(response.body().getHomeworkData().get(0).getDueDate());
-                //chapter.setText(response.body().getHomeworkData().get(0).getChapter());
-                note.setText(response.body().getHomeworkData().get(0).getNotes());
-
-                classId = response.body().getHomeworkData().get(0).getClassId();
-                subjectId = response.body().getHomeworkData().get(0).getSubjectId();
-
-
-                chapterlist.add(response.body().getHomeworkData().get(0).getChapter());
-
-                chapterId.add(response.body().getHomeworkData().get(0).getChapterId());
-
-
-                ArrayAdapter<String> adp2 = new ArrayAdapter<String>(getContext(),
-                        android.R.layout.simple_list_item_1, chapterlist);
-
-                adp2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                adp2.notifyDataSetChanged();
-                chapter.setAdapter(adp2);
-
-                cId = response.body().getHomeworkData().get(0).getClassId();
-                ssId = response.body().getHomeworkData().get(0).getSubjectId();
-                sId = response.body().getHomeworkData().get(0).getSectionId();
-                hId = response.body().getHomeworkData().get(0).getHomeworkId();
-
-                progress.setVisibility(View.GONE);
-
-            }
-
-            @Override
-            public void onFailure(Call<HomewrkBean> call, Throwable throwable) {
-                progress.setVisibility(View.GONE);
-
-            }
-
-        });
+            public void onClick(View v) {
 
 
 
+                User b = (User) getActivity().getApplicationContext();
+                Retrofit retrofit = new Retrofit.Builder()
+                        .baseUrl(b.baseURL)
+                        .addConverterFactory(ScalarsConverterFactory.create())
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
 
-        chapter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, final int i, long l) {
-
-                Call<ChapterListbean> call = cr.chapterList(b.school_id, cId, ssId);
-
+                AllAPIs cr = retrofit.create(AllAPIs.class);
                 progress.setVisibility(View.VISIBLE);
 
 
-                call.enqueue(new Callback<ChapterListbean>() {
+                Call<deleteFileBean> call = cr.deleteHomeWorkAttach(fileId);
 
+
+                call.enqueue(new Callback<deleteFileBean>() {
                     @Override
-                    public void onResponse(Call<ChapterListbean> call, Response<ChapterListbean> response) {
+                    public void onResponse(Call<deleteFileBean> call, Response<deleteFileBean> response) {
 
-                        sChapter = chapterId.get(i);
+                        try {
 
-                        listChapter = response.body().getChapterList();
-                        chapterlist.clear();
-                        chapterId.clear();
-                        for (int i = 0; i < response.body().getChapterList().size(); i++) {
+                            if (Objects.equals(response.body().getStatus(), "1"))
+                            {
+                                Toast.makeText(getContext() , "File Deleted Successfully" , Toast.LENGTH_SHORT).show();
+                                loadData();
+                            }
+                            else
+                            {
+                                Toast.makeText(getContext() , "Error Deleting File" , Toast.LENGTH_SHORT).show();
+                            }
 
-                            chapterlist.add(response.body().getChapterList().get(i).getChapterName());
-
-                            chapterId.add(response.body().getChapterList().get(i).getChapterId());
-
+                        }catch (Exception e)
+                        {
+                            e.printStackTrace();
                         }
 
+
+
                         progress.setVisibility(View.GONE);
-
-                        Call<StudentListbean> call3 = cr.student_list(b.school_id, cId, sId);
-
-                        progress.setVisibility(View.VISIBLE);
-
-                        call3.enqueue(new Callback<StudentListbean>() {
-
-                            @Override
-                            public void onResponse(Call<StudentListbean> call3, Response<StudentListbean> response) {
-
-
-                                listStudent = response.body().getStudentList();
-                                studentlist.clear();
-                                studentId.clear();
-                                for (int i = 0; i < response.body().getStudentList().size(); i++) {
-
-                                    studentlist.add(response.body().getStudentList().get(i).getStudentName());
-
-                                    studentId.add(response.body().getStudentList().get(i).getStudentId());
-                                }
-
-                                Log.d("studenttt",String.valueOf(studentId.size()));
-                                progress.setVisibility(View.GONE);
-                            }
-
-                            @Override
-                            public void onFailure(Call<StudentListbean> call, Throwable throwable) {
-                                progress.setVisibility(View.GONE);
-
-                            }
-                        });
 
                     }
 
                     @Override
-                    public void onFailure(Call<ChapterListbean> call, Throwable throwable) {
+                    public void onFailure(Call<deleteFileBean> call, Throwable t) {
+
+                        t.printStackTrace();
                         progress.setVisibility(View.GONE);
 
                     }
                 });
 
 
-            }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
         });
+
+
 
 
         DueDate.setOnClickListener(new View.OnClickListener() {
@@ -327,8 +296,37 @@ public class TeacherHwFrgmntThree extends Fragment {
 
                         sNote = note.getText().toString().trim();
 
+                        MultipartBody.Part body = null;
 
-                        Call<UpdateHwBean> call = cr.update_hw(hId, b.school_id, b.user_id, cId, sId, ssId, sChapter, sNote, DueDate.getText().toString(), studentId, "Image");
+
+                        //String mCurrentPhotoPath = "";
+
+                        try {
+
+                            File file1 = new File(mCurrentPhotoPath);
+
+
+                            final RequestBody reqFile = RequestBody.create(MediaType.parse("multipart/form-data"), file1);
+
+                            body = MultipartBody.Part.createFormData("homeattach", file1.getName(), reqFile);
+
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
+
+                        final User b = (User) getActivity().getApplicationContext();
+                        Retrofit retrofit = new Retrofit.Builder()
+                                .baseUrl(b.baseURL)
+                                .addConverterFactory(ScalarsConverterFactory.create())
+                                .addConverterFactory(GsonConverterFactory.create())
+                                .build();
+
+                        final AllAPIs cr = retrofit.create(AllAPIs.class);
+
+
+                        Call<UpdateHwBean> call = cr.update_hw(hId, b.school_id, b.user_id, cId, sId, ssId, chapId, sNote, DueDate.getText().toString(), TextUtils.join(",", studentId) , body);
 
 
                         progress.setVisibility(View.VISIBLE);
@@ -339,13 +337,20 @@ public class TeacherHwFrgmntThree extends Fragment {
                             @Override
                             public void onResponse(Call<UpdateHwBean> call, Response<UpdateHwBean> response) {
 
-                                if (response.body().getStatus().equals("1")) {
-                                    Toast.makeText(getContext(), "Home Work Updated Successfully", Toast.LENGTH_LONG).show();
+                                try {
+                                    if (response.body().getStatus().equals("1")) {
+                                        Toast.makeText(getContext(), "Home Work Updated Successfully", Toast.LENGTH_LONG).show();
 
-                                    getFragmentManager().popBackStack();
-                                } else {
-                                    Toast.makeText(getContext(), "Home Work did Not updated successfully!", Toast.LENGTH_LONG).show();
+                                        getFragmentManager().popBackStack();
+                                    } else {
+                                        Toast.makeText(getContext(), "Home Work did Not updated successfully!", Toast.LENGTH_LONG).show();
+                                    }
+                                }catch (Exception e)
+                                {
+                                    e.printStackTrace();
                                 }
+
+
 
                                 progress.setVisibility(View.GONE);
 
@@ -355,6 +360,7 @@ public class TeacherHwFrgmntThree extends Fragment {
                             public void onFailure(Call<UpdateHwBean> call, Throwable throwable) {
                                 progress.setVisibility(View.GONE);
 
+                                throwable.printStackTrace();
                             }
                         });
 
@@ -387,7 +393,7 @@ public class TeacherHwFrgmntThree extends Fragment {
             Time chosenDate = new Time();
             chosenDate.set(day, monthOfYear, year);
             long dtDob = chosenDate.toMillis(true);
-            strDate = DateFormat.format("dd-MMMM-yyyy", dtDob);
+            strDate = DateFormat.format("dd-MMM-yyyy", dtDob);
             DueDate.setText(strDate);
         }
 
@@ -410,7 +416,7 @@ public class TeacherHwFrgmntThree extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        toolbar.setTitle("Home Work");
+        toolbar.setTitle("Home Work Edit");
         User u = (User) getContext().getApplicationContext();
 
         u.back = false;
@@ -569,6 +575,104 @@ public class TeacherHwFrgmntThree extends Fragment {
                 cursor.close();
         }
         return null;
+    }
+
+
+    private void loadData()
+    {
+        final User b = (User) getActivity().getApplicationContext();
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(b.baseURL)
+                .addConverterFactory(ScalarsConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        final AllAPIs cr = retrofit.create(AllAPIs.class);
+        Call<HomewrkBean> call2 = cr.homewrk(b.school_id, strtext);
+        progress.setVisibility(View.VISIBLE);
+
+
+        call2.enqueue(new Callback<HomewrkBean>() {
+
+            @Override
+            public void onResponse(Call<HomewrkBean> call, Response<HomewrkBean> response) {
+
+                try {
+                    subjectName.setText(response.body().getHomeworkData().get(0).getSubject());
+                    classSection.setText(response.body().getHomeworkData().get(0).getClass_() + " " + response.body().getHomeworkData().get(0).getSection());
+                    createDate.setText(response.body().getHomeworkData().get(0).getCreateDate());
+                    DueDate.setText(response.body().getHomeworkData().get(0).getDueDate());
+                    //chapter.setText(response.body().getHomeworkData().get(0).getChapter());
+                    note.setText(response.body().getHomeworkData().get(0).getNotes());
+
+                    classId = response.body().getHomeworkData().get(0).getClassId();
+                    subjectId = response.body().getHomeworkData().get(0).getSubjectId();
+
+                    Log.d("chapterId" , response.body().getHomeworkData().get(0).getChapterId());
+
+                    chapter.setText(response.body().getHomeworkData().get(0).getChapter());
+
+                    chapId = response.body().getHomeworkData().get(0).getChapterId();
+
+                    chapterlist.add(response.body().getHomeworkData().get(0).getChapter());
+
+                    chapterId.add(response.body().getHomeworkData().get(0).getChapterId());
+
+                    for (int i = 0 ; i < response.body().getHomeworkData().get(0).getPendinghomworkStudent().size() ; i++)
+                    {
+                        studentId.add(response.body().getHomeworkData().get(0).getPendinghomworkStudent().get(i).getStuId());
+                    }
+
+
+
+
+                    if (response.body().getHomeworkData().get(0).getFileAttachment().size() > 0)
+                    {
+                        fileCount++;
+
+                        fileName.setText(response.body().getHomeworkData().get(0).getFileAttachment().get(0).getAttachFile());
+
+                        fileId = response.body().getHomeworkData().get(0).getFileAttachment().get(0).getAttachId();
+
+                        downloadLayout.setVisibility(View.VISIBLE);
+                        //file.setClickable(false);
+                    }
+                    else
+                    {
+                        fileCount = 0;
+                        downloadLayout.setVisibility(View.GONE);
+                        //file.setClickable(true);
+                    }
+
+
+                    ArrayAdapter<String> adp2 = new ArrayAdapter<String>(getContext(),
+                            android.R.layout.simple_list_item_1, chapterlist);
+
+                    adp2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    adp2.notifyDataSetChanged();
+
+                    cId = response.body().getHomeworkData().get(0).getClassId();
+                    ssId = response.body().getHomeworkData().get(0).getSubjectId();
+                    sId = response.body().getHomeworkData().get(0).getSectionId();
+                    hId = response.body().getHomeworkData().get(0).getHomeworkId();
+                }catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
+
+
+
+                progress.setVisibility(View.GONE);
+
+            }
+
+            @Override
+            public void onFailure(Call<HomewrkBean> call, Throwable throwable) {
+                progress.setVisibility(View.GONE);
+
+            }
+
+        });
     }
 
 

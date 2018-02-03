@@ -35,11 +35,11 @@ public class frgmnt1 extends Fragment {
 
 
         web = (WebView) view.findViewById(R.id.web);
-        web.loadUrl("https://en.wikipedia.org/wiki/Main_Page");
+        //web.loadUrl("https://en.wikipedia.org/wiki/Main_Page");
 
         // Enable Javascript
-        WebSettings webSettings = web.getSettings();
-        webSettings.setJavaScriptEnabled(true);
+        //WebSettings webSettings = web.getSettings();
+        //webSettings.setJavaScriptEnabled(true);
 
         // Force links and redirects to open in the WebView instead of in a browser
         web.setWebViewClient(new WebViewClient());

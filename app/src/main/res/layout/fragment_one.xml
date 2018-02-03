@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bach_color"
     android:orientation="vertical">
 
     <ScrollView
@@ -24,16 +25,29 @@
                 android:orientation="vertical"
                 android:paddingBottom="50dp">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="1dp"
+                    android:background="@drawable/white_round"
+                    >
 
                 <TextView
                     android:id="@+id/date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:background="@drawable/viewattendance"
+
                     android:text="Date"
                     android:padding="12dp"
                     android:textSize="18dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#cdcdcd"
+                        />
 
                 <Spinner
                     android:id="@+id/className"
@@ -43,6 +57,12 @@
                     android:textColorHint="#c9c8c8"
                     android:textSize="18dp" />
 
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#cdcdcd"
+                        />
+
                 <Spinner
                     android:id="@+id/sectonName"
                     android:layout_width="match_parent"
@@ -50,6 +70,12 @@
                     android:background="@drawable/viewattendance"
                     android:textColorHint="#c9c8c8"
                     android:textSize="18dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#cdcdcd"
+                        />
 
                 <Spinner
                     android:id="@+id/subjectName"
@@ -59,6 +85,12 @@
                     android:textColorHint="#c9c8c8"
                     android:textSize="18dp" />
 
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#cdcdcd"
+                        />
+
                 <Spinner
                     android:id="@+id/chapter"
                     android:layout_width="match_parent"
@@ -67,6 +99,11 @@
                     android:textColorHint="#c9c8c8"
                     android:textSize="18dp" />
 
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#cdcdcd"
+                        />
 
                 <Spinner
                     android:id="@+id/status"
@@ -78,12 +115,15 @@
                     android:textSize="18dp" />
 
 
+
+                </LinearLayout>
+
                 <EditText
                     android:id="@+id/note"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:background="@drawable/viewattendance"
+                    android:background="@drawable/white_round"
                     android:focusableInTouchMode="true"
                     android:gravity="top|left"
                     android:hint="Add Notes.."

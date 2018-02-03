@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="wrap_content"
+    android:minWidth="300dp"
+    android:layout_height="400dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/all"
+            android:padding="10dp"
+            android:text="Select All"
+            />
+
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/grid"
+        android:layout_marginBottom="50dp"
+        />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        >
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/orange_popup"
+            android:minHeight="0dp"
+            android:layout_centerInParent="true"
+            android:paddingLeft="7dp"
+            android:paddingRight="7dp"
+            android:paddingTop="9dp"
+            android:paddingBottom="9dp"
+            android:id="@+id/submit"
+            android:text="SUBMIT"
+            android:textColor="#ffffff" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -29,12 +29,12 @@ public class ParentResultFrgmnt2 extends Fragment {
         View view = inflater.inflate(R.layout.exam_result_2, container, false);
 
 
-        BarChart chart = (BarChart)view.findViewById(R.id.chart);
+        /*BarChart chart = (BarChart)view.findViewById(R.id.chart);
         BarData data = new BarData(getXAxisValues(), getDataSet());
         chart.setData(data);
         chart.animateXY(2000, 2000);
         chart.invalidate();
-
+*/
 
 
         return view;

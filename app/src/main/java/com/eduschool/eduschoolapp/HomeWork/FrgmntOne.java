@@ -95,6 +95,7 @@ import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
 import static com.eduschool.eduschoolapp.R.id.frame_layout_album_select;
 import static com.eduschool.eduschoolapp.R.id.list_item;
+import static com.eduschool.eduschoolapp.R.id.notification;
 import static com.eduschool.eduschoolapp.R.id.view;
 
 /**
@@ -116,6 +117,10 @@ public class FrgmntOne extends Fragment {
     Bitmap bmp;
     EditText note;
     String sNote, sChapter;
+
+    String subName;
+    String chapName;
+
 
 
     List<ClassList> list;
@@ -388,6 +393,7 @@ public class FrgmntOne extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 ssId = subjectId.get(i);
+                subName = subjectlist.get(i);
 
                 Call<SubjectListBean> call1 = cr.subjectList(b.school_id, cId,sId);
 
@@ -481,6 +487,7 @@ public class FrgmntOne extends Fragment {
 
                         }
 
+                        chapName = chapterlist.get(i);
                         sChapter = chapterId.get(i);
                         progress.setVisibility(View.GONE);
 
@@ -505,7 +512,7 @@ public class FrgmntOne extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Dialog dialog = new Dialog(getActivity());
+                final Dialog dialog = new Dialog(getActivity());
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setCancelable(true);
                 dialog.setContentView(R.layout.student_list_dialog);
@@ -513,6 +520,32 @@ public class FrgmntOne extends Fragment {
 
                 final RecyclerView grid = (RecyclerView)dialog.findViewById(R.id.grid);
                 Button submit = (Button)dialog.findViewById(R.id.submit);
+
+
+                final StuAdapter[] adapter = new StuAdapter[1];
+
+                List<StudentList> ll = new ArrayList<>();
+                List<String> names = new ArrayList<>();
+
+                adapter[0] = new StuAdapter(getContext() , ll , checked , names);
+
+                GridLayoutManager manager = new GridLayoutManager(getContext() , 1);
+
+                grid.setAdapter(adapter[0]);
+                grid.setLayoutManager(manager);
+
+                CheckBox all = (CheckBox)dialog.findViewById(R.id.all);
+
+                all.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                        adapter[0].checkAll(isChecked);
+
+                    }
+                });
+
+
 
                 Retrofit retrofit = new Retrofit.Builder()
                         .baseUrl(b.baseURL)
@@ -526,7 +559,7 @@ public class FrgmntOne extends Fragment {
 
                 progress.setVisibility(View.VISIBLE);
 
-                final StuAdapter[] adapter = new StuAdapter[1];
+
 
                 call3.enqueue(new Callback<StudentListbean>() {
 
@@ -534,23 +567,9 @@ public class FrgmntOne extends Fragment {
                     public void onResponse(Call<StudentListbean> call3, Response<StudentListbean> response) {
 
                         checked.clear();
-                        List<String> names = new ArrayList<>();
 
-                        /*listStudent = response.body().getStudentList();
-                        studentlist.clear();
-                        studentId.clear();
-                        for (int i = 0; i < response.body().getStudentList().size(); i++) {
+                        adapter[0].setGridData(response.body().getStudentList());
 
-                            studentlist.add(response.body().getStudentList().get(i).getStudentName());
-
-                            studentId.add(response.body().getStudentList().get(i).getStudentId());
-
-                        }*/
-
-                        GridLayoutManager manager = new GridLayoutManager(getContext() , 1);
-                        adapter[0] = new StuAdapter(getContext() , response.body().getStudentList() , checked , names);
-                        grid.setAdapter(adapter[0]);
-                        grid.setLayoutManager(manager);
 
 
 
@@ -574,7 +593,9 @@ public class FrgmntOne extends Fragment {
                         List<String> ll = adapter[0].getChecked();
                         List<String> ll2 = adapter[0].getNames();
 
-                        stuSelect.setText(String.valueOf(ll2.size() + 1) + " Students Selected");
+                        stuSelect.setText(String.valueOf(ll2.size()) + " Students Selected");
+
+                        dialog.dismiss();
 
                     }
                 });
@@ -713,7 +734,6 @@ public class FrgmntOne extends Fragment {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
 
-
                         sNote = note.getText().toString().trim();
 
                         if (!due_date.getText().toString().equals("Due Date")) {
@@ -758,7 +778,7 @@ public class FrgmntOne extends Fragment {
                             }
 
 
-                            Call<AssignHWbean> call3 = cr.assign_hw(b.school_id, cId, sId, ssId, sChapter, sNote, due_date.getText().toString(), oo.toString() , "image", b.user_id);
+                            Call<AssignHWbean> call3 = cr.assign_hw(b.school_id, cId, sId, ssId, sChapter, sNote, due_date.getText().toString(), oo.toString() , body, b.user_id , subName , chapName);
 
                             progress.setVisibility(View.VISIBLE);
 
@@ -772,6 +792,9 @@ public class FrgmntOne extends Fragment {
                                     if (response.body().getStatus().equals("1")) {
                                         Toast.makeText(getContext(), "Home Work Added Successfully.", Toast.LENGTH_LONG).show();
                                         note.setText(" ");
+
+
+
                                     } else {
                                         Toast.makeText(getContext(), "Home work did not added Successfully!", Toast.LENGTH_LONG).show();
                                     }
@@ -1059,6 +1082,7 @@ public class FrgmntOne extends Fragment {
         List<StudentList> list = new ArrayList<>();
         List<String> checked = new ArrayList<>();
         List<String> names = new ArrayList<>();
+        boolean all = false;
 
         public StuAdapter(Context context , List<StudentList> list , List<String> checked , List<String> names)
         {
@@ -1066,6 +1090,18 @@ public class FrgmntOne extends Fragment {
             this.context = context;
             this.checked = checked;
             this.names = names;
+        }
+
+        public void setGridData(List<StudentList> list)
+        {
+            this.list = list;
+            notifyDataSetChanged();
+        }
+
+        public void checkAll(boolean all)
+        {
+            this.all = all;
+            notifyDataSetChanged();
         }
 
         @Override
@@ -1081,6 +1117,9 @@ public class FrgmntOne extends Fragment {
             final StudentList item = list.get(position);
 
             holder.name.setText(list.get(position).getStudentName());
+
+
+            holder.name.setChecked(all);
 
 
             holder.name.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

@@ -118,7 +118,7 @@ public class CalenderTeacher extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        toolbar.setTitle("Calender");
+        toolbar.setTitle("Holiday Calender");
         User u = (User) getContext().getApplicationContext();
 
         u.back = true;

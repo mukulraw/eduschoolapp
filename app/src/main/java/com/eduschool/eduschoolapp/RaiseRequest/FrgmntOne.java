@@ -1,20 +1,38 @@
 package com.eduschool.eduschoolapp.RaiseRequest;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
 
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
+import com.eduschool.eduschoolapp.AllAPIs;
 import com.eduschool.eduschoolapp.Home.ParentHome;
 import com.eduschool.eduschoolapp.R;
 import com.eduschool.eduschoolapp.User;
+import com.eduschool.eduschoolapp.recReqPOJO.RecevrequestList;
+import com.eduschool.eduschoolapp.recReqPOJO.recReqBean;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 /**
  * Created by User on 5/10/2017.
@@ -22,29 +40,29 @@ import com.eduschool.eduschoolapp.User;
 
 public class FrgmntOne extends Fragment {
 
-    CardView cardView;
+    RecyclerView grid;
+    ProgressBar progress;
     Toolbar toolbar;
+    GridLayoutManager manager;
+    List<RecevrequestList> list;
+    RecAdapter adapter;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-
         View v = inflater.inflate(R.layout.raise_request_frgmnt1, container, false);
         toolbar = (Toolbar) ((ParentHome) getContext()).findViewById(R.id.toolbar);
-        cardView = (CardView) v.findViewById(R.id.card);
 
-        cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        progress = (ProgressBar)v.findViewById(R.id.progress);
+        grid = (RecyclerView)v.findViewById(R.id.grid);
+        manager = new GridLayoutManager(getContext() , 1);
+        list = new ArrayList<>();
 
-                Intent intent=new Intent(getActivity(),SeeBirthdayCard.class);
-                startActivity(intent);
+        adapter = new RecAdapter(getContext() , list);
 
-            }
-        });
-
+        grid.setAdapter(adapter);
+        grid.setLayoutManager(manager);
 
         return v;
     }
@@ -58,5 +76,121 @@ public class FrgmntOne extends Fragment {
         u.back = true;
 
 
+
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(u.baseURL)
+                .addConverterFactory(ScalarsConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        AllAPIs cr = retrofit.create(AllAPIs.class);
+        progress.setVisibility(View.VISIBLE);
+
+        Call<recReqBean> call = cr.getRec(u.school_id , u.user_id , u.user_class , u.user_section , "Parent");
+
+        call.enqueue(new Callback<recReqBean>() {
+            @Override
+            public void onResponse(Call<recReqBean> call, Response<recReqBean> response) {
+
+                adapter.setGridData(response.body().getRecevrequestList());
+
+                progress.setVisibility(View.GONE);
+
+            }
+
+            @Override
+            public void onFailure(Call<recReqBean> call, Throwable t) {
+                progress.setVisibility(View.GONE);
+            }
+        });
+
+
+
+
     }
+
+    public class RecAdapter extends RecyclerView.Adapter<RecAdapter.ViewHolder>
+    {
+
+        Context context;
+        List<RecevrequestList> list = new ArrayList<>();
+
+        public RecAdapter(Context context , List<RecevrequestList> list)
+        {
+            this.context = context;
+            this.list = list;
+        }
+
+        public void setGridData(List<RecevrequestList> list)
+        {
+            this.list = list;
+            notifyDataSetChanged();
+        }
+
+        @Override
+        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View view = inflater.inflate(R.layout.rec_req_model , parent , false);
+            return new ViewHolder(view);
+        }
+
+        @Override
+        public void onBindViewHolder(ViewHolder holder, int position) {
+
+            RecevrequestList item = list.get(position);
+
+            String dat = item.getPostDate();
+
+            String[] d1 = dat.split("-");
+
+            holder.date.setText(d1[0]);
+
+            try {
+                holder.month.setText(d1[1] + " " + d1[2]);
+            }catch (Exception e2)
+            {
+                e2.printStackTrace();
+            }
+
+
+            holder.name.setText(item.getEventType());
+
+            String e = item.getStartDate();
+
+            String[] dd = e.split("-");
+
+            try {
+                holder.end.setText(dd[0] + " " + dd[1] + " " + dd[2]);
+            }catch (Exception e1)
+            {
+                e1.printStackTrace();
+            }
+
+
+
+        }
+
+        @Override
+        public int getItemCount() {
+            return list.size();
+        }
+
+        class ViewHolder extends RecyclerView.ViewHolder
+        {
+
+TextView date , month , name , end;
+
+            public ViewHolder(View itemView) {
+                super(itemView);
+
+                date = (TextView)itemView.findViewById(R.id.date);
+                month = (TextView)itemView.findViewById(R.id.month);
+                name = (TextView)itemView.findViewById(R.id.name);
+                end = (TextView)itemView.findViewById(R.id.end);
+
+            }
+        }
+    }
+
 }

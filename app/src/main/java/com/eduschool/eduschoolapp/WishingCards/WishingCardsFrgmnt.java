@@ -1,5 +1,6 @@
 package com.eduschool.eduschoolapp.WishingCards;
 
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -12,10 +13,12 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -35,8 +38,13 @@ import com.eduschool.eduschoolapp.ClassWrkParentPOJO.ClasssubjectListBean;
 import com.eduschool.eduschoolapp.ClassWrkParentPOJO.SubjectList;
 import com.eduschool.eduschoolapp.Home.ParentHome;
 import com.eduschool.eduschoolapp.R;
+
+import com.eduschool.eduschoolapp.RaiseRequest.RaiseRequestActivity;
 import com.eduschool.eduschoolapp.SendBirthPOJO.SendBirthBean;
 import com.eduschool.eduschoolapp.User;
+import com.eduschool.eduschoolapp.birthPOJO.BirthList;
+import com.eduschool.eduschoolapp.birthPOJO.birthBean;
+import com.makeramen.roundedimageview.RoundedImageView;
 
 
 import org.json.JSONArray;
@@ -72,18 +80,18 @@ public class WishingCardsFrgmnt extends Fragment {
     Toolbar toolbar;
     String value, mCurrentPhotoPath;
 
-    ImageView img1, img2, img3, img4, img5;
+    RoundedImageView img1, img2, img3, img4, img5;
     RadioButton radio1, radio2, radio3, radio4, radio5;
     RadioGroup group;
 
     ProgressBar progress;
     RecyclerView recyclerView;
     GridLayoutManager manager;
-    List<BirthStuList> list;
+    List<BirthList> list;
     Adapter adapter;
     Bitmap bitmap;
     List<AdapterBean> s;
-    int index;
+    int index = -1;
     File file;
 
     List<String> studentId;
@@ -102,11 +110,11 @@ public class WishingCardsFrgmnt extends Fragment {
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler);
         progress = (ProgressBar) view.findViewById(R.id.progress);
         manager = new GridLayoutManager(getActivity(), 1);
-        img1 = (ImageView) view.findViewById(R.id.img1);
-        img2 = (ImageView) view.findViewById(R.id.img2);
-        img3 = (ImageView) view.findViewById(R.id.img3);
-        img4 = (ImageView) view.findViewById(R.id.img4);
-        img5 = (ImageView) view.findViewById(R.id.img5);
+        img1 = (RoundedImageView) view.findViewById(R.id.img1);
+        img2 = (RoundedImageView) view.findViewById(R.id.img2);
+        img3 = (RoundedImageView) view.findViewById(R.id.img3);
+        img4 = (RoundedImageView) view.findViewById(R.id.img4);
+        img5 = (RoundedImageView) view.findViewById(R.id.img5);
         radio1 = (RadioButton) view.findViewById(R.id.radio1);
         radio2 = (RadioButton) view.findViewById(R.id.radio2);
         radio3 = (RadioButton) view.findViewById(R.id.radio3);
@@ -147,22 +155,21 @@ public class WishingCardsFrgmnt extends Fragment {
         final AllAPIs cr = retrofit.create(AllAPIs.class);
         progress.setVisibility(View.VISIBLE);
 
-        Call<BirthStuListBean> call = cr.stu_bithday(b.school_id);
+        Call<birthBean> call = cr.stu_bithday(b.school_id);
 
 
-        call.enqueue(new Callback<BirthStuListBean>() {
+        call.enqueue(new Callback<birthBean>() {
             @Override
-            public void onResponse(Call<BirthStuListBean> call, Response<BirthStuListBean> response) {
+            public void onResponse(Call<birthBean> call, Response<birthBean> response) {
 
-
-                adapter.setGridData(response.body().getBirthStuList(), s);
+                adapter.setGridData(response.body().getBirthList(), s);
                 adapter.notifyDataSetChanged();
                 progress.setVisibility(View.GONE);
 
             }
 
             @Override
-            public void onFailure(Call<BirthStuListBean> call, Throwable throwable) {
+            public void onFailure(Call<birthBean> call, Throwable throwable) {
 
                 progress.setVisibility(View.GONE);
 
@@ -179,6 +186,8 @@ public class WishingCardsFrgmnt extends Fragment {
 
                 List<AdapterBean> list1 = adapter.getCheckList();
 
+                final List<String> ll = new ArrayList<>();
+
                 Log.d("sizezee", String.valueOf(list1.size()));
 
                 for (int i = 0; i < list1.size(); i++) {
@@ -187,6 +196,7 @@ public class WishingCardsFrgmnt extends Fragment {
                     try {
 
                         object.put("Id", list1.get(i).getId());
+                        ll.add(list1.get(i).getId());
                         jsonArray.put(object);
 
                     } catch (JSONException e) {
@@ -212,47 +222,99 @@ public class WishingCardsFrgmnt extends Fragment {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
 
-
-                        RequestBody reqFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
-
-                        MultipartBody.Part body = MultipartBody.Part.createFormData("birth_card", file.getName(), reqFile);
-
-                        User b = (User) getActivity().getApplicationContext();
-                        Retrofit retrofit = new Retrofit.Builder()
-                                .baseUrl(b.baseURL)
-                                .addConverterFactory(ScalarsConverterFactory.create())
-                                .addConverterFactory(GsonConverterFactory.create())
-                                .build();
-
-                        final AllAPIs cr = retrofit.create(AllAPIs.class);
-                        progress.setVisibility(View.VISIBLE);
-
-                        Call<SendBirthBean> call = cr.send_card(b.school_id, "Parent", b.user_id, "Parent", body, jsonObject.toString());
+                        try {
 
 
-                        call.enqueue(new Callback<SendBirthBean>() {
-                            @Override
-                            public void onResponse(Call<SendBirthBean> call, Response<SendBirthBean> response) {
+                            User b = (User) getActivity().getApplicationContext();
+                            Retrofit retrofit = new Retrofit.Builder()
+                                    .baseUrl(b.baseURL)
+                                    .addConverterFactory(ScalarsConverterFactory.create())
+                                    .addConverterFactory(GsonConverterFactory.create())
+                                    .build();
+
+                            final AllAPIs cr = retrofit.create(AllAPIs.class);
+                            progress.setVisibility(View.VISIBLE);
 
 
-                                if (response.body().getStatus().equals("1")) {
-                                    Toast.makeText(getActivity(), "Birthday Card Send Successfully.", Toast.LENGTH_SHORT).show();
-                                } else {
-                                    Toast.makeText(getActivity(), "Birthday Card did not send Successfully.", Toast.LENGTH_SHORT).show();
+                            String ca = "";
 
-                                }
-
-                                progress.setVisibility(View.GONE);
-
+                            if (index == 0)
+                            {
+ca = "card1";
+                            }
+                            else if (index == 1)
+                            {
+                                ca = "card2";
+                            }
+                            else if (index == 2)
+                            {
+                                ca = "card4";
+                            }
+                            else if (index == 3)
+                            {
+                                ca = "card5";
+                            }
+                            else if (index == 4)
+                            {
+                                ca = "card6";
                             }
 
-                            @Override
-                            public void onFailure(Call<SendBirthBean> call, Throwable throwable) {
-                                Log.d("imagg", String.valueOf(throwable));
-                                progress.setVisibility(View.GONE);
 
+                            if (ll.size() > 0)
+                            {
+                                Call<SendBirthBean> call = cr.send_card(b.school_id, "Parent", b.user_id, "Parent", ca, "," + TextUtils.join(",", ll));
+
+
+                                call.enqueue(new Callback<SendBirthBean>() {
+                                    @Override
+                                    public void onResponse(Call<SendBirthBean> call, Response<SendBirthBean> response) {
+
+
+                                        if (response.body().getStatus().equals("1")) {
+                                            Dialog dialog = new Dialog(getActivity());
+                                            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                                            dialog.setContentView(R.layout.birthday_success_popup);
+                                            dialog.setCancelable(true);
+                                            dialog.show();
+
+                        /*dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                            @Override
+                            public void onCancel(DialogInterface dialogInterface) {
+                                finish();
                             }
-                        });
+                        });*/
+
+
+
+                                        } else {
+                                            Toast.makeText(getActivity(), "Error sending Cards, please try again", Toast.LENGTH_SHORT).show();
+
+                                        }
+
+                                        progress.setVisibility(View.GONE);
+
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<SendBirthBean> call, Throwable throwable) {
+                                        Log.d("imagg", String.valueOf(throwable));
+                                        progress.setVisibility(View.GONE);
+
+                                    }
+                                });
+                            }
+                            else
+                            {
+                                Toast.makeText(getContext() , "Please select a student" , Toast.LENGTH_SHORT).show();
+                            }
+
+
+
+
+                        }catch (Exception e)
+                        {
+                            e.printStackTrace();
+                        }
 
 
                         dialog.dismiss();

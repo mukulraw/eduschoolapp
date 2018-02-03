@@ -4,6 +4,8 @@ package com.eduschool.eduschoolapp.HomeWork;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -13,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.eduschool.eduschoolapp.AllAPIs;
 import com.eduschool.eduschoolapp.Home.ParentHome;
@@ -22,7 +25,9 @@ import com.eduschool.eduschoolapp.HomewrkParentPOJO.SubjectList;
 import com.eduschool.eduschoolapp.R;
 import com.eduschool.eduschoolapp.User;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;
@@ -46,7 +51,25 @@ public class HomeWorkFrgmnt extends Fragment {
     List<SubjectList> list;
     AdapterParent adapter;
 
+    TextView date , month;
+
     TextView name, classSection;
+
+    String[] mon = {
+            "Jan",
+            "Feb",
+            "Mar",
+            "Apr",
+            "May",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sep",
+            "Oct",
+            "Nov",
+            "Dec",
+    };
+    String date1;
 
     public HomeWorkFrgmnt() {
 
@@ -58,6 +81,18 @@ public class HomeWorkFrgmnt extends Fragment {
 
         View view = inflater.inflate(R.layout.parent_hw_home, container, false);
         toolbar = (Toolbar) ((ParentHome) getContext()).findViewById(R.id.toolbar);
+
+        date = (TextView)view.findViewById(R.id.date);
+        month = (TextView)view.findViewById(R.id.month);
+
+        date1 = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+
+
+        String[] d1 = date1.split("-");
+
+        date.setText(d1[2]);
+
+        month.setText(mon[Integer.parseInt(d1[1]) - 1] + " " + d1[0]);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler);
         progress = (ProgressBar) view.findViewById(R.id.progress);
@@ -106,12 +141,28 @@ public class HomeWorkFrgmnt extends Fragment {
             @Override
             public void onResponse(Call<ParentSubjectListBean> call, Response<ParentSubjectListBean> response) {
 
-                name.setText(response.body().getClasssubjectList().get(0).getStudentName());
-                classSection.setText(response.body().getClasssubjectList().get(0).getClassName()+" "+response.body().getClasssubjectList().get(0).getSectionName());
+                try {
 
-                Log.d("dd",response.body().getClasssubjectList().get(0).getClassName());
-                adapter.setGridData(response.body().getClasssubjectList().get(0).getSubjectList());
-                adapter.notifyDataSetChanged();
+                    if (response.body().getClasssubjectList().size() > 0)
+                    {
+                        name.setText("Name of Student - " +response.body().getClasssubjectList().get(0).getStudentName());
+                        classSection.setText(response.body().getClasssubjectList().get(0).getClassName()+" "+response.body().getClasssubjectList().get(0).getSectionName());
+
+                        Log.d("dd",response.body().getClasssubjectList().get(0).getClassName());
+                        adapter.setGridData(response.body().getClasssubjectList().get(0).getSubjectList());
+                        adapter.notifyDataSetChanged();
+                    }else
+                    {
+                        Toast.makeText(getContext() , "No Data Found" , Toast.LENGTH_SHORT).show();
+                    }
+
+
+                }catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
+
+
                 progress.setVisibility(View.GONE);
 
             }
@@ -133,6 +184,13 @@ public class HomeWorkFrgmnt extends Fragment {
     public void onResume() {
         super.onResume();
         toolbar.setTitle("Home Work");
+
+        DrawerLayout drawer = (DrawerLayout)((ParentHome) getContext()).findViewById(R.id.drawer_asiana);
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                getActivity(), drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
 
         User u = (User) getContext().getApplicationContext();
 

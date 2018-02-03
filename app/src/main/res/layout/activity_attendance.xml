@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
+    android:background="@color/bach_color"
     tools:context="com.eduschool.eduschoolapp.Attendance.Attendance">
 
     <ProgressBar
@@ -20,33 +20,30 @@
         android:orientation="vertical">
 
 
-        <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="6dp"
-            android:layout_marginRight="6dp"
-            android:layout_marginTop="12dp"
-            android:foreground="?android:attr/selectableItemBackground">
+
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="6dp"
+                android:layout_marginEnd="6dp"
                 android:orientation="vertical">
 
-                <Button
+                <TextView
                     android:id="@+id/mark_attendance"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/attendance1"
+                    android:background="@drawable/attendance_up"
                     android:gravity="center"
                     android:padding="15dp"
                     android:text="MARK ATTENDANCE"
                     android:textColor="#ffffff" />
 
 
-                <Button
+                <TextView
                     android:id="@+id/view_attendance"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -56,11 +53,11 @@
                     android:text="VIEW PREVIOUS"
                     android:textColor="#ffffff" />
 
-                <Button
+                <TextView
                     android:id="@+id/edit_attendance"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/attendance1"
+                    android:background="@drawable/attendance_doen"
                     android:gravity="center"
                     android:padding="15dp"
                     android:text="EDIT PREVIOUS"
@@ -69,7 +66,7 @@
             </LinearLayout>
 
 
-        </android.support.v7.widget.CardView>
+
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -94,22 +91,33 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/colorPrimary"
+                        android:background="@drawable/blue_round_top"
                         android:padding="15dp"
                         android:text="TODAY'S ATTENDANCE SUMMARY"
                         android:textColor="#ffffff" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:background="@drawable/white_bottom_round"
+                        >
 
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="220dp"
                             android:layout_weight="1"
-                            android:background="@drawable/attendance2"
                             android:gravity="center"
                             android:orientation="vertical">
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="TOTAL STUDENTS"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
 
                             <TextView
                                 android:layout_width="50dp"
@@ -120,22 +128,27 @@
                                 android:textSize="32sp"
                                 android:textStyle="bold" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:text="TOTAL STUDENT"
-                                android:textSize="15sp"
-                                android:textStyle="bold" />
+
                         </LinearLayout>
+
+
+
+                        <TextView
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="#cdcdcd"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            />
 
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="220dp"
                             android:layout_weight="1"
-                            android:background="@drawable/attendance2"
                             android:gravity="center"
                             android:orientation="vertical">
+
+
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -147,13 +160,13 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:gravity="center"
-                                    android:text="PRESENT STUDENT"
+                                    android:text="PRESENT STUDENTS"
                                     android:textAlignment="center"
                                     android:textSize="12sp"
                                     android:textStyle="bold" />
 
                                 <TextView
-                                    android:layout_width="50dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="40"
                                     android:id="@+id/present"
@@ -164,10 +177,17 @@
                             </LinearLayout>
 
 
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="#cdcdcd"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginEnd="10dp"
+                                />
+
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="70dp"
-                                android:background="@drawable/attendance2"
                                 android:gravity="center"
                                 android:orientation="vertical">
 
@@ -175,7 +195,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:gravity="center"
-                                    android:text="ABSENT STUDENT"
+                                    android:text="ABSENT STUDENTS"
                                     android:textAlignment="center"
                                     android:textSize="12sp"
                                     android:textStyle="bold" />
@@ -190,10 +210,19 @@
                                     android:textStyle="bold" />
 
                             </LinearLayout>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="#f5f3f5"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginEnd="10dp"
+                                />
+
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="70dp"
-
+                                android:visibility="gone"
                                 android:gravity="center"
                                 android:orientation="vertical">
 
@@ -201,7 +230,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:gravity="center"
-                                    android:text="LEAVE STUDENT"
+                                    android:text="LEAVE STUDENTS"
                                     android:textAlignment="center"
                                     android:textSize="12sp"
                                     android:textStyle="bold" />

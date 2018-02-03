@@ -16,13 +16,17 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.eduschool.eduschoolapp.AllAPIs;
 import com.eduschool.eduschoolapp.ChangePssPOJO.PasswrdChngebean;
 import com.eduschool.eduschoolapp.Home.ParentHome;
 import com.eduschool.eduschoolapp.R;
+import com.eduschool.eduschoolapp.RoundedImageView;
 import com.eduschool.eduschoolapp.User;
+import com.eduschool.eduschoolapp.parentPersonalBean;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -41,6 +45,10 @@ public class ParentProfile extends Fragment {
     SharedPreferences pref;
     SharedPreferences.Editor edit;
 
+    TextView name;
+    RoundedImageView image;
+    ProgressBar progress;
+
     public ParentProfile() {
 
     }
@@ -51,6 +59,10 @@ public class ParentProfile extends Fragment {
         // Inflate the layout for this fragment
 
         View v = inflater.inflate(R.layout.parent_profile, container, false);
+
+        name = (TextView)v.findViewById(R.id.name);
+        progress = (ProgressBar)v.findViewById(R.id.progress);
+        image = (RoundedImageView)v.findViewById(R.id.imageView_round);
 
         toolbar = (Toolbar) ((ParentHome) getContext()).findViewById(R.id.toolbar);
         change_password = (Button) v.findViewById(R.id.change_password);
@@ -71,6 +83,46 @@ public class ParentProfile extends Fragment {
 
 
         tabLayout.setupWithViewPager(viewPager);
+
+
+        progress.setVisibility(View.VISIBLE);
+
+
+        final User u = (User) getContext().getApplicationContext();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(u.baseURL)
+                .addConverterFactory(ScalarsConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        AllAPIs cr = retrofit.create(AllAPIs.class);
+
+
+        Call<parentPersonalBean> call = cr.getParentPersonal(u.school_id , u.user_id);
+
+        call.enqueue(new Callback<parentPersonalBean>() {
+            @Override
+            public void onResponse(Call<parentPersonalBean> call, Response<parentPersonalBean> response) {
+
+
+                //name.setText(response.body().getName());
+
+                name.setText(response.body().getName());
+
+                ImageLoader loader = ImageLoader.getInstance();
+
+                loader.displayImage(response.body().getProfilePic() , image);
+
+                progress.setVisibility(View.GONE);
+
+            }
+
+            @Override
+            public void onFailure(Call<parentPersonalBean> call, Throwable t) {
+                progress.setVisibility(View.GONE);
+            }
+        });
 
 
         change_password.setOnClickListener(new View.OnClickListener() {

@@ -108,11 +108,13 @@ public class LoginPage extends AppCompatActivity {
                                         b.school_id = response.body().getSchoolId();
                                         b.user_id = response.body().getId();
                                         b.user_type = response.body().getUserType();
+                                        b.user_name=response.body().getName();
                                         b.user_class=response.body().getClassId();
                                         b.user_section=response.body().getSectionId();
                                         b.class_teacher=response.body().getClassTeacher();
                                         b.class_Name=response.body().getClassName();
                                         b.section_Name=response.body().getSectionName();
+                                        b.studName = response.body().getName();
 
 
                                         edit.putString("type", s);
@@ -129,11 +131,12 @@ public class LoginPage extends AppCompatActivity {
                                         b.school_id = response.body().getSchoolId();
                                         b.user_id = response.body().getId();
                                         b.user_type = response.body().getUserType();
-                                        b.user_name=response.body().getStudentName();
+                                        b.user_name=response.body().getName();
                                         b.user_class=response.body().getClassId();
                                         b.user_section=response.body().getSectionId();
                                         b.class_Name=response.body().getClassName();
                                         b.section_Name=response.body().getSectionName();
+                                        b.studName = response.body().getName();
 
                                         edit.putString("type", s);
                                         edit.putString("username", Susername);
@@ -152,7 +155,7 @@ public class LoginPage extends AppCompatActivity {
 
                             @Override
                             public void onFailure(Call<Loginbean> call, Throwable throwable) {
-                                Toast.makeText(LoginPage.this, "no", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LoginPage.this, "No Internet Connection", Toast.LENGTH_SHORT).show();
                                 progress.setVisibility(View.GONE);
                             }
                         });

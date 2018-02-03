@@ -10,7 +10,9 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.eduschool.eduschoolapp.ExamAndResults.ExamFrgmntOne;
 import com.eduschool.eduschoolapp.R;
+import com.eduschool.eduschoolapp.User;
 
 public class StudentSummaryParent extends AppCompatActivity {
 
@@ -19,11 +21,36 @@ public class StudentSummaryParent extends AppCompatActivity {
 
     Toolbar toolbar;
 
+    String classId , secId , stuId , className , sectionName , studentName;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_summary_parent);
+
+        Bundle b = getIntent().getExtras();
+
+
+        try {
+            classId = b.getString("class");
+            secId = b.getString("section");
+            stuId = b.getString("student");
+            className = b.getString("cName");
+            sectionName = b.getString("sName");
+            studentName = b.getString("stName");
+        }catch (Exception e)
+        {
+            User u = (User)getApplicationContext();
+            classId = u.user_class;
+            secId = u.user_section;
+            stuId = u.user_id;
+            className = u.class_Name;
+            sectionName = u.section_Name;
+            studentName = u.studName;
+
+            e.printStackTrace();
+        }
 
 
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
@@ -55,6 +82,7 @@ public class StudentSummaryParent extends AppCompatActivity {
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
+        viewPager.setOffscreenPageLimit(adapter.getCount() - 1);
 
         tabLayout.setupWithViewPager(viewPager);
 
@@ -76,15 +104,48 @@ public class StudentSummaryParent extends AppCompatActivity {
             switch (position) {
                 case 0:
                     ParentProfileFrgmnt tab1 = new ParentProfileFrgmnt();
+
+                    Bundle b = new Bundle();
+                    b.putString("id" , stuId);
+                    tab1.setArguments(b);
                     return tab1;
                 case 1:
                     ParentAttendanceFrgmnt tab2 = new ParentAttendanceFrgmnt();
+
+                    Bundle b1 = new Bundle();
+                    b1.putString("cName" , className);
+                    b1.putString("sName" , sectionName);
+                    b1.putString("stName" , studentName);
+                    b1.putString("cid" , classId);
+                    b1.putString("sid" , secId);
+                    b1.putString("stid" , stuId);
+
+                    tab2.setArguments(b1);
                     return tab2;
                 case 2:
                     ParentFeeFrgmnt tab3 = new ParentFeeFrgmnt();
+
+                    Bundle b2 = new Bundle();
+                    b2.putString("cName" , className);
+                    b2.putString("sName" , sectionName);
+                    b2.putString("stName" , studentName);
+                    b2.putString("cid" , classId);
+                    b2.putString("sid" , secId);
+                    b2.putString("stid" , stuId);
+
+                    tab3.setArguments(b2);
+
                     return tab3;
                 case 3:
-                    ParentResultFrgmnt tab4 = new ParentResultFrgmnt();
+                    Exam1 tab4 = new Exam1();
+                    Bundle b3 = new Bundle();
+                    b3.putString("cName" , className);
+                    b3.putString("sName" , sectionName);
+                    b3.putString("stName" , studentName);
+                    b3.putString("cid" , classId);
+                    b3.putString("sid" , secId);
+                    b3.putString("stid" , stuId);
+                    tab4.setArguments(b3);
                     return tab4;
 
                 default:

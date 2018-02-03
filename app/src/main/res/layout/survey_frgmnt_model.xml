@@ -22,9 +22,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                android:id="@+id/qus"
-                android:text="Q. Sed ut perspiciatis unde omnis iste ns error sit vol accum mque ntium sd sds dcd se fcc fedee?" />
+                android:id="@+id/qus"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -35,19 +33,24 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:text="15-06-2017"
+                    android:visibility="gone"
                     android:id="@+id/date"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:layout_margin="6dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginEnd="6dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="6dp"
                     android:background="@drawable/round_corner"
                     android:padding="6dp"
-                    android:text="Pending"
+                    android:text="Complete"
+                    android:textAllCaps="true"
                     android:id="@+id/status"
-                    android:textColor="#fff" />
+                    android:textColor="@color/colorPrimary" />
 
             </RelativeLayout>
 

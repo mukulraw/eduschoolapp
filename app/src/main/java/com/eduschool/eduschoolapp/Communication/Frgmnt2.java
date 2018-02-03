@@ -4,15 +4,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.eduschool.eduschoolapp.Home.ParentHome;
 import com.eduschool.eduschoolapp.Home.TeacherHome;
 import com.eduschool.eduschoolapp.R;
 import com.eduschool.eduschoolapp.User;
+import com.eduschool.eduschoolapp.WishingCards.WishingCardsFrgmnt;
 
 /**
  * Created by user on 6/26/2017.
@@ -39,7 +43,10 @@ public class Frgmnt2 extends Fragment {
             @Override
             public void onClick(View view) {
 
-                Intent intent=new Intent(getActivity(),SendBirthdayCard.class);
+                /*Intent intent=new Intent(getActivity(),SendBirthdayCard.class);
+                startActivity(intent);*/
+
+                Intent intent = new Intent(getContext() , SendBirthdayCard.class);
                 startActivity(intent);
 
             }
@@ -61,6 +68,17 @@ public class Frgmnt2 extends Fragment {
     public void onResume() {
         super.onResume();
         toolbar.setTitle("Parent Request");
+
+        toolbar.setNavigationIcon(R.drawable.back);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                FragmentManager fm = ((TeacherHome) getContext()).getSupportFragmentManager();
+                fm.popBackStack();
+
+            }
+        });
 
         User u = (User) getContext().getApplicationContext();
 

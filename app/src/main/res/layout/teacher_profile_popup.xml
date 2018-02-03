@@ -6,14 +6,23 @@
     android:layout_marginTop="10dp"
     android:gravity="center"
     android:minWidth="300dp"
+    android:background="@color/bach_color"
     android:orientation="vertical"
     android:padding="12dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/white_round"
+        android:padding="1dp"
+        >
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="@drawable/background"
+        android:background="@drawable/viewattendance"
         android:gravity="center"
         android:hint="Old Password"
         android:inputType="textPassword"
@@ -21,29 +30,41 @@
         android:id="@+id/oldpass"
         android:padding="12dp" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#cdcdcd"/>
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:inputType="textPassword"
-        android:background="@drawable/background"
+        android:background="@drawable/viewattendance"
         android:gravity="center"
         android:maxLines="1"
         android:id="@+id/newpass"
         android:hint="New Password"
         android:padding="12dp" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#cdcdcd"/>
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="@drawable/background"
+        android:background="@drawable/viewattendance"
         android:gravity="center"
         android:maxLines="1"
         android:id="@+id/confrmpass"
         android:inputType="textPassword"
         android:hint="Confirm Password"
         android:padding="12dp" />
+
+    </LinearLayout>
 
     <ProgressBar
         android:layout_width="wrap_content"
@@ -56,7 +77,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="15dp"
         android:layout_marginTop="18dp"
-        android:background="#F0920A"
+        android:background="@drawable/orange_popup"
         android:minHeight="0dp"
         android:paddingLeft="7dp"
         android:paddingRight="7dp"

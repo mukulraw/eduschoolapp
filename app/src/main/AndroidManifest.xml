@@ -13,6 +13,7 @@
     <application
         android:name=".User"
         android:allowBackup="true"
+        android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -22,7 +23,8 @@
         <activity
             android:name=".Splash"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden|adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -32,10 +34,12 @@
         <activity
             android:name=".WelcomeSlider.WelcomeActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden|adjustPan"/>
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan"/>
 
         <service
             android:name=".NotifyService"
@@ -54,111 +58,144 @@
 
         <activity
             android:name=".Chat"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan"
+            />
+        <activity
+            android:name=".Exam2"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan"/>
         <activity
             android:name=".fab"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan"/>
         <activity
             android:name=".recycler"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan"
+            />
         <activity
             android:name=".Gallery.demo"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan"/>
         <activity
             android:name=".New"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden|adjustPan"
+            />
         <activity
             android:name=".OnlineTest.OnlineTestActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan"/>
         <activity
             android:name=".Attendance.Attendance"
             android:label="Attendance"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan"/>
         <activity
             android:name=".Attendance.MarkAttendance"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan"/>
         <activity
             android:name=".ClassWork.AddClassWork"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
-            android:windowSoftInputMode="adjustResize" />
+            android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
             android:name=".OnlineTest.OnlineTestSummery"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan"/>
         <activity
             android:name=".Profile.TeacherProfile"
             android:label="My Profile"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan"/>
         <activity
             android:name=".Profile.ParentProfile"
             android:label="My Profile"
             android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".Home.ParentHome"
             android:label="@string/title_activity_parent_home"
             android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".LoginPages.LoginPage"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan"/>
         <activity
             android:name=".RaiseRequest.RaiseRequestActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan"/>
         <activity
             android:name=".Home.TeacherHome"
             android:label="@string/title_activity_teacher_home"
+            android:windowSoftInputMode="stateHidden|adjustPan"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".Gallery.AddAlbum"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan"/>
         <activity
             android:name=".Communication.ComposeMessage"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan"/>
         <activity
             android:name=".Library.ParentLibrary2"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan"/>
         <activity
             android:name=".Library.TeacherLibrary2"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan"/>
         <activity
             android:name=".LoginPages.MainLogin"
             android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan"
             android:theme="@style/AppTheme" />
-        <activity android:name=".Survey.Take_Survey"
-            android:screenOrientation="portrait">
-
-        </activity>
-        <activity android:name=".Communication.SendBirthdayCard"
-            android:screenOrientation="portrait" >
-
-        </activity>
-        <activity android:name=".RaiseRequest.SeeBirthdayCard"
-            android:screenOrientation="portrait">
-            </activity>
-        <activity android:name=".StudentSummary.StudentSummaryParent"
-            android:screenOrientation="portrait">
-            </activity>
-        <activity android:name=".StudentSummary.StudentSummaryTeacher"
-            android:screenOrientation="portrait">
-            </activity>
-        <activity android:name=".Survey.TakeSurveyParent"
-            android:screenOrientation="portrait">
-            </activity>
-        <activity android:name=".Attendance.MarkAttndncDiffCls"
-            android:screenOrientation="portrait">
-
-        </activity>
-        <activity android:name=".Attendance.UpdateOwnCls"
-            android:screenOrientation="portrait">
-
-        </activity>
-        <activity android:name=".Attendance.UpdateDiffCls"
-            android:screenOrientation="portrait">
-
-        </activity>
+        <activity
+            android:name=".Survey.Take_Survey"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan"/>
+        <activity
+            android:name=".Communication.SendBirthdayCard"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan"/>
+        <activity
+            android:name=".RaiseRequest.SeeBirthdayCard"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan"/>
+        <activity
+            android:name=".StudentSummary.StudentSummaryParent"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan"/>
+        <activity
+            android:name=".StudentSummary.StudentSummaryTeacher"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan"/>
+        <activity
+            android:name=".Survey.TakeSurveyParent"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan"/>
+        <activity
+            android:name=".Attendance.MarkAttndncDiffCls"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan"/>
+        <activity
+            android:name=".Attendance.UpdateOwnCls"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan"/>
+        <activity
+            android:name=".Attendance.UpdateDiffCls"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan"/>
+        <activity android:name=".ExamAct"
+            android:windowSoftInputMode="stateHidden|adjustPan"/>
     </application>
 
 </manifest>

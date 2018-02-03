@@ -1,1504 +1,280 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
 
-
-    <LinearLayout
+    <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            android:layout_marginLeft="6dp"
-            android:layout_marginRight="6dp"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/viewattendance"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
 
             <LinearLayout
-                android:layout_width="139dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/background"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="15dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="10"
-                    android:textColor="#000000"
-                    android:textSize="38sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="March 2017"
-                    android:textColor="#000000" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="3"
-                android:background="@drawable/viewattendance"
-                android:gravity="center">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Class"
-                    android:textSize="32sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="12sp"
-                    android:text="8A"
-                    android:textColor="#000000"
-                    android:textSize="32sp" />
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="6dp"
-            android:layout_marginRight="6dp"
-            android:background="@drawable/viewattendance1"
-            android:padding="12dp"
-            android:text="LIST OF STUDENT"
-            android:textColor="#fff" />
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="6dp"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/stroke"
+                android:gravity="center"
+                android:layout_marginBottom="12dp"
+                android:padding="1dp"
+                android:layout_marginStart="6dp"
+                android:layout_marginEnd="6dp"
+                android:layout_marginTop="12dp"
+                android:weightSum="3"
                 android:orientation="horizontal">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:background="@drawable/background"
-                    android:orientation="vertical">
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="10dp">
 
                     <TextView
-                        android:layout_width="72dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="ROLL NO."
-                        android:layout_gravity="center_vertical"
-                        android:gravity="center_horizontal"
-                        android:padding="7dp"
-                        android:textSize="12dp"
-
+                        android:gravity="center"
+                        android:id="@+id/day"
+                        android:textColor="#000000"
+                        android:layout_gravity="center_horizontal"
+                        android:textSize="38sp"
                         android:textStyle="bold" />
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/month"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center_horizontal"
+                        android:textColor="#000000" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="#cdcdcd"
+                    />
+
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:background="@drawable/viewattendance2"
+                    >
 
                     <LinearLayout
-                        android:layout_width="75dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-
-                        <TextView
-                            android:layout_width="75dp"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/background"
-                            android:gravity="center"
-                            android:padding="7dp"
-                            android:text="1"
-                            android:textSize="12dp" />
-
+                        android:layout_centerHorizontal="true"
+                        android:gravity="center">
 
                         <TextView
-                            android:layout_width="75dp"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/background"
-                            android:gravity="center"
-                            android:padding="7dp"
-                            android:text="2"
-                            android:textSize="12dp" />
-
-                        <TextView
-                            android:layout_width="75dp"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/background"
-                            android:gravity="center"
-                            android:padding="7dp"
-                            android:text="3"
-                            android:textSize="12dp" />
-
-                        <TextView
-                            android:layout_width="75dp"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/background"
-                            android:gravity="center"
-                            android:padding="7dp"
-                            android:text="4"
-                            android:textSize="12dp" />
-
-                        <TextView
-                            android:layout_width="75dp"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/background"
-                            android:gravity="center"
-                            android:padding="7dp"
-                            android:text="5"
-                            android:textSize="12dp" />
-
-                        <TextView
-                            android:layout_width="75dp"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/background"
-                            android:gravity="center"
-                            android:padding="7dp"
-                            android:text="6"
-                            android:textSize="12dp" />
-
-                        <TextView
-                            android:layout_width="75dp"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/background"
-                            android:gravity="center"
-                            android:padding="7dp"
-                            android:text="7"
-                            android:textSize="12dp" />
-
-                        <TextView
-                            android:layout_width="75dp"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/background"
-                            android:gravity="center"
-                            android:padding="7dp"
-                            android:text="8"
-                            android:textSize="12dp" />
-
-                    </LinearLayout>
-
-
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/background"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="110dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:gravity="center_horizontal"
-                        android:padding="7dp"
-                        android:text="STUDENT NAME"
-                        android:textSize="12dp"
-                        android:textStyle="bold" />
-
-
-                    <LinearLayout
-                        android:layout_width="110dp"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-
-                        <TextView
-                            android:layout_width="120dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/background"
-                            android:gravity="center"
-                            android:padding="7dp"
-                            android:text="Akash"
-                            android:textSize="12dp" />
-
+                            android:textSize="32sp" />
 
                         <TextView
-                            android:layout_width="120dp"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/background"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
                             android:gravity="center"
-                            android:padding="7dp"
-                            android:text="ajay"
-                            android:textSize="12dp" />
-
-                        <TextView
-                            android:layout_width="120dp"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/background"
-                            android:gravity="center"
-                            android:padding="7dp"
-                            android:text="Amit"
-                            android:textSize="12dp" />
-
-                        <TextView
-                            android:id="@+id/textView11"
-                            android:layout_width="120dp"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/background"
-                            android:gravity="center"
-                            android:padding="7dp"
-                            android:text="Akshit"
-                            android:textSize="12dp" />
-
-                        <TextView
-                            android:layout_width="120dp"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/background"
-                            android:gravity="center"
-                            android:padding="7dp"
-                            android:text="Ankur"
-                            android:textSize="12dp" />
-
-                        <TextView
-                            android:layout_width="120dp"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/background"
-                            android:gravity="center"
-                            android:padding="7dp"
-                            android:text="Balbir"
-                            android:textSize="12dp" />
-
-                        <TextView
-                            android:layout_width="120dp"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/background"
-                            android:gravity="center"
-                            android:padding="7dp"
-                            android:text="Balbir"
-                            android:textSize="12dp" />
-
-                        <TextView
-                            android:layout_width="120dp"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/background"
-                            android:gravity="center"
-                            android:padding="7dp"
-                            android:text="Balbir"
-                            android:textSize="12dp" />
-
+                            android:id="@+id/classSection"
+                            android:textColor="#398DBF"
+                            android:textSize="32sp"
+                            android:textStyle="bold" />
                     </LinearLayout>
 
+                    <ImageButton
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentEnd="true"
+                        android:id="@+id/edit"
+                        android:visibility="gone"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/edit_blue"
+                        />
 
-                </LinearLayout>
+                </RelativeLayout>
 
             </LinearLayout>
 
-
-            <HorizontalScrollView
-                android:id="@+id/scrollView"
+            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:background="@drawable/viewattendance1"
+                android:padding="12dp"
+                android:text="LIST OF STUDENT"
+                android:textColor="#fff" />
 
-                <ScrollView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+
+            <com.inqbarna.tablefixheaders.TableFixHeaders
+                android:id="@+id/tablefixheaders"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="60dp"
+                android:layout_marginEnd="6dp"
+                android:layout_marginStart="6dp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/bottom_sheet1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:background="#fff"
+            android:clipToPadding="true"
+            android:orientation="vertical"
+            app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
+
+            <TextView
+                android:id="@+id/tvresult"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_gravity="bottom"
+                android:background="@drawable/blue_round_top"
+                android:padding="12dp"
+                android:text="RESULT"
+                android:textColor="#fff" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="1dp"
+                android:background="@drawable/white_round">
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="TOTAL STUDENTS"
+                        android:textColor="#000000"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:id="@+id/total"
+                        android:textColor="#000000"
+                        android:textSize="32sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="#cdcdcd"
+                    />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:background="@drawable/viewattendance"
+                        android:gravity="center"
                         android:orientation="vertical">
 
-                        <LinearLayout
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/background"
-                            android:orientation="horizontal">
+                            android:gravity="center"
+                            android:text="PASS STUDENTS"
+                            android:textAlignment="center"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:textColor="#000000"
+                            android:id="@+id/pass"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
 
-                            <LinearLayout
-                                android:layout_width="90dp"
-                                android:layout_height="match_parent"
-                                android:background="@drawable/background"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:layout_width="90dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:gravity="center"
-                                    android:padding="1dp"
-                                    android:text="10-02-2017"
-                                    android:textColor="@color/colorPrimary"
-                                    android:textSize="10dp"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:layout_width="90dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:gravity="center"
-                                    android:text="ENGLISH"
-                                    android:textSize="12dp"
-                                    android:textStyle="bold" />
-
-
-                            </LinearLayout>
-
-
-                            <LinearLayout
-                                android:layout_width="90dp"
-                                android:layout_height="match_parent"
-                                android:background="@drawable/background"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:layout_width="90dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:gravity="center"
-                                    android:padding="1dp"
-                                    android:text="10-02-2017"
-                                    android:textColor="@color/colorPrimary"
-                                    android:textSize="10dp"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:layout_width="90dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:gravity="center"
-                                    android:text="HINDI"
-                                    android:textSize="12dp"
-                                    android:textStyle="bold" />
-
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="90dp"
-                                android:layout_height="match_parent"
-                                android:background="@drawable/background"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:layout_width="90dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:gravity="center"
-                                    android:padding="1dp"
-                                    android:text="10-02-2017"
-                                    android:textColor="@color/colorPrimary"
-                                    android:textSize="10dp"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:layout_width="90dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:gravity="center"
-                                    android:text="MATH"
-                                    android:textSize="12dp"
-                                    android:textStyle="bold" />
-
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="90dp"
-                                android:layout_height="match_parent"
-                                android:background="@drawable/background"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:layout_width="90dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:gravity="center"
-                                    android:padding="1dp"
-                                    android:text="10-02-2017"
-                                    android:textColor="@color/colorPrimary"
-                                    android:textSize="10dp"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:layout_width="90dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:gravity="center"
-                                    android:text="PHYSICS"
-                                    android:textSize="12dp"
-                                    android:textStyle="bold" />
-
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="90dp"
-                                android:layout_height="match_parent"
-                                android:background="@drawable/background"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:layout_width="90dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:gravity="center"
-                                    android:padding="1dp"
-                                    android:text="10-02-2017"
-                                    android:textColor="@color/colorPrimary"
-                                    android:textSize="10dp"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:layout_width="90dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:gravity="center"
-                                    android:text="CHEMISTRY"
-                                    android:textSize="12dp"
-                                    android:textStyle="bold" />
-
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="90dp"
-                                android:layout_height="match_parent"
-                                android:background="@drawable/background"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:layout_width="90dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:gravity="center"
-                                    android:padding="1dp"
-                                    android:text="10-02-2017"
-                                    android:textColor="@color/colorPrimary"
-                                    android:textSize="10dp"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:layout_width="90dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:gravity="center"
-                                    android:text="BIOLOGY"
-                                    android:textSize="12dp"
-                                    android:textStyle="bold" />
-
-
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:orientation="horizontal">
-
-
-                            //1
-
-                            <LinearLayout
-                                android:layout_width="90dp"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical">
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/viewattendance"
-                                    android:gravity="center"
-                                    android:orientation="vertical"
-                                    android:padding="7dp">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="70"
-                                        android:textSize="12dp" />
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/viewattendance"
-                                    android:gravity="center"
-                                    android:orientation="vertical"
-                                    android:padding="7dp">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="70"
-                                        android:textSize="12dp" />
-
-
-                                </LinearLayout>
-
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/viewattendance"
-                                    android:gravity="center"
-                                    android:orientation="vertical"
-                                    android:padding="7dp">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="70"
-                                        android:textSize="12dp" />
-
-                                </LinearLayout>
-
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/viewattendance"
-                                    android:gravity="center"
-                                    android:orientation="vertical"
-                                    android:padding="7dp">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="70"
-                                        android:textSize="12dp" />
-
-                                </LinearLayout>
-
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/viewattendance"
-                                    android:gravity="center"
-                                    android:orientation="vertical"
-                                    android:padding="7dp">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="70"
-                                        android:textSize="12dp" />
-
-                                </LinearLayout>
-
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/viewattendance"
-                                    android:gravity="center"
-                                    android:orientation="vertical"
-                                    android:padding="7dp">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="70"
-                                        android:textSize="12dp" />
-
-                                </LinearLayout>
-
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/viewattendance"
-                                    android:gravity="center"
-                                    android:orientation="vertical"
-                                    android:padding="7dp">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="70"
-                                        android:textSize="12dp" />
-
-
-                                </LinearLayout>
-
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/viewattendance"
-                                    android:gravity="center"
-                                    android:orientation="vertical"
-                                    android:padding="7dp">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="70"
-                                        android:textSize="12dp" />
-
-                                </LinearLayout>
-                            </LinearLayout>
-                            //2
-
-
-                            <LinearLayout
-                                android:layout_width="90dp"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical">
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/viewattendance"
-                                    android:gravity="center"
-                                    android:orientation="vertical"
-                                    android:padding="7dp">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="70"
-                                        android:textSize="12dp" />
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/viewattendance"
-                                    android:gravity="center"
-                                    android:orientation="vertical"
-                                    android:padding="7dp">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="70"
-                                        android:textSize="12dp" />
-
-
-                                </LinearLayout>
-
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/viewattendance"
-                                    android:gravity="center"
-                                    android:orientation="vertical"
-                                    android:padding="7dp">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="70"
-                                        android:textSize="12dp" />
-
-                                </LinearLayout>
-
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/viewattendance"
-                                    android:gravity="center"
-                                    android:orientation="vertical"
-                                    android:padding="7dp">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="70"
-                                        android:textSize="12dp" />
-
-                                </LinearLayout>
-
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/viewattendance"
-                                    android:gravity="center"
-                                    android:orientation="vertical"
-                                    android:padding="7dp">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="70"
-                                        android:textSize="12dp" />
-
-                                </LinearLayout>
-
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/viewattendance"
-                                    android:gravity="center"
-                                    android:orientation="vertical"
-                                    android:padding="7dp">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="70"
-                                        android:textSize="12dp" />
-
-                                </LinearLayout>
-
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/viewattendance"
-                                    android:gravity="center"
-                                    android:orientation="vertical"
-                                    android:padding="7dp">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="70"
-                                        android:textSize="12dp" />
-
-
-                                </LinearLayout>
-
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/viewattendance"
-                                    android:gravity="center"
-                                    android:orientation="vertical"
-                                    android:padding="7dp">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="70"
-                                        android:textSize="12dp" />
-
-                                </LinearLayout>
-                            </LinearLayout>
-                            //3
-
-
-                            <LinearLayout
-                                android:layout_width="90dp"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical">
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/viewattendance"
-                                    android:gravity="center"
-                                    android:orientation="vertical"
-                                    android:padding="7dp">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="70"
-                                        android:textSize="12dp" />
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/viewattendance"
-                                    android:gravity="center"
-                                    android:orientation="vertical"
-                                    android:padding="7dp">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="70"
-                                        android:textSize="12dp" />
-
-
-                                </LinearLayout>
-
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/viewattendance"
-                                    android:gravity="center"
-                                    android:orientation="vertical"
-                                    android:padding="7dp">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="70"
-                                        android:textSize="12dp" />
-
-                                </LinearLayout>
-
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/viewattendance"
-                                    android:gravity="center"
-                                    android:orientation="vertical"
-                                    android:padding="7dp">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="70"
-                                        android:textSize="12dp" />
-
-                                </LinearLayout>
-
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/viewattendance"
-                                    android:gravity="center"
-                                    android:orientation="vertical"
-                                    android:padding="7dp">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="70"
-                                        android:textSize="12dp" />
-
-                                </LinearLayout>
-
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/viewattendance"
-                                    android:gravity="center"
-                                    android:orientation="vertical"
-                                    android:padding="7dp">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="70"
-                                        android:textSize="12dp" />
-
-                                </LinearLayout>
-
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/viewattendance"
-                                    android:gravity="center"
-                                    android:orientation="vertical"
-                                    android:padding="7dp">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="70"
-                                        android:textSize="12dp" />
-
-
-                                </LinearLayout>
-
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/viewattendance"
-                                    android:gravity="center"
-                                    android:orientation="vertical"
-                                    android:padding="7dp">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="70"
-                                        android:textSize="12dp" />
-
-                                </LinearLayout>
-                            </LinearLayout>
-                            //4
-
-
-                            <LinearLayout
-                                android:layout_width="90dp"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical">
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/viewattendance"
-                                    android:gravity="center"
-                                    android:orientation="vertical"
-                                    android:padding="7dp">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="70"
-                                        android:textSize="12dp" />
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/viewattendance"
-                                    android:gravity="center"
-                                    android:orientation="vertical"
-                                    android:padding="7dp">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="70"
-                                        android:textSize="12dp" />
-
-
-                                </LinearLayout>
-
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/viewattendance"
-                                    android:gravity="center"
-                                    android:orientation="vertical"
-                                    android:padding="7dp">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="70"
-                                        android:textSize="12dp" />
-
-                                </LinearLayout>
-
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/viewattendance"
-                                    android:gravity="center"
-                                    android:orientation="vertical"
-                                    android:padding="7dp">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="70"
-                                        android:textSize="12dp" />
-
-                                </LinearLayout>
-
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/viewattendance"
-                                    android:gravity="center"
-                                    android:orientation="vertical"
-                                    android:padding="7dp">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="70"
-                                        android:textSize="12dp" />
-
-                                </LinearLayout>
-
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/viewattendance"
-                                    android:gravity="center"
-                                    android:orientation="vertical"
-                                    android:padding="7dp">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="70"
-                                        android:textSize="12dp" />
-
-                                </LinearLayout>
-
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/viewattendance"
-                                    android:gravity="center"
-                                    android:orientation="vertical"
-                                    android:padding="7dp">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="70"
-                                        android:textSize="12dp" />
-
-
-                                </LinearLayout>
-
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/viewattendance"
-                                    android:gravity="center"
-                                    android:orientation="vertical"
-                                    android:padding="7dp">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="70"
-                                        android:textSize="12dp" />
-
-                                </LinearLayout>
-                            </LinearLayout>
-                            //5
-
-                            <LinearLayout
-                                android:layout_width="90dp"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical">
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/viewattendance"
-                                    android:gravity="center"
-                                    android:orientation="vertical"
-                                    android:padding="7dp">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="70"
-                                        android:textSize="12dp" />
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/viewattendance"
-                                    android:gravity="center"
-                                    android:orientation="vertical"
-                                    android:padding="7dp">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="70"
-                                        android:textSize="12dp" />
-
-
-                                </LinearLayout>
-
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/viewattendance"
-                                    android:gravity="center"
-                                    android:orientation="vertical"
-                                    android:padding="7dp">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="70"
-                                        android:textSize="12dp" />
-
-                                </LinearLayout>
-
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/viewattendance"
-                                    android:gravity="center"
-                                    android:orientation="vertical"
-                                    android:padding="7dp">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="70"
-                                        android:textSize="12dp" />
-
-                                </LinearLayout>
-
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/viewattendance"
-                                    android:gravity="center"
-                                    android:orientation="vertical"
-                                    android:padding="7dp">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="70"
-                                        android:textSize="12dp" />
-
-                                </LinearLayout>
-
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/viewattendance"
-                                    android:gravity="center"
-                                    android:orientation="vertical"
-                                    android:padding="7dp">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="70"
-                                        android:textSize="12dp" />
-
-                                </LinearLayout>
-
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/viewattendance"
-                                    android:gravity="center"
-                                    android:orientation="vertical"
-                                    android:padding="7dp">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="70"
-                                        android:textSize="12dp" />
-
-
-                                </LinearLayout>
-
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/viewattendance"
-                                    android:gravity="center"
-                                    android:orientation="vertical"
-                                    android:padding="7dp">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="70"
-                                        android:textSize="12dp" />
-
-                                </LinearLayout>
-                            </LinearLayout>
-                            //6
-
-                            <LinearLayout
-                                android:layout_width="90dp"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical">
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/viewattendance"
-                                    android:gravity="center"
-                                    android:orientation="vertical"
-                                    android:padding="7dp">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="70"
-                                        android:textSize="12dp" />
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/viewattendance"
-                                    android:gravity="center"
-                                    android:orientation="vertical"
-                                    android:padding="7dp">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="70"
-                                        android:textSize="12dp" />
-
-
-                                </LinearLayout>
-
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/viewattendance"
-                                    android:gravity="center"
-                                    android:orientation="vertical"
-                                    android:padding="7dp">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="70"
-                                        android:textSize="12dp" />
-
-                                </LinearLayout>
-
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/viewattendance"
-                                    android:gravity="center"
-                                    android:orientation="vertical"
-                                    android:padding="7dp">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="70"
-                                        android:textSize="12dp" />
-
-                                </LinearLayout>
-
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/viewattendance"
-                                    android:gravity="center"
-                                    android:orientation="vertical"
-                                    android:padding="7dp">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="70"
-                                        android:textSize="12dp" />
-
-                                </LinearLayout>
-
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/viewattendance"
-                                    android:gravity="center"
-                                    android:orientation="vertical"
-                                    android:padding="7dp">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="70"
-                                        android:textSize="12dp" />
-
-                                </LinearLayout>
-
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/viewattendance"
-                                    android:gravity="center"
-                                    android:orientation="vertical"
-                                    android:padding="7dp">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="70"
-                                        android:textSize="12dp" />
-
-
-                                </LinearLayout>
-
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/viewattendance"
-                                    android:gravity="center"
-                                    android:orientation="vertical"
-                                    android:padding="7dp">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="70"
-                                        android:textSize="12dp" />
-
-                                </LinearLayout>
-                            </LinearLayout>
-
-                        </LinearLayout>
                     </LinearLayout>
-                </ScrollView>
 
-            </HorizontalScrollView>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#cdcdcd"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:background="@drawable/viewattendance"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="FAIL STUDENTS"
+                            android:textAlignment="center"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:textColor="#000000"
+                            android:id="@+id/fail"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
 
 
-    </LinearLayout>
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/bottom_sheet1"
-        android:layout_width="match_parent"
+    </android.support.design.widget.CoordinatorLayout>
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp"
-        android:background="#fff"
-        android:clipToPadding="true"
-        android:orientation="vertical"
-        app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/tvresult"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_gravity="bottom"
-            android:background="@color/colorPrimary"
-            android:padding="12dp"
-            android:text="RESULT"
-            android:textColor="#fff" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/viewattendance">
-
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="43"
-                    android:textColor="#000000"
-                    android:textSize="32sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="TOTAL STUDENT"
-                    android:textColor="#000000"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:background="@drawable/viewattendance"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="PASS STUDENT"
-                        android:textAlignment="center"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="50dp"
-                        android:layout_height="wrap_content"
-                        android:text="40"
-                        android:textAlignment="center"
-                        android:textColor="#000000"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:background="@drawable/viewattendance"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="FAIL STUDENT"
-                        android:textAlignment="center"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="50dp"
-                        android:layout_height="wrap_content"
-                        android:text="03"
-                        android:textAlignment="center"
-                        android:textColor="#000000"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-            </LinearLayout>
-        </LinearLayout>
-    </LinearLayout>
-
-
-
-
-</android.support.design.widget.CoordinatorLayout>
+</RelativeLayout>

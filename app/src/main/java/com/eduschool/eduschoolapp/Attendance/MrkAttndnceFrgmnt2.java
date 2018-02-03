@@ -5,6 +5,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Intent;
+import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -30,18 +31,23 @@ import android.widget.Toast;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.ExecutionException;
 
 import com.eduschool.eduschoolapp.AllAPIs;
+import com.eduschool.eduschoolapp.AttendanceSummaryPOJO.AttendanceSummaryBean;
 import com.eduschool.eduschoolapp.ClassListPOJO.ClassList;
 import com.eduschool.eduschoolapp.ClassListPOJO.ClassListbean;
+import com.eduschool.eduschoolapp.Home.ParentHome;
 import com.eduschool.eduschoolapp.Home.TeacherHome;
 import com.eduschool.eduschoolapp.R;
 import com.eduschool.eduschoolapp.SectionListPOJO.SectionList;
 import com.eduschool.eduschoolapp.SectionListPOJO.SectionListbean;
 import com.eduschool.eduschoolapp.StudentListPOJO.StudentListbean;
 import com.eduschool.eduschoolapp.User;
+import com.eduschool.eduschoolapp.checkHolidayBean;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -49,6 +55,8 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
+
+import static android.app.Activity.RESULT_OK;
 
 /**
  * Created by user on 5/16/2017.
@@ -65,7 +73,10 @@ public class MrkAttndnceFrgmnt2 extends Fragment implements DatePickerDialog.OnD
     boolean isFirst;
     String ClassName,classId1,SectionName,sectionId1;
     String Sdate;
+    String Sdate1;
 
+    int MARK_OWN = 1;
+    int MARK_DIFF = 2;
 
     public MrkAttndnceFrgmnt2() {
 
@@ -94,8 +105,139 @@ public class MrkAttndnceFrgmnt2 extends Fragment implements DatePickerDialog.OnD
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View view) {
-                DialogFragment newFragment = new SelectDateFragment();
-                newFragment.show(getActivity().getFragmentManager(), "df");
+
+
+
+                final Dialog dialog = new Dialog(getActivity());
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setCancelable(true);
+                dialog.setContentView(R.layout.datepicker_dialog);
+
+                dialog.show();
+
+
+                final ProgressBar progressBar = (ProgressBar)dialog.findViewById(R.id.progress);
+                final DatePicker datePicker = (DatePicker)dialog.findViewById(R.id.date);
+                Button button = (Button)dialog.findViewById(R.id.submit);
+
+                datePicker.setMaxDate(new Date().getTime());
+
+                button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+
+
+
+
+                        int year = datePicker.getYear();
+                        int month = datePicker.getMonth();
+                        int day = datePicker.getDayOfMonth();
+
+
+                        Calendar c = Calendar.getInstance();
+                        c.set(year, month, day);
+
+
+
+                        SimpleDateFormat sdf1 = new SimpleDateFormat("EEEE");
+                        String formattedDate1 = sdf1.format(c.getTime());
+
+                        Log.d("asdasd" , formattedDate1);
+
+                        if (Objects.equals(formattedDate1, "Sunday"))
+                        {
+                            Toast.makeText(getContext() , "Sorry, you have selected Sunday" , Toast.LENGTH_SHORT).show();
+                        }
+                        else
+                        {
+                            SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
+                            String formattedDate = sdf.format(c.getTime());
+                            Sdate = formattedDate;
+
+                            final User b = (User) getActivity().getApplicationContext();
+
+
+                            Retrofit retrofit = new Retrofit.Builder()
+                                    .baseUrl(b.baseURL)
+                                    .addConverterFactory(ScalarsConverterFactory.create())
+                                    .addConverterFactory(GsonConverterFactory.create())
+                                    .build();
+
+                            final AllAPIs cr = retrofit.create(AllAPIs.class);
+                            progressBar.setVisibility(View.VISIBLE);
+                            Call<checkHolidayBean> call3 = cr.checkHoliday(b.school_id , Sdate);
+
+                            Log.d("schoolId" , b.school_id);
+                            Log.d("userId" , b.user_id);
+                            Log.d("date" , Sdate);
+
+                            progressBar.setVisibility(View.VISIBLE);
+
+
+                            call3.enqueue(new Callback<checkHolidayBean>() {
+
+                                @Override
+                                public void onResponse(Call<checkHolidayBean> call3, Response<checkHolidayBean> response) {
+
+
+                                    if (Objects.equals(response.body().getStatus(), "1")){
+
+                                        Toast.makeText(getContext() , "Sorry, you have selected a Holiday" , Toast.LENGTH_SHORT).show();
+                                        //dialog.dismiss();
+
+                                    }
+                                    else
+                                    {
+
+
+                                        int year = datePicker.getYear();
+                                        int month = datePicker.getMonth();
+                                        int day = datePicker.getDayOfMonth();
+
+
+                                        Calendar c = Calendar.getInstance();
+                                        c.set(year, month, day);
+
+
+
+                                        SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
+                                        SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+                                        String formattedDate = sdf.format(c.getTime());
+                                        String formattedDate1 = sdf1.format(c.getTime());
+                                        Sdate = formattedDate;
+                                        Sdate1 = formattedDate1;
+                                        date.setText(Sdate);
+
+                                        dialog.dismiss();
+
+                                    }
+                                    progressBar.setVisibility(View.GONE);
+
+
+                                }
+
+                                @Override
+                                public void onFailure(Call<checkHolidayBean> call, Throwable throwable) {
+                                    progressBar.setVisibility(View.GONE);
+
+                                }
+                            });
+
+                        }
+
+
+
+
+
+
+
+                    }
+                });
+
+
+                //DialogFragment newFragment = new SelectDateFragment();
+                //newFragment.show(getActivity().getFragmentManager(), "df");
             }
         });
 
@@ -111,8 +253,10 @@ public class MrkAttndnceFrgmnt2 extends Fragment implements DatePickerDialog.OnD
 
 
                    Intent intent =new Intent(getActivity(),MarkAttendance.class);
-                    intent.putExtra("Date",Sdate);
-                    startActivity(intent);
+                   intent.putExtra("Date",Sdate);
+                   intent.putExtra("Date1",Sdate1);
+                   //startActivity(intent);
+                    startActivityForResult(intent , MARK_OWN);
                 }
             }
         });
@@ -301,12 +445,16 @@ public class MrkAttndnceFrgmnt2 extends Fragment implements DatePickerDialog.OnD
 
                                 Intent intent = new Intent(getActivity(), MarkAttndncDiffCls.class);
                                 intent.putExtra("Date", Sdate);
+                                intent.putExtra("Date1", Sdate1);
                                 intent.putExtra("Class", ClassName);
                                 intent.putExtra("Section", SectionName);
                                 intent.putExtra("SectionId", sectionId1);
                                 intent.putExtra("ClassId", classId1);
 
-                                startActivity(intent);
+                                //startActivity(intent);
+
+                                startActivityForResult(intent , MARK_DIFF);
+
                             }
 
                         }
@@ -325,10 +473,73 @@ public class MrkAttndnceFrgmnt2 extends Fragment implements DatePickerDialog.OnD
 
 
     @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == MARK_OWN)
+        {
+
+            if (resultCode == RESULT_OK)
+            {
+                String sDate = data.getStringExtra("date");
+
+                FragmentManager fm = getFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+                ViewOwnClassFrgmnt frag1 = new ViewOwnClassFrgmnt();
+                Bundle bundle = new Bundle();
+                bundle.putString("message", sDate);
+                frag1.setArguments(bundle);
+                ft.replace(R.id.replace, frag1);
+                ft.addToBackStack(null);
+                ft.commit();
+            }
+
+
+
+        }
+        else if (requestCode == MARK_DIFF)
+        {
+            if (resultCode == RESULT_OK)
+            {
+                android.support.v4.app.FragmentManager fm=getFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+                ViewDffClsfrgmnt frag1 = new ViewDffClsfrgmnt();
+                Bundle bundle=new Bundle();
+                bundle.putString("Date", data.getStringExtra("date"));
+                bundle.putString("Class", data.getStringExtra("className"));
+                bundle.putString("Section", data.getStringExtra("secName"));
+                bundle.putString("SectionId", data.getStringExtra("secId"));
+                bundle.putString("ClassId", data.getStringExtra("classId"));
+                frag1.setArguments(bundle);
+                ft.replace(R.id.replace, frag1);
+                ft.addToBackStack(null);
+                ft.commit();
+            }
+
+
+        }
+
+
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
-        toolbar.setTitle("Attendance");
+        toolbar.setTitle("Mark Attendance");
         User u = (User) getContext().getApplicationContext();
+
+        toolbar.setNavigationIcon(R.drawable.back);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                FragmentManager fm = ((TeacherHome) getContext()).getSupportFragmentManager();
+                fm.popBackStack();
+
+            }
+        });
+
+        date.setText("DATE");
 
         u.back = false;
     }
@@ -348,7 +559,12 @@ public class MrkAttndnceFrgmnt2 extends Fragment implements DatePickerDialog.OnD
             @SuppressLint("WrongConstant") int yy = calendar.get(Calendar.YEAR);
             @SuppressLint("WrongConstant") int mm = calendar.get(Calendar.MONTH);
             @SuppressLint("WrongConstant") int dd = calendar.get(Calendar.DAY_OF_MONTH);
-            return new DatePickerDialog(getActivity(), this, yy, mm, dd);
+
+            DatePickerDialog dialog = new DatePickerDialog(getActivity(), this, yy, mm, dd);
+            dialog.getDatePicker().setMaxDate(new Date().getTime());
+            return dialog;
+
+            //return new DatePickerDialog(getActivity(), this, yy, mm, dd);
         }
 
 
@@ -357,9 +573,15 @@ public class MrkAttndnceFrgmnt2 extends Fragment implements DatePickerDialog.OnD
             Calendar c = Calendar.getInstance();
             c.set(year, month, day);
 
+
+
+
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
+            SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-mm-dd");
             String formattedDate = sdf.format(c.getTime());
+            String formattedDate1 = sdf1.format(c.getTime());
             Sdate = formattedDate;
+            Sdate1 = formattedDate1;
             date.setText(Sdate);
 
         }

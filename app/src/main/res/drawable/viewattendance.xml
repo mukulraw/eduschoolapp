@@ -3,9 +3,19 @@
 
 
 
+<!--
     <stroke
         android:width="0.5dp"
         android:color="#cdcdcd" />
+-->
 
+    <solid
+        android:color="#ffffff"/>
+
+    <corners
+        android:topRightRadius="3dp"
+        android:bottomLeftRadius="3dp"
+        android:topLeftRadius="3dp"
+        android:bottomRightRadius="3dp"/>
 
 </shape>

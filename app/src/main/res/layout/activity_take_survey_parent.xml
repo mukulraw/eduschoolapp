@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.eduschool.eduschoolapp.Survey.Take_Survey">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/tool_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            app:title="Take Survey"
+            app:titleTextColor="#fff">
+
+        </android.support.v7.widget.Toolbar>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="6dp"
+            android:layout_marginTop="12dp"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="22dp"
+                android:layout_marginLeft="6dp"
+                android:padding="6dp"
+                android:id="@+id/qus"
+                android:text="Q. "
+                android:textColor="#000"
+                android:textSize="18sp" />
+
+
+            <RadioGroup
+                android:id="@+id/radio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                >
+
+                <!-- <RadioButton
+                     android:id="@+id/radioMale"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_margin="6dp"
+                     android:checked="true"
+                     android:padding="4dp"
+                     android:text="perspiciatis"
+                     android:textSize="18sp" />
+
+                 <RadioButton
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_margin="6dp"
+                     android:padding="4dp"
+                     android:text="omnis"
+                     android:textSize="18sp" />
+
+                 <RadioButton
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_margin="6dp"
+                     android:padding="4dp"
+                     android:text="accum"
+                     android:textSize="18sp" />
+
+                 <RadioButton
+                     android:id="@+id/radioFemale"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_margin="6dp"
+                     android:padding="4dp"
+                     android:text="site"
+                     android:textSize="18sp" />
+ -->
+            </RadioGroup>
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/viewattendance1"
+        android:text="SUBMIT"
+        android:visibility="gone"
+        android:textColor="#fff"
+        android:id="@+id/submit"/>
+
+
+
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:orientation="vertical"
+    android:id="@+id/hide"
+    >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:textSize="16sp"
+        android:textColor="@color/colorPrimaryDark"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:text="Your Answer"
+        />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="10dp"
+        android:id="@+id/answer"
+        />
+
+
+</LinearLayout>
+
+
+
+
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progress"
+        android:visibility="gone"
+        android:layout_centerInParent="true"/>
+</RelativeLayout>

@@ -57,7 +57,7 @@ public class HomeworkDatum  {
     private Integer totalCompletehomworkStudent;
     @SerializedName("completehomwork_student")
     @Expose
-    private List<CompletehomworkStudent> completehomworkStudent = null;
+    private List<Object> completehomworkStudent = null;
     @SerializedName("total_pendinghomwork_student")
     @Expose
     private Integer totalPendinghomworkStudent;
@@ -66,7 +66,7 @@ public class HomeworkDatum  {
     private List<PendinghomworkStudent> pendinghomworkStudent = null;
     @SerializedName("file_attachment")
     @Expose
-    private List<Object> fileAttachment = null;
+    private List<FileAttachment> fileAttachment = null;
 
     public String getHomeworkId() {
         return homeworkId;
@@ -188,11 +188,11 @@ public class HomeworkDatum  {
         this.totalCompletehomworkStudent = totalCompletehomworkStudent;
     }
 
-    public List<CompletehomworkStudent> getCompletehomworkStudent() {
+    public List<Object> getCompletehomworkStudent() {
         return completehomworkStudent;
     }
 
-    public void setCompletehomworkStudent(List<CompletehomworkStudent> completehomworkStudent) {
+    public void setCompletehomworkStudent(List<Object> completehomworkStudent) {
         this.completehomworkStudent = completehomworkStudent;
     }
 
@@ -212,12 +212,11 @@ public class HomeworkDatum  {
         this.pendinghomworkStudent = pendinghomworkStudent;
     }
 
-    public List<Object> getFileAttachment() {
+    public List<FileAttachment> getFileAttachment() {
         return fileAttachment;
     }
 
-    public void setFileAttachment(List<Object> fileAttachment) {
+    public void setFileAttachment(List<FileAttachment> fileAttachment) {
         this.fileAttachment = fileAttachment;
     }
-
 }

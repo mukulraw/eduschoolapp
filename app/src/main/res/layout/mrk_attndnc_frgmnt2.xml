@@ -2,43 +2,43 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
+    android:background="@color/bach_color"
     android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/viewattendance1"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/attendance_up"
         android:padding="15dp"
         android:text="DATE"
-        android:textAlignment="center"
+        android:gravity="center"
         android:textColor="#ffffff"
         android:id="@+id/date"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp"
-        android:background="@drawable/viewattendance1"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
+        android:background="@drawable/attendance1"
         android:padding="15dp"
         android:text="OWN CLASS"
-        android:textAlignment="center"
+        android:gravity="center"
         android:textColor="#ffffff"
         android:id="@+id/own_class"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp"
-        android:background="@drawable/viewattendance1"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
+        android:background="@drawable/attendance_doen"
         android:padding="15dp"
         android:text="DIFFERENT CLASS"
-        android:textAlignment="center"
+        android:gravity="center"
         android:textColor="#ffffff"
         android:id="@+id/different_class"/>
 

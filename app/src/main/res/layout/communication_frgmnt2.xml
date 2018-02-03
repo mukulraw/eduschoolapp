@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/bach_color"
+    >
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#ffffff"
         android:orientation="vertical">
 
         <TextView
@@ -14,8 +15,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="6dp"
             android:layout_marginRight="6dp"
-            android:layout_marginTop="40dp"
-            android:background="@drawable/viewattendance1"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/attendance_up"
             android:padding="15dp"
             android:text="SEND BIRTHDAY CARD"
             android:textAlignment="center"
@@ -27,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="6dp"
             android:layout_marginRight="6dp"
-            android:background="@drawable/viewattendance1"
+            android:background="@drawable/attendance_doen"
             android:padding="15dp"
             android:text="COMPOSE MESSAGE"
             android:textAlignment="center"

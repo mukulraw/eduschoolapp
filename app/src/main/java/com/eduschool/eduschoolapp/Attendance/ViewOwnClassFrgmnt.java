@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.eduschool.eduschoolapp.AllAPIs;
 import com.eduschool.eduschoolapp.AttendncDatePOJO.AttendanceDatum;
@@ -55,9 +56,8 @@ public class ViewOwnClassFrgmnt extends Fragment {
     TextView Tday,classSection,Tmonth;
     Button submit;
     List<String>s;
-    public ViewOwnClassFrgmnt() {
 
-    }
+
 
     @Nullable
     @Override
@@ -83,6 +83,11 @@ public class ViewOwnClassFrgmnt extends Fragment {
 
 
 
+        String d1[] = Sdate.split("-");
+
+
+
+
         final DateFormat month =  new SimpleDateFormat("MMM");
         final Date month1 = new Date();
 
@@ -97,8 +102,8 @@ public class ViewOwnClassFrgmnt extends Fragment {
         Log.d("sds",year.format(year1));
         Log.d("sds",day.format(day1));
 
-        Tday.setText(day.format(day1));
-        Tmonth.setText(month.format(month1)+" "+year.format(year1));
+        Tday.setText(d1[0]);
+        Tmonth.setText(d1[1]+" "+year.format(year1));
 
 
 
@@ -135,9 +140,26 @@ public class ViewOwnClassFrgmnt extends Fragment {
             @Override
             public void onResponse(Call<AttendanceListBean> call, Response<AttendanceListBean> response) {
 
+                try {
 
-                adapter.setGridData(response.body().getAttendanceList().get(0).getAttendanceData());
-                adapter.notifyDataSetChanged();
+                    if (response.body().getAttendanceList().size() > 0)
+                    {
+                        adapter.setGridData(response.body().getAttendanceList().get(0).getAttendanceData());
+                        adapter.notifyDataSetChanged();
+                    }
+                    else
+                    {
+                        Toast.makeText(getContext() , "No Data Found" , Toast.LENGTH_SHORT).show();
+                    }
+
+
+
+                }catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
+
+
                 progress.setVisibility(View.GONE);
 
             }

@@ -3,7 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/eSkoolApp.iml" filepath="$PROJECT_DIR$/eSkoolApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/eSkoolApp 4 3 2 2.iml" filepath="$PROJECT_DIR$/eSkoolApp 4 3 2 2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/multispinner/multispinner.iml" filepath="$PROJECT_DIR$/multispinner/multispinner.iml" />
     </modules>
   </component>
 </project>

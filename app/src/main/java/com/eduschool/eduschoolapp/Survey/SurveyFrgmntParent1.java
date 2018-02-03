@@ -17,6 +17,7 @@ import java.util.List;
 import com.eduschool.eduschoolapp.AllAPIs;
 import com.eduschool.eduschoolapp.Home.ParentHome;
 import com.eduschool.eduschoolapp.R;
+import com.eduschool.eduschoolapp.SurveyListParentPOJO.ServeyDatum;
 import com.eduschool.eduschoolapp.SurveyListParentPOJO.SurveyListBeanParent;
 import com.eduschool.eduschoolapp.SurveyListParentPOJO.SurveyListteacher;
 import com.eduschool.eduschoolapp.User;
@@ -37,7 +38,7 @@ public class SurveyFrgmntParent1 extends Fragment {
     private RecyclerView recyclerView;
     private AdapterSurveyParent adapter;
     ProgressBar progress;
-    private List<SurveyListteacher> albumList;
+    private List<ServeyDatum> albumList;
 
     @Nullable
     @Override
@@ -59,7 +60,7 @@ public class SurveyFrgmntParent1 extends Fragment {
 
         recyclerView.setAdapter(adapter);
 
-        User b = (User) getActivity().getApplicationContext();
+        /*User b = (User) getActivity().getApplicationContext();
 
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -90,7 +91,11 @@ public class SurveyFrgmntParent1 extends Fragment {
                 progress.setVisibility(View.GONE);
 
             }
-        });
+        });*/
+
+
+
+
 
 
 
@@ -126,8 +131,17 @@ public class SurveyFrgmntParent1 extends Fragment {
             @Override
             public void onResponse(Call<SurveyListBeanParent> call, Response<SurveyListBeanParent> response) {
 
+                List<ServeyDatum> ll = new ArrayList<>();
 
-                adapter.setGridData(response.body().getSurveyListteacher());
+                for (int i = 0 ; i < response.body().getSurveyListteacher().size() ; i++)
+                {
+                    for (int j = 0 ; j < response.body().getSurveyListteacher().get(i).getServeyData().size() ; j++)
+                    {
+                        ll.add(response.body().getSurveyListteacher().get(i).getServeyData().get(j));
+                    }
+                }
+
+                adapter.setGridData(ll);
                 adapter.notifyDataSetChanged();
                 progress.setVisibility(View.GONE);
 

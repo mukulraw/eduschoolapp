@@ -20,16 +20,20 @@ import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.eduschool.eduschoolapp.Calender.CalenderParent;
+import com.eduschool.eduschoolapp.Fees.FeesFrgmnt2;
 import com.eduschool.eduschoolapp.Library.ParentLibrary1;
 import com.eduschool.eduschoolapp.LoginPOJO.Loginbean;
 import com.eduschool.eduschoolapp.LoginPages.LoginPage;
 import com.eduschool.eduschoolapp.LoginPages.MainLogin;
 import com.eduschool.eduschoolapp.Notifications.ParentNotificationFrgmnt;
 import com.eduschool.eduschoolapp.StayAhead.StayAheadHome;
+import com.eduschool.eduschoolapp.StudentSummary.ParentFeeFrgmnt2;
+import com.eduschool.eduschoolapp.StudentSummary.ParentProfileFrgmnt;
 import com.eduschool.eduschoolapp.StudentSummary.StudentSummaryParent;
 import com.eduschool.eduschoolapp.SyllabusManagement.ParentAcademic;
 import com.eduschool.eduschoolapp.Attendance.ParentAttendanceFrgmnt;
@@ -57,8 +61,12 @@ public class ParentHome extends AppCompatActivity
     LinearLayout hotelName;
     SharedPreferences pref;
     SharedPreferences.Editor edit;
-    TextView academic, attendance, logout, home, notification, homewrk, classwrk, syllabus, exm, calendar, studentSummary, library, timeTable, gallery, sendCards, survey, stayAhead, onlineTest, raiseRequest, fees, transport, profile;
 
+    TextView username;
+
+    TextView academic2 , attendance, logout, home, notification, homewrk, classwrk, syllabus, exm, calendar, studentSummary, library, timeTable, gallery, sendCards, survey, stayAhead, onlineTest, raiseRequest, fees, transport, profile;
+
+    RelativeLayout academic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +75,7 @@ public class ParentHome extends AppCompatActivity
         context = ParentHome.this;
 
 
+        username = (TextView)findViewById(R.id.user_name);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -104,7 +113,9 @@ public class ParentHome extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        academic = (TextView) findViewById(R.id.academic);
+        academic = (RelativeLayout) findViewById(R.id.academic);
+        academic2 = (TextView) findViewById(R.id.academic2);
+
         attendance = (TextView) findViewById(R.id.attendance);
         logout = (TextView) findViewById(R.id.logout);
         home = (TextView) findViewById(R.id.home1);
@@ -128,7 +139,7 @@ public class ParentHome extends AppCompatActivity
         profile = (TextView) findViewById(R.id.profile);
 
 
-        academic.setOnClickListener(new View.OnClickListener() {
+        /*academic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -141,8 +152,11 @@ public class ParentHome extends AppCompatActivity
 
 
             }
-        });
+        });*/
 
+        User u = (User)getApplicationContext();
+
+        username.setText("WELCOME " + u.studName);
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -463,11 +477,26 @@ public class ParentHome extends AppCompatActivity
 
                 FragmentManager fm = getSupportFragmentManager();
                 FragmentTransaction ft = fm.beginTransaction();
-                Fees frag1 = new Fees();
+                ParentFeeFrgmnt2 frag1 = new ParentFeeFrgmnt2();
+
+                User u = (User)getApplicationContext();
+
+                Bundle b2 = new Bundle();
+                b2.putString("cName" , u.class_Name);
+                b2.putString("sName" , u.section_Name);
+                b2.putString("stName" , u.studName);
+                b2.putString("cid" , u.user_class);
+                b2.putString("sid" , u.user_section);
+                b2.putString("stid" , u.user_id);
+
+                frag1.setArguments(b2);
+
                 ft.replace(R.id.replace, frag1);
                 //ft.addToBackStack(null);
                 ft.commit();
                 drawer.closeDrawer(GravityCompat.START);
+
+                toolbar.setTitle("Fees");
 
             }
         });
@@ -503,10 +532,10 @@ public class ParentHome extends AppCompatActivity
         });
 
         if (isCollapsed) {
-            academic.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_down, 0);
+            academic2.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ddown, 0);
             hotelName.setVisibility(View.GONE);
         } else {
-            academic.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_up, 0);
+            academic2.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.uup, 0);
             hotelName.setVisibility(View.VISIBLE);
         }
 
@@ -514,11 +543,11 @@ public class ParentHome extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 if (isCollapsed) {
-                    academic.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_up, 0);
+                    academic2.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.uup, 0);
                     hotelName.setVisibility(View.VISIBLE);
                     isCollapsed = false;
                 } else {
-                    academic.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_down, 0);
+                    academic2.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ddown, 0);
                     hotelName.setVisibility(View.GONE);
                     isCollapsed = true;
                 }
@@ -715,7 +744,13 @@ public class ParentHome extends AppCompatActivity
 
             FragmentManager fm = getSupportFragmentManager();
             FragmentTransaction ft = fm.beginTransaction();
-            ParentProfile frag1 = new ParentProfile();
+            ParentProfileFrgmnt frag1 = new ParentProfileFrgmnt();
+            Bundle b = new Bundle();
+
+            User u = (User)getApplicationContext();
+
+            b.putString("id" , u.user_id);
+            frag1.setArguments(b);
             ft.replace(R.id.replace, frag1);
             //ft.addToBackStack(null);
             ft.commit();
@@ -742,7 +777,7 @@ public class ParentHome extends AppCompatActivity
 
             FragmentManager fm = getSupportFragmentManager();
             FragmentTransaction ft = fm.beginTransaction();
-            Fees frag1 = new Fees();
+            FeesFrgmnt2 frag1 = new FeesFrgmnt2();
             ft.replace(R.id.replace, frag1);
             //ft.addToBackStack(null);
             ft.commit();

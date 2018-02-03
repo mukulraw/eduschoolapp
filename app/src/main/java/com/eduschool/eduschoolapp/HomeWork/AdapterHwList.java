@@ -55,9 +55,6 @@ public class AdapterHwList extends RecyclerView.Adapter<AdapterHwList.myviewhold
         holder.subject.setText("Subject : "+item.getSubject());
 
 
-
-
-
     }
 
     @Override

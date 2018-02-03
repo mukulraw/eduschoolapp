@@ -2,10 +2,14 @@
 <resources>
     <color name="colorPrimary">#01A8DD</color>
     <color name="colorPrimaryDark">#0070AF</color>
-    <color name="colorAccent">#066FA4</color>
+    <color name="colorAccent">#F0920A</color>
     <color name="btn">#ffce86</color>
     <color name="txtColor">#cdcdcd</color>
 
+    <color name="bach_color">#f5f5f5</color>
+    <color name="head_color">#cdcdcd</color>
+    <color name="date_color">#F2F2F2</color>
+    <color name="dialog_color">#e3e3e3</color>
 
 
     <!-- dots inactive colors -->

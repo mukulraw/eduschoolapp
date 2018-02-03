@@ -28,6 +28,7 @@ import android.widget.TextView;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -40,6 +41,7 @@ import com.eduschool.eduschoolapp.AllAPIs;
 import com.eduschool.eduschoolapp.ClassListPOJO.ClassList;
 import com.eduschool.eduschoolapp.ClassListPOJO.ClassListbean;
 import com.eduschool.eduschoolapp.ClassWork.TeacherClsWrk2;
+import com.eduschool.eduschoolapp.Home.ParentHome;
 import com.eduschool.eduschoolapp.Home.TeacherHome;
 import com.eduschool.eduschoolapp.LoginPOJO.Loginbean;
 import com.eduschool.eduschoolapp.R;
@@ -341,8 +343,20 @@ public class AttendanceFrgmnt2 extends Fragment implements DatePickerDialog.OnDa
     @Override
     public void onResume() {
         super.onResume();
-        toolbar.setTitle("Attendance");
+        toolbar.setTitle("View Attendance");
         User u = (User) getContext().getApplicationContext();
+
+        toolbar.setNavigationIcon(R.drawable.back);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                FragmentManager fm = ((TeacherHome) getContext()).getSupportFragmentManager();
+                fm.popBackStack();
+
+            }
+        });
+
 
         u.back = false;
     }
@@ -362,7 +376,11 @@ public class AttendanceFrgmnt2 extends Fragment implements DatePickerDialog.OnDa
             @SuppressLint("WrongConstant") int yy = calendar.get(Calendar.YEAR);
             @SuppressLint("WrongConstant") int mm = calendar.get(Calendar.MONTH);
             @SuppressLint("WrongConstant") int dd = calendar.get(Calendar.DAY_OF_MONTH);
-            return new DatePickerDialog(getActivity(), this, yy, mm, dd);
+            DatePickerDialog dialog = new DatePickerDialog(getActivity(), this, yy, mm, dd);
+            dialog.getDatePicker().setMaxDate(new Date().getTime());
+            return dialog;
+
+            //return new DatePickerDialog(getActivity(), this, yy, mm, dd);
         }
 
 

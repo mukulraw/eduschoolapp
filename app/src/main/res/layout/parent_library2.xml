@@ -2,11 +2,21 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/bach_color"
+    >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="50dp"
+        android:clipToPadding="true"
+        >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
         android:orientation="vertical">
 
         <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
@@ -15,7 +25,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
-            app:title="Book"
             app:titleTextColor="#fff">
 
         </android.support.v7.widget.Toolbar>
@@ -33,7 +42,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="6dp"
                 android:layout_marginTop="6dp"
-                android:text="Hamlet"
                 android:textSize="32dp"
                 android:textStyle="bold" />
 
@@ -47,23 +55,19 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Author - "
-                        android:textSize="12dp" />
+
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="William Shakespeare"
-                        android:textSize="12dp" />
+                        android:id="@+id/author"
+                        android:textSize="12sp" />
                 </LinearLayout>
 
 
             </RelativeLayout>
 
-            <RelativeLayout
+            <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp">
@@ -71,29 +75,11 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true">
+                    android:orientation="horizontal"
+                    android:id="@+id/category"
+                    android:layout_centerVertical="true"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="4dp"
-                        android:background="@drawable/lib"
-                        android:gravity="center"
-                        android:padding="6dp"
-                        android:text="Tragedy"
-                        android:textSize="12dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/lib"
-                        android:gravity="center"
-                        android:padding="6dp"
-                        android:text="Drama"
-                        android:textSize="12dp" />
-                </LinearLayout>
-
-            </RelativeLayout>
+            </HorizontalScrollView>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -104,23 +90,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:gravity="center"
-                    android:padding="6dp">
+                    android:gravity="center">
+
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="Book No."
-                        android:textSize="12dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="6dp"
-                        android:gravity="center"
-                        android:text="10045"
-                        android:textSize="12dp" />
+                        android:id="@+id/book_no"
+                        android:textSize="12sp" />
                 </LinearLayout>
 
 
@@ -132,8 +110,8 @@
                     android:background="@drawable/lib2"
                     android:gravity="center"
                     android:padding="6dp"
-                    android:text="Available"
-                    android:textSize="12dp" />
+                    android:id="@+id/available"
+                    android:textSize="12sp" />
 
             </RelativeLayout>
 
@@ -143,103 +121,102 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/white_round"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="6dp"
+            android:layout_marginBottom="12dp"
             android:layout_marginTop="12dp"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="6dp"
-                android:layout_marginRight="6dp"
-                android:layout_marginTop="12dp"
+                android:id="@+id/hide1"
                 android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/viewattendance"
                     android:gravity="center_horizontal"
-                    android:padding="12dp"
-                    android:text="Published Date"
-                    android:textSize="15dp" />
+                    android:padding="11sp"
+                    android:id="@+id/from_date"
+                    android:textStyle="bold"
+                    android:text="From Date"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="#cdcdcd"
+                    />
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/viewattendance"
                     android:gravity="center"
                     android:padding="12dp"
-                    android:text="1/02/1892"
-                    android:textSize="15dp" />
+                    android:id="@+id/published_date"
+                    android:textSize="15sp" />
 
             </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#cdcdcd"
+                />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="6dp"
                 android:layout_marginRight="6dp"
-
+                android:id="@+id/hide2"
                 android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/viewattendance"
                     android:gravity="center_horizontal"
+                    android:id="@+id/to_date"
                     android:padding="12dp"
-                    android:text="Date of Entry"
-                    android:textSize="15dp" />
+                    android:text="To Date"
+                    android:textStyle="bold"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="#cdcdcd"
+                    />
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/viewattendance"
                     android:gravity="center"
                     android:padding="12dp"
-                    android:text="24/06/2017"
-                    android:textSize="15dp" />
+                    android:id="@+id/date_of_entry"
+                    android:textSize="15sp" />
 
             </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#cdcdcd"
+                />
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="6dp"
                 android:layout_marginRight="6dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/viewattendance"
-                    android:gravity="center_horizontal"
-                    android:padding="12dp"
-                    android:text="Borrowed Date"
-                    android:textSize="15dp" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/viewattendance"
-                    android:gravity="center"
-                    android:padding="12dp"
-                    android:text="12/02/1892"
-                    android:textSize="15dp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="6dp"
-                android:layout_marginRight="6dp"
+                android:id="@+id/hide3"
                 android:orientation="horizontal">
 
 
@@ -247,57 +224,36 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/viewattendance"
+                    android:id="@+id/by"
                     android:gravity="center_horizontal"
+                    android:textStyle="bold"
                     android:padding="12dp"
-                    android:text="Borrower Name"
-                    android:textSize="15dp" />
+                    android:text="Borrowed By"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="#cdcdcd"
+                    />
+
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/viewattendance"
                     android:gravity="center"
                     android:padding="12dp"
-                    android:text="Amit"
-                    android:textSize="15dp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="6dp"
-                android:layout_marginRight="6dp"
-                android:orientation="horizontal">
-
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/viewattendance"
-                    android:gravity="center_horizontal"
-                    android:padding="12dp"
-                    android:text="Due Date"
-                    android:textSize="15dp" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/viewattendance"
-                    android:gravity="center"
-                    android:padding="12dp"
-                    android:text="30/06/2017"
-                    android:textSize="15dp" />
+                    android:id="@+id/borrowed_by"
+                    android:textSize="15sp" />
 
             </LinearLayout>
 
         </LinearLayout>
 
     </LinearLayout>
+
+    </ScrollView>
 
     <Button
         android:layout_width="match_parent"
@@ -307,4 +263,13 @@
         android:text="Reserve"
         android:id="@+id/reserve"
         android:textColor="#fff" />
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progress"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        />
+
 </RelativeLayout>

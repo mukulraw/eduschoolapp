@@ -6,10 +6,13 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 
 import java.util.ArrayList;
@@ -41,6 +44,7 @@ public class TeacherLibrary1 extends Fragment {
     ProgressBar progress;
     private AdapterLibraryTeacher adapter;
     private List<BookList> albumList;
+    EditText search;
 
 
     @Nullable
@@ -50,6 +54,8 @@ public class TeacherLibrary1 extends Fragment {
         View view = inflater.inflate(R.layout.library1, container, false);
         toolbar = (Toolbar) ((TeacherHome) getContext()).findViewById(R.id.tool_bar);
         progress = (ProgressBar) view.findViewById(R.id.progress);
+
+        search = (EditText)view.findViewById(R.id.search);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler);
 
@@ -62,7 +68,85 @@ public class TeacherLibrary1 extends Fragment {
         recyclerView.setAdapter(adapter);
 
 
+        search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                if (s.length()>0)
+                {
+
+                    User b = (User) getActivity().getApplicationContext();
+
+
+                    Retrofit retrofit = new Retrofit.Builder()
+                            .baseUrl(b.baseURL)
+                            .addConverterFactory(ScalarsConverterFactory.create())
+                            .addConverterFactory(GsonConverterFactory.create())
+                            .build();
+
+                    AllAPIs cr = retrofit.create(AllAPIs.class);
+                    progress.setVisibility(View.VISIBLE);
+
+                    Call<BookListBean> call = cr.search_book(b.school_id , s.toString());
+
+
+                    call.enqueue(new Callback<BookListBean>() {
+                        @Override
+                        public void onResponse(Call<BookListBean> call, Response<BookListBean> response) {
+
+
+                            //albumList = response.body().getBookList();
+
+                            adapter.setGridData(response.body().getBookList());
+                            adapter.notifyDataSetChanged();
+                            progress.setVisibility(View.GONE);
+
+                        }
+
+                        @Override
+                        public void onFailure(Call<BookListBean> call, Throwable throwable) {
+
+                            progress.setVisibility(View.GONE);
+
+                        }
+                    });
+
+
+                }
+                else
+                {
+                    adapter.setGridData(albumList);
+                }
+
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+
+
+
+
+        return view;
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        toolbar.setTitle("Library");
+        User u = (User) getContext().getApplicationContext();
+
+        u.back = true;
 
         User b = (User) getActivity().getApplicationContext();
 
@@ -84,8 +168,9 @@ public class TeacherLibrary1 extends Fragment {
             public void onResponse(Call<BookListBean> call, Response<BookListBean> response) {
 
 
+                albumList = response.body().getBookList();
 
-                adapter.setGridData(response.body().getBookList());
+                adapter.setGridData(albumList);
                 adapter.notifyDataSetChanged();
                 progress.setVisibility(View.GONE);
 
@@ -100,16 +185,5 @@ public class TeacherLibrary1 extends Fragment {
         });
 
 
-        return view;
-    }
-
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        toolbar.setTitle("Library");
-        User u = (User) getContext().getApplicationContext();
-
-        u.back = true;
     }
 }

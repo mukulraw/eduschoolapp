@@ -1,13 +1,18 @@
 package com.eduschool.eduschoolapp;
 
 
+import android.Manifest;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -37,6 +42,8 @@ public class Splash extends AppCompatActivity {
     SharedPreferences pref;
     ProgressBar progress;
 
+    final private int REQUEST_CODE_ASK_PERMISSIONS = 123;
+    String[] PERMISSIONS = {Manifest.permission.READ_EXTERNAL_STORAGE};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +53,71 @@ public class Splash extends AppCompatActivity {
 
         pref = getSharedPreferences("mypref", MODE_PRIVATE);
 
+        if(hasPermissions(this , PERMISSIONS))
+        {
+            startApp();
+        }
+        else
+        {
+            ActivityCompat.requestPermissions(this , PERMISSIONS , REQUEST_CODE_ASK_PERMISSIONS);
+        }
+    }
 
+
+
+
+    public static boolean hasPermissions(Context context, String... permissions) {
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && context != null && permissions != null) {
+            for (String permission : permissions) {
+                if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (requestCode == REQUEST_CODE_ASK_PERMISSIONS)
+        {
+            if (ActivityCompat.checkSelfPermission(getApplicationContext() , android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)
+            {
+
+                startApp();
+
+            }
+            else
+            {
+                if (ActivityCompat.shouldShowRequestPermissionRationale(this , Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+
+                    Toast.makeText(getApplicationContext() , "Permissions are required for this app" , Toast.LENGTH_SHORT).show();
+                    finish();
+
+                }
+                //permission is denied (and never ask again is  checked)
+                //shouldShowRequestPermissionRationale will return false
+                else {
+                    Toast.makeText(this, "Go to settings and enable permissions", Toast.LENGTH_LONG)
+                            .show();
+                    finish();
+                    //                            //proceed with logic by disabling the related features or quit the app.
+                }
+            }
+
+        }
+
+
+    }
+
+
+
+
+    public void startApp()
+    {
         if (Objects.equals(pref.getString("type", ""), "Teacher")) {
             Timer t = new Timer();
 
@@ -80,27 +151,38 @@ public class Splash extends AppCompatActivity {
                                 public void onResponse(Call<Loginbean> call, Response<Loginbean> response) {
                                     User b = (User) getApplicationContext();
 
-                                    if (Objects.equals(response.body().getStatus(), "0")) {
-                                        Toast.makeText(Splash.this, "Invalid details", Toast.LENGTH_SHORT).show();
-                                        progress.setVisibility(View.GONE);
-                                    } else if (Objects.equals(response.body().getStatus(), "1")) {
-                                        b.school_id = response.body().getSchoolId();
-                                        b.user_id = response.body().getId();
-                                        b.user_type = response.body().getUserType();
-                                        b.user_class=response.body().getClassId();
-                                        b.user_section=response.body().getSectionId();
-                                        b.class_teacher=response.body().getClassTeacher();
-                                        b.class_Name=response.body().getClassName();
-                                        b.section_Name=response.body().getSectionName();
 
-                                        progress.setVisibility(View.GONE);
+                                    try {
+                                        if (Objects.equals(response.body().getStatus(), "0")) {
+                                            Toast.makeText(Splash.this, "Invalid details", Toast.LENGTH_SHORT).show();
+                                            progress.setVisibility(View.GONE);
+                                        } else if (Objects.equals(response.body().getStatus(), "1")) {
+                                            b.school_id = response.body().getSchoolId();
+                                            b.user_id = response.body().getId();
+                                            b.user_type = response.body().getUserType();
+                                            b.user_class=response.body().getClassId();
+                                            b.user_name=response.body().getName();
+                                            b.user_section=response.body().getSectionId();
+                                            b.class_teacher=response.body().getClassTeacher();
+                                            b.class_Name=response.body().getClassName();
+                                            b.section_Name=response.body().getSectionName();
+                                            b.studName = response.body().getName();
+
+                                            progress.setVisibility(View.GONE);
 
 
-                                        Intent intent = new Intent(Splash.this, TeacherHome.class);
-                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                        startActivity(intent);
-                                        finish();
+                                            Intent intent = new Intent(Splash.this, TeacherHome.class);
+                                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                            startActivity(intent);
+                                            finish();
+                                        }
+                                    }catch (Exception e)
+                                    {
+                                        e.printStackTrace();
                                     }
+
+
+
 
                                 }
 
@@ -108,6 +190,7 @@ public class Splash extends AppCompatActivity {
                                 public void onFailure(Call<Loginbean> call, Throwable throwable) {
 
                                     progress.setVisibility(View.GONE);
+                                    throwable.printStackTrace();
 
                                 }
                             });
@@ -118,7 +201,7 @@ public class Splash extends AppCompatActivity {
 
                 }
 
-            }, 2000);
+            }, 3000);
 
 
         } else if (Objects.equals(pref.getString("type", ""), "Parent")) {
@@ -160,12 +243,12 @@ public class Splash extends AppCompatActivity {
                                         b.school_id = response.body().getSchoolId();
                                         b.user_id = response.body().getId();
                                         b.user_type = response.body().getUserType();
-                                        b.user_name=response.body().getStudentName();
+                                        b.user_name=response.body().getName();
                                         b.user_class=response.body().getClassId();
                                         b.user_section=response.body().getSectionId();
                                         b.class_Name=response.body().getClassName();
                                         b.section_Name=response.body().getSectionName();
-
+                                        b.studName = response.body().getName();
 
                                         progress.setVisibility(View.GONE);
 
@@ -214,7 +297,6 @@ public class Splash extends AppCompatActivity {
                 }
             }, 2000);
         }
-
     }
 
     public void checkNetworkConnection() {

@@ -5,6 +5,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,7 +42,7 @@ public class EventsFrgmnt1 extends Fragment {
 
                 FragmentManager fm = getFragmentManager();
                 FragmentTransaction ft = fm.beginTransaction();
-               ViewCalendarFrgmnt frag1 = new ViewCalendarFrgmnt();
+                ViewCalendarFrgmnt frag1 = new ViewCalendarFrgmnt();
                 ft.replace(R.id.replace, frag1);
                 ft.addToBackStack(null);
                 ft.commit();
@@ -74,5 +76,15 @@ public class EventsFrgmnt1 extends Fragment {
         User u = (User) getContext().getApplicationContext();
 
         u.back = true;
+
+        DrawerLayout drawer = (DrawerLayout)((TeacherHome) getContext()).findViewById(R.id.drawer_asiana);
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                getActivity(), drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+
+
     }
 }

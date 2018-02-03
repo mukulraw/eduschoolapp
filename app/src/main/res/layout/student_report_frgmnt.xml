@@ -21,15 +21,19 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:minHeight="50dp"
             android:layout_marginLeft="6dp"
             android:layout_marginRight="6dp"
             android:layout_marginTop="6dp"
-            android:background="@drawable/viewattendance"
-            android:padding="9dp">
+            android:background="@drawable/white_round"
+            >
 
             <Spinner
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"></Spinner>
+                android:layout_height="wrap_content"
+                android:id="@+id/cls"
+                android:layout_centerVertical="true"
+                />
         </RelativeLayout>
 
         <TextView
@@ -47,12 +51,15 @@
             android:layout_marginLeft="6dp"
             android:layout_marginRight="6dp"
             android:layout_marginTop="6dp"
-            android:background="@drawable/viewattendance"
-            android:padding="9dp">
+            android:background="@drawable/white_round"
+            android:minHeight="50dp">
 
             <Spinner
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"></Spinner>
+                android:layout_height="wrap_content"
+                android:id="@+id/sec"
+                android:layout_centerVertical="true"
+                />
         </RelativeLayout>
 
         <TextView
@@ -70,12 +77,16 @@
             android:layout_marginLeft="6dp"
             android:layout_marginRight="6dp"
             android:layout_marginTop="6dp"
-            android:background="@drawable/viewattendance"
-            android:padding="9dp">
+            android:background="@drawable/white_round"
+            android:minHeight="50dp">
 
             <Spinner
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"></Spinner>
+                android:layout_height="wrap_content"
+                android:id="@+id/stu"
+                android:layout_centerVertical="true"
+                />
+
         </RelativeLayout>
     </LinearLayout>
 
@@ -89,4 +100,13 @@
         android:text="Get Report"
         android:textColor="#ffffff"
         />
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:id="@+id/progress"
+        android:visibility="gone"
+        />
+
 </RelativeLayout>

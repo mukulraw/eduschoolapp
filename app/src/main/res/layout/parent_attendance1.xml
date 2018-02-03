@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
+    android:background="@color/bach_color"
     android:orientation="vertical">
+
+
 
     <ScrollView
         android:layout_width="match_parent"
@@ -23,8 +25,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
                 android:layout_marginLeft="12dp"
-                android:layout_marginTop="22dp"
-                android:text="Student Name"
+                android:layout_marginTop="12dp"
+                android:id="@+id/stu_name"
                 android:textColor="#000000" />
 
             <LinearLayout
@@ -33,7 +35,8 @@
                 android:layout_marginBottom="12dp"
                 android:layout_marginLeft="6dp"
                 android:layout_marginRight="6dp"
-                android:background="@drawable/viewattendance"
+                android:background="@drawable/white_round"
+                android:padding="1dp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
@@ -50,7 +53,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="10"
+                        android:id="@+id/date"
                         android:textColor="#000000"
                         android:textSize="38sp"
                         android:textStyle="bold" />
@@ -58,9 +61,15 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="March 2017"
+                        android:id="@+id/month"
                         android:textColor="#000000" />
                 </LinearLayout>
+
+                <TextView
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="#cdcdcd"
+                    />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -72,14 +81,13 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Class"
                         android:textSize="32sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingLeft="12sp"
-                        android:text="8A"
+                        android:id="@+id/class_name"
                         android:textColor="#398DBF"
                         android:textSize="32sp"
                         android:textStyle="bold" />
@@ -161,33 +169,34 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/viewattendance1"
                     android:padding="12dp"
-                    android:text="ATTENDANCE REPORT"
+                    android:text="MONTHLY REPORT"
                     android:textColor="#fff" />
 
-                <CalendarView
+                <com.prolificinteractive.materialcalendarview.MaterialCalendarView
                     android:id="@+id/calendar"
+                    android:background="@drawable/white_bottom_round"
+                    android:padding="1dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    >
-
-                </CalendarView>
+                    android:layout_height="400dp"
+                    />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/viewattendance"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/white_round"
                     android:padding="12dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Absent :"
+                        android:text="Details :"
                         android:textColor="@android:color/holo_red_dark" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Planned Leave"
+                        android:id="@+id/reason"
                         android:textColor="@android:color/holo_green_dark" />
                 </LinearLayout>
 
@@ -195,4 +204,15 @@
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
-</LinearLayout>
+
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:id="@+id/progress"
+        android:visibility="gone"
+        />
+
+
+</RelativeLayout>

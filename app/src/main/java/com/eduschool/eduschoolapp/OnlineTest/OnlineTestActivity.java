@@ -28,6 +28,9 @@ public class OnlineTestActivity extends AppCompatActivity {
     MyAdapter mAdapter;
     MyViewPager mPager;
     TextView count;
+
+    String id , title;
+
     Button start;
     final static Fragment[] layouts = new Fragment[]{QuestionFragment.newInstance(0), QuestionFragment_two.newInstance(1)};
 
@@ -36,6 +39,10 @@ public class OnlineTestActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_online_test);
+
+        id = getIntent().getStringExtra("id");
+        title = getIntent().getStringExtra("title");
+
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);

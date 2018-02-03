@@ -14,4 +14,8 @@
     <string name="title_activity_teacher_home">TeacherHome</string>
     <string name="view_receipt"><u>View Receipt</u></string>
 
+
+    <string name="select_class">Select Class</string>
+    <string name="select_section">Select Section</string>
+
 </resources>

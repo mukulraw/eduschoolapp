@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="4dp">
+    android:padding="2dp">
 
     <TextView
         android:layout_width="match_parent"
@@ -12,56 +12,79 @@
         android:background="@drawable/viewattendance1"
         android:gravity="center"
         android:padding="12dp"
-        android:text="JULY 2017"
+        android:id="@+id/month"
+
         android:textColor="#fff" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="#a3d5ec">
+        android:background="@drawable/white_round"
+        android:layout_marginBottom="0.2dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#84cada"
+            >
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
            android:layout_marginTop="12dp"
             android:layout_marginBottom="6dp"
-            android:text="WORK DAYS"
+            android:text="WORKING DAYS"
+            android:textColor="#ffffff"
             android:gravity="center_horizontal"
-            android:textSize="22sp" />
+            android:textSize="14sp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:text="10"
+            android:id="@+id/working"
+            android:textColor="#ffffff"
             android:layout_marginTop="6dp"
             android:layout_marginBottom="12dp"
-            android:textSize="22sp"
+            android:textSize="20sp"
             android:textStyle="bold"/>
+
+        </LinearLayout>
 
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
+        android:background="@drawable/white_round"
+        android:padding="1dp"
         android:layout_height="wrap_content"
        >
         <TextView
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="PRESENT 5"
+            android:id="@+id/present"
             android:gravity="center_horizontal"
             android:textSize="12sp"
-            android:background="#f4ea8d"
-            android:padding="12dp"/>
+            android:background="#ffffff"
+            android:padding="5dp"/>
+
+        <TextView
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="#cdcdcd"
+            />
+
         <TextView
             android:layout_weight="1"
+            android:id="@+id/absent"
             android:layout_width="0dp"
-            android:background="#ffc488"
-            android:padding="12dp"
+            android:background="#ffffff"
+            android:padding="5dp"
             android:textSize="12sp"
             android:gravity="center_horizontal"
             android:layout_height="wrap_content"
-            android:text="ABSENT 5"/>
+           />
     </LinearLayout>
 </LinearLayout>

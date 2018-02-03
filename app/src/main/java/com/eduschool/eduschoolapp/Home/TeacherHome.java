@@ -40,6 +40,7 @@ import com.eduschool.eduschoolapp.Profile.ParentProfile;
 import com.eduschool.eduschoolapp.RaiseRequest.RaiseReqquestHome;
 import com.eduschool.eduschoolapp.StayAhead.StayAheadHome;
 import com.eduschool.eduschoolapp.StayAhead.StayAheadHomeTeacher;
+import com.eduschool.eduschoolapp.StudentSummary.StudentReportFrgmnt;
 import com.eduschool.eduschoolapp.StudentSummary.StudentSummaryParent;
 import com.eduschool.eduschoolapp.StudentSummary.StudentSummaryTeacher;
 import com.eduschool.eduschoolapp.Survey.SurveyFrgmntParent1;
@@ -71,6 +72,7 @@ public class TeacherHome extends AppCompatActivity
 
     TextView academic, comm, attendance, logout, home, events, notification, communication1, homewrk, classwrk, syllabus, exm, calendar, studentSummary, library, timeTable, gallery, survey, stayAhead, raiseRequest, profile;
     boolean isCollapsed = true;
+    TextView name;
     boolean isCollapsed1 = true;
 
     @Override
@@ -86,6 +88,13 @@ public class TeacherHome extends AppCompatActivity
 
         pref = getSharedPreferences("mypref", MODE_PRIVATE);
         edit = pref.edit();
+
+        name = (TextView)findViewById(R.id.name);
+
+
+        User u = (User)getApplicationContext();
+
+        name.setText("Welcome " + u.user_name);
 
 
         FragmentManager fm = getSupportFragmentManager();
@@ -172,10 +181,10 @@ public class TeacherHome extends AppCompatActivity
         });
 
         if (isCollapsed) {
-            academic.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_down, 0);
+            academic.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ddown, 0);
             hotelName.setVisibility(View.GONE);
         } else {
-            academic.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_up, 0);
+            academic.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.uup, 0);
             hotelName.setVisibility(View.VISIBLE);
         }
 
@@ -183,11 +192,11 @@ public class TeacherHome extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 if (isCollapsed) {
-                    academic.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_up, 0);
+                    academic.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.uup, 0);
                     hotelName.setVisibility(View.VISIBLE);
                     isCollapsed = false;
                 } else {
-                    academic.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_down, 0);
+                    academic.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ddown, 0);
                     hotelName.setVisibility(View.GONE);
                     isCollapsed = true;
                 }
@@ -197,10 +206,10 @@ public class TeacherHome extends AppCompatActivity
         });
 
         if (isCollapsed1) {
-            comm.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_down, 0);
+            comm.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ddown, 0);
             comm_lay.setVisibility(View.GONE);
         } else {
-            comm.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_up, 0);
+            comm.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.uup, 0);
             comm_lay.setVisibility(View.VISIBLE);
         }
 
@@ -208,11 +217,11 @@ public class TeacherHome extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 if (isCollapsed1) {
-                    comm.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_up, 0);
+                    comm.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.uup, 0);
                     comm_lay.setVisibility(View.VISIBLE);
                     isCollapsed1 = false;
                 } else {
-                    comm.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_down, 0);
+                    comm.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ddown, 0);
                     comm_lay.setVisibility(View.GONE);
                     isCollapsed1 = true;
                 }
@@ -334,8 +343,16 @@ public class TeacherHome extends AppCompatActivity
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(getApplication(), StudentSummaryTeacher.class);
+                /*Intent intent = new Intent(getApplication(), StudentSummaryTeacher.class);
                 startActivity(intent);
+                drawer.closeDrawer(GravityCompat.START);*/
+
+                FragmentManager fm = getSupportFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+                StudentReportFrgmnt frag1 = new StudentReportFrgmnt();
+                ft.replace(R.id.replace, frag1);
+                //ft.addToBackStack(null);
+                ft.commit();
                 drawer.closeDrawer(GravityCompat.START);
 
             }
@@ -380,6 +397,7 @@ public class TeacherHome extends AppCompatActivity
                 GalleryTeacher frag1 = new GalleryTeacher();
                 ft.replace(R.id.replace, frag1);
                 //ft.addToBackStack(null);
+                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
                 ft.commit();
                 drawer.closeDrawer(GravityCompat.START);
 
@@ -493,7 +511,16 @@ public class TeacherHome extends AppCompatActivity
         b = u.back;
 
         if (!b) {
-            super.onBackPressed();
+
+            int count = getFragmentManager().getBackStackEntryCount();
+
+            if (count == 0) {
+                super.onBackPressed();
+                //additional code
+            } else {
+                getFragmentManager().popBackStack();
+            }
+
         } else {
 
             if (doubleBackToExitPressedOnce) {

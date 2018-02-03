@@ -56,6 +56,7 @@ public class StayAheadHomeTeacher extends Fragment {
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
+        viewPager.setOffscreenPageLimit(adapter.getCount() - 1);
 
 
         tabLayout.setupWithViewPager(viewPager);
@@ -110,7 +111,7 @@ public class StayAheadHomeTeacher extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        toolbar.setTitle("Stay Ahead / Score More");
+        toolbar.setTitle("Reference Link");
 
         User u = (User) getContext().getApplicationContext();
 

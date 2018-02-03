@@ -36,17 +36,17 @@ public class AdapterLibraryTeacher extends RecyclerView.Adapter<AdapterLibraryTe
     }
 
     @Override
-    public AdapterLibraryTeacher.myviewholder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public myviewholder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View itemView = LayoutInflater.from(context)
                 .inflate(R.layout.library_model, parent, false);
 
-        return new AdapterLibraryTeacher.myviewholder(itemView);
+        return new myviewholder(itemView);
     }
 
 
     @Override
-    public void onBindViewHolder(final AdapterLibraryTeacher.myviewholder holder, int position) {
+    public void onBindViewHolder(final myviewholder holder, int position) {
         BookList item = albumList.get(position);
 
         holder.name.setText(item.getTitle());
@@ -59,20 +59,22 @@ public class AdapterLibraryTeacher extends RecyclerView.Adapter<AdapterLibraryTe
             holder.status.setBackgroundResource(R.drawable.lib3);
         } else if (item.getBookAvailableId().equals("2")) {
             holder.status.setText("Reserved");
-            holder.status.setBackgroundResource(R.drawable.lib3);
+            holder.status.setBackgroundResource(R.drawable.lib1);
         }
 
-        holder.author.setText(item.getAuthor());
-        holder.book_no.setText(item.getBookNo());
+        holder.author.setText("Author - " + item.getAuthor());
+        holder.book_no.setText("Book No. : " + item.getBookNo());
+
+        holder.layout.removeAllViews();
 
         for (int i = 0; i < item.getBookCategory().size(); i++) {
 
             TextView text = new TextView(context);
 
-            text.setBackgroundResource(R.drawable.lib);
+            text.setBackgroundResource(R.drawable.library_background);
             text.setText(item.getBookCategory().get(i).getChapcatName());
-            text.setTextSize(context.getResources().getDimensionPixelSize(R.dimen.textView));
-            text.setPadding(context.getResources().getDimensionPixelSize(R.dimen.textPadding), context.getResources().getDimensionPixelSize(R.dimen.textPadding), context.getResources().getDimensionPixelSize(R.dimen.textPadding), context.getResources().getDimensionPixelSize(R.dimen.textPadding));
+            text.setTextSize(16);
+            text.setPadding(10 , 10 , 10 ,10);
 
 
             holder.layout.addView(text);
@@ -111,8 +113,8 @@ public class AdapterLibraryTeacher extends RecyclerView.Adapter<AdapterLibraryTe
 
                     //context.startActivity(intent);
                     Intent intent = new Intent(context, TeacherLibrary2.class);
-                    intent.putExtra("Id",albumList.get(0).getBookNoId());
-                    intent.putExtra("Status",albumList.get(0).getBookAvailableId());
+                    intent.putExtra("Id",albumList.get(getAdapterPosition()).getBookNoId());
+                    intent.putExtra("Status",albumList.get(getAdapterPosition()).getBookAvailableId());
                     context.startActivity(intent);
                 }
             });

@@ -21,6 +21,9 @@ public class Loginbean {
     @SerializedName("status")
     @Expose
     private String status;
+    @SerializedName("class_teacher")
+    @Expose
+    private String classTeacher;
     @SerializedName("class_id")
     @Expose
     private String classId;
@@ -33,22 +36,9 @@ public class Loginbean {
     @SerializedName("section_name")
     @Expose
     private String sectionName;
-    @SerializedName("student_name")
+    @SerializedName("name")
     @Expose
-    private String studentName;
-
-    public String getClassTeacher() {
-        return classTeacher;
-    }
-
-    public void setClassTeacher(String classTeacher) {
-        this.classTeacher = classTeacher;
-    }
-
-    @SerializedName("class_teacher")
-    @Expose
-    private String classTeacher;
-
+    private String name;
 
     public String getId() {
         return id;
@@ -80,6 +70,14 @@ public class Loginbean {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getClassTeacher() {
+        return classTeacher;
+    }
+
+    public void setClassTeacher(String classTeacher) {
+        this.classTeacher = classTeacher;
     }
 
     public String getClassId() {
@@ -114,12 +112,12 @@ public class Loginbean {
         this.sectionName = sectionName;
     }
 
-    public String getStudentName() {
-        return studentName;
+    public String getName() {
+        return name;
     }
 
-    public void setStudentName(String studentName) {
-        this.studentName = studentName;
+    public void setName(String name) {
+        this.name = name;
     }
 
 }

@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.text.TextUtils;
 import android.text.format.DateFormat;
 import android.text.format.Time;
 import android.util.Log;
@@ -613,7 +614,7 @@ public class OneFragment extends Fragment implements DatePickerDialog.OnDateSetL
                         final AllAPIs cr = retrofit.create(AllAPIs.class);
                         String text = status.getSelectedItem().toString();
 
-                        Call<AssignClsWrkBean> call3 = cr.assign_cw(b.school_id, cId, sId, ssId, sChapter, sNote, text, studentId, "image", b.user_id);
+                        Call<AssignClsWrkBean> call3 = cr.assign_cw(b.school_id, cId, sId, ssId, sChapter, sNote, text, TextUtils.join(",", studentId), "image", b.user_id , "" , "");
 
                         progress.setVisibility(View.VISIBLE);
 
@@ -627,6 +628,9 @@ public class OneFragment extends Fragment implements DatePickerDialog.OnDateSetL
                                 if (response.body().getStatus().equals("1")) {
                                     Toast.makeText(getContext(), "Class Work Added Successfully.", Toast.LENGTH_LONG).show();
                                     note.setText(" ");
+
+
+
                                 } else {
                                     Toast.makeText(getContext(), "Class work did not added Successfully!", Toast.LENGTH_LONG).show();
                                 }

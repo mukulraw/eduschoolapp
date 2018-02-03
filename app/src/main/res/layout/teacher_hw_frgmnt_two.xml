@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
+    android:background="@color/bach_color"
     android:clickable="true"
     android:orientation="vertical">
 
@@ -15,7 +15,9 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="55dp">
+            android:paddingBottom="55dp"
+            android:clipToPadding="false"
+            >
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -26,6 +28,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="6dp"
+                    android:background="@drawable/white_round"
+                    android:padding="1dp"
                     android:layout_marginRight="6dp"
                     android:layout_marginTop="12dp">
 
@@ -54,9 +58,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="10 March 2017"
                             android:textColor="#000000" />
                     </LinearLayout>
+
+                    <TextView
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="#cdcdcd"
+                        />
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -88,7 +97,6 @@
                     android:layout_marginTop="12dp"
                     android:background="@drawable/viewattendance1"
                     android:padding="12dp"
-                    android:text="Biology_08-Mar-17_Chapter Water Plants"
                     android:textColor="#ffffff" />
 
                 <LinearLayout
@@ -97,8 +105,8 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="6dp"
                     android:layout_marginRight="6dp"
-                    android:layout_marginTop="3dp"
-                    android:background="@drawable/viewattendance"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/white_bottom_round"
                     android:orientation="horizontal">
 
                     <TextView
@@ -118,7 +126,6 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:padding="12dp"
-                        android:text="(10-March-2017)"
                         android:textColor="#000000" />
 
 
@@ -131,7 +138,7 @@
                     android:layout_marginLeft="6dp"
                     android:layout_marginRight="6dp"
                     android:layout_marginTop="3dp"
-                    android:background="@drawable/viewattendance"
+                    android:background="@drawable/white_round"
                     android:minLines="4"
                     android:padding="12dp"
                     android:text="Extra Notes"
@@ -268,6 +275,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="22dp"
+                    android:background="@drawable/white_round"
+                    android:padding="1dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginEnd="6dp"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -275,8 +286,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom"
-                        android:layout_marginLeft="6dp"
-                        android:layout_marginRight="6dp"
                         android:gravity="bottom"
                         android:orientation="horizontal">
 
@@ -291,6 +300,12 @@
                             android:textColor="@android:color/holo_green_dark" />
 
                         <TextView
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="#cdcdcd"
+                            />
+
+                        <TextView
                             android:id="@+id/completed"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -298,18 +313,20 @@
                             android:background="@drawable/viewattendance"
                             android:gravity="center"
                             android:padding="12dp"
-                            android:text="40"
                             android:textColor="#000" />
                     </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#cdcdcd"
+                        />
 
                     <LinearLayout
                         android:id="@+id/incompletelayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom"
-                        android:layout_marginBottom="6dp"
-                        android:layout_marginLeft="6dp"
-                        android:layout_marginRight="6dp"
                         android:gravity="bottom"
                         android:orientation="horizontal">
 
@@ -324,6 +341,12 @@
                             android:textColor="@android:color/holo_red_light" />
 
                         <TextView
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="#cdcdcd"
+                            />
+
+                        <TextView
                             android:id="@+id/incomplete"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -331,10 +354,18 @@
                             android:background="@drawable/viewattendance"
                             android:gravity="center"
                             android:padding="12dp"
-                            android:text="12"
                             android:textColor="#000" />
                     </LinearLayout>
                 </LinearLayout>
+
+
+                <android.support.v7.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/grid"
+                    />
+
+
             </LinearLayout>
 
         </ScrollView>

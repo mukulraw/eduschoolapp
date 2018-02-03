@@ -33,11 +33,7 @@ public class frgmnt3  extends Fragment {
 
 
         web = (WebView) view.findViewById(R.id.web);
-        web.loadUrl("http://www.dictionary.com/");
 
-        // Enable Javascript
-        WebSettings webSettings = web.getSettings();
-        webSettings.setJavaScriptEnabled(true);
 
         // Force links and redirects to open in the WebView instead of in a browser
         web.setWebViewClient(new WebViewClient());

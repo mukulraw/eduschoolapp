@@ -9,11 +9,14 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.eduschool.eduschoolapp.Home.ParentHome;
 import com.eduschool.eduschoolapp.Home.TeacherHome;
 import com.eduschool.eduschoolapp.R;
 import com.eduschool.eduschoolapp.User;
@@ -78,7 +81,15 @@ public class Frgmnt1 extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        toolbar.setTitle("Parent Request");
+        toolbar.setTitle("Communication");
+
+        DrawerLayout drawer = (DrawerLayout)((TeacherHome) getContext()).findViewById(R.id.drawer_asiana);
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                getActivity(), drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+
 
         User u = (User) getContext().getApplicationContext();
 

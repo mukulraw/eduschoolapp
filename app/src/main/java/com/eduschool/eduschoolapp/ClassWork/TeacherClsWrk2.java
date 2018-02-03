@@ -128,7 +128,19 @@ public class TeacherClsWrk2 extends Fragment {
     public void onResume() {
 
         super.onResume();
-        toolbar.setTitle("Class Work");
+        toolbar.setTitle("Class Work Details");
+
+        toolbar.setNavigationIcon(R.drawable.back);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                FragmentManager fm = ((TeacherHome) getContext()).getSupportFragmentManager();
+                fm.popBackStack();
+
+            }
+        });
+
 
         User u = (User) getContext().getApplicationContext();
 

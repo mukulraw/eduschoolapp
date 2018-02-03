@@ -20,6 +20,9 @@ public class StudentList {
     @SerializedName("section_id")
     @Expose
     private String sectionId;
+    @SerializedName("attendance")
+    @Expose
+    private String attendance;
 
     public String getStudentId() {
         return studentId;
@@ -53,4 +56,11 @@ public class StudentList {
         this.sectionId = sectionId;
     }
 
+    public String getAttendance() {
+        return attendance;
+    }
+
+    public void setAttendance(String attendance) {
+        this.attendance = attendance;
+    }
 }

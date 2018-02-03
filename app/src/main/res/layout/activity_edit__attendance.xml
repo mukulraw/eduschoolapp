@@ -5,75 +5,103 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.eduschool.eduschoolapp.Attendance.MarkAttendance"
-    android:background="#ffffff">
+    android:background="@color/bach_color">
 
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/stroke"
         android:gravity="center"
-        android:orientation="horizontal"
+        android:padding="1dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="6dp"
         android:layout_marginTop="12dp"
-        android:layout_marginRight="6dp"
-        android:layout_marginLeft="6dp">
+        android:weightSum="3"
+        android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/background"
             android:gravity="center"
-            android:layout_gravity="center"
             android:orientation="vertical"
-            android:padding="12dp">
+            android:padding="10dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="10"
                 android:id="@+id/day"
                 android:textColor="#000000"
+                android:layout_gravity="center_horizontal"
                 android:textSize="38sp"
-                android:textStyle="bold"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/month"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+                android:textColor="#000000" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="#cdcdcd"
+            />
+
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:background="@drawable/viewattendance2"
+            >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="32sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:gravity="center"
+                    android:id="@+id/classSection"
+                    android:textColor="#398DBF"
+                    android:textSize="32sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <ImageButton
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/edit"
+                android:visibility="gone"
+                android:layout_margin="5dp"
+                android:background="@drawable/edit_blue"
                 />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="March 2017"
-                android:id="@+id/month"
-                android:textColor="#000000" />
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="3"
-            android:background="@drawable/viewattendance"
-            android:gravity="center">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Class"
-                android:textSize="32sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="12sp"
-                android:text="8A"
-                android:id="@+id/classSection"
-                android:textStyle="bold"
-                android:textColor="#398DBF"
-                android:textSize="32sp" />
-        </LinearLayout>
+        </RelativeLayout>
 
     </LinearLayout>
 
@@ -93,6 +121,14 @@
             android:padding="15dp"
             android:text="LIST OF STUDENTS"
             android:textColor="#ffffff" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/white_round"
+            android:padding="1dp"
+            >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -134,6 +170,7 @@
 
         </android.support.v7.widget.RecyclerView>
 
+        </LinearLayout>
 
     </LinearLayout>
 
