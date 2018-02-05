@@ -37,6 +37,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -303,6 +304,11 @@ public class Update_Album_frgmnt extends Fragment {
 
                                     dialog.dismiss();
 
+
+                                    if (Objects.equals(response.body().getStatus(), "1"))
+                                    {
+                                        Toast.makeText(getContext() , "Image Deleted Successfully" , Toast.LENGTH_SHORT).show();
+                                    }
 
 
                                     FragmentManager fm = getFragmentManager();

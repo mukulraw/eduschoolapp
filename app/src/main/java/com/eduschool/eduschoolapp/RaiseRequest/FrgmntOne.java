@@ -1,6 +1,7 @@
 package com.eduschool.eduschoolapp.RaiseRequest;
 
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +15,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -23,6 +26,7 @@ import com.eduschool.eduschoolapp.R;
 import com.eduschool.eduschoolapp.User;
 import com.eduschool.eduschoolapp.recReqPOJO.RecevrequestList;
 import com.eduschool.eduschoolapp.recReqPOJO.recReqBean;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,7 +63,7 @@ public class FrgmntOne extends Fragment {
         manager = new GridLayoutManager(getContext() , 1);
         list = new ArrayList<>();
 
-        adapter = new RecAdapter(getContext() , list);
+        adapter = new RecAdapter(getActivity() , list);
 
         grid.setAdapter(adapter);
         grid.setLayoutManager(manager);
@@ -138,7 +142,7 @@ public class FrgmntOne extends Fragment {
         @Override
         public void onBindViewHolder(ViewHolder holder, int position) {
 
-            RecevrequestList item = list.get(position);
+            final RecevrequestList item = list.get(position);
 
             String dat = item.getPostDate();
 
@@ -154,7 +158,7 @@ public class FrgmntOne extends Fragment {
             }
 
 
-            holder.name.setText(item.getEventType());
+            holder.name.setText(item.getEventType() + " by " + item.getFrom());
 
             String e = item.getStartDate();
 
@@ -166,6 +170,33 @@ public class FrgmntOne extends Fragment {
             {
                 e1.printStackTrace();
             }
+
+
+
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    if (item.getBirthCard().length() > 0)
+                    {
+                        Dialog dialog = new Dialog(context);
+                        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                        dialog.setContentView(R.layout.birth_popup);
+                        dialog.setCancelable(true);
+                        dialog.show();
+
+                        ImageView ikm = (ImageView)dialog.findViewById(R.id.image);
+
+                        ImageLoader loader = ImageLoader.getInstance();
+                        loader.displayImage(item.getBirthCard() , ikm);
+
+                    }
+
+
+
+
+                }
+            });
 
 
 

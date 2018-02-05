@@ -618,6 +618,8 @@ public class TeacherHwFrgmntThree extends Fragment {
 
                     chapterId.add(response.body().getHomeworkData().get(0).getChapterId());
 
+                    studentId.clear();
+
                     for (int i = 0 ; i < response.body().getHomeworkData().get(0).getPendinghomworkStudent().size() ; i++)
                     {
                         studentId.add(response.body().getHomeworkData().get(0).getPendinghomworkStudent().get(i).getStuId());

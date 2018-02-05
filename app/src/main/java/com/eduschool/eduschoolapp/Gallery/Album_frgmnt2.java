@@ -91,14 +91,13 @@ public class Album_frgmnt2 extends Fragment {
     String name, albumId;
     ProgressBar progress;
 
-    String crDate , albName;
+    String crDate, albName;
 
 
-    String ClassId , SecId , secName;
+    String ClassId, SecId, secName;
 
 
-    String classObject , sectionObject , studentObject;
-
+    String classObject, sectionObject, studentObject;
 
 
     String[] mon = {
@@ -118,7 +117,7 @@ public class Album_frgmnt2 extends Fragment {
     String date1;
 
 
-    TextView album , day1 , date;
+    TextView album, day1, date;
 
     ImageButton edit;
 
@@ -145,21 +144,21 @@ public class Album_frgmnt2 extends Fragment {
 
         list = new ArrayList<>();
 
-        album = (TextView)view.findViewById(R.id.album);
-        day1 = (TextView)view.findViewById(R.id.day1);
-        date = (TextView)view.findViewById(R.id.date);
+        album = (TextView) view.findViewById(R.id.album);
+        day1 = (TextView) view.findViewById(R.id.day1);
+        date = (TextView) view.findViewById(R.id.date);
 
         day = (TextView) view.findViewById(R.id.day);
         month = (TextView) view.findViewById(R.id.month);
         classsection = (TextView) view.findViewById(R.id.classSection);
 
-        edit = (ImageButton)view.findViewById(R.id.edit);
+        edit = (ImageButton) view.findViewById(R.id.edit);
 
 
-        grid = (RecyclerView)view.findViewById(R.id.grid);
-        manager = new GridLayoutManager(getContext() , 3);
+        grid = (RecyclerView) view.findViewById(R.id.grid);
+        manager = new GridLayoutManager(getContext(), 3);
 
-        adapter = new ImageAdapter(getActivity() , list);
+        adapter = new ImageAdapter(getActivity(), list);
 
         grid.setAdapter(adapter);
         grid.setLayoutManager(manager);
@@ -201,15 +200,15 @@ public class Album_frgmnt2 extends Fragment {
                 final List<String> secNames = new ArrayList<>();
                 final List<String> secIds = new ArrayList<>();
 
-                final Dialog dialog=new Dialog(getActivity());
+                final Dialog dialog = new Dialog(getActivity());
                 dialog.setCancelable(true);
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setContentView(R.layout.gallery_popup_1);
                 dialog.show();
 
-                final Spinner cls = (Spinner)dialog.findViewById(R.id.cls);
-                final Spinner section = (Spinner)dialog.findViewById(R.id.section);
-                final ProgressBar progress = (ProgressBar)dialog.findViewById(R.id.progress);
+                final Spinner cls = (Spinner) dialog.findViewById(R.id.cls);
+                final Spinner section = (Spinner) dialog.findViewById(R.id.section);
+                final ProgressBar progress = (ProgressBar) dialog.findViewById(R.id.progress);
 
                 progress.setVisibility(View.VISIBLE);
 
@@ -229,8 +228,7 @@ public class Album_frgmnt2 extends Fragment {
                     public void onResponse(Call<ClassListbean> call, Response<ClassListbean> response) {
 
 
-                        for (int i = 0 ; i < response.body().getClassList().size() ; i++)
-                        {
+                        for (int i = 0; i < response.body().getClassList().size(); i++) {
                             classNames.add(response.body().getClassList().get(i).getClassName());
                             classIds.add(response.body().getClassList().get(i).getClassId());
                         }
@@ -254,7 +252,6 @@ public class Album_frgmnt2 extends Fragment {
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
 
-
                         final User b = (User) getActivity().getApplicationContext();
                         Retrofit retrofit = new Retrofit.Builder()
                                 .baseUrl(b.baseURL)
@@ -268,21 +265,20 @@ public class Album_frgmnt2 extends Fragment {
 
                         ClassId = classIds.get(position);
 
-                        Call<sectionBean> call1 = cr.getSections(b.school_id , "," + classIds.get(position));
+                        Call<sectionBean> call1 = cr.getSections(b.school_id, "," + classIds.get(position));
 
                         call1.enqueue(new Callback<sectionBean>() {
                             @Override
                             public void onResponse(Call<sectionBean> call, Response<sectionBean> response) {
 
-                                Log.d("response" , "entered");
+                                Log.d("response", "entered");
 
-                                for (int i = 0 ; i < response.body().getSectionList().size() ; i++)
-                                {
+                                for (int i = 0; i < response.body().getSectionList().size(); i++) {
                                     secNames.add(response.body().getSectionList().get(i).getSectionName());
                                     secIds.add(response.body().getSectionList().get(i).getSectionId());
                                 }
 
-                                ArrayAdapter<String> adapter = new ArrayAdapter <String>(getActivity(), android.R.layout.simple_list_item_1, secNames);
+                                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, secNames);
 
                                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
@@ -295,10 +291,9 @@ public class Album_frgmnt2 extends Fragment {
                             @Override
                             public void onFailure(Call<sectionBean> call, Throwable t) {
                                 progress.setVisibility(View.GONE);
-                                Log.d("response" , t.toString());
+                                Log.d("response", t.toString());
                             }
                         });
-
 
 
                     }
@@ -319,7 +314,6 @@ public class Album_frgmnt2 extends Fragment {
                         secName = secNames.get(position);
 
 
-
                     }
 
                     @Override
@@ -329,18 +323,13 @@ public class Album_frgmnt2 extends Fragment {
                 });
 
 
-
-                Button submit=(Button)dialog.findViewById(R.id.submit);
+                Button submit = (Button) dialog.findViewById(R.id.submit);
                 submit.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
 
 
-
-
                         //classsection.setText(secName);
-
-
 
 
                         dialog.dismiss();
@@ -352,15 +341,12 @@ public class Album_frgmnt2 extends Fragment {
         });
 
 
-
         return view;
 
     }
 
 
-
-    public void loadData()
-    {
+    public void loadData() {
 
         progress.setVisibility(View.VISIBLE);
 
@@ -377,7 +363,7 @@ public class Album_frgmnt2 extends Fragment {
 
         AllAPIs cr = retrofit.create(AllAPIs.class);
 
-        Call<imageListBean> call = cr.getImages(u.school_id , albumId);
+        Call<imageListBean> call = cr.getImages(u.school_id, albumId);
 
         call.enqueue(new Callback<imageListBean>() {
             @Override
@@ -399,7 +385,7 @@ public class Album_frgmnt2 extends Fragment {
 
                 list.add(gl);
 
-                Log.d("size" , String.valueOf(list.size()));
+                Log.d("size", String.valueOf(list.size()));
 
                 adapter.setGridData(list);
 
@@ -409,7 +395,7 @@ public class Album_frgmnt2 extends Fragment {
             @Override
             public void onFailure(Call<imageListBean> call, Throwable t) {
                 progress.setVisibility(View.GONE);
-                Log.d("format" , t.toString());
+                Log.d("format", t.toString());
             }
         });
 
@@ -475,17 +461,17 @@ public class Album_frgmnt2 extends Fragment {
                             .build();
 
                     AllAPIs cr = retrofit.create(AllAPIs.class);
-                    Call<DeleteAlbumBean> call = cr.delete_album(b.school_id,albumId);
+                    Call<DeleteAlbumBean> call = cr.delete_album(b.school_id, albumId);
 
                     call.enqueue(new Callback<DeleteAlbumBean>() {
                         @Override
                         public void onResponse(Call<DeleteAlbumBean> call, Response<DeleteAlbumBean> response) {
 
 
-                            if (response.body().getStatus().equals("1")){
-                                Toast.makeText(getActivity(),"Album Deleted Successfully",Toast.LENGTH_SHORT).show();
-                            }else {
-                                Toast.makeText(getActivity(),"Album did not Deleted Successfully !",Toast.LENGTH_SHORT).show();
+                            if (response.body().getStatus().equals("1")) {
+                                Toast.makeText(getActivity(), "Album Deleted Successfully", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(getActivity(), "Album did not Deleted Successfully !", Toast.LENGTH_SHORT).show();
                             }
                             //progress.setVisibility(View.GONE);
                             dialog1.dismiss();
@@ -501,7 +487,6 @@ public class Album_frgmnt2 extends Fragment {
 
                         }
                     });
-
 
 
                 }
@@ -551,64 +536,56 @@ public class Album_frgmnt2 extends Fragment {
     }
 
 
-    public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder>
-    {
+    public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> {
 
         Context context;
         List<GalleryList> list = new ArrayList<>();
 
-        public ImageAdapter(Context context , List<GalleryList> list)
-        {
+        public ImageAdapter(Context context, List<GalleryList> list) {
             this.context = context;
             this.list = list;
         }
 
-        public void setGridData(List<GalleryList> list)
-        {
+        public void setGridData(List<GalleryList> list) {
             this.list = list;
             notifyDataSetChanged();
         }
 
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View view = inflater.inflate(R.layout.image_list_model , parent , false);
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View view = inflater.inflate(R.layout.image_list_model, parent, false);
             return new ViewHolder(view);
         }
 
         @Override
         public void onBindViewHolder(ViewHolder holder, final int position) {
 
-               GalleryList item = list.get(position);
+            GalleryList item = list.get(position);
 
-               Log.d("position" , String.valueOf(position));
+            Log.d("position", String.valueOf(position));
 
-               try {
-                   ImageLoader loader = ImageLoader.getInstance();
-                   loader.displayImage(item.getGalleryImage().get(0).getImae(), holder.image);
+            try {
+                ImageLoader loader = ImageLoader.getInstance();
+                loader.displayImage(item.getGalleryImage().get(0).getImae(), holder.image);
 
-                   Log.d("try" , "Exception");
+                Log.d("try", "Exception");
 
-               }catch (Exception e)
-               {
-                   e.printStackTrace();
-               }
-
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
 
-               if (position == list.size() - 1)
-               {
-                   Log.d("if" , String.valueOf(position));
-                   Log.d("size-1" , String.valueOf(list.size() - 1));
+            if (position == list.size() - 1) {
+                Log.d("if", String.valueOf(position));
+                Log.d("size-1", String.valueOf(list.size() - 1));
 
-                   holder.add.setVisibility(View.VISIBLE);
-                   holder.image.setVisibility(View.GONE);
-               }
-               else
-               {
-                   holder.add.setVisibility(View.GONE);
-                   holder.image.setVisibility(View.VISIBLE);
-               }
+                holder.add.setVisibility(View.VISIBLE);
+                holder.image.setVisibility(View.GONE);
+            } else {
+                holder.add.setVisibility(View.GONE);
+                holder.image.setVisibility(View.VISIBLE);
+            }
 
             holder.image.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -620,9 +597,9 @@ public class Album_frgmnt2 extends Fragment {
                     Page frag = new Page();
                     frag.setData(list);
                     Bundle b = new Bundle();
-                    b.putInt("position" , position);
+                    b.putInt("position", position);
                     frag.setArguments(b);
-                    ft.replace(R.id.replace , frag);
+                    ft.replace(R.id.replace, frag);
                     ft.addToBackStack(null);
                     ft.commit();
 
@@ -646,9 +623,6 @@ public class Album_frgmnt2 extends Fragment {
                 public void onClick(View v) {
 
 
-
-
-
                     final Dialog dialog = new Dialog(context);
                     dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                     dialog.setCancelable(true);
@@ -656,12 +630,12 @@ public class Album_frgmnt2 extends Fragment {
 
                     dialog.show();
 
-                    final MultiSelectSpinner cls = (MultiSelectSpinner)dialog.findViewById(R.id.classs);
-                    final MultiSelectSpinner sec = (MultiSelectSpinner)dialog.findViewById(R.id.section);
-                    final MultiSelectSpinner stu = (MultiSelectSpinner)dialog.findViewById(R.id.students);
-                    final ProgressBar progress = (ProgressBar)dialog.findViewById(R.id.progress);
+                    final MultiSelectSpinner cls = (MultiSelectSpinner) dialog.findViewById(R.id.classs);
+                    final MultiSelectSpinner sec = (MultiSelectSpinner) dialog.findViewById(R.id.section);
+                    final MultiSelectSpinner stu = (MultiSelectSpinner) dialog.findViewById(R.id.students);
+                    final ProgressBar progress = (ProgressBar) dialog.findViewById(R.id.progress);
 
-                    Button submit = (Button)dialog.findViewById(R.id.submit);
+                    Button submit = (Button) dialog.findViewById(R.id.submit);
 
                     cls.setSelectAll(true);
                     sec.setSelectAll(true);
@@ -694,15 +668,14 @@ public class Album_frgmnt2 extends Fragment {
                         public void onResponse(Call<ClassListbean> call, Response<ClassListbean> response) {
 
 
-                            for (int i = 0; i < response.body().getClassList().size(); i++)
-                            {
+                            for (int i = 0; i < response.body().getClassList().size(); i++) {
 
                                 clasNames.add(response.body().getClassList().get(i).getClassName());
                                 clasIds.add(response.body().getClassList().get(i).getClassId());
 
                             }
 
-                            ArrayAdapter<String> adapter = new ArrayAdapter <String>(getActivity(), android.R.layout.simple_list_item_multiple_choice, clasNames);
+                            ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_multiple_choice, clasNames);
 
                             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
@@ -730,15 +703,12 @@ public class Album_frgmnt2 extends Fragment {
 
                             List<String> checkedClasses = new ArrayList<>();
 
-                            for (int i = 0 ; i < booleans.length ; i++)
-                            {
-                                if (booleans[i])
-                                {
+                            for (int i = 0; i < booleans.length; i++) {
+                                if (booleans[i]) {
                                     checkedClasses.add(clasIds.get(i));
                                 }
 
                             }
-
 
 
                             final User b = (User) getActivity().getApplicationContext();
@@ -752,25 +722,27 @@ public class Album_frgmnt2 extends Fragment {
 
                             progress.setVisibility(View.VISIBLE);
 
-                            Log.d("checked" , TextUtils.join(",", checkedClasses));
+                            Log.d("checked", TextUtils.join(",", checkedClasses));
 
                             classObject = "," + TextUtils.join(",", checkedClasses);
 
-                            Call<sectionBean> call1 = cr.getSections(b.school_id , "," + classObject);
+                            Call<sectionBean> call1 = cr.getSections(b.school_id, "," + classObject);
 
                             call1.enqueue(new Callback<sectionBean>() {
                                 @Override
                                 public void onResponse(Call<sectionBean> call, Response<sectionBean> response) {
 
-                                    Log.d("response" , "entered");
+                                    Log.d("response", "entered");
 
-                                    for (int i = 0 ; i < response.body().getSectionList().size() ; i++)
-                                    {
+                                    secNames.clear();
+                                    secIds.clear();
+
+                                    for (int i = 0; i < response.body().getSectionList().size(); i++) {
                                         secNames.add(response.body().getSectionList().get(i).getSectionName());
                                         secIds.add(response.body().getSectionList().get(i).getSectionId());
                                     }
 
-                                    ArrayAdapter<String> adapter = new ArrayAdapter <String>(getActivity(), android.R.layout.simple_list_item_multiple_choice, secNames);
+                                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_multiple_choice, secNames);
 
                                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
@@ -783,11 +755,9 @@ public class Album_frgmnt2 extends Fragment {
                                 @Override
                                 public void onFailure(Call<sectionBean> call, Throwable t) {
                                     progress.setVisibility(View.GONE);
-                                    Log.d("response" , t.toString());
+                                    Log.d("response", t.toString());
                                 }
                             });
-
-
 
 
                         }
@@ -801,17 +771,15 @@ public class Album_frgmnt2 extends Fragment {
 
                             List<String> checkedSections = new ArrayList<>();
 
-                            for (int i = 0 ; i < booleans.length ; i++)
-                            {
-                                if (booleans[i])
-                                {
+                            for (int i = 0; i < booleans.length; i++) {
+                                if (booleans[i]) {
                                     checkedSections.add(secIds.get(i));
                                 }
 
                             }
 
 
-                            Log.d("checked" , TextUtils.join(",", checkedSections));
+                            Log.d("checked", TextUtils.join(",", checkedSections));
 
                             sectionObject = "," + TextUtils.join(",", checkedSections);
 
@@ -826,20 +794,21 @@ public class Album_frgmnt2 extends Fragment {
 
                             progress.setVisibility(View.VISIBLE);
 
-                            Call<studentBean> call2 = cr.getStudents(b.school_id , "," + TextUtils.join(",", checkedSections));
+                            Call<studentBean> call2 = cr.getStudents(b.school_id, "," + TextUtils.join(",", checkedSections));
 
                             call2.enqueue(new Callback<studentBean>() {
                                 @Override
                                 public void onResponse(Call<studentBean> call, Response<studentBean> response) {
 
+                                    stuNames.clear();
+                                    stuIds.clear();
 
-                                    for (int i = 0 ; i < response.body().getStudentList().size() ; i++)
-                                    {
+                                    for (int i = 0; i < response.body().getStudentList().size(); i++) {
                                         stuNames.add(response.body().getStudentList().get(i).getStuName());
                                         stuIds.add(response.body().getStudentList().get(i).getStudentId());
                                     }
 
-                                    ArrayAdapter<String> adapter = new ArrayAdapter <String>(getActivity(), android.R.layout.simple_list_item_multiple_choice, stuNames);
+                                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_multiple_choice, stuNames);
 
                                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
@@ -857,7 +826,6 @@ public class Album_frgmnt2 extends Fragment {
                             });
 
 
-
                         }
                     });
 
@@ -868,20 +836,17 @@ public class Album_frgmnt2 extends Fragment {
 
                             List<String> checkedStudents = new ArrayList<>();
 
-                            for (int i = 0 ; i < booleans.length ; i++)
-                            {
-                                if (booleans[i])
-                                {
+                            for (int i = 0; i < booleans.length; i++) {
+                                if (booleans[i]) {
                                     checkedStudents.add(stuIds.get(i));
                                 }
 
                             }
 
 
-                            Log.d("checked" , TextUtils.join(",", checkedStudents));
+                            Log.d("checked", TextUtils.join(",", checkedStudents));
 
                             studentObject = "," + TextUtils.join(",", checkedStudents);
-
 
 
                         }
@@ -914,17 +879,15 @@ public class Album_frgmnt2 extends Fragment {
             return list.size();
         }
 
-        class ViewHolder extends RecyclerView.ViewHolder
-        {
+        class ViewHolder extends RecyclerView.ViewHolder {
 
-            ImageView image , add;
+            ImageView image, add;
 
             public ViewHolder(View itemView) {
                 super(itemView);
 
-                image = (ImageView)itemView.findViewById(R.id.image);
-                add = (ImageView)itemView.findViewById(R.id.add_image);
-
+                image = (ImageView) itemView.findViewById(R.id.image);
+                add = (ImageView) itemView.findViewById(R.id.add_image);
 
 
             }
@@ -933,8 +896,7 @@ public class Album_frgmnt2 extends Fragment {
     }
 
 
-    public static class Page extends Fragment
-    {
+    public static class Page extends Fragment {
 
         int position;
         Toolbar toolbar;
@@ -943,8 +905,7 @@ public class Album_frgmnt2 extends Fragment {
 
         List<GalleryList> list = new ArrayList<>();
 
-        public void setData(List<GalleryList> list)
-        {
+        public void setData(List<GalleryList> list) {
             this.list = list;
         }
 
@@ -955,29 +916,26 @@ public class Album_frgmnt2 extends Fragment {
             position = getArguments().getInt("position");
 
 
-
         }
 
         @Nullable
         @Override
         public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-            View view = inflater.inflate(R.layout.image_frag_layout , container , false);
+            View view = inflater.inflate(R.layout.image_frag_layout, container, false);
 
             toolbar = (Toolbar) ((TeacherHome) getContext()).findViewById(R.id.tool_bar);
 
-            pager = (ViewPager)view.findViewById(R.id.pager);
-            progress = (ProgressBar)view.findViewById(R.id.progress);
+            pager = (ViewPager) view.findViewById(R.id.pager);
+            progress = (ProgressBar) view.findViewById(R.id.progress);
 
             try {
                 list.remove(list.size() - 1);
-            }catch (Exception e)
-            {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 
 
-
-            ImagePagerAdapter adapter = new ImagePagerAdapter(getChildFragmentManager() , list);
+            ImagePagerAdapter adapter = new ImagePagerAdapter(getChildFragmentManager(), list);
             pager.setAdapter(adapter);
 
             pager.setCurrentItem(position);
@@ -1004,14 +962,11 @@ public class Album_frgmnt2 extends Fragment {
     }
 
 
-
-
-    public static class ImagePagerAdapter extends FragmentStatePagerAdapter
-    {
+    public static class ImagePagerAdapter extends FragmentStatePagerAdapter {
 
         List<GalleryList> list = new ArrayList<>();
 
-        public ImagePagerAdapter(FragmentManager fm , List<GalleryList> list) {
+        public ImagePagerAdapter(FragmentManager fm, List<GalleryList> list) {
             super(fm);
             this.list = list;
         }
@@ -1020,8 +975,8 @@ public class Album_frgmnt2 extends Fragment {
         public Fragment getItem(int position) {
             Pages frag = new Pages();
             Bundle b = new Bundle();
-            Log.d("url" , list.get(position).getGalleryImage().get(0).getImae());
-            b.putString("url" , list.get(position).getGalleryImage().get(0).getImae());
+            Log.d("url", list.get(position).getGalleryImage().get(0).getImae());
+            b.putString("url", list.get(position).getGalleryImage().get(0).getImae());
             frag.setArguments(b);
             return frag;
         }
@@ -1032,8 +987,7 @@ public class Album_frgmnt2 extends Fragment {
         }
     }
 
-    public static class Pages extends Fragment
-    {
+    public static class Pages extends Fragment {
 
         ImageView image;
         ProgressBar progress;
@@ -1042,13 +996,12 @@ public class Album_frgmnt2 extends Fragment {
         @Nullable
         @Override
         public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-            View view = inflater.inflate(R.layout.pages_layout , container , false);
+            View view = inflater.inflate(R.layout.pages_layout, container, false);
 
             url = getArguments().getString("url");
 
-            image = (ImageView)view.findViewById(R.id.image);
-            progress = (ProgressBar)view.findViewById(R.id.progress);
-
+            image = (ImageView) view.findViewById(R.id.image);
+            progress = (ProgressBar) view.findViewById(R.id.progress);
 
 
             ImageLoader loader = ImageLoader.getInstance();
@@ -1083,13 +1036,11 @@ public class Album_frgmnt2 extends Fragment {
     }
 
 
-
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == SELECT_PICTURES) {
-            if(resultCode == Activity.RESULT_OK) {
+        if (requestCode == SELECT_PICTURES) {
+            if (resultCode == Activity.RESULT_OK) {
 
                 final Dialog dialog = new Dialog(getActivity());
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -1097,27 +1048,27 @@ public class Album_frgmnt2 extends Fragment {
                 dialog.setContentView(R.layout.add_image_dialog);
                 dialog.show();
 
-                final ProgressBar bar = (ProgressBar)dialog.findViewById(R.id.progress);
-                final TextView text = (TextView)dialog.findViewById(R.id.count);
+                final ProgressBar bar = (ProgressBar) dialog.findViewById(R.id.progress);
+                final TextView text = (TextView) dialog.findViewById(R.id.count);
 
-                if(data.getClipData() != null) {
+                if (data.getClipData() != null) {
                     final int count = data.getClipData().getItemCount();
                     final int[] currentItem = {0};
 
-                    Log.d("countt" , String.valueOf(count));
+                    Log.d("countt", String.valueOf(count));
 
-                    while(currentItem[0] < count) {
+                    while (currentItem[0] < count) {
                         Uri imageUri = data.getClipData().getItemAt(currentItem[0]).getUri();
                         //do something with the image (save it to some directory or whatever you need to do with it here)
 
 
-                        Log.d("uri" , String.valueOf(imageUri));
+                        Log.d("uri", String.valueOf(imageUri));
 
 
                         MultipartBody.Part body = null;
 
 
-                        String mCurrentPhotoPath = getPath(getContext() , imageUri);
+                        String mCurrentPhotoPath = getPath(getContext(), imageUri);
 
                         File file = new File(mCurrentPhotoPath);
 
@@ -1125,9 +1076,6 @@ public class Album_frgmnt2 extends Fragment {
                         RequestBody reqFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
 
                         body = MultipartBody.Part.createFormData("albumattach", file.getName(), reqFile);
-
-
-
 
 
                         User u = (User) getContext().getApplicationContext();
@@ -1141,12 +1089,12 @@ public class Album_frgmnt2 extends Fragment {
 
                         AllAPIs cr = retrofit.create(AllAPIs.class);
 
-                        Call<addImageBean> call = cr.addImage(u.school_id , albumId , "Teacher" , u.user_id , body , classObject , sectionObject , studentObject);
+                        Call<addImageBean> call = cr.addImage(u.school_id, albumId, "Teacher", u.user_id, body, classObject, sectionObject, studentObject);
 
 
-                        Log.d("school" , u.school_id);
-                        Log.d("album id" , albumId);
-                        Log.d("user id" , u.user_id);
+                        Log.d("school", u.school_id);
+                        Log.d("album id", albumId);
+                        Log.d("user id", u.user_id);
 
 
                         call.enqueue(new Callback<addImageBean>() {
@@ -1154,26 +1102,23 @@ public class Album_frgmnt2 extends Fragment {
                             public void onResponse(Call<addImageBean> call, Response<addImageBean> response) {
 
 
-                                if (currentItem[0] == count)
-                                {
+                                if (currentItem[0] == count) {
 
-                                    text.setText(String.valueOf(count) +  "/" + String.valueOf(count));
+                                    text.setText(String.valueOf(count) + "/" + String.valueOf(count));
 
                                     bar.setProgress(100);
-                                    Toast.makeText(getContext() , "Images Added Successfully" , Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getContext(), "Images Added Successfully", Toast.LENGTH_SHORT).show();
                                     dialog.dismiss();
 
                                     loadData();
 
-                                }
-                                else
-                                {
+                                } else {
 
                                     float per = ((currentItem[0]) / count) * 100;
 
-                                    bar.setProgress((int)per);
+                                    bar.setProgress((int) per);
 
-                                    text.setText(String.valueOf(currentItem[0]) +  "/" + String.valueOf(count));
+                                    text.setText(String.valueOf(currentItem[0]) + "/" + String.valueOf(count));
 
                                 }
 
@@ -1191,10 +1136,10 @@ public class Album_frgmnt2 extends Fragment {
 
                         currentItem[0] = currentItem[0] + 1;
                     }
-                } else if(data.getData() != null) {
+                } else if (data.getData() != null) {
 
 
-                    Log.d("single" , "entered");
+                    Log.d("single", "entered");
 
 
                     MultipartBody.Part body = null;
@@ -1204,7 +1149,7 @@ public class Album_frgmnt2 extends Fragment {
                     Uri imagePath = data.getData();
                     //do something with the image (save it to some directory or whatever you need to do with it here)
 
-                    String mCurrentPhotoPath = getPath(getContext() , imagePath);
+                    String mCurrentPhotoPath = getPath(getContext(), imagePath);
 
                     File file = new File(mCurrentPhotoPath);
 
@@ -1212,9 +1157,6 @@ public class Album_frgmnt2 extends Fragment {
                     RequestBody reqFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
 
                     body = MultipartBody.Part.createFormData("albumattach", file.getName(), reqFile);
-
-
-
 
 
                     User u = (User) getContext().getApplicationContext();
@@ -1228,14 +1170,14 @@ public class Album_frgmnt2 extends Fragment {
 
                     AllAPIs cr = retrofit.create(AllAPIs.class);
 
-                    Call<addImageBean> call = cr.addImage(u.school_id , albumId , "Teacher" , u.user_id , body , classObject , sectionObject , studentObject);
+                    Call<addImageBean> call = cr.addImage(u.school_id, albumId, "Teacher", u.user_id, body, classObject, sectionObject, studentObject);
 
                     call.enqueue(new Callback<addImageBean>() {
                         @Override
                         public void onResponse(Call<addImageBean> call, Response<addImageBean> response) {
 
 
-                                Toast.makeText(getContext() , "Image Added Successfully" , Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Image Added Successfully", Toast.LENGTH_SHORT).show();
 
                             progress.setVisibility(View.GONE);
 
@@ -1260,10 +1202,8 @@ public class Album_frgmnt2 extends Fragment {
     }
 
 
-
-    private static String getPath(final Context context, final Uri uri)
-    {
-        final boolean isKitKatOrAbove = Build.VERSION.SDK_INT >=  Build.VERSION_CODES.KITKAT;
+    private static String getPath(final Context context, final Uri uri) {
+        final boolean isKitKatOrAbove = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;
 
         // DocumentProvider
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -1305,7 +1245,7 @@ public class Album_frgmnt2 extends Fragment {
                     }
 
                     final String selection = "_id=?";
-                    final String[] selectionArgs = new String[] {
+                    final String[] selectionArgs = new String[]{
                             split[1]
                     };
 

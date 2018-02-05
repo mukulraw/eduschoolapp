@@ -165,7 +165,17 @@ public class FrgmntTwo extends Fragment{
             else
             {
                 holder.title.setText("Reason: ");
-                holder.reason.setText(item.getDetail());
+
+                if (item.getFromDate().length() > 0)
+                {
+                    holder.reason.setText(item.getDetail() + System.getProperty("line.separator") + item.getFromDate() + " to " + item.getToDate());
+                }
+                else
+                {
+                    holder.reason.setText(item.getDetail());
+                }
+
+
             }
 
             try {

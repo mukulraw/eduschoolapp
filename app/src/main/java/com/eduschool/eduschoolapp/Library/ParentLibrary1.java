@@ -167,8 +167,10 @@ public class ParentLibrary1 extends Fragment {
             public void onResponse(Call<BookListBean> call, Response<BookListBean> response) {
 
 
+                albumList = response.body().getBookList();
 
-                adapter.setGridData(response.body().getBookList());
+
+                adapter.setGridData(albumList);
                 adapter.notifyDataSetChanged();
                 progress.setVisibility(View.GONE);
 

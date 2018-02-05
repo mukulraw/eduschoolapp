@@ -614,7 +614,7 @@ public class OneFragment extends Fragment implements DatePickerDialog.OnDateSetL
                         final AllAPIs cr = retrofit.create(AllAPIs.class);
                         String text = status.getSelectedItem().toString();
 
-                        Call<AssignClsWrkBean> call3 = cr.assign_cw(b.school_id, cId, sId, ssId, sChapter, sNote, text, TextUtils.join(",", studentId), "image", b.user_id , "" , "");
+                        Call<AssignClsWrkBean> call3 = cr.assign_cw(b.school_id, cId, sId, ssId, sChapter, sNote, text, TextUtils.join(",", studentId), "image", b.user_id , "" , "" , date.getText().toString());
 
                         progress.setVisibility(View.VISIBLE);
 

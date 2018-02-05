@@ -24,6 +24,7 @@ import com.eduschool.eduschoolapp.birthPOJO.BirthList;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.eduschool.eduschoolapp.R.id.holiday;
 import static com.eduschool.eduschoolapp.R.id.simpleCheckedTextView;
 
 /**
@@ -58,6 +59,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.myviewholder> {
     @Override
     public Adapter.myviewholder onCreateViewHolder(ViewGroup parent, int viewType) {
 
+
+
         View itemView = LayoutInflater.from(context)
                 .inflate(R.layout.birthday_student_model, parent, false);
 
@@ -68,7 +71,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.myviewholder> {
     @Override
     public void onBindViewHolder(final Adapter.myviewholder holder, final int position) {
 
-
+        holder.setIsRecyclable(false);
 
         final AdapterBean bean = new AdapterBean();
         final BirthList item = list.get(position);

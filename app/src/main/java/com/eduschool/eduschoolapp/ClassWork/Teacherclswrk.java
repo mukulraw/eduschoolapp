@@ -713,73 +713,81 @@ public class Teacherclswrk extends Fragment {
                 @Override
                 public void onClick(View view) {
 
+                    if (date.getText().toString().length() > 0)
+                    {
+                        AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
+                        dialog.setCancelable(false);
+                        dialog.setMessage("Are you sure you want to add Class Work ?");
+                        dialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int id) {
 
-                    AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
-                    dialog.setCancelable(false);
-                    dialog.setMessage("Are you sure you want to add Class Work ?");
-                    dialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int id) {
+                                sNote = note.getText().toString().trim();
 
-                            sNote = note.getText().toString().trim();
+                                Retrofit retrofit = new Retrofit.Builder()
+                                        .baseUrl(b.baseURL)
+                                        .addConverterFactory(ScalarsConverterFactory.create())
+                                        .addConverterFactory(GsonConverterFactory.create())
+                                        .build();
 
-                            Retrofit retrofit = new Retrofit.Builder()
-                                    .baseUrl(b.baseURL)
-                                    .addConverterFactory(ScalarsConverterFactory.create())
-                                    .addConverterFactory(GsonConverterFactory.create())
-                                    .build();
+                                final AllAPIs cr = retrofit.create(AllAPIs.class);
+                                String text = status.getSelectedItem().toString();
 
-                            final AllAPIs cr = retrofit.create(AllAPIs.class);
-                            String text = status.getSelectedItem().toString();
+                                Call<AssignClsWrkBean> call3 = cr.assign_cw(b.school_id, cId, sId, ssId, sChapter, sNote, text, TextUtils.join(",", studentId), "image", b.user_id , subName , chapName , date.getText().toString());
 
-                            Call<AssignClsWrkBean> call3 = cr.assign_cw(b.school_id, cId, sId, ssId, sChapter, sNote, text, TextUtils.join(",", studentId), "image", b.user_id , subName , chapName);
+                                progress.setVisibility(View.VISIBLE);
 
-                            progress.setVisibility(View.VISIBLE);
+                                Log.d("outputtt", String.valueOf(sId));
+                                call3.enqueue(new Callback<AssignClsWrkBean>() {
 
-                            Log.d("outputtt", String.valueOf(sId));
-                            call3.enqueue(new Callback<AssignClsWrkBean>() {
-
-                                @Override
-                                public void onResponse(Call<AssignClsWrkBean> call3, Response<AssignClsWrkBean> response) {
-
-
-                                    if (response.body().getStatus().equals("1")) {
-                                        Toast.makeText(getContext(), "Class Work Added Successfully.", Toast.LENGTH_LONG).show();
-                                        note.setText("");
-
-                                        viewPager.setAdapter(adapter);
-
-                                        viewPager.setCurrentItem(1);
+                                    @Override
+                                    public void onResponse(Call<AssignClsWrkBean> call3, Response<AssignClsWrkBean> response) {
 
 
-                                    } else {
-                                        Toast.makeText(getContext(), "Class work did not added Successfully!", Toast.LENGTH_LONG).show();
+                                        if (response.body().getStatus().equals("1")) {
+                                            Toast.makeText(getContext(), "Class Work Added Successfully.", Toast.LENGTH_LONG).show();
+                                            note.setText("");
+
+                                            viewPager.setAdapter(adapter);
+
+                                            viewPager.setCurrentItem(1);
+
+
+                                        } else {
+                                            Toast.makeText(getContext(), "Class work did not added Successfully!", Toast.LENGTH_LONG).show();
+                                        }
+                                        progress.setVisibility(View.GONE);
+
                                     }
-                                    progress.setVisibility(View.GONE);
 
-                                }
+                                    @Override
+                                    public void onFailure(Call<AssignClsWrkBean> call3, Throwable throwable) {
+                                        Log.d("yooooo", "sds");
+                                        progress.setVisibility(View.GONE);
 
-                                @Override
-                                public void onFailure(Call<AssignClsWrkBean> call3, Throwable throwable) {
-                                    Log.d("yooooo", "sds");
-                                    progress.setVisibility(View.GONE);
-
-                                }
-                            });
+                                    }
+                                });
 
 
-                        }
-                    })
-                            .setNegativeButton("No ", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    //Action for "Cancel".
-                                }
-                            });
+                            }
+                        })
+                                .setNegativeButton("No ", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        //Action for "Cancel".
+                                    }
+                                });
 
 
-                    final AlertDialog alert = dialog.create();
-                    alert.show();
+                        final AlertDialog alert = dialog.create();
+                        alert.show();
+                    }
+                    else
+                    {
+                        Toast.makeText(getContext() , "Please select a date" , Toast.LENGTH_SHORT).show();
+                    }
+
+
 
 
                 }
@@ -846,7 +854,7 @@ public class Teacherclswrk extends Fragment {
                 Time chosenDate = new Time();
                 chosenDate.set(day, monthOfYear, year);
                 long dtDob = chosenDate.toMillis(true);
-                strDate = DateFormat.format("dd-MMMM-yyyy", dtDob);
+                strDate = DateFormat.format("dd-MMM-yyyy", dtDob);
                 date.setText(strDate);
 
 

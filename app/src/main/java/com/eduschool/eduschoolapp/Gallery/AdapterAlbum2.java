@@ -86,7 +86,6 @@ public class AdapterAlbum2 extends RecyclerView.Adapter<AdapterAlbum2.myviewhold
                 @Override
                 public void onClick(View view) {
 
-
                     final int pos=getAdapterPosition();
                     String name=list1.get(getAdapterPosition()).getAlbumName();
 
@@ -105,6 +104,7 @@ public class AdapterAlbum2 extends RecyclerView.Adapter<AdapterAlbum2.myviewhold
                     ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
                     ft.addToBackStack(null);
                     ft.commit();
+
                 }
             });
 

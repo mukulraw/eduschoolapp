@@ -106,13 +106,12 @@ public class MarkAttndncDiffCls extends AppCompatActivity {
         final DateFormat year = new SimpleDateFormat("yyyy");
         final Date year1 = new Date();
 
-
         final DateFormat day = new SimpleDateFormat("dd");
         final Date day1 = new Date();
 
-        Log.d("sds", month.format(month1));
-        Log.d("sds", year.format(year1));
-        Log.d("sds", day.format(day1));
+        //Log.d("month", month.format(month1));
+        //Log.d("year", year.format(year1));
+        //Log.d("day", day.format(day1));
 
         String d1[] = Sdate.split("-");
 
@@ -473,6 +472,10 @@ public class MarkAttndncDiffCls extends AppCompatActivity {
 
                 progress.setVisibility(View.VISIBLE);
                 Call<MarkAttendanceBean> call3 = cr.mark_attendance(b.school_id, ClassID, sectionId, Sdate, b.user_id, "no", month.format(month1), year.format(year1), day.format(day1), TextUtils.join(",", studentId), TextUtils.join(",", list1));
+
+                Log.d("month" , month.format(month1));
+                Log.d("year" , year.format(year1));
+                Log.d("day" , day.format(day1));
 
                 progress.setVisibility(View.VISIBLE);
 

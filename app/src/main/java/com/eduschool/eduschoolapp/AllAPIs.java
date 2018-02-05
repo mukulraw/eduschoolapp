@@ -198,7 +198,8 @@ public interface AllAPIs {
              @Part("classattach") String classattach,
              @Part("teacher_id") String teacher_id,
              @Part("subjName") String subName,
-             @Part("chapName") String chapName
+             @Part("chapName") String chapName,
+             @Part("date") String date
             );
 
     @Multipart

@@ -1,5 +1,6 @@
 package com.eduschool.eduschoolapp.Events;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.provider.CalendarContract;
@@ -7,12 +8,15 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CalendarView;
+import android.widget.GridLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -55,11 +59,19 @@ public class ViewCalendarFrgmnt extends Fragment {
     List<CalendarDay> cl;
     ProgressBar progress;
 
-    TextView type, time, createdBy;
+    //TextView type, time, createdBy;
     List<String> socIds;
 
     List<EventList> list;
-    TextView to;
+    //TextView to;
+
+    RecyclerView eventList;
+
+    List<eventBean> list2;
+
+    GridLayoutManager manager;
+
+    EventAdapter adapter;
 
     @Nullable
     @Override
@@ -68,17 +80,28 @@ public class ViewCalendarFrgmnt extends Fragment {
         View view = inflater.inflate(R.layout.events_frgmnt2, container, false);
         toolbar = (Toolbar) ((TeacherHome) getContext()).findViewById(R.id.tool_bar);
 
-        to = (TextView)view.findViewById(R.id.to);
+
+        list2 = new ArrayList<>();
+
+        manager = new GridLayoutManager(getContext() , 1);
+        //to = (TextView)view.findViewById(R.id.to);
+
+        adapter = new EventAdapter(getContext() , list2);
+
+        eventList = (RecyclerView)view.findViewById(R.id.event_list);
 
         cl = new ArrayList<>();
 
         list = new ArrayList<>();
 
+        eventList.setAdapter(adapter);
+        eventList.setLayoutManager(manager);
+
         calendarView = (MaterialCalendarView) view.findViewById(R.id.calender);
         progress = (ProgressBar) view.findViewById(R.id.progress);
-        type = (TextView) view.findViewById(R.id.type);
-        time = (TextView) view.findViewById(R.id.time);
-        createdBy = (TextView) view.findViewById(R.id.created_by);
+        //type = (TextView) view.findViewById(R.id.type);
+        //time = (TextView) view.findViewById(R.id.time);
+        //createdBy = (TextView) view.findViewById(R.id.created_by);
 
         socIds = new ArrayList<>();
 
@@ -110,7 +133,7 @@ public class ViewCalendarFrgmnt extends Fragment {
 
                 int position = -1;
 
-
+                list2.clear();
 
                 for (int i = 0; i < list.size(); i++) {
 
@@ -142,12 +165,43 @@ public class ViewCalendarFrgmnt extends Fragment {
 
                         //Log.d("date" , String.valueOf(calendarDay));
 
+
+
+
+                        eventBean bean = new eventBean();
+
                         if (Objects.equals(String.valueOf(calendarDay), String.valueOf(date)))
                         {
 
                             //Log.d("equal" , "entered");
 
                             position = i;
+
+                            bean.setType(list.get(position).getEventType());
+                            bean.setTime(list.get(position).getTime());
+                            bean.setCreatedBy(list.get(position).getEventCrateBy());
+
+
+
+                            //type.setText(list.get(position).getEventType());
+                            //time.setText(list.get(position).getTime());
+                            //createdBy.setText(list.get(position).getEventCrateBy());
+
+                            StringBuilder t = new StringBuilder();
+
+                            for (int j = 0 ; j < list.get(position).getSection().size() ; j++)
+                            {
+                                t.append(list.get(position).getSection().get(j).getClassname()).append(" ").append(list.get(position).getSection().get(j).getSectionname()).append(System.getProperty("line.separator"));
+                            }
+
+                            bean.setTo(t.toString());
+
+                            //to.setText(t);
+
+
+                            list2.add(bean);
+
+
 
                             //Log.d("position" , String.valueOf(i));
 
@@ -184,28 +238,19 @@ public class ViewCalendarFrgmnt extends Fragment {
 
 
 
-                if (position >= 0)
+                /*if (position >= 0)
                 {
-                    type.setText(list.get(position).getEventType());
-                    time.setText(list.get(position).getTime());
-                    createdBy.setText(list.get(position).getEventCrateBy());
 
-                    String t = "";
-
-                    for (int j = 0 ; j < list.get(position).getSection().size() ; j++)
-                    {
-                        t = t + list.get(position).getSection().get(j).getClassname() + " " + list.get(position).getSection().get(j).getSectionname() + System.getProperty("line.separator");
-                    }
-
-                    to.setText(t);
                 }
                 else {
                     type.setText("");
                     time.setText("");
                     createdBy.setText("");
                     to.setText("");
-                }
+                }*/
 
+
+                adapter.setGridData(list2);
 
 
             }
@@ -351,4 +396,69 @@ public class ViewCalendarFrgmnt extends Fragment {
         });
 
     }
+
+
+
+    class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder>
+    {
+
+        Context context;
+        List<eventBean> list = new ArrayList<>();
+
+        public EventAdapter(Context context , List<eventBean> list)
+        {
+            this.context = context;
+            this.list = list;
+        }
+
+        public void setGridData(List<eventBean> list)
+        {
+            this.list = list;
+            notifyDataSetChanged();
+        }
+
+        @Override
+        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View view = inflater.inflate(R.layout.event_list_model , parent , false);
+            return new ViewHolder(view);
+        }
+
+        @Override
+        public void onBindViewHolder(ViewHolder holder, int position) {
+
+            eventBean item = list.get(position);
+
+            holder.type.setText(item.getType());
+            holder.time.setText(item.getTime());
+            holder.createdBy.setText(item.getCreatedBy());
+            holder.to.setText(item.getTo());
+
+        }
+
+        @Override
+        public int getItemCount() {
+            return list.size();
+        }
+
+        class ViewHolder extends RecyclerView.ViewHolder
+        {
+
+            TextView type , time , createdBy , to;
+
+            public ViewHolder(View itemView) {
+                super(itemView);
+
+                type = (TextView)itemView.findViewById(R.id.type);
+                time = (TextView)itemView.findViewById(R.id.time);
+                createdBy = (TextView)itemView.findViewById(R.id.created_by);
+                to = (TextView)itemView.findViewById(R.id.to);
+
+            }
+        }
+
+    }
+
+
+
 }

@@ -37,6 +37,7 @@ import com.eduschool.eduschoolapp.User;
 import com.eduschool.eduschoolapp.notiBean;
 import com.eduschool.eduschoolapp.notificationsPOJO.NotificationList;
 import com.eduschool.eduschoolapp.notificationsPOJO.notificationsBean;
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -268,9 +269,15 @@ public class TeacherNotificationFrgmnt extends Fragment {
 
                             bean.setDate(response.body().getOther().get(i).getDates());
                             //bean.setTitle(response.body().getHomeworkDue().get(i).getTitle());
-                            bean.setType(response.body().getOther().get(i).getType() + "Notification");
+                            bean.setType(response.body().getOther().get(i).getType() + " Notification");
 
-                            JSONObject object = new JSONObject(response.body().getOther().get(i).getData().toString());
+                            Gson gson = new Gson();
+
+                            String json = gson.toJson(response.body().getOther().get(i).getData());
+
+                            JSONObject object = new JSONObject(json);
+
+                            Log.d("data" , json);
 
                             String name = object.getString("from_name");
                             String clas = object.getString("class");
@@ -301,15 +308,53 @@ public class TeacherNotificationFrgmnt extends Fragment {
 
                             bean.setDate(response.body().getOther().get(i).getDates());
                             //bean.setTitle(response.body().getHomeworkDue().get(i).getTitle());
-                            bean.setType(response.body().getOther().get(i).getType() + "Notification");
+                            bean.setType(response.body().getOther().get(i).getType() + " Notification");
                             bean.setDesc("Attendance Pending");
 
-                            JSONObject object = new JSONObject(response.body().getOther().get(i).getData().toString());
+                            Gson gson = new Gson();
+
+                            String json = gson.toJson(response.body().getOther().get(i).getData());
+
+                            JSONObject object = new JSONObject(json);
 
                             String clas = object.getString("class");
                             String sec = object.getString("section");
 
                             bean.setTitle(clas + " " + sec);
+
+                            list.add(bean);
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
+
+                    }
+                    else if (Objects.equals(type, "Survey"))
+                    {
+                        try {
+
+                            notiBean bean = new notiBean();
+
+                            bean.setDate(response.body().getOther().get(i).getDates());
+                            //bean.setTitle(response.body().getHomeworkDue().get(i).getTitle());
+                            bean.setType(response.body().getOther().get(i).getType() + " Notification");
+
+
+                            Gson gson = new Gson();
+
+                            String json = gson.toJson(response.body().getOther().get(i).getData());
+
+                            JSONObject object = new JSONObject(json);
+
+                            String tiele = object.getString("survey_title");
+                            String ques = object.getString("total_question");
+
+                            bean.setTitle("New Survey Added (" + tiele + ")");
+
+                            bean.setDesc("Total Questions " + ques);
 
                             list.add(bean);
 
@@ -347,6 +392,20 @@ public class TeacherNotificationFrgmnt extends Fragment {
                     bean.setTitle(response.body().getBirthdayNotify().get(i).getUserName() + " (" + response.body().getBirthdayNotify().get(i).getUserType() + ")");
                     bean.setDate(response.body().getBirthdayNotify().get(i).getBirthDate());
                     bean.setDesc(response.body().getBirthdayNotify().get(i).getClass_() + " " + response.body().getBirthdayNotify().get(i).getSection());
+
+                    list.add(bean);
+                }
+
+
+
+                for (int i = 0 ; i < response.body().getLibraryBookreturn().size() ; i++)
+                {
+                    notiBean bean = new notiBean();
+
+                    bean.setType("Library Notification");
+                    bean.setTitle(response.body().getLibraryBookreturn().get(i).getBookName());
+                    bean.setDate(response.body().getLibraryBookreturn().get(i).getReturnDate());
+                    bean.setDesc("Issue Date - " + response.body().getLibraryBookreturn().get(i).getIssueDate());
 
                     list.add(bean);
                 }

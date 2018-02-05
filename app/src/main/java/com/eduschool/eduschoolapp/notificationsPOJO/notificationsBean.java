@@ -28,7 +28,7 @@ public class notificationsBean {
     private List<Other> other = null;
     @SerializedName("library_bookreturn")
     @Expose
-    private List<Object> libraryBookreturn = null;
+    private List<LibraryBookreturn> libraryBookreturn = null;
 
     public Integer getTotalNotification() {
         return totalNotification;
@@ -70,11 +70,11 @@ public class notificationsBean {
         this.other = other;
     }
 
-    public List<Object> getLibraryBookreturn() {
+    public List<LibraryBookreturn> getLibraryBookreturn() {
         return libraryBookreturn;
     }
 
-    public void setLibraryBookreturn(List<Object> libraryBookreturn) {
+    public void setLibraryBookreturn(List<LibraryBookreturn> libraryBookreturn) {
         this.libraryBookreturn = libraryBookreturn;
     }
 
