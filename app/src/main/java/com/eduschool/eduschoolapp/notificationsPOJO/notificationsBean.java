@@ -25,7 +25,7 @@ public class notificationsBean {
     private List<ClassworkUnupdate> classworkUnupdate = null;
     @SerializedName("other")
     @Expose
-    private List<Object> other = null;
+    private List<Other> other = null;
     @SerializedName("library_bookreturn")
     @Expose
     private List<Object> libraryBookreturn = null;
@@ -62,11 +62,11 @@ public class notificationsBean {
         this.classworkUnupdate = classworkUnupdate;
     }
 
-    public List<Object> getOther() {
+    public List<Other> getOther() {
         return other;
     }
 
-    public void setOther(List<Object> other) {
+    public void setOther(List<Other> other) {
         this.other = other;
     }
 

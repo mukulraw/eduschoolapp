@@ -239,17 +239,6 @@ public class TeacherNotificationFrgmnt extends Fragment {
                 list.clear();
 
 
-                for (int i = 0 ; i < response.body().getBirthdayNotify().size() ; i++)
-                {
-                    notiBean bean = new notiBean();
-
-                    bean.setType("Birthday Notification");
-                    bean.setTitle(response.body().getBirthdayNotify().get(i).getUserName() + " (" + response.body().getBirthdayNotify().get(i).getUserType() + ")");
-                    bean.setDate(response.body().getBirthdayNotify().get(i).getBirthDate());
-                    bean.setDesc(response.body().getBirthdayNotify().get(i).getClass_() + " " + response.body().getBirthdayNotify().get(i).getSection());
-
-                    list.add(bean);
-                }
 
                 for (int i = 0 ; i < response.body().getHomeworkDue().size() ; i++)
                 {
@@ -261,6 +250,80 @@ public class TeacherNotificationFrgmnt extends Fragment {
                     bean.setDesc("Due Date");
 
                     list.add(bean);
+                }
+
+
+                for (int i = 0; i < response.body().getOther().size(); i++) {
+
+
+                    String type = response.body().getOther().get(i).getType();
+
+                    if (Objects.equals(type, "Communication"))
+                    {
+
+
+                        try {
+
+                            notiBean bean = new notiBean();
+
+                            bean.setDate(response.body().getOther().get(i).getDates());
+                            //bean.setTitle(response.body().getHomeworkDue().get(i).getTitle());
+                            bean.setType(response.body().getOther().get(i).getType() + "Notification");
+
+                            JSONObject object = new JSONObject(response.body().getOther().get(i).getData().toString());
+
+                            String name = object.getString("from_name");
+                            String clas = object.getString("class");
+                            String sec = object.getString("section");
+
+                            String title = name + " (" + clas + " " + sec + ")";
+
+                            bean.setTitle(title);
+
+                            String desc = object.getString("type");
+
+                            bean.setDesc(desc);
+
+                            list.add(bean);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
+                    }
+                    else if (Objects.equals(type, "Attendance"))
+                    {
+
+                        try {
+
+                            notiBean bean = new notiBean();
+
+                            bean.setDate(response.body().getOther().get(i).getDates());
+                            //bean.setTitle(response.body().getHomeworkDue().get(i).getTitle());
+                            bean.setType(response.body().getOther().get(i).getType() + "Notification");
+                            bean.setDesc("Attendance Pending");
+
+                            JSONObject object = new JSONObject(response.body().getOther().get(i).getData().toString());
+
+                            String clas = object.getString("class");
+                            String sec = object.getString("section");
+
+                            bean.setTitle(clas + " " + sec);
+
+                            list.add(bean);
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
+
+                    }
+
+
+
                 }
 
 
@@ -276,7 +339,17 @@ public class TeacherNotificationFrgmnt extends Fragment {
                 }
 
 
+                for (int i = 0 ; i < response.body().getBirthdayNotify().size() ; i++)
+                {
+                    notiBean bean = new notiBean();
 
+                    bean.setType("Birthday Notification");
+                    bean.setTitle(response.body().getBirthdayNotify().get(i).getUserName() + " (" + response.body().getBirthdayNotify().get(i).getUserType() + ")");
+                    bean.setDate(response.body().getBirthdayNotify().get(i).getBirthDate());
+                    bean.setDesc(response.body().getBirthdayNotify().get(i).getClass_() + " " + response.body().getBirthdayNotify().get(i).getSection());
+
+                    list.add(bean);
+                }
 
 
 
@@ -336,8 +409,20 @@ public class TeacherNotificationFrgmnt extends Fragment {
 
             final notiBean item = list.get(position);
 
-            String d[] = item.getDate().split("-");
-            holder.date.setText(d[0] + "\n\n" + d[1] + " " + d[2]);
+
+
+            try {
+
+                String d[] = item.getDate().split("-");
+
+                holder.date.setText(d[0] + "\n\n" + d[1] + " " + d[2]);
+
+            }catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+
+
             holder.text.setText(item.getTitle());
             holder.type.setText(item.getType());
             holder.status.setText(item.getDesc());
