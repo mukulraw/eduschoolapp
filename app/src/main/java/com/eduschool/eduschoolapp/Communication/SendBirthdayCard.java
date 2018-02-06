@@ -201,7 +201,7 @@ public class SendBirthdayCard extends AppCompatActivity {
                     posi = position;
 
 
-                    User b = (User) getApplicationContext();
+                    final User b = (User) getApplicationContext();
                     Retrofit retrofit = new Retrofit.Builder()
                             .baseUrl(b.baseURL)
                             .addConverterFactory(ScalarsConverterFactory.create())
@@ -220,8 +220,20 @@ public class SendBirthdayCard extends AppCompatActivity {
 
                             s.clear();
 
+
+
                             if (response.body().getBirthList().size() > 0) {
-                                adapter.setGridData(response.body().getBirthList(), s);
+
+                                for (int i = 0; i < response.body().getBirthList().size(); i++) {
+
+                                    if (!Objects.equals(response.body().getBirthList().get(i).getId(), b.user_id))
+                                    {
+                                        list.add(response.body().getBirthList().get(i));
+                                    }
+
+                                }
+
+                                adapter.setGridData(list, s);
                                 adapter.notifyDataSetChanged();
                             }
                             progress.setVisibility(View.GONE);
@@ -350,7 +362,7 @@ public class SendBirthdayCard extends AppCompatActivity {
                                             Dialog d1 = new Dialog(SendBirthdayCard.this);
                                             d1.requestWindowFeature(Window.FEATURE_NO_TITLE);
                                             d1.setCancelable(true);
-                                            d1.setContentView(R.layout.compose_success_popup);
+                                            d1.setContentView(R.layout.birthday_success_popup);
                                             d1.show();
 
 

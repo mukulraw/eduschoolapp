@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.GridLayoutManager;
@@ -118,11 +119,18 @@ public class HomeWrkFrgmntThree extends Fragment {
                 dueDate.setText("Due Date : " + response.body().getHomeworkDetail().get(0).getDueDate() + "");
                 date.setText(response.body().getHomeworkDetail().get(0).getPostedDate());
 
-                if (response.body().getHomeworkDetail().get(0).getHomeworkStatus().equals("Complete")){
-                    btn_complted.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.MULTIPLY);
-                    btn_complted.setTextColor(ContextCompat.getColor(getContext(), R.color.txtColor));
-                    btn_complted.setEnabled(false);
+                try {
+                    if (response.body().getHomeworkDetail().get(0).getHomeworkStatus().equals("Complete")){
+                        btn_complted.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.MULTIPLY);
+                        btn_complted.setTextColor(ContextCompat.getColor(getContext(), R.color.txtColor));
+                        btn_complted.setEnabled(false);
+                    }
+                }catch (Exception e)
+                {
+                    e.printStackTrace();
                 }
+
+
 
 
                 adapter.setGridData(response.body().getHomeworkDetail().get(0).getFileAttachment());
@@ -221,6 +229,23 @@ public class HomeWrkFrgmntThree extends Fragment {
         super.onResume();
         toolbar.setTitle("Home Work Details");
         User u = (User) getContext().getApplicationContext();
+
+        toolbar.setNavigationIcon(R.drawable.back);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                try {
+                    FragmentManager fm = ((ParentHome) getContext()).getSupportFragmentManager();
+                    fm.popBackStack();
+                }catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
+
+
+            }
+        });
 
         u.back = false;
     }

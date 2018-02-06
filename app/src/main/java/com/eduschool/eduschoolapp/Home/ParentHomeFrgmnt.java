@@ -7,6 +7,9 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -22,6 +25,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.eduschool.eduschoolapp.AllAPIs;
+import com.eduschool.eduschoolapp.ClassWork.ClassWrkFrgmntThree;
+import com.eduschool.eduschoolapp.HomeWork.HomeWrkFrgmntThree;
 import com.eduschool.eduschoolapp.parentHomePOJO.ClassWork;
 import com.eduschool.eduschoolapp.parentHomePOJO.HomeWork;
 import com.eduschool.eduschoolapp.parentHomePOJO.PeriodList;
@@ -200,6 +205,15 @@ public class ParentHomeFrgmnt extends Fragment{
         toolbar.setTitle("Home");
         User u = (User) getContext().getApplicationContext();
 
+
+        DrawerLayout drawer = (DrawerLayout)((ParentHome) getContext()).findViewById(R.id.drawer_asiana);
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                getActivity(), drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+
+
         u.back = true;
     }
 
@@ -290,7 +304,7 @@ public class ParentHomeFrgmnt extends Fragment{
         @Override
         public void onBindViewHolder(ViewHolder holder, int position) {
 
-            HomeWork item = list.get(position);
+            final HomeWork item = list.get(position);
 
             holder.title.setText(item.getTitle());
             holder.status.setText(item.getMessage());
@@ -303,6 +317,23 @@ public class ParentHomeFrgmnt extends Fragment{
             {
                 holder.line.setVisibility(View.VISIBLE);
             }
+
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    android.support.v4.app.FragmentManager fm = ((AppCompatActivity) context).getSupportFragmentManager();
+                    android.support.v4.app.FragmentTransaction ft = fm.beginTransaction();
+                    HomeWrkFrgmntThree frag1 = new HomeWrkFrgmntThree();
+                    Bundle bundle = new Bundle();
+                    bundle.putString("message", item.getHomeWorkId());
+                    frag1.setArguments(bundle);
+                    ft.replace(R.id.replace, frag1);
+                    ft.addToBackStack(null);
+                    ft.commit();
+
+                }
+            });
 
         }
 
@@ -357,7 +388,7 @@ public class ParentHomeFrgmnt extends Fragment{
         @Override
         public void onBindViewHolder(ViewHolder holder, int position) {
 
-            ClassWork item = list.get(position);
+            final ClassWork item = list.get(position);
 
             holder.title.setText(item.getTitle());
             holder.status.setText(item.getMessage());
@@ -370,6 +401,24 @@ public class ParentHomeFrgmnt extends Fragment{
             {
                 holder.line.setVisibility(View.VISIBLE);
             }
+
+
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    android.support.v4.app.FragmentManager fm = ((AppCompatActivity) context).getSupportFragmentManager();
+                    android.support.v4.app.FragmentTransaction ft = fm.beginTransaction();
+                    ClassWrkFrgmntThree frag1 = new ClassWrkFrgmntThree();
+                    Bundle bundle = new Bundle();
+                    bundle.putString("message", item.getClassWorkId());
+                    frag1.setArguments(bundle);
+                    ft.replace(R.id.replace, frag1);
+                    ft.addToBackStack(null);
+                    ft.commit();
+
+                }
+            });
 
         }
 

@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/bach_color"
     tools:context="com.eduschool.eduschoolapp.OnlineTest.OnlineTestActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
 
     <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -18,31 +25,37 @@
         app:titleTextColor="#fff"/>
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="6dp"
-        android:layout_marginRight="6dp"
-        android:layout_marginTop="8dp"
-        android:background="#cdcdcdcd"
-        android:orientation="vertical"
-        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="6"
+            android:orientation="horizontal"
+            >
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="4"
+                android:padding="12dp"
+                android:gravity="center_vertical"
+                android:id="@+id/title"
+                android:layout_height="wrap_content" />
 
 
         <TextView
             android:id="@+id/countDown"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="2"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:drawableStart="@drawable/clock"
             android:gravity="center"
-            android:padding="12dp"
-            android:text="Time Remaining"
-            android:textSize="15dp"
-
+            android:padding="10dp"
+            android:textSize="15sp"
             android:textStyle="bold" />
 
-    </LinearLayout>
+        </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -53,7 +66,7 @@
         <com.eduschool.eduschoolapp.MyViewPager
             android:id="@+id/viewPager"
             android:layout_width="match_parent"
-            android:layout_height="200dp">
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:id="@+id/pagerQuestion"
@@ -70,49 +83,17 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="3">
-
-        <Button
-            android:id="@+id/prev"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginRight="50dp"
-            android:layout_weight="1"
-            android:background="@drawable/arrow__shape_left"
-            android:foreground="?android:attr/selectableItemBackground"
-            android:gravity="center"
-            android:text="prev"
-            android:textColor="#fff" />
-
-        <TextView
-            android:id="@+id/count"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:text="1/30"
-            android:textColor="#000000"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/next"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:background="@drawable/arrow_shape"
-            android:foreground="?android:attr/selectableItemBackground"
-            android:gravity="center"
-            android:text="Next"
-            android:textColor="#fff" />
-
     </LinearLayout>
 
 
-</LinearLayout>
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progress"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        />
+
+
+</RelativeLayout>

@@ -10,8 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="match_parent"
@@ -23,11 +22,11 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/white_round"
-            android:padding="1dp"
-            android:layout_marginStart="6dp"
             android:layout_marginEnd="6dp"
-            android:gravity="center">
+            android:layout_marginStart="6dp"
+            android:background="@drawable/white_round"
+            android:gravity="center"
+            android:padding="1dp">
 
 
             <TextView
@@ -39,14 +38,13 @@
                 android:drawablePadding="10dp"
                 android:drawableStart="@drawable/calendar"
                 android:gravity="center"
-                android:padding="12dp"
-                android:hint="Start Date" />
+                android:hint="Start Date"
+                android:padding="12dp" />
 
             <TextView
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
-                android:background="#cdcdcd"
-                />
+                android:background="#cdcdcd" />
 
             <TextView
                 android:id="@+id/end"
@@ -58,8 +56,8 @@
                 android:drawablePadding="10dp"
                 android:drawableStart="@drawable/calendar"
                 android:gravity="center"
-                android:padding="12dp"
-                android:hint="End Date" />
+                android:hint="End Date"
+                android:padding="12dp" />
         </LinearLayout>
 
 
@@ -75,15 +73,14 @@
             android:layout_marginLeft="6dp"
             android:layout_marginRight="6dp"
             android:background="@drawable/white_round"
-            android:padding="1dp"
             android:minHeight="50dp"
-            >
+            android:padding="1dp">
 
             <Spinner
                 android:id="@+id/classs"
-                android:layout_centerVertical="true"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true">
 
             </Spinner>
         </RelativeLayout>
@@ -100,15 +97,14 @@
             android:layout_marginLeft="6dp"
             android:layout_marginRight="6dp"
             android:background="@drawable/white_round"
-            android:padding="1dp"
             android:minHeight="50dp"
-            >
+            android:padding="1dp">
 
             <Spinner
                 android:id="@+id/section"
-                android:layout_centerVertical="true"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true">
 
             </Spinner>
         </RelativeLayout>
@@ -126,46 +122,76 @@
             android:layout_marginLeft="6dp"
             android:layout_marginRight="6dp"
             android:background="@drawable/white_round"
-            android:padding="1dp"
             android:minHeight="50dp"
-            >
+            android:padding="1dp">
 
             <Spinner
                 android:id="@+id/subject"
-                android:layout_centerVertical="true"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true">
 
             </Spinner>
         </RelativeLayout>
 
 
-
-
-        <Button
-            android:id="@+id/filter"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/orange_popup"
-            android:minHeight="0dp"
-            android:paddingBottom="6dp"
-            android:layout_gravity="center_horizontal"
-            android:paddingLeft="7dp"
-            android:paddingRight="7dp"
-            android:paddingTop="6dp"
-            android:text="SUBMIT"
-            android:textColor="#ffffff" />
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center_vertical"
+            android:weightSum="2">
+
+            <Button
+                android:id="@+id/clear"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="12dp"
+                android:layout_marginTop="12dp"
+                android:layout_weight="1"
+                android:background="@drawable/orange_popup"
+                android:minHeight="0dp"
+                android:paddingBottom="6dp"
+                android:paddingLeft="7dp"
+                android:paddingRight="7dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="5dp"
+                android:paddingTop="6dp"
+                android:text="CLEAR"
+                android:textColor="#ffffff" />
+
+
+            <Button
+                android:id="@+id/filter"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="12dp"
+                android:layout_marginTop="12dp"
+                android:layout_weight="1"
+                android:background="@drawable/orange_popup"
+                android:minHeight="0dp"
+                android:paddingBottom="6dp"
+                android:paddingLeft="7dp"
+                android:paddingRight="7dp"
+                android:paddingTop="6dp"
+                android:text="SUBMIT"
+                android:textColor="#ffffff" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
     <ProgressBar
+        android:id="@+id/progress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:id="@+id/progress"
-        android:visibility="gone"
-        />
+        android:visibility="gone" />
 
 </RelativeLayout>

@@ -287,6 +287,7 @@ public class FrgmntTwo extends Fragment {
                 final TextView start = (TextView) dialog.findViewById(R.id.start);
                 final TextView end = (TextView) dialog.findViewById(R.id.end);
                 Button submit = (Button) dialog.findViewById(R.id.filter);
+                Button clear = (Button) dialog.findViewById(R.id.clear);
                 final ProgressBar progressBar = (ProgressBar) dialog.findViewById(R.id.progress);
 
 
@@ -594,6 +595,20 @@ public class FrgmntTwo extends Fragment {
 
                     @Override
                     public void onNothingSelected(AdapterView<?> parent) {
+
+                    }
+                });
+
+
+
+                clear.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        adapter.setGridData(list);
+
+
+                        dialog.dismiss();
 
                     }
                 });

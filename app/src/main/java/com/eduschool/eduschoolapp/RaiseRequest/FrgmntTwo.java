@@ -160,6 +160,7 @@ public class FrgmntTwo extends Fragment{
                 }
                 holder.reason.setText(re);
 
+                holder.dates.setVisibility(View.GONE);
 
             }
             else
@@ -168,15 +169,18 @@ public class FrgmntTwo extends Fragment{
 
                 if (item.getFromDate().length() > 0)
                 {
-                    holder.reason.setText(item.getDetail() + System.getProperty("line.separator") + item.getFromDate() + " to " + item.getToDate());
+                    holder.reason.setText(item.getDetail());
                 }
                 else
                 {
                     holder.reason.setText(item.getDetail());
                 }
 
+                holder.dates.setVisibility(View.VISIBLE);
 
             }
+
+            holder.dates.setText(item.getFromDate() + " - " + item.getToDate());
 
             try {
 
@@ -185,6 +189,7 @@ public class FrgmntTwo extends Fragment{
                 holder.date.setText(d1[0]);
 
                 holder.month.setText(d1[1] + " " + d1[2]);
+
 
             }catch (Exception e)
             {
@@ -205,7 +210,7 @@ public class FrgmntTwo extends Fragment{
         class ViewHolder extends RecyclerView.ViewHolder
         {
 
-            TextView date , month , type , reason , title;
+            TextView date , month , type , reason , title , dates;
 
             public ViewHolder(View itemView) {
                 super(itemView);
@@ -215,6 +220,7 @@ public class FrgmntTwo extends Fragment{
                 month = (TextView)itemView.findViewById(R.id.month);
                 type = (TextView)itemView.findViewById(R.id.type);
                 reason = (TextView)itemView.findViewById(R.id.reason);
+                dates = (TextView)itemView.findViewById(R.id.dates);
 
             }
         }

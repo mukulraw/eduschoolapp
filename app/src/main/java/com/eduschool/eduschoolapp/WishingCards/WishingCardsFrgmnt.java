@@ -36,6 +36,7 @@ import com.eduschool.eduschoolapp.BirthStuListPOJO.BirthStuListBean;
 import com.eduschool.eduschoolapp.ClassWork.AdapterCwParent;
 import com.eduschool.eduschoolapp.ClassWrkParentPOJO.ClasssubjectListBean;
 import com.eduschool.eduschoolapp.ClassWrkParentPOJO.SubjectList;
+import com.eduschool.eduschoolapp.Communication.SendBirthdayCard;
 import com.eduschool.eduschoolapp.Home.ParentHome;
 import com.eduschool.eduschoolapp.R;
 
@@ -60,6 +61,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -145,7 +147,7 @@ public class WishingCardsFrgmnt extends Fragment {
 
         });
 
-        User b = (User) getActivity().getApplicationContext();
+        final User b = (User) getActivity().getApplicationContext();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(b.baseURL)
                 .addConverterFactory(ScalarsConverterFactory.create())
@@ -162,8 +164,22 @@ public class WishingCardsFrgmnt extends Fragment {
             @Override
             public void onResponse(Call<birthBean> call, Response<birthBean> response) {
 
-                adapter.setGridData(response.body().getBirthList(), s);
-                adapter.notifyDataSetChanged();
+                s.clear();
+
+                if (response.body().getBirthList().size() > 0) {
+                    for (int i = 0; i < response.body().getBirthList().size(); i++) {
+
+                        if (!Objects.equals(response.body().getBirthList().get(i).getId(), b.user_id)) {
+                            list.add(response.body().getBirthList().get(i));
+                        }
+
+                    }
+
+                    adapter.setGridData(list, s);
+                    adapter.notifyDataSetChanged();
+                }
+
+
                 progress.setVisibility(View.GONE);
 
             }
@@ -182,154 +198,153 @@ public class WishingCardsFrgmnt extends Fragment {
             public void onClick(View view) {
 
 
-                JSONArray jsonArray = new JSONArray();
+                if (index > -1)
+                {
+                    JSONArray jsonArray = new JSONArray();
 
-                List<AdapterBean> list1 = adapter.getCheckList();
+                    List<AdapterBean> list1 = adapter.getCheckList();
 
-                final List<String> ll = new ArrayList<>();
+                    final List<String> ll = new ArrayList<>();
 
-                Log.d("sizezee", String.valueOf(list1.size()));
+                    Log.d("sizezee", String.valueOf(list1.size()));
 
-                for (int i = 0; i < list1.size(); i++) {
-                    JSONObject object = new JSONObject();
+                    for (int i = 0; i < list1.size(); i++) {
+                        JSONObject object = new JSONObject();
+
+                        try {
+
+                            object.put("Id", list1.get(i).getId());
+                            ll.add(list1.get(i).getId());
+                            jsonArray.put(object);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    final JSONObject jsonObject = new JSONObject();
 
                     try {
-
-                        object.put("Id", list1.get(i).getId());
-                        ll.add(list1.get(i).getId());
-                        jsonArray.put(object);
+                        jsonObject.put("stu_id", jsonArray);
 
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                }
-
-                final JSONObject jsonObject = new JSONObject();
-
-                try {
-                    jsonObject.put("stu_id", jsonArray);
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                Log.d("dsds", jsonObject.toString());
+                    Log.d("dsds", jsonObject.toString());
 
 
-                AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
-                dialog.setCancelable(false);
-                dialog.setMessage("Are you sure you want to send card ?");
-                dialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int id) {
+                    AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
+                    dialog.setCancelable(false);
+                    dialog.setMessage("Are you sure you want to send card ?");
+                    dialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int id) {
 
-                        try {
-
-
-                            User b = (User) getActivity().getApplicationContext();
-                            Retrofit retrofit = new Retrofit.Builder()
-                                    .baseUrl(b.baseURL)
-                                    .addConverterFactory(ScalarsConverterFactory.create())
-                                    .addConverterFactory(GsonConverterFactory.create())
-                                    .build();
-
-                            final AllAPIs cr = retrofit.create(AllAPIs.class);
-                            progress.setVisibility(View.VISIBLE);
+                            try {
 
 
-                            String ca = "";
+                                User b = (User) getActivity().getApplicationContext();
+                                Retrofit retrofit = new Retrofit.Builder()
+                                        .baseUrl(b.baseURL)
+                                        .addConverterFactory(ScalarsConverterFactory.create())
+                                        .addConverterFactory(GsonConverterFactory.create())
+                                        .build();
 
-                            if (index == 0)
-                            {
-ca = "card1";
-                            }
-                            else if (index == 1)
-                            {
-                                ca = "card2";
-                            }
-                            else if (index == 2)
-                            {
-                                ca = "card4";
-                            }
-                            else if (index == 3)
-                            {
-                                ca = "card5";
-                            }
-                            else if (index == 4)
-                            {
-                                ca = "card6";
-                            }
+                                final AllAPIs cr = retrofit.create(AllAPIs.class);
+                                progress.setVisibility(View.VISIBLE);
 
 
-                            if (ll.size() > 0)
-                            {
-                                Call<SendBirthBean> call = cr.send_card(b.school_id, "Parent", b.user_id, "Parent", ca, "," + TextUtils.join(",", ll));
+                                String ca = "";
+
+                                if (index == 0) {
+                                    ca = "card1";
+                                } else if (index == 1) {
+                                    ca = "card2";
+                                } else if (index == 2) {
+                                    ca = "card4";
+                                } else if (index == 3) {
+                                    ca = "card5";
+                                } else if (index == 4) {
+                                    ca = "card6";
+                                }
 
 
-                                call.enqueue(new Callback<SendBirthBean>() {
-                                    @Override
-                                    public void onResponse(Call<SendBirthBean> call, Response<SendBirthBean> response) {
+                                if (ll.size() > 0) {
+                                    Call<SendBirthBean> call = cr.send_card(b.school_id, "Parent", b.user_id, "Parent", ca, TextUtils.join(",", ll));
 
 
-                                        if (response.body().getStatus().equals("1")) {
-                                            Dialog dialog = new Dialog(getActivity());
-                                            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                                            dialog.setContentView(R.layout.birthday_success_popup);
-                                            dialog.setCancelable(true);
-                                            dialog.show();
-
-                        /*dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                            @Override
-                            public void onCancel(DialogInterface dialogInterface) {
-                                finish();
-                            }
-                        });*/
+                                    call.enqueue(new Callback<SendBirthBean>() {
+                                        @Override
+                                        public void onResponse(Call<SendBirthBean> call, Response<SendBirthBean> response) {
 
 
+                                            if (response.body().getStatus().equals("1")) {
+                                                Dialog dialog = new Dialog(getActivity());
+                                                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                                                dialog.setContentView(R.layout.birthday_success_popup);
+                                                dialog.setCancelable(true);
+                                                dialog.show();
 
-                                        } else {
-                                            Toast.makeText(getActivity(), "Error sending Cards, please try again", Toast.LENGTH_SHORT).show();
+                                                dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                                                    @Override
+                                                    public void onCancel(DialogInterface dialogInterface) {
+                                                        //getActivity().finish();
+                                                        //getFragmentManager().popBackStack();
+
+                                                        group.clearCheck();
+                                                        adapter.setGridData(list, s);
+                                                        adapter.notifyDataSetChanged();
+                                                    }
+                                                });
+
+
+                                            } else {
+                                                Toast.makeText(getActivity(), "Error sending Cards, please try again", Toast.LENGTH_SHORT).show();
+
+                                            }
+
+                                            progress.setVisibility(View.GONE);
 
                                         }
 
-                                        progress.setVisibility(View.GONE);
+                                        @Override
+                                        public void onFailure(Call<SendBirthBean> call, Throwable throwable) {
+                                            Log.d("imagg", String.valueOf(throwable));
+                                            progress.setVisibility(View.GONE);
 
-                                    }
+                                        }
+                                    });
+                                } else {
+                                    Toast.makeText(getContext(), "Please select a student", Toast.LENGTH_SHORT).show();
+                                }
 
-                                    @Override
-                                    public void onFailure(Call<SendBirthBean> call, Throwable throwable) {
-                                        Log.d("imagg", String.valueOf(throwable));
-                                        progress.setVisibility(View.GONE);
 
-                                    }
-                                });
+                            } catch (Exception e) {
+                                e.printStackTrace();
                             }
-                            else
-                            {
-                                Toast.makeText(getContext() , "Please select a student" , Toast.LENGTH_SHORT).show();
-                            }
 
 
+                            dialog.dismiss();
 
-
-                        }catch (Exception e)
-                        {
-                            e.printStackTrace();
                         }
+                    })
+                            .setNegativeButton("No ", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    //Action for "Cancel".
+                                }
+                            });
+
+                    final AlertDialog alert = dialog.create();
+                    alert.show();
+                }
+                else
+                {
+                    Toast.makeText(getContext() , "Please select a Card" , Toast.LENGTH_SHORT).show();
+                }
 
 
-                        dialog.dismiss();
 
-                    }
-                })
-                        .setNegativeButton("No ", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                //Action for "Cancel".
-                            }
-                        });
-
-                final AlertDialog alert = dialog.create();
-                alert.show();
 
             }
         });

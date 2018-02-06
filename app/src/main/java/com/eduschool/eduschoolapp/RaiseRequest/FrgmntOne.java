@@ -144,23 +144,58 @@ public class FrgmntOne extends Fragment {
 
             final RecevrequestList item = list.get(position);
 
-            String dat = item.getPostDate();
-
-            String[] d1 = dat.split("-");
-
-            holder.date.setText(d1[0]);
-
-            try {
-                holder.month.setText(d1[1] + " " + d1[2]);
-            }catch (Exception e2)
+            if (item.getBirthCard().length() > 0)
             {
-                e2.printStackTrace();
+                String dat = item.getPostDate();
+
+                String[] d1 = dat.split("-");
+
+                holder.date.setText(d1[0]);
+
+                try {
+                    holder.month.setText(d1[1] + " " + d1[2]);
+                }catch (Exception e2)
+                {
+                    e2.printStackTrace();
+                }
+
+            }
+            else {
+                String dat = item.getStartDate();
+
+                String[] d1 = dat.split("-");
+
+                holder.date.setText(d1[0]);
+
+                try {
+                    holder.month.setText(d1[1] + " " + d1[2]);
+                }catch (Exception e2)
+                {
+                    e2.printStackTrace();
+                }
+
             }
 
 
-            holder.name.setText(item.getEventType() + " by " + item.getFrom());
 
-            String e = item.getStartDate();
+
+            holder.text.setText(item.getAdditionalDetail());
+
+            if (item.getTime().length() > 0)
+            {
+                holder.time.setText(item.getTime());
+                holder.time.setVisibility(View.VISIBLE);
+            }
+            else
+            {
+                holder.time.setVisibility(View.GONE);
+            }
+
+
+
+            holder.name.setText(item.getEventType() + " (by " + item.getFrom() + ")");
+
+            String e = item.getEndDate();
 
             String[] dd = e.split("-");
 
@@ -210,7 +245,7 @@ public class FrgmntOne extends Fragment {
         class ViewHolder extends RecyclerView.ViewHolder
         {
 
-TextView date , month , name , end;
+TextView date , month , name , end , text , time;
 
             public ViewHolder(View itemView) {
                 super(itemView);
@@ -219,6 +254,8 @@ TextView date , month , name , end;
                 month = (TextView)itemView.findViewById(R.id.month);
                 name = (TextView)itemView.findViewById(R.id.name);
                 end = (TextView)itemView.findViewById(R.id.end);
+                text = (TextView)itemView.findViewById(R.id.text);
+                time = (TextView)itemView.findViewById(R.id.time);
 
             }
         }

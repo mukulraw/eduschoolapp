@@ -412,6 +412,7 @@ public class TeacherNotificationFrgmnt extends Fragment {
 
 
 
+                Log.d("notification Count" , String.valueOf(list.size()));
 
                 adapter.setGridData(list);
 

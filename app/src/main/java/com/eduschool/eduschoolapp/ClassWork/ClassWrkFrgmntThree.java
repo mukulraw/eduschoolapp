@@ -3,6 +3,7 @@ package com.eduschool.eduschoolapp.ClassWork;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -104,6 +105,25 @@ public class ClassWrkFrgmntThree extends Fragment{
         super.onResume();
         toolbar.setTitle("Class Work Details");
         User u = (User) getContext().getApplicationContext();
+
+        toolbar.setNavigationIcon(R.drawable.back);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                try {
+                    FragmentManager fm = ((ParentHome) getContext()).getSupportFragmentManager();
+                    fm.popBackStack();
+                }catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
+
+
+
+            }
+        });
 
         u.back = false;
     }

@@ -3,6 +3,8 @@ package com.eduschool.eduschoolapp.recReqPOJO;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 /**
  * Created by TBX on 9/20/2017.
  */
@@ -51,6 +53,12 @@ public class RecevrequestList {
     @SerializedName("post_date")
     @Expose
     private String postDate;
+    @SerializedName("class")
+    @Expose
+    private List<Clas> _class = null;
+    @SerializedName("section")
+    @Expose
+    private List<Section> section = null;
 
     public String getId() {
         return id;
@@ -162,6 +170,22 @@ public class RecevrequestList {
 
     public void setPostDate(String postDate) {
         this.postDate = postDate;
+    }
+
+    public List<Clas> getClass_() {
+        return _class;
+    }
+
+    public void setClass_(List<Clas> _class) {
+        this._class = _class;
+    }
+
+    public List<Section> getSection() {
+        return section;
+    }
+
+    public void setSection(List<Section> section) {
+        this.section = section;
     }
 
 }

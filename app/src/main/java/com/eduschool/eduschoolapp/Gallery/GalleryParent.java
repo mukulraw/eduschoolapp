@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -56,6 +58,8 @@ public class GalleryParent extends Fragment {
     List<AlbumList> list;
     boolean isSearch = false;
 
+    Context context;
+
     public GalleryParent() {
 
     }
@@ -65,6 +69,9 @@ public class GalleryParent extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.gallery_parent, container, false);
+
+        context = getActivity();
+
         toolbar = (Toolbar) ((ParentHome) getContext()).findViewById(R.id.toolbar);
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler);
         progress = (ProgressBar) view.findViewById(R.id.progress);
@@ -198,12 +205,61 @@ public class GalleryParent extends Fragment {
                 @Override
                 public void onResponse(Call<AlbumListBean> call, Response<AlbumListBean> response) {
 
+                    if (response.body().getAlbumList().size() > 0)
+                    {
+                        adapter.setGridData(response.body().getAlbumList());
+                        adapter.notifyDataSetChanged();
+                    }
+                    else
+                    {
 
-                    adapter.setGridData(response.body().getAlbumList());
-                    adapter.notifyDataSetChanged();
+                        adapter.setGridData(response.body().getAlbumList());
+                        adapter.notifyDataSetChanged();
+
+                        try {
+                            final Dialog dialog = new Dialog(context);
+                            //dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                            dialog.setCancelable(true);
+                            dialog.setContentView(R.layout.no_gallery_popup);
+                            dialog.show();
+
+
+                            Button ok = (Button)dialog.findViewById(R.id.ok);
+
+
+                            ok.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+
+                                    dialog.dismiss();
+
+                                }
+                            });
+
+                            dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                                @Override
+                                public void onDismiss(DialogInterface dialog) {
+
+                                }
+                            });
+                        }catch (Exception e)
+                        {
+                            e.printStackTrace();
+                        }
+
+
+                    }
+
+
                     progress.setVisibility(View.GONE);
 
                     Log.d("ddddd", String.valueOf(response.body().getAlbumList().size()));
+
+                    //adapter.setGridData(response.body().getAlbumList());
+                    //adapter.notifyDataSetChanged();
+                    //progress.setVisibility(View.GONE);
+
+//                    Log.d("ddddd", String.valueOf(response.body().getAlbumList().size()));
 
                 }
 

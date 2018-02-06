@@ -80,7 +80,7 @@ public class updateAdapter extends RecyclerView.Adapter<updateAdapter.myviewhold
 
         if (Objects.equals(pp, "0"))
         {
-            p.add("0");
+            p.set(position , "0");
             pBoolean = false;
             holder.a.setBackground(context.getResources().getDrawable(R.drawable.absentcheckbox));
             holder.a.setTextColor(Color.WHITE);
@@ -90,7 +90,7 @@ public class updateAdapter extends RecyclerView.Adapter<updateAdapter.myviewhold
             holder.l.setBackground(context.getResources().getDrawable(R.drawable.defaultcheckbox));
         } else if (Objects.equals(pp, "1"))
         {
-            p.add("1");
+            p.set(position , "1");
             holder.p.setBackground(context.getResources().getDrawable(R.drawable.checkbox));
             holder.p.setTextColor(Color.WHITE);
             holder.a.setTextColor(Color.BLACK);
@@ -99,7 +99,7 @@ public class updateAdapter extends RecyclerView.Adapter<updateAdapter.myviewhold
             holder.l.setBackground(context.getResources().getDrawable(R.drawable.defaultcheckbox));
         } else if (Objects.equals(pp, "2"))
         {
-            p.add("2");
+            p.set(position , "2");
             holder.l.setBackground(context.getResources().getDrawable(R.drawable.leavecheckbox));
             holder.l.setTextColor(Color.WHITE);
             holder.p.setTextColor(Color.BLACK);

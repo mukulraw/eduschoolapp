@@ -122,7 +122,7 @@ public class GalleryParent2 extends Fragment {
                         List<GalleryList> ll = new ArrayList<>();
                         adapter.setGridData(ll);
                         adapter.notifyDataSetChanged();
-                        Toast.makeText(getContext() , "No Data Found" , Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext() , "No Gallery Found" , Toast.LENGTH_SHORT).show();
                     }
 
 

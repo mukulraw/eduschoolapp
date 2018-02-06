@@ -56,6 +56,7 @@ import com.eduschool.eduschoolapp.examTypePOJO.examTypeBean;
 import com.eduschool.eduschoolapp.imageListPOJO.imageListBean;
 import com.eduschool.eduschoolapp.notificationsPOJO.notificationsBean;
 import com.eduschool.eduschoolapp.onlinePOJO.onlineBean;
+import com.eduschool.eduschoolapp.onlineTestQuesPOJO.onlineTestQuesBean;
 import com.eduschool.eduschoolapp.ownResultPOJO.ownResultBean;
 import com.eduschool.eduschoolapp.parentAttendanceSummaryPOJO.parentAttendanceSummaryBean;
 import com.eduschool.eduschoolapp.parentExamPOJO.parentExamBean;
@@ -72,6 +73,7 @@ import com.eduschool.eduschoolapp.studentPOJO.studentBean;
 import com.eduschool.eduschoolapp.studentResultPOJO.studentResultBean;
 import com.eduschool.eduschoolapp.syllabusmanagementPOJO.syllabusManagementBean;
 import com.eduschool.eduschoolapp.takeSurveyBean.surveyAnsBean;
+import com.eduschool.eduschoolapp.takeTestPOJO.takeTestBean;
 import com.eduschool.eduschoolapp.teacherHomePOJO.teacherHomeBean;
 import com.eduschool.eduschoolapp.teacherProfilePOJO.teacherProfileBean;
 import com.eduschool.eduschoolapp.teacherSurveyPOJO.teacherSurveryBean;
@@ -668,6 +670,25 @@ public interface AllAPIs {
     Call<teacherProfileBean> getTeacherProfile(
             @Part("school_id") String schoolId,
             @Part("teacher_id") String userId
+    );
+
+
+
+
+    @Multipart
+    @POST("eduschool_app/get_onlinequestion_byid.php")
+    Call<onlineTestQuesBean> getOnlineQues(
+            @Part("onlinetest_id") String id
+    );
+
+
+    @Multipart
+    @POST("eduschool_app/take_test.php")
+    Call<takeTestBean> takeTest(
+            @Part("onlinetest_id") String onlineTestId,
+            @Part("userid") String userid,
+            @Part("ques_id") String quesId,
+            @Part("ans_id") String ansId
     );
 
 
