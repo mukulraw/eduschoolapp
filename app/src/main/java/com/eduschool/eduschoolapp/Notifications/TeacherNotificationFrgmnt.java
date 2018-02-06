@@ -44,6 +44,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -410,6 +412,20 @@ public class TeacherNotificationFrgmnt extends Fragment {
                     list.add(bean);
                 }
 
+
+                Collections.sort(list, new Comparator<notiBean>() {
+                    @Override
+                    public int compare(notiBean o1, notiBean o2) {
+
+                        if (o1.getDate().length() == 0 || o2.getDate().length() == 0)
+                        return 0;
+
+
+                        return o2.getDate().compareTo(o1.getDate());
+
+
+                    }
+                });
 
 
                 Log.d("notification Count" , String.valueOf(list.size()));
