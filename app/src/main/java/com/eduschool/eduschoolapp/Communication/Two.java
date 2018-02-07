@@ -1,5 +1,6 @@
 package com.eduschool.eduschoolapp.Communication;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Path;
 import android.os.Bundle;
@@ -12,6 +13,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -21,6 +24,7 @@ import com.eduschool.eduschoolapp.R;
 import com.eduschool.eduschoolapp.User;
 import com.eduschool.eduschoolapp.sentCommunicationTeacher.RequestList;
 import com.eduschool.eduschoolapp.sentCommunicationTeacher.sentCommunicationTeacherBean;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -145,7 +149,7 @@ public class Two extends Fragment {
 
             //holder.setIsRecyclable(false);
 
-            RequestList item = list.get(position);
+            final RequestList item = list.get(position);
 
 
             /*if (Objects.equals(item.getType(), "PTM"))
@@ -268,6 +272,30 @@ public class Two extends Fragment {
             }
 
 
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    if (item.getBirthCard().length() > 0)
+                    {
+                        Dialog dialog = new Dialog(context);
+                        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                        dialog.setContentView(R.layout.birth_popup);
+                        dialog.setCancelable(true);
+                        dialog.show();
+
+                        ImageView ikm = (ImageView)dialog.findViewById(R.id.image);
+
+                        ImageLoader loader = ImageLoader.getInstance();
+                        loader.displayImage(item.getBirthCard() , ikm);
+
+                    }
+
+
+
+
+                }
+            });
 
 
         }

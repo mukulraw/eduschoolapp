@@ -1,5 +1,6 @@
 package com.eduschool.eduschoolapp.Communication;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,7 +11,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.animation.GridLayoutAnimationController;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -20,6 +23,7 @@ import com.eduschool.eduschoolapp.R;
 import com.eduschool.eduschoolapp.User;
 import com.eduschool.eduschoolapp.communicationTeacherPOJO.RequestList;
 import com.eduschool.eduschoolapp.communicationTeacherPOJO.communicationTeacherBean;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -132,7 +136,7 @@ public class One extends Fragment {
 
         @Override
         public void onBindViewHolder(ViewHolder holder, int position) {
-            RequestList item = list.get(position);
+            final RequestList item = list.get(position);
 
 
 
@@ -150,6 +154,31 @@ public class One extends Fragment {
             {
                 e.printStackTrace();
             }
+
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    if (item.getBirthCard().length() > 0)
+                    {
+                        Dialog dialog = new Dialog(context);
+                        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                        dialog.setContentView(R.layout.birth_popup);
+                        dialog.setCancelable(true);
+                        dialog.show();
+
+                        ImageView ikm = (ImageView)dialog.findViewById(R.id.image);
+
+                        ImageLoader loader = ImageLoader.getInstance();
+                        loader.displayImage(item.getBirthCard() , ikm);
+
+                    }
+
+
+
+
+                }
+            });
 
         }
 

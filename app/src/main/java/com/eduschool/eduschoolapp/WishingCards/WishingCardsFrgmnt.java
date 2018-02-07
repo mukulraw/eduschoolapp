@@ -211,15 +211,16 @@ public class WishingCardsFrgmnt extends Fragment {
                     for (int i = 0; i < list1.size(); i++) {
                         JSONObject object = new JSONObject();
 
-                        try {
+                        //object.put("Id", list1.get(i).getId());
 
-                            object.put("Id", list1.get(i).getId());
+                        if (Objects.equals(list1.get(i).getStatus(), "1"))
+                        {
                             ll.add(list1.get(i).getId());
-                            jsonArray.put(object);
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
                         }
+
+
+                        //jsonArray.put(object);
+
                     }
 
                     final JSONObject jsonObject = new JSONObject();
@@ -251,25 +252,28 @@ public class WishingCardsFrgmnt extends Fragment {
                                         .build();
 
                                 final AllAPIs cr = retrofit.create(AllAPIs.class);
-                                progress.setVisibility(View.VISIBLE);
+
 
 
                                 String ca = "";
 
                                 if (index == 0) {
-                                    ca = "card1";
+                                    ca = "card1.jpg";
                                 } else if (index == 1) {
-                                    ca = "card2";
+                                    ca = "card2.jpg";
                                 } else if (index == 2) {
-                                    ca = "card4";
+                                    ca = "card4.jpg";
                                 } else if (index == 3) {
-                                    ca = "card5";
+                                    ca = "card5.jpg";
                                 } else if (index == 4) {
-                                    ca = "card6";
+                                    ca = "card6.jpg";
                                 }
 
 
                                 if (ll.size() > 0) {
+
+                                    progress.setVisibility(View.VISIBLE);
+
                                     Call<SendBirthBean> call = cr.send_card(b.school_id, "Parent", b.user_id, "Parent", ca, TextUtils.join(",", ll));
 
 

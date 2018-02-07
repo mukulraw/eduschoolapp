@@ -13,7 +13,7 @@ android {
     buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "com.eduschool.eduschoolapp"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 25
         versionCode 3
         versionName "1.2"
