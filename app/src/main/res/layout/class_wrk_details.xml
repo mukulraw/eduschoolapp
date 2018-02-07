@@ -34,7 +34,7 @@
                     android:layout_gravity="center"
                     android:id="@+id/classSection"
                     android:textColor="#398DBF"
-                    android:textSize="32sp"
+                    android:textSize="28sp"
                     android:textStyle="bold" />
 
                 <TextView

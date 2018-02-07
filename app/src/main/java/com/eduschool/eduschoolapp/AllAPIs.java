@@ -48,6 +48,7 @@ import com.eduschool.eduschoolapp.UpdateSurveyPOJO.UpdateSurveyBean;
 import com.eduschool.eduschoolapp.ViewHomeWrkPOJO.HomewrkListbean;
 import com.eduschool.eduschoolapp.academicTeacherPOJO.academicTeacherBean;
 import com.eduschool.eduschoolapp.allEventPOJO.allEventBean;
+import com.eduschool.eduschoolapp.allNotificationPOJO.allNotificationBean;
 import com.eduschool.eduschoolapp.birthPOJO.birthBean;
 import com.eduschool.eduschoolapp.borrowedBookBean.borrowedBookBean;
 import com.eduschool.eduschoolapp.classResultPOJO.classResultBean;
@@ -823,10 +824,17 @@ public interface AllAPIs {
     );
 
     @Multipart
-    @POST("eduschool_app/unread_notifyteacher.php")
+    @POST("eduschool_app/all_notificationteacher.php")
     Call<notificationsBean> getNotifications(
             @Part("school_id") String schoolId,
             @Part("teacher_id") String stuId
+    );
+
+    @Multipart
+    @POST("eduschool_app/all_notification.php")
+    Call<allNotificationBean> getAllNotifications(
+            @Part("school_id") String schoolId,
+            @Part("stuid") String stuId
     );
 
     @Multipart
