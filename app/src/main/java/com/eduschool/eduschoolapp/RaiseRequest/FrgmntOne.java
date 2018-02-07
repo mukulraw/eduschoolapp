@@ -74,7 +74,7 @@ public class FrgmntOne extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        toolbar.setTitle("Request");
+        toolbar.setTitle("Raise Request");
         User u = (User) getContext().getApplicationContext();
 
         u.back = true;

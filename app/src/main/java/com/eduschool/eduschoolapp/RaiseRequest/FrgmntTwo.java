@@ -79,7 +79,7 @@ public class FrgmntTwo extends Fragment{
     public void onResume() {
         super.onResume();
 
-        toolbar.setTitle("Request");
+        toolbar.setTitle("Raise Request");
         User u = (User) getContext().getApplicationContext();
 
         u.back = true;
