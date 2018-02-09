@@ -276,6 +276,51 @@ public class GalleryParent extends Fragment {
 
         }
 
+        @Override
+        public void onCancel(DialogInterface dialog) {
+            super.onCancel(dialog);
+            User b = (User) getActivity().getApplicationContext();
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl(b.baseURL)
+                    .addConverterFactory(ScalarsConverterFactory.create())
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+
+            AllAPIs cr = retrofit.create(AllAPIs.class);
+            progress.setVisibility(View.VISIBLE);
+
+            Call<AlbumListBean> call = cr.album_list(b.school_id);
+
+            call.enqueue(new Callback<AlbumListBean>() {
+                @Override
+                public void onResponse(Call<AlbumListBean> call, Response<AlbumListBean> response) {
+
+                    try {
+                        adapter.setGridData(response.body().getAlbumList());
+                        adapter.notifyDataSetChanged();
+                        progress.setVisibility(View.GONE);
+
+                        Log.d("ddddd", String.valueOf(response.body().getAlbumList().size()));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+
+                }
+
+                @Override
+                public void onFailure(Call<AlbumListBean> call, Throwable throwable) {
+
+                    progress.setVisibility(View.GONE);
+
+                }
+            });
+
+
+            dialog.dismiss();
+
+
+        }
     }
 
 }

@@ -483,7 +483,7 @@ public class CreateEventFrgmnt extends Fragment {
                                             "Teacher",
                                             "Parent",
                                             "," + TextUtils.join("," ,checkedClasses),
-                                            "," + TextUtils.join("," ,checkedSections)
+                                            "," + TextUtils.join("," ,checkedSections),"" , null
                                     );
 
                                     Log.d("classs" , TextUtils.join("," ,checkedClasses));

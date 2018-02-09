@@ -95,6 +95,8 @@ import retrofit2.http.Part;
 import retrofit2.http.Streaming;
 import retrofit2.http.Url;
 
+import static com.google.android.gms.internal.zzxo.hh;
+
 /**
  * Created by user on 7/14/2017.
  */
@@ -663,7 +665,9 @@ public interface AllAPIs {
             @Part("from_type") String ftype,
             @Part("to_type") String to,
             @Part("class_id") String classId,
-            @Part("section_id") String sectionId
+            @Part("section_id") String sectionId,
+            @Part("important") String h,
+            @Part MultipartBody.Part file
     );
 
     @Multipart

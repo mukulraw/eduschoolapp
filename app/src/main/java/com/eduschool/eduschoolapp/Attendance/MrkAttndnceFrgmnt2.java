@@ -106,8 +106,6 @@ public class MrkAttndnceFrgmnt2 extends Fragment implements DatePickerDialog.OnD
             @Override
             public void onClick(View view) {
 
-
-
                 final Dialog dialog = new Dialog(getActivity());
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setCancelable(true);
@@ -126,10 +124,6 @@ public class MrkAttndnceFrgmnt2 extends Fragment implements DatePickerDialog.OnD
                     @Override
                     public void onClick(View v) {
 
-
-
-
-
                         int year = datePicker.getYear();
                         int month = datePicker.getMonth();
                         int day = datePicker.getDayOfMonth();
@@ -137,7 +131,6 @@ public class MrkAttndnceFrgmnt2 extends Fragment implements DatePickerDialog.OnD
 
                         Calendar c = Calendar.getInstance();
                         c.set(year, month, day);
-
 
 
                         SimpleDateFormat sdf1 = new SimpleDateFormat("EEEE");

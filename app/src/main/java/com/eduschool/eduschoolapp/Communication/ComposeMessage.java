@@ -56,6 +56,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -63,6 +64,9 @@ import java.util.List;
 
 import io.apptik.widget.multiselectspinner.BaseMultiSelectSpinner;
 import io.apptik.widget.multiselectspinner.MultiSelectSpinner;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -93,6 +97,8 @@ public class ComposeMessage extends AppCompatActivity {
 
     List<String> checkedClasses = new ArrayList<>();
     List<String> checkedSections;
+
+    Uri selectedImageUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -498,6 +504,8 @@ public class ComposeMessage extends AppCompatActivity {
                 final String t = time.getText().toString();
                 final String de = desc.getText().toString();
 
+
+
                 if (checkedSections.size() > 0)
                 {
 
@@ -536,6 +544,23 @@ public class ComposeMessage extends AppCompatActivity {
                                         @Override
                                         public void onClick(View v) {
 
+
+
+
+                                            MultipartBody.Part body = null;
+
+
+                                            String mCurrentPhotoPath = getPath(ComposeMessage.this, selectedImageUri);
+
+                                            File file = new File(mCurrentPhotoPath);
+
+
+                                            RequestBody reqFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+
+                                            body = MultipartBody.Part.createFormData("attach", file.getName(), reqFile);
+
+
+
                                             progressBar.setVisibility(View.VISIBLE);
 
                                             User u = (User) getApplicationContext();
@@ -553,6 +578,18 @@ public class ComposeMessage extends AppCompatActivity {
                                             Log.d("ed" , ed);
 
 
+                                            String imp = "";
+
+
+                                            if (check.isChecked())
+                                            {
+                                                imp = "yes";
+                                            }
+                                            else {
+                                                imp = "no";
+                                            }
+
+
                                             Call<composeBean> call = cr.compose(
                                                     u.school_id,
                                                     sd,
@@ -566,7 +603,9 @@ public class ComposeMessage extends AppCompatActivity {
                                                     "Teacher",
                                                     "Parent",
                                                     "," + TextUtils.join("," ,checkedClasses),
-                                                    "," + TextUtils.join(",", checkedSections)
+                                                    "," + TextUtils.join(",", checkedSections),
+                                                    imp,
+                                                    body
                                             );
 
                                             call.enqueue(new Callback<composeBean>() {
@@ -878,7 +917,7 @@ public class ComposeMessage extends AppCompatActivity {
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
 
 
-            Uri selectedImageUri = data.getData();
+            selectedImageUri = data.getData();
 
 
             String mCurrentPhotoPath = getPath(getApplicationContext(), selectedImageUri);

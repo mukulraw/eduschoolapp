@@ -182,7 +182,8 @@ public class OnlineTestSummery extends Fragment {
 
             float per = (scc/hii) * 100;
 
-            if (per >= Integer.parseInt(pas))
+
+            if (Objects.equals(item.getTakeTest().getYourStatus(), "Pass"))
             {
                 holder.details.setBackgroundResource(R.drawable.green_popup);
             }
@@ -213,7 +214,7 @@ public class OnlineTestSummery extends Fragment {
 
             holder.month.setText(d1[1] + " " + d1[2]);
 
-            holder.score.setText(item.getMinScore() + "/" + item.getMaxScore());
+            holder.score.setText(item.getTakeTest().getYourScore() + "/" + item.getTakeTest().getMaxScore());
 
             holder.name.setText(item.getTestName());
 

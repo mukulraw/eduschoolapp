@@ -27,6 +27,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -45,6 +46,7 @@ import com.eduschool.eduschoolapp.ChapterListPOJO.ChapterList;
 import com.eduschool.eduschoolapp.ChapterListPOJO.ChapterListbean;
 import com.eduschool.eduschoolapp.Home.TeacherHome;
 import com.eduschool.eduschoolapp.HomewrkPOJO.HomewrkBean;
+import com.eduschool.eduschoolapp.LoginPages.LoginPage;
 import com.eduschool.eduschoolapp.R;
 import com.eduschool.eduschoolapp.StudentListPOJO.StudentList;
 import com.eduschool.eduschoolapp.StudentListPOJO.StudentListbean;
@@ -178,55 +180,83 @@ public class TeacherHwFrgmntThree extends Fragment {
 
 
 
-                User b = (User) getActivity().getApplicationContext();
-                Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl(b.baseURL)
-                        .addConverterFactory(ScalarsConverterFactory.create())
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .build();
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-                AllAPIs cr = retrofit.create(AllAPIs.class);
-                progress.setVisibility(View.VISIBLE);
+                builder.setMessage("Are you sure you want to delete this file?");
+
+                builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int which) {
 
 
-                Call<deleteFileBean> call = cr.deleteHomeWorkAttach(fileId);
+                        User b = (User) getActivity().getApplicationContext();
+                        Retrofit retrofit = new Retrofit.Builder()
+                                .baseUrl(b.baseURL)
+                                .addConverterFactory(ScalarsConverterFactory.create())
+                                .addConverterFactory(GsonConverterFactory.create())
+                                .build();
+
+                        AllAPIs cr = retrofit.create(AllAPIs.class);
+                        progress.setVisibility(View.VISIBLE);
 
 
-                call.enqueue(new Callback<deleteFileBean>() {
-                    @Override
-                    public void onResponse(Call<deleteFileBean> call, Response<deleteFileBean> response) {
+                        Call<deleteFileBean> call = cr.deleteHomeWorkAttach(fileId);
 
-                        try {
 
-                            if (Objects.equals(response.body().getStatus(), "1"))
-                            {
-                                Toast.makeText(getContext() , "File Deleted Successfully" , Toast.LENGTH_SHORT).show();
-                                loadData();
+                        call.enqueue(new Callback<deleteFileBean>() {
+                            @Override
+                            public void onResponse(Call<deleteFileBean> call, Response<deleteFileBean> response) {
+
+                                try {
+
+                                    if (Objects.equals(response.body().getStatus(), "1"))
+                                    {
+                                        Toast.makeText(getContext() , "File Deleted Successfully" , Toast.LENGTH_SHORT).show();
+                                        loadData();
+                                    }
+                                    else
+                                    {
+                                        Toast.makeText(getContext() , "Error Deleting File" , Toast.LENGTH_SHORT).show();
+                                    }
+
+                                }catch (Exception e)
+                                {
+                                    e.printStackTrace();
+                                }
+
+
+
+                                progress.setVisibility(View.GONE);
+
                             }
-                            else
-                            {
-                                Toast.makeText(getContext() , "Error Deleting File" , Toast.LENGTH_SHORT).show();
+
+                            @Override
+                            public void onFailure(Call<deleteFileBean> call, Throwable t) {
+
+                                t.printStackTrace();
+                                progress.setVisibility(View.GONE);
+
                             }
-
-                        }catch (Exception e)
-                        {
-                            e.printStackTrace();
-                        }
-
-
-
-                        progress.setVisibility(View.GONE);
-
-                    }
-
-                    @Override
-                    public void onFailure(Call<deleteFileBean> call, Throwable t) {
-
-                        t.printStackTrace();
-                        progress.setVisibility(View.GONE);
+                        });
 
                     }
                 });
+                builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        // Do nothing
+                        dialog.dismiss();
+                    }
+                });
+
+                AlertDialog alert = builder.create();
+                alert.show();
+
+
+
+
 
 
 

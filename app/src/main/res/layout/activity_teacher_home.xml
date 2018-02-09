@@ -29,7 +29,6 @@
 
     <include
         android:id="@+id/navId"
-
         layout="@layout/teacher_menu_layout"
         android:layout_width="268dp"
         android:layout_height="match_parent"

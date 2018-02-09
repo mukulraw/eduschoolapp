@@ -72,8 +72,8 @@ public class ParentHomeFrgmnt extends Fragment{
 
     RecyclerView homeList , classList;
 
-    GridLayoutManager manager1;
-    GridLayoutManager manager2;
+    LinearLayoutManager manager1;
+    LinearLayoutManager manager2;
 
     HomeAdapter adapter1;
     ClassAdapter adapter2;
@@ -97,8 +97,8 @@ public class ParentHomeFrgmnt extends Fragment{
         hList = new ArrayList<>();
         cList = new ArrayList<>();
 
-        manager1 = new GridLayoutManager(getContext() , 1);
-        manager2 = new GridLayoutManager(getContext() , 1);
+        manager1 = new LinearLayoutManager(getContext() , LinearLayoutManager.VERTICAL , true);
+        manager2 = new LinearLayoutManager(getContext() , LinearLayoutManager.VERTICAL , true);
         adapter1 = new HomeAdapter(getContext() , hList);
         adapter2 = new ClassAdapter(getContext() , cList);
 

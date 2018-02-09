@@ -401,7 +401,7 @@ public class MarkAttendance extends AppCompatActivity {
 
 
                 progress.setVisibility(View.VISIBLE);
-                Call<MarkAttendanceBean> call3 = cr.mark_attendance(b.school_id, b.user_class, b.user_section, Sdate, b.user_id, b.class_teacher, month.format(month1), year.format(year1), day.format(day1), TextUtils.join(",", studentId), TextUtils.join(",", list1));
+                Call<MarkAttendanceBean> call3 = cr.mark_attendance(b.school_id, b.user_class, b.user_section, Sdate, b.user_id, b.class_teacher, month.format(month1), year.format(year1), Tday.getText().toString(), TextUtils.join(",", studentId), TextUtils.join(",", list1));
 
 
                 Log.d("month" , month.format(month1));

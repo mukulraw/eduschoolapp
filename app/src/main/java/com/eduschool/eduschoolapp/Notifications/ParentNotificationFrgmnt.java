@@ -211,11 +211,20 @@ public class ParentNotificationFrgmnt extends Fragment{
                     @Override
                     public int compare(notiBean o1, notiBean o2) {
 
-                        if (o1.getDate().length() == 0 || o2.getDate().length() == 0)
+                        try {
+
+                            if (o1.getDate().length() == 0 || o2.getDate().length() == 0)
+                                return 0;
+
+                            return o2.getDate().compareTo(o1.getDate());
+
+
+
+                        }catch (Exception e){
+                            e.printStackTrace();
                             return 0;
+                        }
 
-
-                        return o2.getDate().compareTo(o1.getDate());
 
 
                     }
