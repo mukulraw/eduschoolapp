@@ -31,5 +31,4 @@ public class To {
     public void setName(String name) {
         this.name = name;
     }
-
 }

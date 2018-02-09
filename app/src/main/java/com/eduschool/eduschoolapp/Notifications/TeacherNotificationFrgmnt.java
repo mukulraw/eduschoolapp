@@ -8,6 +8,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -27,16 +30,20 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.eduschool.eduschoolapp.AllAPIs;
 import com.eduschool.eduschoolapp.Attendance.Attendance;
+import com.eduschool.eduschoolapp.Attendance.MrkAttndnceFrgmnt2;
 import com.eduschool.eduschoolapp.ClassWork.Teacherclswrk;
 import com.eduschool.eduschoolapp.Communication.Frgmnt1;
 import com.eduschool.eduschoolapp.Home.TeacherHome;
 import com.eduschool.eduschoolapp.HomeWork.TeacherHw;
+import com.eduschool.eduschoolapp.HomeWork.TeacherHwFrgmntTwo;
+import com.eduschool.eduschoolapp.Library.TeacherLibrary1;
 import com.eduschool.eduschoolapp.R;
 import com.eduschool.eduschoolapp.Survey.SurveyFrgmnt1;
 import com.eduschool.eduschoolapp.User;
 import com.eduschool.eduschoolapp.notiBean;
 import com.eduschool.eduschoolapp.notificationsPOJO.NotificationList;
 import com.eduschool.eduschoolapp.notificationsPOJO.notificationsBean;
+import com.eduschool.eduschoolapp.updateNotificationBean;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
@@ -234,6 +241,7 @@ public class TeacherNotificationFrgmnt extends Fragment {
 
         Call<notificationsBean> call = cr.getNotifications(u.school_id, u.user_id);
 
+
         call.enqueue(new Callback<notificationsBean>() {
             @Override
             public void onResponse(Call<notificationsBean> call, Response<notificationsBean> response) {
@@ -251,8 +259,17 @@ public class TeacherNotificationFrgmnt extends Fragment {
                     bean.setTitle(response.body().getHomeworkDue().get(i).getTitle());
                     bean.setType("Homework Notification");
                     bean.setDesc("Due Date");
+                    bean.setData(response.body().getHomeworkDue().get(i).getHomeworkId());
 
-                    list.add(bean);
+
+                    bean.setNoti(response.body().getHomeworkDue().get(i).getNotifyId());
+
+                    if (bean.getDate() != null)
+                    {
+                        list.add(bean);
+                    }
+
+
                 }
 
 
@@ -293,8 +310,12 @@ public class TeacherNotificationFrgmnt extends Fragment {
 
                             bean.setDesc(desc);
 
-                            list.add(bean);
+                            bean.setNoti(response.body().getOther().get(i).getNotifyId());
 
+                            if (bean.getDate() != null)
+                            {
+                                list.add(bean);
+                            }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -313,6 +334,8 @@ public class TeacherNotificationFrgmnt extends Fragment {
                             bean.setType(response.body().getOther().get(i).getType() + " Notification");
                             bean.setDesc("Attendance Pending");
 
+                            bean.setData(response.body().getOther().get(i).getNotifyId());
+
                             Gson gson = new Gson();
 
                             String json = gson.toJson(response.body().getOther().get(i).getData());
@@ -323,9 +346,11 @@ public class TeacherNotificationFrgmnt extends Fragment {
                             String sec = object.getString("section");
 
                             bean.setTitle(clas + " " + sec);
-
-                            list.add(bean);
-
+                            bean.setNoti(response.body().getOther().get(i).getNotifyId());
+                            if (bean.getDate() != null)
+                            {
+                                list.add(bean);
+                            }
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -358,8 +383,12 @@ public class TeacherNotificationFrgmnt extends Fragment {
 
                             bean.setDesc("Total Questions " + ques);
 
-                            list.add(bean);
+                            bean.setNoti(response.body().getOther().get(i).getNotifyId());
 
+                            if (bean.getDate() != null)
+                            {
+                                list.add(bean);
+                            }
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -378,12 +407,16 @@ public class TeacherNotificationFrgmnt extends Fragment {
                     notiBean bean = new notiBean();
 
                     bean.setDate(response.body().getClassworkUnupdate().get(i).getDatetime());
-                    //bean.setTitle(response.body().getHomeworkDue().get(i).getTitle());
+                    bean.setTitle("Classwork");
                     bean.setType("Classwork Notification");
                     bean.setDesc("Classwork not updated");
 
-                    list.add(bean);
-                }
+                    bean.setNoti("");
+
+                    if (bean.getDate() != null)
+                    {
+                        list.add(bean);
+                    }                }
 
 
                 for (int i = 0 ; i < response.body().getBirthdayNotify().size() ; i++)
@@ -395,8 +428,12 @@ public class TeacherNotificationFrgmnt extends Fragment {
                     bean.setDate(response.body().getBirthdayNotify().get(i).getBirthDate());
                     bean.setDesc(response.body().getBirthdayNotify().get(i).getClass_() + " " + response.body().getBirthdayNotify().get(i).getSection());
 
-                    list.add(bean);
-                }
+                    bean.setNoti(response.body().getBirthdayNotify().get(i).getNotifyId());
+
+                    if (bean.getDate() != null)
+                    {
+                        list.add(bean);
+                    }                }
 
 
 
@@ -409,8 +446,12 @@ public class TeacherNotificationFrgmnt extends Fragment {
                     bean.setDate(response.body().getLibraryBookreturn().get(i).getReturnDate());
                     bean.setDesc("Issue Date - " + response.body().getLibraryBookreturn().get(i).getIssueDate());
 
-                    list.add(bean);
-                }
+                    bean.setNoti(response.body().getLibraryBookreturn().get(i).getNotifyId());
+
+                    if (bean.getDate() != null)
+                    {
+                        list.add(bean);
+                    }                }
 
 
                 Collections.sort(list, new Comparator<notiBean>() {
@@ -452,6 +493,15 @@ public class TeacherNotificationFrgmnt extends Fragment {
         toolbar.setTitle("Notifications");
 
         User u = (User) getContext().getApplicationContext();
+
+        DrawerLayout drawer = (DrawerLayout)((TeacherHome) getContext()).findViewById(R.id.drawer_asiana);
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                getActivity(), drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+
 
         u.back = true;
     }
@@ -633,6 +683,135 @@ public class TeacherNotificationFrgmnt extends Fragment {
 
                 }
             });*/
+
+
+
+
+
+
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+
+
+
+                    progress.setVisibility(View.VISIBLE);
+
+                    User u = (User)getContext().getApplicationContext();
+
+
+                    Retrofit retrofit = new Retrofit.Builder()
+                            .baseUrl(u.baseURL)
+                            .addConverterFactory(ScalarsConverterFactory.create())
+                            .addConverterFactory(GsonConverterFactory.create())
+                            .build();
+
+                    AllAPIs cr = retrofit.create(AllAPIs.class);
+
+
+                    Call<updateNotificationBean> call = cr.updateParentNotifications(item.getNoti() , u.user_id , "Teacher");
+
+                    call.enqueue(new Callback<updateNotificationBean>() {
+                        @Override
+                        public void onResponse(Call<updateNotificationBean> call, Response<updateNotificationBean> response) {
+
+                            if (Objects.equals(item.getType(), "Homework Notification"))
+                            {
+
+                                android.support.v4.app.FragmentManager fm=((AppCompatActivity)context).getSupportFragmentManager();
+                                android.support.v4.app.FragmentTransaction ft = fm.beginTransaction();
+                                TeacherHwFrgmntTwo frag1 = new TeacherHwFrgmntTwo();
+                                Bundle bundle=new Bundle();
+                                bundle.putString("message", item.getData());
+                                frag1.setArguments(bundle);
+                                ft.replace(R.id.replace, frag1);
+                                ft.addToBackStack(null);
+                                ft.commit();
+
+                            }
+                            else if (Objects.equals(item.getType(), "Communication Notification") || Objects.equals(item.getType(), "Birthday Notification"))
+                            {
+
+                                android.support.v4.app.FragmentManager fm=((AppCompatActivity)context).getSupportFragmentManager();
+                                android.support.v4.app.FragmentTransaction ft = fm.beginTransaction();
+                                Frgmnt1 frag1 = new Frgmnt1();
+                                ft.replace(R.id.replace, frag1);
+                                //ft.addToBackStack(null);
+                                ft.commit();
+
+                            }
+                            else if (Objects.equals(item.getType(), "Attendance Notification"))
+                            {
+
+                                android.support.v4.app.FragmentManager fm=((AppCompatActivity)context).getSupportFragmentManager();
+                                android.support.v4.app.FragmentTransaction ft = fm.beginTransaction();
+                                MrkAttndnceFrgmnt2 frag1 = new MrkAttndnceFrgmnt2();
+                                ft.replace(R.id.replace, frag1);
+                                ft.addToBackStack(null);
+                                ft.commit();
+
+                            }
+                            else if (Objects.equals(item.getType(), "Survey Notification"))
+                            {
+                                android.support.v4.app.FragmentManager fm=((AppCompatActivity)context).getSupportFragmentManager();
+                                android.support.v4.app.FragmentTransaction ft = fm.beginTransaction();
+                                SurveyFrgmnt1 frag1 = new SurveyFrgmnt1();
+                                ft.replace(R.id.replace, frag1);
+                                //ft.addToBackStack(null);
+                                ft.commit();
+                            }
+                            else if (Objects.equals(item.getType(), "Classwork Notification"))
+                            {
+
+                                android.support.v4.app.FragmentManager fm=((AppCompatActivity)context).getSupportFragmentManager();
+                                android.support.v4.app.FragmentTransaction ft = fm.beginTransaction();
+                                Teacherclswrk frag1 = new Teacherclswrk();
+                                ft.replace(R.id.replace, frag1);
+                                //ft.addToBackStack(null);
+                                ft.commit();
+
+                            }
+                            else if (Objects.equals(item.getType(), "Library Notification"))
+                            {
+
+                                android.support.v4.app.FragmentManager fm=((AppCompatActivity)context).getSupportFragmentManager();
+                                android.support.v4.app.FragmentTransaction ft = fm.beginTransaction();
+                                TeacherLibrary1 frag1 = new TeacherLibrary1();
+                                ft.replace(R.id.replace, frag1);
+                                //ft.addToBackStack(null);
+                                ft.commit();
+
+                            }
+
+                            progress.setVisibility(View.GONE);
+
+
+                        }
+
+                        @Override
+                        public void onFailure(Call<updateNotificationBean> call, Throwable t) {
+
+                            progress.setVisibility(View.GONE);
+
+                        }
+                    });
+
+
+
+
+
+
+
+
+
+
+                }
+            });
+
+
+
+
 
 
         }

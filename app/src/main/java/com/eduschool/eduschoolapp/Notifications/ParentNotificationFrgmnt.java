@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -21,7 +22,10 @@ import com.eduschool.eduschoolapp.ClassWork.ClassWorkFrgmnt;
 import com.eduschool.eduschoolapp.ClassWork.Teacherclswrk;
 import com.eduschool.eduschoolapp.Home.ParentHome;
 import com.eduschool.eduschoolapp.Home.TeacherHome;
+import com.eduschool.eduschoolapp.HomeWork.HomeWorkFrgmnt;
+import com.eduschool.eduschoolapp.Library.ParentLibrary1;
 import com.eduschool.eduschoolapp.R;
+import com.eduschool.eduschoolapp.RaiseRequest.RaiseReqquestHome;
 import com.eduschool.eduschoolapp.Survey.SurveyFrgmnt1;
 import com.eduschool.eduschoolapp.Survey.SurveyFrgmntParent1;
 import com.eduschool.eduschoolapp.User;
@@ -29,6 +33,7 @@ import com.eduschool.eduschoolapp.allNotificationPOJO.allNotificationBean;
 import com.eduschool.eduschoolapp.notiBean;
 import com.eduschool.eduschoolapp.notificationsPOJO.NotificationList;
 import com.eduschool.eduschoolapp.notificationsPOJO.notificationsBean;
+import com.eduschool.eduschoolapp.updateNotificationBean;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
@@ -104,136 +109,175 @@ public class ParentNotificationFrgmnt extends Fragment{
             public void onResponse(Call<allNotificationBean> call, Response<allNotificationBean> response) {
 
 
-                list.clear();
+                try {
+                    list.clear();
 
 
 
-                for (int i = 0 ; i < response.body().getHomeworkDue().size() ; i++)
-                {
-                    notiBean bean = new notiBean();
+                    for (int i = 0 ; i < response.body().getHomeworkDue().size() ; i++)
+                    {
+                        notiBean bean = new notiBean();
 
-                    bean.setDate(response.body().getHomeworkDue().get(i).getDueDate());
-                    bean.setTitle(response.body().getHomeworkDue().get(i).getTitle());
-                    bean.setType("Homework Notification");
-                    bean.setDesc("Due Date");
+                        bean.setDate(response.body().getHomeworkDue().get(i).getDueDate());
+                        bean.setTitle(response.body().getHomeworkDue().get(i).getTitle());
+                        bean.setType("Homework Notification");
+                        bean.setDesc("Due Date");
 
-                    list.add(bean);
-                }
+                        bean.setData(response.body().getHomeworkDue().get(i).getNotifyId());
+                        if (bean.getDate() != null)
+                        {
+                            list.add(bean);
+                        }
 
-                for (int i = 0 ; i < response.body().getHomeworkUpdate().size() ; i++)
-                {
-                    notiBean bean = new notiBean();
+                    }
 
-                    bean.setDate(response.body().getHomeworkUpdate().get(i).getDueDate());
-                    bean.setTitle(response.body().getHomeworkUpdate().get(i).getTitle());
-                    bean.setType("Homework Notification");
-                    bean.setDesc("Updated");
+                    for (int i = 0 ; i < response.body().getHomeworkUpdate().size() ; i++)
+                    {
+                        notiBean bean = new notiBean();
 
-                    list.add(bean);
-                }
+                        bean.setDate(response.body().getHomeworkUpdate().get(i).getCreatedDate());
+                        bean.setTitle(response.body().getHomeworkUpdate().get(i).getTitle());
+                        bean.setType("Homework Notification");
+                        bean.setDesc("Updated");
 
-                for (int i = 0 ; i < response.body().getHomeworkCreate().size() ; i++)
-                {
-                    notiBean bean = new notiBean();
+                        bean.setData(response.body().getHomeworkUpdate().get(i).getNotifyId());
+                        if (bean.getDate() != null)
+                        {
+                            list.add(bean);
+                        }
+                    }
 
-                    bean.setDate(response.body().getHomeworkCreate().get(i).getDueDate());
-                    bean.setTitle(response.body().getHomeworkCreate().get(i).getTitle());
-                    bean.setType("Homework Notification");
-                    bean.setDesc("Added");
+                    for (int i = 0 ; i < response.body().getHomeworkCreate().size() ; i++)
+                    {
+                        notiBean bean = new notiBean();
 
-                    list.add(bean);
-                }
+                        bean.setDate(response.body().getHomeworkCreate().get(i).getCreatedDate());
+                        bean.setTitle(response.body().getHomeworkCreate().get(i).getTitle());
+                        bean.setType("Homework Notification");
+                        bean.setDesc("Added");
 
-
-
-                for (int i = 0; i < response.body().getClassworkCreate().size(); i++) {
-                    notiBean bean = new notiBean();
-
-                    bean.setDate(response.body().getClassworkCreate().get(i).getCreateDate());
-                    bean.setTitle(response.body().getClassworkCreate().get(i).getTitle());
-                    bean.setType("Classwork Notification");
-                    bean.setDesc(response.body().getClassworkCreate().get(i).getClassStatus());
-
-                    list.add(bean);
-                }
-
-                for (int i = 0; i < response.body().getClassworkUpdate().size(); i++) {
-                    notiBean bean = new notiBean();
-
-                    bean.setDate(response.body().getClassworkUpdate().get(i).getCreateDate());
-                    bean.setTitle(response.body().getClassworkUpdate().get(i).getTitle());
-                    bean.setType("Classwork Notification");
-                    bean.setDesc("Classwork Updated");
-
-                    list.add(bean);
-                }
-
-                for (int i = 0 ; i < response.body().getBirthdayNotify().size() ; i++)
-                {
-                    notiBean bean = new notiBean();
-
-                    bean.setType("Birthday Notification");
-                    bean.setTitle(response.body().getBirthdayNotify().get(i).getUserName() + " (" + response.body().getBirthdayNotify().get(i).getUserType() + ")");
-                    bean.setDate(response.body().getBirthdayNotify().get(i).getBirthDate());
-                    bean.setDesc(response.body().getBirthdayNotify().get(i).getClass_() + " " + response.body().getBirthdayNotify().get(i).getSection());
-
-                    list.add(bean);
-                }
+                        bean.setData(response.body().getHomeworkCreate().get(i).getNotifyId());
+                        if (bean.getDate() != null)
+                        {
+                            list.add(bean);
+                        }
+                    }
 
 
-                for (int i = 0 ; i < response.body().getSurvey().size() ; i++)
-                {
-                    notiBean bean = new notiBean();
 
-                    bean.setType("Survey Notification");
-                    bean.setTitle("New Survey Added (" + response.body().getSurvey().get(i).getSurveyTitle() + ")");
-                    bean.setDate(response.body().getSurvey().get(i).getCreatedOn());
-                    bean.setDesc("Total Questions - " + response.body().getSurvey().get(i).getTotalQuestion());
+                    for (int i = 0; i < response.body().getClassworkCreate().size(); i++) {
+                        notiBean bean = new notiBean();
 
-                    list.add(bean);
-                }
+                        bean.setDate(response.body().getClassworkCreate().get(i).getCreateDate());
+                        bean.setTitle(response.body().getClassworkCreate().get(i).getTitle());
+                        bean.setType("Classwork Notification");
+                        bean.setDesc(response.body().getClassworkCreate().get(i).getClassStatus());
+
+                        bean.setData(response.body().getClassworkCreate().get(i).getNotifyId());
+                        if (bean.getDate() != null)
+                        {
+                            list.add(bean);
+                        }
+                    }
+
+                    for (int i = 0; i < response.body().getClassworkUpdate().size(); i++) {
+                        notiBean bean = new notiBean();
+
+                        bean.setDate(response.body().getClassworkUpdate().get(i).getCreateDate());
+                        bean.setTitle(response.body().getClassworkUpdate().get(i).getTitle());
+                        bean.setType("Classwork Notification");
+                        bean.setDesc("Classwork Updated");
+
+                        bean.setData(response.body().getClassworkUpdate().get(i).getNotifyId());
+                        if (bean.getDate() != null)
+                        {
+                            list.add(bean);
+                        }
+                    }
+
+                    for (int i = 0 ; i < response.body().getBirthdayNotify().size() ; i++)
+                    {
+                        notiBean bean = new notiBean();
+
+                        bean.setType("Birthday Notification");
+                        bean.setTitle(response.body().getBirthdayNotify().get(i).getUserName() + " (" + response.body().getBirthdayNotify().get(i).getUserType() + ")");
+                        bean.setDate(response.body().getBirthdayNotify().get(i).getBirthDate());
+                        bean.setDesc(response.body().getBirthdayNotify().get(i).getClass_() + " " + response.body().getBirthdayNotify().get(i).getSection());
+
+                        bean.setData(response.body().getBirthdayNotify().get(i).getNotifyId());
+                        if (bean.getDate() != null)
+                        {
+                            list.add(bean);
+                        }
+                    }
 
 
-                for (int i = 0 ; i < response.body().getLibraryBookreturn().size() ; i++)
-                {
-                    notiBean bean = new notiBean();
+                    for (int i = 0 ; i < response.body().getSurvey().size() ; i++)
+                    {
+                        notiBean bean = new notiBean();
 
-                    bean.setType("Library Notification");
-                    bean.setTitle(response.body().getLibraryBookreturn().get(i).getBookName());
-                    bean.setDate(response.body().getLibraryBookreturn().get(i).getReturnDate());
-                    bean.setDesc("Issue Date - " + response.body().getLibraryBookreturn().get(i).getIssueDate());
+                        bean.setType("Survey Notification");
+                        bean.setTitle("New Survey Added (" + response.body().getSurvey().get(i).getSurveyTitle() + ")");
+                        bean.setDate(response.body().getSurvey().get(i).getCreatedOn());
+                        bean.setDesc("Total Questions - " + response.body().getSurvey().get(i).getTotalQuestion());
 
-                    list.add(bean);
-                }
+                        bean.setData(response.body().getSurvey().get(i).getNotifyId());
+                        if (bean.getDate() != null)
+                        {
+                            list.add(bean);
+                        }
+                    }
 
 
-                Collections.sort(list, new Comparator<notiBean>() {
-                    @Override
-                    public int compare(notiBean o1, notiBean o2) {
+                    for (int i = 0 ; i < response.body().getLibraryBookreturn().size() ; i++)
+                    {
+                        notiBean bean = new notiBean();
 
-                        try {
+
+
+                        bean.setType("Library Notification");
+                        bean.setTitle(response.body().getLibraryBookreturn().get(i).getBookName());
+                        bean.setDate(response.body().getLibraryBookreturn().get(i).getReturnDate());
+                        bean.setDesc("Issue Date - " + response.body().getLibraryBookreturn().get(i).getIssueDate());
+
+                        bean.setData(response.body().getLibraryBookreturn().get(i).getNotifyId());
+
+                        if (bean.getDate() != null)
+                        {
+                            list.add(bean);
+                        }
+                    }
+
+
+                    Collections.sort(list, new Comparator<notiBean>() {
+                        @Override
+                        public int compare(notiBean o1, notiBean o2) {
+
+
+
+
 
                             if (o1.getDate().length() == 0 || o2.getDate().length() == 0)
                                 return 0;
 
+
                             return o2.getDate().compareTo(o1.getDate());
 
 
-
-                        }catch (Exception e){
-                            e.printStackTrace();
-                            return 0;
                         }
+                    });
 
 
+                    Log.d("notification Count" , String.valueOf(list.size()));
 
-                    }
-                });
+                    adapter.setGridData(list);
+
+                } catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
 
 
-                Log.d("notification Count" , String.valueOf(list.size()));
-
-                adapter.setGridData(list);
 
                 progress.setVisibility(View.GONE);
 
@@ -309,136 +353,95 @@ public class ParentNotificationFrgmnt extends Fragment{
             holder.type.setText(item.getType());
             holder.status.setText(item.getDesc());
 
-            /*holder.type.setText(item.getType() + " Notification");
-
-            if (Objects.equals(item.getType(), "Survey")) {
-
-                try {
-
-                    String d[] = item.getDate().split("-");
-                    holder.date.setText(d[0] + "\n\n" + d[1] + " " + d[2]);
-                    holder.text.setText(item.getTitle());
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-
-            } else if (Objects.equals(item.getType(), "Classwork")) {
-                try {
-
-                    String d[] = item.getDate().split("-");
-                    holder.date.setText(d[0] + "\n\n" + d[1] + " " + d[2]);
-                    holder.text.setText(item.getTitle());
-                    holder.status.setText(item.getDesc());
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            } else if (Objects.equals(item.getType(), "Homework")) {
-                try {
-
-                    if (Objects.equals(item.getType(), "Homework")) {
-                        String d[] = item.getDate().split("-");
-                        holder.date.setText(d[0] + "\n\n" + d[1] + " " + d[2]);
-                        holder.text.setText(item.getTitle());
-                        holder.status.setText("Due Date");
-                    } else if (Objects.equals(item.getType(), "Homework Complete")) {
-                        String d[] = item.getDate().split("-");
-                        holder.date.setText(d[0] + "\n\n" + d[1] + " " + d[2]);
-                        holder.text.setText(item.getTitle());
-                        holder.status.setText(item.getDesc());
-                    }
-
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            } else if (Objects.equals(item.getType(), "Attendance")) {
-                try {
-
-                    String d[] = item.getDate().split("-");
-                    holder.date.setText(d[0] + "\n\n" + d[1] + " " + d[2]);
-                    holder.text.setText(item.getTitle());
-                    holder.status.setText(item.getDesc());
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            } else if (Objects.equals(item.getType(), "Communication")) {
-                try {
-
-                    String d[] = item.getDate().split("-");
-                    holder.date.setText(d[0] + "\n\n" + d[1] + " " + d[2]);
-                    holder.text.setText(item.getTitle());
-                    holder.status.setText(item.getDesc());
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }*/
-
-
-            /*try {
-
-                if (item.getDesc().length() > 0) {
-                    holder.status.setVisibility(View.VISIBLE);
-
-                } else {
-                    holder.status.setVisibility(View.GONE);
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-
-            String d[] = item.getDate().split("-");
-            holder.date.setText(d[0] + "\n\n" + d[1] + " " + d[2]);
-
-            holder.type.setText(item.getType());
-
-            holder.text.setText(item.getTitle());
-            holder.status.setText(item.getDesc());
 
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
-                    if (Objects.equals(item.getType(), "Survey")) {
-                        FragmentManager fm = ((TeacherHome) context).getSupportFragmentManager();
-                        FragmentTransaction ft = fm.beginTransaction();
-                        SurveyFrgmnt1 frag1 = new SurveyFrgmnt1();
-                        ft.replace(R.id.replace, frag1);
-                        ft.commit();
-                    } else if (Objects.equals(item.getType(), "Classwork") || Objects.equals(item.getType(), "Classwork Update")) {
-                        FragmentManager fm = ((TeacherHome) context).getSupportFragmentManager();
-                        FragmentTransaction ft = fm.beginTransaction();
-                        Teacherclswrk frag1 = new Teacherclswrk();
-                        ft.replace(R.id.replace, frag1);
-                        ft.commit();
-                    } else if (Objects.equals(item.getType(), "Homework") || Objects.equals(item.getType(), "Homework Update") || Objects.equals(item.getType(), "Homework Complete")) {
-                        FragmentManager fm = ((TeacherHome) context).getSupportFragmentManager();
-                        FragmentTransaction ft = fm.beginTransaction();
-                        TeacherHw frag1 = new TeacherHw();
-                        ft.replace(R.id.replace, frag1);
-                        ft.commit();
-                    } else if (Objects.equals(item.getType(), "Attendance")) {
-                        FragmentManager fm = ((TeacherHome) context).getSupportFragmentManager();
-                        FragmentTransaction ft = fm.beginTransaction();
-                        Attendance frag1 = new Attendance();
-                        ft.replace(R.id.replace, frag1);
-                        ft.commit();
-                    } else if (Objects.equals(item.getType(), "Communication")) {
-                        FragmentManager fm = ((TeacherHome) context).getSupportFragmentManager();
-                        FragmentTransaction ft = fm.beginTransaction();
-                        Frgmnt1 frag1 = new Frgmnt1();
-                        ft.replace(R.id.replace, frag1);
-                        ft.commit();
-                    }
+
+                    progress.setVisibility(View.VISIBLE);
+
+                    User u = (User)getContext().getApplicationContext();
+
+
+                    Retrofit retrofit = new Retrofit.Builder()
+                            .baseUrl(u.baseURL)
+                            .addConverterFactory(ScalarsConverterFactory.create())
+                            .addConverterFactory(GsonConverterFactory.create())
+                            .build();
+
+                    AllAPIs cr = retrofit.create(AllAPIs.class);
+
+
+                    Call<updateNotificationBean> call = cr.updateParentNotifications(item.getData() , u.user_id , "Parent");
+
+                    call.enqueue(new Callback<updateNotificationBean>() {
+                        @Override
+                        public void onResponse(Call<updateNotificationBean> call, Response<updateNotificationBean> response) {
+
+
+
+                            if (Objects.equals(item.getType(), "Homework Notification"))
+                            {
+                                android.support.v4.app.FragmentManager fm=((AppCompatActivity)context).getSupportFragmentManager();
+                                android.support.v4.app.FragmentTransaction ft = fm.beginTransaction();
+                                HomeWorkFrgmnt frag1 = new HomeWorkFrgmnt();
+                                ft.replace(R.id.replace, frag1);
+                                //ft.addToBackStack(null);
+                                ft.commit();
+                            }
+                            else if (Objects.equals(item.getType(), "Classwork Notification"))
+                            {
+                                android.support.v4.app.FragmentManager fm=((AppCompatActivity)context).getSupportFragmentManager();
+                                android.support.v4.app.FragmentTransaction ft = fm.beginTransaction();
+                                ClassWorkFrgmnt frag1 = new ClassWorkFrgmnt();
+                                ft.replace(R.id.replace, frag1);
+                                //ft.addToBackStack(null);
+                                ft.commit();
+                            }
+                            else if (Objects.equals(item.getType(), "Birthday Notification"))
+                            {
+                                android.support.v4.app.FragmentManager fm=((AppCompatActivity)context).getSupportFragmentManager();
+                                android.support.v4.app.FragmentTransaction ft = fm.beginTransaction();
+                                RaiseReqquestHome frag1 = new RaiseReqquestHome();
+                                ft.replace(R.id.replace, frag1);
+                                //ft.addToBackStack(null);
+                                ft.commit();
+                            }
+                            else if (Objects.equals(item.getType(), "Survey Notification"))
+                            {
+                                android.support.v4.app.FragmentManager fm=((AppCompatActivity)context).getSupportFragmentManager();
+                                android.support.v4.app.FragmentTransaction ft = fm.beginTransaction();
+                                SurveyFrgmntParent1 frag1 = new SurveyFrgmntParent1();
+                                ft.replace(R.id.replace, frag1);
+                                //ft.addToBackStack(null);
+                                ft.commit();
+                            }
+                            else if (Objects.equals(item.getType(), "Library Notification"))
+                            {
+                                android.support.v4.app.FragmentManager fm=((AppCompatActivity)context).getSupportFragmentManager();
+                                android.support.v4.app.FragmentTransaction ft = fm.beginTransaction();
+                                ParentLibrary1 frag1 = new ParentLibrary1();
+                                ft.replace(R.id.replace, frag1);
+                                //ft.addToBackStack(null);
+                                ft.commit();
+                            }
+
+
+
+                        }
+
+                        @Override
+                        public void onFailure(Call<updateNotificationBean> call, Throwable t) {
+
+                        }
+                    });
+
+
+
 
                 }
-            });*/
+            });
 
 
         }

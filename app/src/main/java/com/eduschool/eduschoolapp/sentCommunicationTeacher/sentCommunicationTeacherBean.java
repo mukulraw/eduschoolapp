@@ -22,5 +22,4 @@ public class sentCommunicationTeacherBean {
     public void setRequestList(List<RequestList> requestList) {
         this.requestList = requestList;
     }
-
 }

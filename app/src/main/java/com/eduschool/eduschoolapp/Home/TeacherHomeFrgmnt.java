@@ -532,7 +532,10 @@ public class TeacherHomeFrgmnt extends Fragment {
 
             ClassWork item = list.get(position);
 
-            holder.classSec.setText(item.getClass_() + " " + item.getSection());
+            holder.classSec.setText(item.getClass_());
+
+
+
             holder.text.setText("Pending");
 
             if (position == list.size() - 1) {

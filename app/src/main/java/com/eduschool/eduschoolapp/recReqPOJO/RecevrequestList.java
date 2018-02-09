@@ -47,6 +47,12 @@ public class RecevrequestList {
     @SerializedName("event_type")
     @Expose
     private String eventType;
+    @SerializedName("if_important")
+    @Expose
+    private String ifImportant;
+    @SerializedName("import_attach")
+    @Expose
+    private String importAttach;
     @SerializedName("additional_detail")
     @Expose
     private String additionalDetail;
@@ -156,6 +162,22 @@ public class RecevrequestList {
         this.eventType = eventType;
     }
 
+    public String getIfImportant() {
+        return ifImportant;
+    }
+
+    public void setIfImportant(String ifImportant) {
+        this.ifImportant = ifImportant;
+    }
+
+    public String getImportAttach() {
+        return importAttach;
+    }
+
+    public void setImportAttach(String importAttach) {
+        this.importAttach = importAttach;
+    }
+
     public String getAdditionalDetail() {
         return additionalDetail;
     }
@@ -187,5 +209,4 @@ public class RecevrequestList {
     public void setSection(List<Section> section) {
         this.section = section;
     }
-
 }

@@ -17,6 +17,9 @@ public class SurveyListteacher {
     @SerializedName("survey_title")
     @Expose
     private String surveyTitle;
+    @SerializedName("open_survey")
+    @Expose
+    private String openSurvey;
     @SerializedName("servey_data")
     @Expose
     private List<ServeyDatum> serveyData = null;
@@ -37,6 +40,14 @@ public class SurveyListteacher {
         this.surveyTitle = surveyTitle;
     }
 
+    public String getOpenSurvey() {
+        return openSurvey;
+    }
+
+    public void setOpenSurvey(String openSurvey) {
+        this.openSurvey = openSurvey;
+    }
+
     public List<ServeyDatum> getServeyData() {
         return serveyData;
     }
@@ -44,5 +55,4 @@ public class SurveyListteacher {
     public void setServeyData(List<ServeyDatum> serveyData) {
         this.serveyData = serveyData;
     }
-
 }

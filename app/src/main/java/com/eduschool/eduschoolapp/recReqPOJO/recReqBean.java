@@ -23,4 +23,5 @@ public class recReqBean {
         this.recevrequestList = recevrequestList;
     }
 
+
 }

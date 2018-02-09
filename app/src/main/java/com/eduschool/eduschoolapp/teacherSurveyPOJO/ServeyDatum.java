@@ -64,5 +64,4 @@ public class ServeyDatum {
     public void setQuestionStatus(String questionStatus) {
         this.questionStatus = questionStatus;
     }
-
 }

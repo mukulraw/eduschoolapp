@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -82,7 +83,6 @@ public class SurveyFrgmnt1 extends Fragment {
         call.enqueue(new Callback<teacherSurveryBean>() {
             @Override
             public void onResponse(Call<teacherSurveryBean> call, Response<teacherSurveryBean> response) {
-
 
                 adapter.setGridData(response.body().getSurveyListteacher());
                 adapter.notifyDataSetChanged();
@@ -178,37 +178,63 @@ public class SurveyFrgmnt1 extends Fragment {
 
         @Override
         public void onBindViewHolder(final myviewholder holder, final int position) {
-            SurveyListteacher item = list.get(position);
+            final SurveyListteacher item = list.get(position);
 
             holder.qus.setText(item.getSurveyTitle());
 
-            for (int i = 0 ; i < item.getServeyData().size() ; i++)
-            {
-                if (Objects.equals(item.getServeyData().get(i).getQuestionStatus(), "Pending"))
+            //if (Objects.equals(item.getOpenSurvey(), "yes"))
+            //{
+                for (int i = 0 ; i < item.getServeyData().size() ; i++)
                 {
-                    holder.status.setText("Pending");
+                    if (Objects.equals(item.getServeyData().get(i).getQuestionStatus(), "Pending"))
+                    {
+                        if (!Objects.equals(item.getOpenSurvey(), "yes"))
+                        {
+                            holder.status.setText("Closed");
+                        }
+                        else
+                        {
+                            holder.status.setText("Pending");
+                        }
+
+
+                    }
+                    else
+                    {
+                        holder.status.setText("Complete");
+                    }
                 }
-                else
-                {
-                    holder.status.setText("Complete");
-                }
-            }
+            //}
+            //else
+            //{
+            //
+            //}
+
+
 
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
 
-                    String Id = list.get(position).getSurveyId();
+
+                    if (!Objects.equals(holder.status.getText().toString(), "Closed"))
+                    {
+                        String Id = list.get(position).getSurveyId();
+
+                        // ts.setData(list.get(position).getServeyData());
+
+                        Intent intent = new Intent(context, Take_Survey.class);
+                        intent.putExtra("Id", Id);
+                        intent.putExtra("title" , list.get(position).getSurveyTitle());
+                        context.startActivity(intent);
+                    }
+                    else
+                    {
+                        Toast.makeText(context , "This Survey is closed" , Toast.LENGTH_SHORT).show();
+                    }
 
 
 
-
-                   // ts.setData(list.get(position).getServeyData());
-
-                    Intent intent = new Intent(context, Take_Survey.class);
-                    intent.putExtra("Id", Id);
-                    intent.putExtra("title" , list.get(position).getSurveyTitle());
-                    context.startActivity(intent);
 
 
                 }

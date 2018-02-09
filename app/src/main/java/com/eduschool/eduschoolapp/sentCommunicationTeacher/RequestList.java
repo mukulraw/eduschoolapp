@@ -47,6 +47,12 @@ public class RequestList {
     @SerializedName("exam_type")
     @Expose
     private String examType;
+    @SerializedName("if_important")
+    @Expose
+    private String ifImportant;
+    @SerializedName("import_attach")
+    @Expose
+    private String importAttach;
     @SerializedName("detail")
     @Expose
     private String detail;
@@ -159,6 +165,22 @@ public class RequestList {
         this.examType = examType;
     }
 
+    public String getIfImportant() {
+        return ifImportant;
+    }
+
+    public void setIfImportant(String ifImportant) {
+        this.ifImportant = ifImportant;
+    }
+
+    public String getImportAttach() {
+        return importAttach;
+    }
+
+    public void setImportAttach(String importAttach) {
+        this.importAttach = importAttach;
+    }
+
     public String getDetail() {
         return detail;
     }
@@ -198,6 +220,5 @@ public class RequestList {
     public void setSection(List<Section> section) {
         this.section = section;
     }
-
 
 }

@@ -828,18 +828,37 @@ public interface AllAPIs {
     );
 
     @Multipart
-    @POST("eduschool_app/all_notificationteacher.php")
+    @POST("eduschool_app/unread_notifyteacher.php")
     Call<notificationsBean> getNotifications(
             @Part("school_id") String schoolId,
             @Part("teacher_id") String stuId
     );
 
     @Multipart
-    @POST("eduschool_app/all_notification.php")
+    @POST("eduschool_app/unread_notify.php")
     Call<allNotificationBean> getAllNotifications(
             @Part("school_id") String schoolId,
             @Part("stuid") String stuId
     );
+
+
+
+    @Multipart
+    @POST("eduschool_app/update_notify_status.php")
+    Call<updateNotificationBean> updateParentNotifications(
+            @Part("notify_id") String notifyId,
+            @Part("userid") String userId,
+            @Part("type") String type
+    );
+
+    @Multipart
+    @POST("eduschool_app/update_notify_status.php")
+    Call<updateNotificationBean> updateTeacherNotifications(
+            @Part("notify_id") String notifyId,
+            @Part("userid") String userId,
+            @Part("type") String type
+    );
+
 
     @Multipart
     @POST("eduschool_app/home_notification.php")

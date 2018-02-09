@@ -2,16 +2,23 @@ package com.eduschool.eduschoolapp.RaiseRequest;
 
 
 import android.app.Dialog;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 
+import android.os.Environment;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +26,7 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.eduschool.eduschoolapp.AllAPIs;
 import com.eduschool.eduschoolapp.Home.ParentHome;
@@ -28,9 +36,17 @@ import com.eduschool.eduschoolapp.recReqPOJO.RecevrequestList;
 import com.eduschool.eduschoolapp.recReqPOJO.recReqBean;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -51,12 +67,15 @@ public class FrgmntOne extends Fragment {
     List<RecevrequestList> list;
     RecAdapter adapter;
 
+    CoordinatorLayout coordinate;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.raise_request_frgmnt1, container, false);
         toolbar = (Toolbar) ((ParentHome) getContext()).findViewById(R.id.toolbar);
+
+        coordinate = (CoordinatorLayout)v.findViewById(R.id.coordinate);
 
         progress = (ProgressBar)v.findViewById(R.id.progress);
         grid = (RecyclerView)v.findViewById(R.id.grid);
@@ -177,6 +196,15 @@ public class FrgmntOne extends Fragment {
             }
 
 
+            if (Objects.equals(item.getIfImportant(), "no"))
+            {
+                holder.imp.setVisibility(View.GONE);
+            }
+            else
+            {
+                holder.imp.setVisibility(View.VISIBLE);
+            }
+
 
 
             holder.text.setText(item.getAdditionalDetail());
@@ -189,6 +217,17 @@ public class FrgmntOne extends Fragment {
             else
             {
                 holder.time.setVisibility(View.GONE);
+            }
+
+
+
+            if (item.getImportAttach().length() > 0)
+            {
+holder.download.setVisibility(View.VISIBLE);
+            }
+            else
+            {
+                holder.download.setVisibility(View.GONE);
             }
 
 
@@ -234,6 +273,54 @@ public class FrgmntOne extends Fragment {
             });
 
 
+            holder.download.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    progress.setVisibility(View.VISIBLE);
+
+                    User b = (User) getActivity().getApplicationContext();
+
+
+                    Retrofit retrofit = new Retrofit.Builder()
+                            .baseUrl(b.baseURL)
+                            .build();
+
+                    AllAPIs cr = retrofit.create(AllAPIs.class);
+
+                    cr.getFile(item.getImportAttach()).enqueue(new Callback<ResponseBody>() {
+                        @Override
+                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+
+
+                            try {
+
+                                String dpath = item.getImportAttach();
+                                String[] dd = dpath.split("/");
+
+                                DownloadFileAsyncTask downloadFileAsyncTask = new DownloadFileAsyncTask(item.getImportAttach(), dd[dd.length - 1]);
+                                downloadFileAsyncTask.execute(response.body().byteStream());
+
+                            }catch (Exception e)
+                            {
+                                progress.setVisibility(View.GONE);
+                                e.printStackTrace();
+                            }
+
+
+                        }
+
+                        @Override
+                        public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                        }
+
+                    });
+
+                }
+            });
+
 
         }
 
@@ -245,7 +332,9 @@ public class FrgmntOne extends Fragment {
         class ViewHolder extends RecyclerView.ViewHolder
         {
 
-TextView date , month , name , end , text , time;
+TextView date , month , name , end , text , time , imp;
+
+ImageView download;
 
             public ViewHolder(View itemView) {
                 super(itemView);
@@ -256,9 +345,184 @@ TextView date , month , name , end , text , time;
                 end = (TextView)itemView.findViewById(R.id.end);
                 text = (TextView)itemView.findViewById(R.id.text);
                 time = (TextView)itemView.findViewById(R.id.time);
+                imp = (TextView)itemView.findViewById(R.id.imp);
+
+                download = (ImageView)itemView.findViewById(R.id.download);
 
             }
         }
+
+
+        private class DownloadFileAsyncTask extends AsyncTask<InputStream, Void, Boolean> {
+
+            String TAG = "asdasdasd";
+
+
+
+            File dir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getPath()+ "/EduSchoolApp/");
+
+
+
+            final String filename;
+
+            String key;
+
+            String path = Environment.getExternalStorageDirectory().toString();
+
+            byte[] decodedBytes = null;
+
+            File file;
+
+            public DownloadFileAsyncTask(String key , String name)
+            {
+                this.key = key;
+                this.filename = name;
+            }
+
+
+            @Override
+            protected Boolean doInBackground(InputStream... params) {
+
+                if (!(dir.exists() && dir.isDirectory())) {
+                    dir.mkdirs();
+                }
+
+                InputStream inputStream = params[0];
+
+
+
+                try {
+                    file = new File(dir , filename);
+
+                    file.createNewFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+
+                OutputStream output = null;
+                try {
+                    output = new FileOutputStream(file);
+
+                    byte[] buffer = new byte[1024]; // or other buffer size
+                    int read;
+
+                    Log.d(TAG, "Attempting to write to: " + dir + "/" + filename);
+                    while ((read = inputStream.read(buffer)) != -1) {
+                        output.write(buffer, 0, read);
+                        Log.v(TAG, "Writing to buffer to output stream.");
+                    }
+                    Log.d(TAG, "Flushing output stream.");
+                    output.flush();
+                    Log.d(TAG, "Output flushed.");
+                } catch (IOException e) {
+                    Log.e(TAG, "IO Exception: " + e.getMessage());
+                    e.printStackTrace();
+                    return false;
+                } finally {
+                    try {
+                        if (output != null) {
+                            output.close();
+                            Log.d("Asdasdasd", "Output stream closed sucessfully.");
+                        }
+                        else{
+                            Log.d(TAG, "Output stream is null");
+                        }
+                    } catch (IOException e){
+                        Log.e("Asdasdasd", "Couldn't close output stream: " + e.getMessage());
+                        e.printStackTrace();
+                        return false;
+                    }
+
+
+
+
+
+
+
+
+
+
+
+
+                }
+                return true;
+            }
+
+            @Override
+            protected void onPostExecute(Boolean result) {
+                super.onPostExecute(result);
+                progress.setVisibility(View.GONE);
+
+
+                /*Snackbar snackbar = Snackbar.make(coordinate , "File Downloaded in Downloads/EduSchoolApp" , Snackbar.LENGTH_SHORT).setAction("VIEW", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        openFile(file);
+
+                    }
+                });
+
+                snackbar.show();
+*/
+                Toast.makeText(getContext() , "File Successfully Downloaded in Downloads/EduSchoolApp" , Toast.LENGTH_LONG).show();
+
+            }
+        }
+
+        private void openFile(File url) {
+
+            try {
+
+                Uri uri = Uri.fromFile(url);
+
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                if (url.toString().contains(".doc") || url.toString().contains(".docx")) {
+                    // Word document
+                    intent.setDataAndType(uri, "application/msword");
+                } else if (url.toString().contains(".pdf")) {
+                    // PDF file
+                    intent.setDataAndType(uri, "application/pdf");
+                } else if (url.toString().contains(".ppt") || url.toString().contains(".pptx")) {
+                    // Powerpoint file
+                    intent.setDataAndType(uri, "application/vnd.ms-powerpoint");
+                } else if (url.toString().contains(".xls") || url.toString().contains(".xlsx")) {
+                    // Excel file
+                    intent.setDataAndType(uri, "application/vnd.ms-excel");
+                } else if (url.toString().contains(".zip") || url.toString().contains(".rar")) {
+                    // WAV audio file
+                    intent.setDataAndType(uri, "application/x-wav");
+                } else if (url.toString().contains(".rtf")) {
+                    // RTF file
+                    intent.setDataAndType(uri, "application/rtf");
+                } else if (url.toString().contains(".wav") || url.toString().contains(".mp3")) {
+                    // WAV audio file
+                    intent.setDataAndType(uri, "audio/x-wav");
+                } else if (url.toString().contains(".gif")) {
+                    // GIF file
+                    intent.setDataAndType(uri, "image/gif");
+                } else if (url.toString().contains(".jpg") || url.toString().contains(".jpeg") || url.toString().contains(".png")) {
+                    // JPG file
+                    intent.setDataAndType(uri, "image/jpeg");
+                } else if (url.toString().contains(".txt")) {
+                    // Text file
+                    intent.setDataAndType(uri, "text/plain");
+                } else if (url.toString().contains(".3gp") || url.toString().contains(".mpg") ||
+                        url.toString().contains(".mpeg") || url.toString().contains(".mpe") || url.toString().contains(".mp4") || url.toString().contains(".avi")) {
+                    // Video files
+                    intent.setDataAndType(uri, "video/*");
+                } else {
+                    intent.setDataAndType(uri, "*/*");
+                }
+
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
+            } catch (ActivityNotFoundException e) {
+                Toast.makeText(context, "No application found which can open the file", Toast.LENGTH_SHORT).show();
+            }
+        }
+
     }
 
 }

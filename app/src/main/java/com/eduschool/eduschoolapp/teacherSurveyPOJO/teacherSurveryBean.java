@@ -22,5 +22,4 @@ public class teacherSurveryBean {
     public void setSurveyListteacher(List<SurveyListteacher> surveyListteacher) {
         this.surveyListteacher = surveyListteacher;
     }
-
 }

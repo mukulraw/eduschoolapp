@@ -3,7 +3,9 @@ package com.eduschool.eduschoolapp.Communication;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Path;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -17,19 +19,27 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.eduschool.eduschoolapp.AllAPIs;
 import com.eduschool.eduschoolapp.Home.TeacherHome;
 import com.eduschool.eduschoolapp.R;
+import com.eduschool.eduschoolapp.RaiseRequest.FrgmntOne;
 import com.eduschool.eduschoolapp.User;
 import com.eduschool.eduschoolapp.sentCommunicationTeacher.RequestList;
 import com.eduschool.eduschoolapp.sentCommunicationTeacher.sentCommunicationTeacherBean;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -271,6 +281,73 @@ public class Two extends Fragment {
 
             }
 
+            if (item.getImportAttach().length() > 0)
+            {
+                holder.download.setVisibility(View.VISIBLE);
+            }
+            else
+            {
+                holder.download.setVisibility(View.GONE);
+            }
+
+            if (Objects.equals(item.getIfImportant(), "no"))
+            {
+                holder.imp.setVisibility(View.GONE);
+            }
+            else
+            {
+                holder.imp.setVisibility(View.VISIBLE);
+            }
+
+
+            holder.download.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    progress.setVisibility(View.VISIBLE);
+
+                    User b = (User) getActivity().getApplicationContext();
+
+
+                    Retrofit retrofit = new Retrofit.Builder()
+                            .baseUrl(b.baseURL)
+                            .build();
+
+                    AllAPIs cr = retrofit.create(AllAPIs.class);
+
+                    cr.getFile(item.getImportAttach()).enqueue(new Callback<ResponseBody>() {
+                        @Override
+                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+
+
+                            try {
+
+                                String dpath = item.getImportAttach();
+                                String[] dd = dpath.split("/");
+
+                                DownloadFileAsyncTask downloadFileAsyncTask = new DownloadFileAsyncTask(item.getImportAttach(), dd[dd.length - 1]);
+                                downloadFileAsyncTask.execute(response.body().byteStream());
+
+                            }catch (Exception e)
+                            {
+                                progress.setVisibility(View.GONE);
+                                e.printStackTrace();
+                            }
+
+
+                        }
+
+                        @Override
+                        public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                        }
+
+                    });
+
+                }
+            });
+
 
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -308,8 +385,9 @@ public class Two extends Fragment {
         class ViewHolder extends RecyclerView.ViewHolder
         {
 
-            TextView day , month , title , desc , date , time , to;
+            TextView day , month , title , desc , date , time , to , imp;
 
+            ImageView download;
 
 
             public ViewHolder(View itemView) {
@@ -322,8 +400,128 @@ public class Two extends Fragment {
                 date = (TextView)itemView.findViewById(R.id.date);
                 time = (TextView)itemView.findViewById(R.id.time);
                 to = (TextView)itemView.findViewById(R.id.to);
+                imp = (TextView)itemView.findViewById(R.id.imp);
+                download = (ImageView)itemView.findViewById(R.id.download);
 
                 this.setIsRecyclable(false);
+
+            }
+        }
+
+        private class DownloadFileAsyncTask extends AsyncTask<InputStream, Void, Boolean> {
+
+            String TAG = "asdasdasd";
+
+
+
+            File dir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getPath()+ "/EduSchoolApp/");
+
+
+
+            final String filename;
+
+            String key;
+
+            String path = Environment.getExternalStorageDirectory().toString();
+
+            byte[] decodedBytes = null;
+
+            File file;
+
+            public DownloadFileAsyncTask(String key , String name)
+            {
+                this.key = key;
+                this.filename = name;
+            }
+
+
+            @Override
+            protected Boolean doInBackground(InputStream... params) {
+
+                if (!(dir.exists() && dir.isDirectory())) {
+                    dir.mkdirs();
+                }
+
+                InputStream inputStream = params[0];
+
+
+
+                try {
+                    file = new File(dir , filename);
+
+                    file.createNewFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+
+                OutputStream output = null;
+                try {
+                    output = new FileOutputStream(file);
+
+                    byte[] buffer = new byte[1024]; // or other buffer size
+                    int read;
+
+                    Log.d(TAG, "Attempting to write to: " + dir + "/" + filename);
+                    while ((read = inputStream.read(buffer)) != -1) {
+                        output.write(buffer, 0, read);
+                        Log.v(TAG, "Writing to buffer to output stream.");
+                    }
+                    Log.d(TAG, "Flushing output stream.");
+                    output.flush();
+                    Log.d(TAG, "Output flushed.");
+                } catch (IOException e) {
+                    Log.e(TAG, "IO Exception: " + e.getMessage());
+                    e.printStackTrace();
+                    return false;
+                } finally {
+                    try {
+                        if (output != null) {
+                            output.close();
+                            Log.d("Asdasdasd", "Output stream closed sucessfully.");
+                        }
+                        else{
+                            Log.d(TAG, "Output stream is null");
+                        }
+                    } catch (IOException e){
+                        Log.e("Asdasdasd", "Couldn't close output stream: " + e.getMessage());
+                        e.printStackTrace();
+                        return false;
+                    }
+
+
+
+
+
+
+
+
+
+
+
+
+                }
+                return true;
+            }
+
+            @Override
+            protected void onPostExecute(Boolean result) {
+                super.onPostExecute(result);
+                progress.setVisibility(View.GONE);
+
+
+                /*Snackbar snackbar = Snackbar.make(coordinate , "File Downloaded in Downloads/EduSchoolApp" , Snackbar.LENGTH_SHORT).setAction("VIEW", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        openFile(file);
+
+                    }
+                });
+
+                snackbar.show();
+*/
+                Toast.makeText(getContext() , "File Successfully Downloaded in Downloads/EduSchoolApp" , Toast.LENGTH_LONG).show();
 
             }
         }

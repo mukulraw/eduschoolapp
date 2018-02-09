@@ -12,6 +12,29 @@ public class notiBean {
     String date;
     String title;
     String desc;
+    String data;
+    String noti;
+
+
+    public String getNoti() {
+        return noti;
+    }
+
+    public void setNoti(String noti) {
+        this.noti = noti;
+    }
+
+
+
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
+    }
+
+
 
     public String getType() {
         return type;
