@@ -83,6 +83,7 @@ public class TeacherHomeFrgmnt extends Fragment {
 
     TextView class_name;
 
+    TextView timetext;
 
     public TeacherHomeFrgmnt() {
 
@@ -102,6 +103,8 @@ public class TeacherHomeFrgmnt extends Fragment {
         etitle = (TextView) view.findViewById(R.id.etitle);
 
         eventLayout = (LinearLayout) view.findViewById(R.id.event_layout);
+
+        timetext = (TextView)view.findViewById(R.id.timetext);
 
         attendance = (LinearLayout) view.findViewById(R.id.attendance);
         academic = (TextView) view.findViewById(R.id.academic);
@@ -175,7 +178,31 @@ public class TeacherHomeFrgmnt extends Fragment {
 
                     date1.setText(response.body().getTodayDate());
                     homeWorkAdapter.setGridData(response.body().getHomeWork());
-                    adapter.setGridData(response.body().getTimeTable().getPeriodList());
+
+                    if (Objects.equals(response.body().getTimeTable().getHoliday(), "Yes"))
+                    {
+                        timetext.setVisibility(View.VISIBLE);
+                        timetext.setText("Today is Holiday");
+                        adapter.setGridData(new ArrayList<PeriodList>());
+                    }
+                    else
+                    {
+                        if (response.body().getTimeTable().getPeriodList().size() > 0)
+                        {
+                            timetext.setVisibility(View.GONE);
+                            timetext.setText("No Time Table Found");
+                            adapter.setGridData(response.body().getTimeTable().getPeriodList());
+                        }
+                        else
+                        {
+                            timetext.setVisibility(View.VISIBLE);
+                            timetext.setText("No Time Table Found");
+                        }
+
+
+                    }
+
+
 
                 }catch (Exception e)
                 {

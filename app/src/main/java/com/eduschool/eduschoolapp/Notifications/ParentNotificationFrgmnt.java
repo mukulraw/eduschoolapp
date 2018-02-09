@@ -212,6 +212,24 @@ public class ParentNotificationFrgmnt extends Fragment{
                     }
 
 
+
+                    for (int i = 0 ; i < response.body().getCommunication().size() ; i++)
+                    {
+                        notiBean bean = new notiBean();
+
+                        bean.setType("Communication Notification");
+                        bean.setTitle(response.body().getCommunication().get(i).getType());
+                        bean.setDate(response.body().getCommunication().get(i).getPostDate());
+                        bean.setDesc(response.body().getCommunication().get(i).getDetail());
+                        bean.setData(response.body().getCommunication().get(i).getNotifyId());
+                        if (bean.getDate() != null)
+                        {
+                            list.add(bean);
+                        }
+                    }
+
+
+
                     for (int i = 0 ; i < response.body().getSurvey().size() ; i++)
                     {
                         notiBean bean = new notiBean();
@@ -399,7 +417,7 @@ public class ParentNotificationFrgmnt extends Fragment{
                                 //ft.addToBackStack(null);
                                 ft.commit();
                             }
-                            else if (Objects.equals(item.getType(), "Birthday Notification"))
+                            else if (Objects.equals(item.getType(), "Communication Notification"))
                             {
                                 android.support.v4.app.FragmentManager fm=((AppCompatActivity)context).getSupportFragmentManager();
                                 android.support.v4.app.FragmentTransaction ft = fm.beginTransaction();

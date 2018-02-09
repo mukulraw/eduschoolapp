@@ -79,6 +79,9 @@ public class ParentHomeFrgmnt extends Fragment{
     ClassAdapter adapter2;
 
     List<HomeWork> hList;
+
+    TextView timetext;
+
     List<ClassWork> cList;
 
     public ParentHomeFrgmnt() {
@@ -92,6 +95,7 @@ public class ParentHomeFrgmnt extends Fragment{
         toolbar = (Toolbar) ((ParentHome) getContext()).findViewById(R.id.toolbar);
         progress = (ProgressBar)view.findViewById(R.id.progress);
 
+        timetext = (TextView)view.findViewById(R.id.timetext);
 
         list = new ArrayList<>();
         hList = new ArrayList<>();
@@ -159,7 +163,29 @@ public class ParentHomeFrgmnt extends Fragment{
             @Override
             public void onResponse(Call<parentHomeBean> call, Response<parentHomeBean> response) {
 
-                adapter.setGridData(response.body().getTimeTable().getPeriodList());
+                if (Objects.equals(response.body().getTimeTable().getHoliday(), "Yes"))
+                {
+                    timetext.setText("Today is Holiday");
+                    timetext.setVisibility(View.VISIBLE);
+                    adapter.setGridData(new ArrayList<PeriodList>());
+                }
+                else
+                {
+                    if (response.body().getTimeTable().getPeriodList().size() > 0)
+                    {
+                        timetext.setVisibility(View.GONE);
+                        adapter.setGridData(response.body().getTimeTable().getPeriodList());
+                    }
+                    else
+                    {
+                        timetext.setVisibility(View.VISIBLE);
+                        timetext.setText("No Time Table Found");
+                        adapter.setGridData(new ArrayList<PeriodList>());
+                    }
+
+                }
+
+
                 adapter1.setGridData(response.body().getHomeWork());
                 adapter2.setGridData(response.body().getClassWork());
 
