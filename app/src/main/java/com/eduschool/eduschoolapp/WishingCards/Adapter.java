@@ -24,6 +24,7 @@ import com.eduschool.eduschoolapp.birthPOJO.BirthList;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.eduschool.eduschoolapp.R.id.collapsing_toolbar;
 import static com.eduschool.eduschoolapp.R.id.holiday;
 import static com.eduschool.eduschoolapp.R.id.simpleCheckedTextView;
 
@@ -77,8 +78,9 @@ public class Adapter extends RecyclerView.Adapter<Adapter.myviewholder> {
         final BirthList item = list.get(position);
 
         bean.setId(item.getId());
-        bean.setStatus("0");
+        bean.setStatus("1");
         p.add(position, bean);
+        holder.ctv.setChecked(true);
 
         holder.ctv.setText(item.getName());
 

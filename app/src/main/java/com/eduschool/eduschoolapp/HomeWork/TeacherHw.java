@@ -245,6 +245,8 @@ public class TeacherHw extends Fragment {
             classlist = new ArrayList<>();
             classId = new ArrayList<>();
 
+
+
             listSection = new ArrayList<>();
             sectionlist = new ArrayList<>();
             sectionId = new ArrayList<>();
@@ -860,7 +862,7 @@ public class TeacherHw extends Fragment {
                                     }
 
 
-                                    Call<AssignHWbean> call3 = cr.assign_hw(b.school_id, cId, sId, ssId, sChapter, sNote, due_date.getText().toString(), TextUtils.join(",", checked), body, b.user_id, subName, chapName);
+                                    Call<AssignHWbean> call3 = cr.assign_hw(b.school_id, date.getText().toString() ,  cId, sId, ssId, sChapter, sNote, due_date.getText().toString(), TextUtils.join(",", checked), body, b.user_id, subName, chapName);
 
                                     progress.setVisibility(View.VISIBLE);
 

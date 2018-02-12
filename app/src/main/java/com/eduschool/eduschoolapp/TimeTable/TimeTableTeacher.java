@@ -225,6 +225,9 @@ public class TimeTableTeacher extends Fragment {
 
             Frag frag = new Frag();
             frag.setList(list.get(position).getPeriodList() , list.get(position).getDay());
+            Bundle b = new Bundle();
+            b.putString("holiday" , list.get(position).getHoliday());
+            frag.setArguments(b);
             return frag;
         }
 
@@ -244,6 +247,7 @@ public class TimeTableTeacher extends Fragment {
         List<PeriodList> list;
         String monday;
         TextView holiday;
+        String isHoliday;
 
         public void setList(List<PeriodList> list , String monday)
         {
@@ -260,6 +264,10 @@ public class TimeTableTeacher extends Fragment {
             grid = (RecyclerView) view.findViewById(R.id.grid);
             holiday = (TextView)view.findViewById(R.id.holiday);
 
+
+            isHoliday = getArguments().getString("holiday");
+
+
             manager = new GridLayoutManager(getContext(), 1);
 
 
@@ -269,14 +277,23 @@ public class TimeTableTeacher extends Fragment {
             day.setText(monday);
 
 
-            if (Objects.equals(monday.toLowerCase(), "sunday"))
+            if (Objects.equals(isHoliday, "No"))
             {
-                holiday.setVisibility(View.VISIBLE);
+                if (Objects.equals(monday.toLowerCase(), "sunday"))
+                {
+                    holiday.setVisibility(View.VISIBLE);
+                }
+                else
+                {
+                    holiday.setVisibility(View.GONE);
+                }
             }
             else
             {
-                holiday.setVisibility(View.GONE);
+                holiday.setVisibility(View.VISIBLE);
             }
+
+
 
 
             grid.setLayoutManager(manager);

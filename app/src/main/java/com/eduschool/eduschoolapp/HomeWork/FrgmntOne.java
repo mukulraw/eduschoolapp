@@ -778,7 +778,7 @@ public class FrgmntOne extends Fragment {
                             }
 
 
-                            Call<AssignHWbean> call3 = cr.assign_hw(b.school_id, cId, sId, ssId, sChapter, sNote, due_date.getText().toString(), oo.toString() , body, b.user_id , subName , chapName);
+                            Call<AssignHWbean> call3 = cr.assign_hw(b.school_id, " " ,  cId, sId, ssId, sChapter, sNote, due_date.getText().toString(), oo.toString() , body, b.user_id , subName , chapName);
 
                             progress.setVisibility(View.VISIBLE);
 

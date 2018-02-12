@@ -758,6 +758,7 @@ public class ComposeMessage extends AppCompatActivity {
     @SuppressLint("ValidFragment")
     public class TimePickerFragment extends DialogFragment implements TimePicker.OnTimeChangedListener, TimePickerDialog.OnTimeSetListener {
 
+        String format;
 
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -767,7 +768,7 @@ public class ComposeMessage extends AppCompatActivity {
             int month = c.get(Calendar.MONTH);
             int day = c.get(Calendar.DAY_OF_MONTH);
             TimePickerDialog datePickerDialog = null;
-            datePickerDialog = new TimePickerDialog(ComposeMessage.this, this, year, month, false);
+            datePickerDialog = new TimePickerDialog(ComposeMessage.this, this, year, month, true);
 
             return datePickerDialog;
         }
@@ -780,7 +781,31 @@ public class ComposeMessage extends AppCompatActivity {
         @Override
         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
 
-            time.setText(String.valueOf(hourOfDay) + ":" + String.valueOf(minute));
+            if (hourOfDay == 0) {
+
+                hourOfDay += 12;
+
+                format = "AM";
+            }
+            else if (hourOfDay == 12) {
+
+                format = "PM";
+
+            }
+            else if (hourOfDay > 12) {
+
+                hourOfDay -= 12;
+
+                format = "PM";
+
+            }
+            else {
+
+                format = "AM";
+            }
+
+
+            time.setText(hourOfDay + ":" + minute + format);
 
         }
     }

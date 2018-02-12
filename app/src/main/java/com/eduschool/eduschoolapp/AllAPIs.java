@@ -176,6 +176,7 @@ public interface AllAPIs {
     @POST("eduschool_app/assign_homework.php")
     Call<AssignHWbean> assign_hw(
             @Part("school_id") String school_id ,
+            @Part("date") String date ,
             @Part("class") String classid,
             @Part("section") String section,
             @Part("subject") String subject,

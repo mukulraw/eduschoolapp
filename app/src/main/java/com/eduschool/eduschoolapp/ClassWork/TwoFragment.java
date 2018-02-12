@@ -247,10 +247,23 @@ public class TwoFragment extends Fragment {
                 final TextView start = (TextView) dialog.findViewById(R.id.start);
                 final TextView end = (TextView) dialog.findViewById(R.id.end);
                 Button submit = (Button) dialog.findViewById(R.id.filter);
+                Button clear = (Button) dialog.findViewById(R.id.clear);
                 final ProgressBar progressBar = (ProgressBar) dialog.findViewById(R.id.progress);
 
 
 
+
+                clear.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+
+                        adapter.setGridData(list);
+                        dialog.dismiss();
+
+
+                    }
+                });
 
 
 

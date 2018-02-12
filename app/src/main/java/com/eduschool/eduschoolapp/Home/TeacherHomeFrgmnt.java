@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -29,9 +30,11 @@ import com.eduschool.eduschoolapp.SyllabusManagement.TeacherAcademic;
 import com.eduschool.eduschoolapp.Attendance.Attendance;
 import com.eduschool.eduschoolapp.ClassWork.Teacherclswrk;
 import com.eduschool.eduschoolapp.R;
+import com.eduschool.eduschoolapp.TimeTable.TimeTableTeacher;
 import com.eduschool.eduschoolapp.User;
 import com.eduschool.eduschoolapp.parentTimePOJO.parentTimeBean;
 import com.eduschool.eduschoolapp.teacherHomePOJO.ClassWork;
+import com.eduschool.eduschoolapp.teacherHomePOJO.Event;
 import com.eduschool.eduschoolapp.teacherHomePOJO.HomeWork;
 import com.eduschool.eduschoolapp.teacherHomePOJO.PeriodList;
 import com.eduschool.eduschoolapp.teacherHomePOJO.teacherHomeBean;
@@ -77,13 +80,23 @@ public class TeacherHomeFrgmnt extends Fragment {
 
     TextView totalStudents, presentStudents, absentStudents;
 
-    TextView eday, emonth, etitle;
+    //TextView eday, emonth, etitle;
 
-    LinearLayout eventLayout;
+    //LinearLayout eventLayout;
 
     TextView class_name;
 
+    RecyclerView eventList;
+
     TextView timetext;
+
+    List<Event> evList;
+
+    GridLayoutManager manager3;
+
+    EventAdapter adapter3;
+
+    TextView timeTable;
 
     public TeacherHomeFrgmnt() {
 
@@ -96,15 +109,25 @@ public class TeacherHomeFrgmnt extends Fragment {
         View view = inflater.inflate(R.layout.teacher_home_frgmnt, container, false);
         toolbar = (Toolbar) ((TeacherHome) getContext()).findViewById(R.id.tool_bar);
 
+        manager3 = new GridLayoutManager(getContext() , 1);
+
+        evList = new ArrayList<>();
+
+        adapter3 = new EventAdapter(getContext() , evList);
+
         class_name = (TextView) view.findViewById(R.id.class_name);
 
-        eday = (TextView) view.findViewById(R.id.eday);
-        emonth = (TextView) view.findViewById(R.id.emonth);
-        etitle = (TextView) view.findViewById(R.id.etitle);
+        //eday = (TextView) view.findViewById(R.id.eday);
+        //emonth = (TextView) view.findViewById(R.id.emonth);
+        //etitle = (TextView) view.findViewById(R.id.etitle);
 
-        eventLayout = (LinearLayout) view.findViewById(R.id.event_layout);
+        //eventLayout = (LinearLayout) view.findViewById(R.id.event_layout);
 
         timetext = (TextView)view.findViewById(R.id.timetext);
+
+        timeTable = (TextView)view.findViewById(R.id.time_table);
+
+        eventList = (RecyclerView)view.findViewById(R.id.eventList);
 
         attendance = (LinearLayout) view.findViewById(R.id.attendance);
         academic = (TextView) view.findViewById(R.id.academic);
@@ -149,6 +172,10 @@ public class TeacherHomeFrgmnt extends Fragment {
 
         grid.setAdapter(adapter);
         grid.setLayoutManager(manager);
+
+
+        eventList.setAdapter(adapter3);
+        eventList.setLayoutManager(manager3);
 
 
         progress.setVisibility(View.VISIBLE);
@@ -215,13 +242,11 @@ public class TeacherHomeFrgmnt extends Fragment {
                 try {
 
                     if (response.body().getEvent().size() > 0) {
-                        eventLayout.setVisibility(View.VISIBLE);
-                        String d1[] = response.body().getEvent().get(0).getStartDate().split("-");
-                        eday.setText(d1[0]);
-                        emonth.setText(d1[1] + " " + d1[2]);
-                        etitle.setText(response.body().getEvent().get(0).getEventType());
+
+                        adapter3.setGridData(response.body().getEvent());
+
                     } else {
-                        eventLayout.setVisibility(View.GONE);
+                        adapter3.setGridData(new ArrayList<Event>());
                     }
 
 
@@ -295,7 +320,7 @@ public class TeacherHomeFrgmnt extends Fragment {
         });
 
 
-        eventLayout.setOnClickListener(new View.OnClickListener() {
+        /*eventLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -306,7 +331,26 @@ public class TeacherHomeFrgmnt extends Fragment {
                 ft.addToBackStack(null);
                 ft.commit();
             }
+        });*/
+
+
+
+        timeTable.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                FragmentManager fm = getFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+                TimeTableTeacher frag1 = new TimeTableTeacher();
+                ft.replace(R.id.replace, frag1);
+                //ft.addToBackStack(null);
+                ft.commit();
+
+
+            }
         });
+
 
 
         progress.setVisibility(View.VISIBLE);
@@ -453,6 +497,86 @@ public class TeacherHomeFrgmnt extends Fragment {
             }
         }
     }
+
+
+
+    public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> {
+        List<Event> list = new ArrayList<>();
+        Context context;
+
+        public EventAdapter(Context context, List<Event> list) {
+            this.list = list;
+            this.context = context;
+        }
+
+        public void setGridData(List<Event> list) {
+            this.list = list;
+            notifyDataSetChanged();
+        }
+
+
+        @Override
+        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View view = inflater.inflate(R.layout.home_event_list_model, parent, false);
+            return new ViewHolder(view);
+        }
+
+        @Override
+        public void onBindViewHolder(ViewHolder holder, int position) {
+
+            final Event item = list.get(position);
+
+
+            String date = item.getStartDate();
+
+            String[] dd = date.split("-");
+
+            holder.eDay.setText(dd[0]);
+
+            holder.eMonth.setText(dd[1] + " " + dd[2]);
+
+            holder.eTitle.setText(item.getEventType());
+
+
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    FragmentManager fm = getFragmentManager();
+                    FragmentTransaction ft = fm.beginTransaction();
+                    ViewCalendarFrgmnt frag1 = new ViewCalendarFrgmnt();
+                    ft.replace(R.id.replace, frag1);
+                    ft.addToBackStack(null);
+                    ft.commit();
+
+                }
+            });
+
+
+        }
+
+        @Override
+        public int getItemCount() {
+            return list.size();
+        }
+
+        class ViewHolder extends RecyclerView.ViewHolder {
+
+            TextView eDay, eMonth, eTitle;
+
+            public ViewHolder(View itemView) {
+                super(itemView);
+
+                eDay = (TextView) itemView.findViewById(R.id.eday);
+                eMonth = (TextView) itemView.findViewById(R.id.emonth);
+                eTitle = (TextView) itemView.findViewById(R.id.etitle);
+
+            }
+        }
+    }
+
+
 
 
     public class HomeWorkAdapter extends RecyclerView.Adapter<HomeWorkAdapter.ViewHolder> {
