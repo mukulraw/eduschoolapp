@@ -417,7 +417,7 @@ public class ParentNotificationFrgmnt extends Fragment{
                                 //ft.addToBackStack(null);
                                 ft.commit();
                             }
-                            else if (Objects.equals(item.getType(), "Communication Notification"))
+                            else if (Objects.equals(item.getType(), "Communication Notification") || Objects.equals(item.getType(), "Birthday Notification"))
                             {
                                 android.support.v4.app.FragmentManager fm=((AppCompatActivity)context).getSupportFragmentManager();
                                 android.support.v4.app.FragmentTransaction ft = fm.beginTransaction();
