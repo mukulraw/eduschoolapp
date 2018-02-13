@@ -683,7 +683,10 @@ public class TeacherHomeFrgmnt extends Fragment {
 
             ClassWork item = list.get(position);
 
-            holder.classSec.setText(item.getClass_());
+            String dat = item.getClass_();
+            String[] dd = dat.split("-");
+
+            holder.classSec.setText(dd[0] + System.getProperty("line.separator") + dd[1] + " " + dd[2]);
 
 
 

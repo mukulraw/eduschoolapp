@@ -95,6 +95,8 @@ public class LoginPage extends AppCompatActivity {
                             @Override
                             public void onResponse(Call<Loginbean> call, Response<Loginbean> response) {
 
+
+
                                 String s = response.body().getUserType().toString();
                                 User b = (User) getApplicationContext();
 

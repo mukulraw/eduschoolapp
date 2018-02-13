@@ -40,7 +40,11 @@
                     android:padding="12dp"
                     />
 
-
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#cdcdcd"
+                    />
 
                 <Spinner
                     android:id="@+id/className"

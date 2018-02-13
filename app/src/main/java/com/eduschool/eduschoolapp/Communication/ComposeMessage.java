@@ -58,9 +58,11 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 import io.apptik.widget.multiselectspinner.BaseMultiSelectSpinner;
 import io.apptik.widget.multiselectspinner.MultiSelectSpinner;
@@ -781,7 +783,19 @@ public class ComposeMessage extends AppCompatActivity {
         @Override
         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
 
-            if (hourOfDay == 0) {
+
+
+            Calendar c = Calendar.getInstance();
+            c.set(Calendar.HOUR_OF_DAY, hourOfDay);
+            //instead of c.set(Calendar.HOUR, hour);
+            c.set(Calendar.MINUTE, minute);
+
+
+            String myFormat = "hh:mm a"; // your own format
+            SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
+
+            /*if (hourOfDay == 0) {
 
                 hourOfDay += 12;
 
@@ -803,9 +817,10 @@ public class ComposeMessage extends AppCompatActivity {
 
                 format = "AM";
             }
+*/
 
-
-            time.setText(hourOfDay + ":" + minute + format);
+            //time.setText(hourOfDay + ":" + minute + " " + format);
+            time.setText(sdf.format(c.getTime()));
 
         }
     }
