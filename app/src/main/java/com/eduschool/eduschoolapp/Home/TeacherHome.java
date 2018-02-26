@@ -62,6 +62,8 @@ import com.eduschool.eduschoolapp.Transport.TransportParent;
 import com.eduschool.eduschoolapp.User;
 import com.eduschool.eduschoolapp.WishingCards.WishingCardsFrgmnt;
 
+import java.util.Objects;
+
 public class TeacherHome extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     Toolbar toolbar;
@@ -71,6 +73,7 @@ public class TeacherHome extends AppCompatActivity
     SharedPreferences.Editor edit;
 
     TextView academic, comm, attendance, logout, home, events, notification, communication1, homewrk, classwrk, syllabus, exm, calendar, studentSummary, library, timeTable, gallery, survey, stayAhead, raiseRequest, profile;
+    TextView academicline, attendanceline, eventsline, communication1line, homewrkline, classwrkline, syllabusline, exmline, calendarline, studentSummaryline, libraryline, timeTableline, galleryline, surveyline, stayAheadline, profileline;
     boolean isCollapsed = true;
     TextView name;
     boolean isCollapsed1 = true;
@@ -114,26 +117,394 @@ public class TeacherHome extends AppCompatActivity
         toggle.syncState();
 
         academic = (TextView) findViewById(R.id.academic);
+
         comm = (TextView) findViewById(R.id.comm);
         attendance = (TextView) findViewById(R.id.attendance);
+        attendanceline = (TextView) findViewById(R.id.attendance_line);
         logout = (TextView) findViewById(R.id.logout);
         home = (TextView) findViewById(R.id.home1);
         notification = (TextView) findViewById(R.id.notification1);
         homewrk = (TextView) findViewById(R.id.homewrk);
+        homewrkline = (TextView) findViewById(R.id.homework_line);
         classwrk = (TextView) findViewById(R.id.classwrk);
+        classwrkline = (TextView) findViewById(R.id.classwork_line);
         syllabus = (TextView) findViewById(R.id.syllabus);
+        syllabusline = (TextView) findViewById(R.id.syllabus_line);
         exm = (TextView) findViewById(R.id.exm);
+        exmline = (TextView) findViewById(R.id.exam_line);
         studentSummary = (TextView) findViewById(R.id.studentSummary);
+        studentSummaryline = (TextView) findViewById(R.id.summary_line);
         library = (TextView) findViewById(R.id.library1);
+        libraryline = (TextView) findViewById(R.id.library_line);
         events = (TextView) findViewById(R.id.event);
+        eventsline = (TextView) findViewById(R.id.event_line);
         timeTable = (TextView) findViewById(R.id.timeTable);
+        timeTableline = (TextView) findViewById(R.id.timetable_line);
         gallery = (TextView) findViewById(R.id.gallery1);
+        galleryline = (TextView) findViewById(R.id.gallery_line);
         survey = (TextView) findViewById(R.id.survey1);
+        surveyline = (TextView) findViewById(R.id.survey_line);
         calendar = (TextView) findViewById(R.id.calendar);
+        calendarline = (TextView) findViewById(R.id.calendar_line);
         stayAhead = (TextView) findViewById(R.id.stayAhead);
+        stayAheadline = (TextView) findViewById(R.id.stay_line);
         raiseRequest = (TextView) findViewById(R.id.raiseRequest);
         profile = (TextView) findViewById(R.id.profile);
+        profileline = (TextView) findViewById(R.id.profile_line);
         communication1 = (TextView) findViewById(R.id.communication1);
+        communication1line = (TextView) findViewById(R.id.communication_line);
+
+
+
+        if (Objects.equals(getIntent().getStringExtra("teacher"), "no"))
+        {
+
+            attendance.setVisibility(View.GONE);
+            attendanceline.setVisibility(View.GONE);
+
+
+
+            if (Objects.equals(getIntent().getStringExtra("academic"), "no"))
+            {
+                syllabus.setVisibility(View.GONE);
+                syllabusline.setVisibility(View.GONE);
+            }
+            else
+            {
+                syllabus.setVisibility(View.VISIBLE);
+                syllabusline.setVisibility(View.VISIBLE);
+            }
+
+
+
+            if (Objects.equals(getIntent().getStringExtra("classwork"), "no"))
+            {
+                classwrk.setVisibility(View.GONE);
+                classwrkline.setVisibility(View.GONE);
+            }
+            else
+            {
+                classwrk.setVisibility(View.VISIBLE);
+                classwrkline.setVisibility(View.VISIBLE);
+            }
+
+
+            if (Objects.equals(getIntent().getStringExtra("homework"), "no"))
+            {
+                homewrk.setVisibility(View.GONE);
+                homewrkline.setVisibility(View.GONE);
+            }
+            else
+            {
+                homewrk.setVisibility(View.VISIBLE);
+                homewrkline.setVisibility(View.VISIBLE);
+            }
+
+
+            if (Objects.equals(getIntent().getStringExtra("event"), "no"))
+            {
+                events.setVisibility(View.GONE);
+                eventsline.setVisibility(View.GONE);
+            }
+            else
+            {
+                events.setVisibility(View.VISIBLE);
+                eventsline.setVisibility(View.VISIBLE);
+            }
+
+            if (Objects.equals(getIntent().getStringExtra("communication"), "no"))
+            {
+                communication1.setVisibility(View.GONE);
+                communication1line.setVisibility(View.GONE);
+            }
+            else
+            {
+                communication1.setVisibility(View.VISIBLE);
+                communication1line.setVisibility(View.VISIBLE);
+            }
+
+            if (Objects.equals(getIntent().getStringExtra("calendar"), "no"))
+            {
+                calendar.setVisibility(View.GONE);
+                calendarline.setVisibility(View.GONE);
+            }
+            else
+            {
+                calendar.setVisibility(View.VISIBLE);
+                calendarline.setVisibility(View.VISIBLE);
+            }
+
+            if (Objects.equals(getIntent().getStringExtra("exam"), "no"))
+            {
+                exm.setVisibility(View.GONE);
+                exmline.setVisibility(View.GONE);
+            }
+            else
+            {
+                exm.setVisibility(View.VISIBLE);
+                exmline.setVisibility(View.VISIBLE);
+            }
+
+            if (Objects.equals(getIntent().getStringExtra("gallery"), "no"))
+            {
+                gallery.setVisibility(View.GONE);
+                galleryline.setVisibility(View.GONE);
+            }
+            else
+            {
+                gallery.setVisibility(View.VISIBLE);
+                galleryline.setVisibility(View.VISIBLE);
+            }
+
+            if (Objects.equals(getIntent().getStringExtra("library"), "no"))
+            {
+                library.setVisibility(View.GONE);
+                libraryline.setVisibility(View.GONE);
+            }
+            else
+            {
+                library.setVisibility(View.VISIBLE);
+                libraryline.setVisibility(View.VISIBLE);
+            }
+
+            if (Objects.equals(getIntent().getStringExtra("summary"), "no"))
+            {
+                studentSummary.setVisibility(View.GONE);
+                studentSummaryline.setVisibility(View.GONE);
+            }
+            else
+            {
+                studentSummary.setVisibility(View.VISIBLE);
+                studentSummaryline.setVisibility(View.VISIBLE);
+            }
+            if (Objects.equals(getIntent().getStringExtra("time"), "no"))
+            {
+                timeTable.setVisibility(View.GONE);
+                timeTableline.setVisibility(View.GONE);
+            }
+            else
+            {
+                timeTable.setVisibility(View.VISIBLE);
+                timeTableline.setVisibility(View.VISIBLE);
+            }
+
+            if (Objects.equals(getIntent().getStringExtra("stay"), "no"))
+            {
+                stayAhead.setVisibility(View.GONE);
+                stayAheadline.setVisibility(View.GONE);
+            }
+            else
+            {
+                stayAhead.setVisibility(View.VISIBLE);
+                stayAheadline.setVisibility(View.VISIBLE);
+            }
+
+            if (Objects.equals(getIntent().getStringExtra("survey"), "no"))
+            {
+                survey.setVisibility(View.GONE);
+                surveyline.setVisibility(View.GONE);
+            }
+            else
+            {
+                survey.setVisibility(View.VISIBLE);
+                surveyline.setVisibility(View.VISIBLE);
+            }
+
+
+            if (Objects.equals(getIntent().getStringExtra("profile"), "no"))
+            {
+                profile.setVisibility(View.GONE);
+                profileline.setVisibility(View.GONE);
+            }
+            else
+            {
+                profile.setVisibility(View.VISIBLE);
+                profileline.setVisibility(View.VISIBLE);
+            }
+
+
+        }
+        else
+        {
+
+            attendance.setVisibility(View.VISIBLE);
+            attendanceline.setVisibility(View.VISIBLE);
+
+
+
+
+            if (Objects.equals(getIntent().getStringExtra("academic"), "no"))
+            {
+                syllabus.setVisibility(View.GONE);
+                syllabusline.setVisibility(View.GONE);
+            }
+            else
+            {
+                syllabus.setVisibility(View.VISIBLE);
+                syllabusline.setVisibility(View.VISIBLE);
+            }
+
+
+
+            if (Objects.equals(getIntent().getStringExtra("classwork"), "no"))
+            {
+                classwrk.setVisibility(View.GONE);
+                classwrkline.setVisibility(View.GONE);
+            }
+            else
+            {
+                classwrk.setVisibility(View.VISIBLE);
+                classwrkline.setVisibility(View.VISIBLE);
+            }
+
+
+            if (Objects.equals(getIntent().getStringExtra("homework"), "no"))
+            {
+                homewrk.setVisibility(View.GONE);
+                homewrkline.setVisibility(View.GONE);
+            }
+            else
+            {
+                homewrk.setVisibility(View.VISIBLE);
+                homewrkline.setVisibility(View.VISIBLE);
+            }
+
+
+            if (Objects.equals(getIntent().getStringExtra("event"), "no"))
+            {
+                events.setVisibility(View.GONE);
+                eventsline.setVisibility(View.GONE);
+            }
+            else
+            {
+                events.setVisibility(View.VISIBLE);
+                eventsline.setVisibility(View.VISIBLE);
+            }
+
+            if (Objects.equals(getIntent().getStringExtra("communication"), "no"))
+            {
+                communication1.setVisibility(View.GONE);
+                communication1line.setVisibility(View.GONE);
+            }
+            else
+            {
+                communication1.setVisibility(View.VISIBLE);
+                communication1line.setVisibility(View.VISIBLE);
+            }
+
+            if (Objects.equals(getIntent().getStringExtra("calendar"), "no"))
+            {
+                calendar.setVisibility(View.GONE);
+                calendarline.setVisibility(View.GONE);
+            }
+            else
+            {
+                calendar.setVisibility(View.VISIBLE);
+                calendarline.setVisibility(View.VISIBLE);
+            }
+
+            if (Objects.equals(getIntent().getStringExtra("exam"), "no"))
+            {
+                exm.setVisibility(View.GONE);
+                exmline.setVisibility(View.GONE);
+            }
+            else
+            {
+                exm.setVisibility(View.VISIBLE);
+                exmline.setVisibility(View.VISIBLE);
+            }
+
+            if (Objects.equals(getIntent().getStringExtra("gallery"), "no"))
+            {
+                gallery.setVisibility(View.GONE);
+                galleryline.setVisibility(View.GONE);
+            }
+            else
+            {
+                gallery.setVisibility(View.VISIBLE);
+                galleryline.setVisibility(View.VISIBLE);
+            }
+
+            if (Objects.equals(getIntent().getStringExtra("library"), "no"))
+            {
+                library.setVisibility(View.GONE);
+                libraryline.setVisibility(View.GONE);
+            }
+            else
+            {
+                library.setVisibility(View.VISIBLE);
+                libraryline.setVisibility(View.VISIBLE);
+            }
+
+            if (Objects.equals(getIntent().getStringExtra("summary"), "no"))
+            {
+                studentSummary.setVisibility(View.GONE);
+                studentSummaryline.setVisibility(View.GONE);
+            }
+            else
+            {
+                studentSummary.setVisibility(View.VISIBLE);
+                studentSummaryline.setVisibility(View.VISIBLE);
+            }
+            if (Objects.equals(getIntent().getStringExtra("time"), "no"))
+            {
+                timeTable.setVisibility(View.GONE);
+                timeTableline.setVisibility(View.GONE);
+            }
+            else
+            {
+                timeTable.setVisibility(View.VISIBLE);
+                timeTableline.setVisibility(View.VISIBLE);
+            }
+
+            if (Objects.equals(getIntent().getStringExtra("stay"), "no"))
+            {
+                stayAhead.setVisibility(View.GONE);
+                stayAheadline.setVisibility(View.GONE);
+            }
+            else
+            {
+                stayAhead.setVisibility(View.VISIBLE);
+                stayAheadline.setVisibility(View.VISIBLE);
+            }
+
+            if (Objects.equals(getIntent().getStringExtra("survey"), "no"))
+            {
+                survey.setVisibility(View.GONE);
+                surveyline.setVisibility(View.GONE);
+            }
+            else
+            {
+                survey.setVisibility(View.VISIBLE);
+                surveyline.setVisibility(View.VISIBLE);
+            }
+
+
+            if (Objects.equals(getIntent().getStringExtra("profile"), "no"))
+            {
+                profile.setVisibility(View.GONE);
+                profileline.setVisibility(View.GONE);
+            }
+            else
+            {
+                profile.setVisibility(View.VISIBLE);
+                profileline.setVisibility(View.VISIBLE);
+            }
+
+            if (Objects.equals(getIntent().getStringExtra("attendance"), "no"))
+            {
+                attendance.setVisibility(View.GONE);
+                attendanceline.setVisibility(View.GONE);
+            }
+            else
+            {
+                attendance.setVisibility(View.VISIBLE);
+                attendanceline.setVisibility(View.VISIBLE);
+            }
+
+
+        }
+
 
 
         logout.setOnClickListener(new View.OnClickListener() {

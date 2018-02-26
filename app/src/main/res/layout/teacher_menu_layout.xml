@@ -13,7 +13,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
         <include layout="@layout/nav_header_teacher_home" />
 
         <TextView
@@ -74,6 +73,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="1dp"
+            android:id="@+id/attendance_line"
             android:background="#cdcdcd" />
 
         <TextView
@@ -93,6 +93,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="1dp"
+            android:id="@+id/timetable_line"
             android:background="#cdcdcd" />
 
         <TextView
@@ -112,6 +113,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="1dp"
+            android:id="@+id/library_line"
             android:background="#cdcdcd" />
 
 
@@ -161,6 +163,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
+                android:id="@+id/homework_line"
                 android:background="#cdcdcd" />
 
             <TextView
@@ -181,6 +184,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
+                android:id="@+id/classwork_line"
                 android:background="#cdcdcd" />
 
             <TextView
@@ -201,6 +205,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
+                android:id="@+id/syllabus_line"
                 android:background="#cdcdcd" />
 
             <TextView
@@ -221,6 +226,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
+                android:id="@+id/exam_line"
                 android:background="#cdcdcd" />
 
             <TextView
@@ -241,6 +247,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
+                android:id="@+id/summary_line"
                 android:background="#cdcdcd" />
 
 
@@ -293,6 +300,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
+                android:id="@+id/communication_line"
                 android:background="#cdcdcd" />
 
             <TextView
@@ -313,6 +321,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
+                android:id="@+id/event_line"
                 android:background="#cdcdcd" />
 
             <TextView
@@ -331,6 +340,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
+                android:id="@+id/calendar_line"
                 android:background="#cdcdcd" />
 
         </LinearLayout>
@@ -357,6 +367,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="1dp"
+            android:id="@+id/gallery_line"
             android:background="#cdcdcd" />
 
         <TextView
@@ -377,6 +388,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="1dp"
+            android:id="@+id/survey_line"
             android:background="#cdcdcd" />
 
         <TextView
@@ -397,6 +409,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="1dp"
+            android:id="@+id/stay_line"
             android:background="#cdcdcd" />
 
 
@@ -417,6 +430,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="1dp"
+            android:id="@+id/profile_line"
             android:background="#cdcdcd" />
 
 

@@ -107,26 +107,398 @@ public class LoginPage extends AppCompatActivity {
 
                                     if (s.equals("Teacher")) {
 
-                                        b.school_id = response.body().getSchoolId();
-                                        b.user_id = response.body().getId();
-                                        b.user_type = response.body().getUserType();
-                                        b.user_name=response.body().getName();
-                                        b.user_class=response.body().getClassId();
-                                        b.user_section=response.body().getSectionId();
-                                        b.class_teacher=response.body().getClassTeacher();
-                                        b.class_Name=response.body().getClassName();
-                                        b.section_Name=response.body().getSectionName();
-                                        b.studName = response.body().getName();
+                                        if (Objects.equals(response.body().getClassTeacher(), "yes"))
+                                        {
+
+                                            b.school_id = response.body().getSchoolId();
+                                            b.user_id = response.body().getId();
+                                            b.user_type = response.body().getUserType();
+                                            b.user_name=response.body().getName();
+                                            b.user_class=response.body().getClassId();
+                                            b.user_section=response.body().getSectionId();
+                                            b.class_teacher=response.body().getClassTeacher();
+                                            b.class_Name=response.body().getClassName();
+                                            b.section_Name=response.body().getSectionName();
+                                            b.studName = response.body().getName();
 
 
-                                        edit.putString("type", s);
-                                        edit.putString("username", Susername);
-                                        edit.putString("pass", Spassword);
-                                        edit.apply();
+                                            edit.putString("type", s);
+                                            edit.putString("username", Susername);
+                                            edit.putString("pass", Spassword);
+                                            edit.apply();
 
-                                        Intent intent = new Intent(LoginPage.this, TeacherHome.class);
-                                        startActivity(intent);
-                                        finish();
+                                            Intent intent = new Intent(LoginPage.this, TeacherHome.class);
+                                            intent.putExtra("teacher" , "yes");
+
+                                            if (Objects.equals(response.body().getModule().get(0).getStatus(), "no") || Objects.equals(response.body().getModule().get(26).getStatus(), "no"))
+                                            {
+                                                intent.putExtra("academic" , "no");
+                                            }
+                                            else
+                                            {
+                                                intent.putExtra("academic" , "yes");
+                                            }
+
+                                            if (Objects.equals(response.body().getModule().get(1).getStatus(), "no") || Objects.equals(response.body().getModule().get(22).getStatus(), "no") || Objects.equals(response.body().getModule().get(23).getStatus(), "no"))
+                                            {
+                                                intent.putExtra("classwork" , "no");
+                                            }
+                                            else
+                                            {
+                                                intent.putExtra("classwork" , "yes");
+                                            }
+
+                                            if (Objects.equals(response.body().getModule().get(4).getStatus(), "no") || Objects.equals(response.body().getModule().get(5).getStatus(), "no") || Objects.equals(response.body().getModule().get(6).getStatus(), "no"))
+                                            {
+                                                intent.putExtra("homework" , "no");
+                                            }
+                                            else
+                                            {
+                                                intent.putExtra("homework" , "yes");
+                                            }
+
+                                            if (Objects.equals(response.body().getModule().get(7).getStatus(), "no") || Objects.equals(response.body().getModule().get(10).getStatus(), "no"))
+                                            {
+                                                intent.putExtra("event" , "no");
+                                            }
+                                            else
+                                            {
+                                                intent.putExtra("event" , "yes");
+                                            }
+
+                                            if (Objects.equals(response.body().getModule().get(8).getStatus(), "no") || Objects.equals(response.body().getModule().get(11).getStatus(), "no") || Objects.equals(response.body().getModule().get(12).getStatus(), "no") || Objects.equals(response.body().getModule().get(13).getStatus(), "no"))
+                                            {
+                                                intent.putExtra("communication" , "no");
+                                            }
+                                            else
+                                            {
+                                                intent.putExtra("communication" , "yes");
+                                            }
+
+                                            if (Objects.equals(response.body().getModule().get(9).getStatus(), "no") || Objects.equals(response.body().getModule().get(14).getStatus(), "no"))
+                                            {
+                                                intent.putExtra("calendar" , "no");
+                                            }
+                                            else
+                                            {
+                                                intent.putExtra("calendar" , "yes");
+                                            }
+
+                                            if (Objects.equals(response.body().getModule().get(15).getStatus(), "no") || Objects.equals(response.body().getModule().get(16).getStatus(), "no") || Objects.equals(response.body().getModule().get(18).getStatus(), "no"))
+                                            {
+                                                intent.putExtra("exam" , "no");
+                                            }
+                                            else
+                                            {
+                                                intent.putExtra("exam" , "yes");
+                                            }
+
+                                            if (Objects.equals(response.body().getModule().get(19).getStatus(), "no") || Objects.equals(response.body().getModule().get(20).getStatus(), "no")
+                                                    || Objects.equals(response.body().getModule().get(21).getStatus(), "no")
+                                                    || Objects.equals(response.body().getModule().get(22).getStatus(), "no")
+                                                    || Objects.equals(response.body().getModule().get(23).getStatus(), "no")
+                                                    || Objects.equals(response.body().getModule().get(24).getStatus(), "no")
+                                                    || Objects.equals(response.body().getModule().get(25).getStatus(), "no")
+                                                    )
+                                            {
+                                                intent.putExtra("gallery" , "no");
+                                            }
+                                            else
+                                            {
+                                                intent.putExtra("gallery" , "yes");
+                                            }
+
+
+                                            if (Objects.equals(response.body().getModule().get(27).getStatus(), "no")
+                                                    || Objects.equals(response.body().getModule().get(28).getStatus(), "no")
+                                                    || Objects.equals(response.body().getModule().get(32).getStatus(), "no")
+                                                    || Objects.equals(response.body().getModule().get(33).getStatus(), "no")
+                                                    || Objects.equals(response.body().getModule().get(34).getStatus(), "no")
+                                                    || Objects.equals(response.body().getModule().get(35).getStatus(), "no")
+                                                    || Objects.equals(response.body().getModule().get(36).getStatus(), "no")
+                                                    || Objects.equals(response.body().getModule().get(37).getStatus(), "no")
+                                                    || Objects.equals(response.body().getModule().get(38).getStatus(), "no")
+                                                    || Objects.equals(response.body().getModule().get(39).getStatus(), "no"))
+                                            {
+                                                intent.putExtra("library" , "no");
+                                            }
+                                            else
+                                            {
+                                                intent.putExtra("library" , "yes");
+                                            }
+
+
+                                            if (Objects.equals(response.body().getModule().get(29).getStatus(), "no")
+                                                    || Objects.equals(response.body().getModule().get(30).getStatus(), "no")
+                                                    || Objects.equals(response.body().getModule().get(31).getStatus(), "no")
+                                                    )
+                                            {
+                                                intent.putExtra("attendance" , "no");
+                                            }
+                                            else
+                                            {
+                                                intent.putExtra("attendance" , "yes");
+                                            }
+
+                                            if (Objects.equals(response.body().getModule().get(43).getStatus(), "no"))
+                                            {
+                                                intent.putExtra("summary" , "no");
+                                            }
+                                            else
+                                            {
+                                                intent.putExtra("summary" , "yes");
+                                            }
+
+                                            if (Objects.equals(response.body().getModule().get(49).getStatus(), "no"))
+                                            {
+                                                intent.putExtra("time" , "no");
+                                            }
+                                            else
+                                            {
+                                                intent.putExtra("time" , "yes");
+                                            }
+
+                                            if (Objects.equals(response.body().getModule().get(51).getStatus(), "no")
+                                                    || Objects.equals(response.body().getModule().get(52).getStatus(), "no")
+                                                    || Objects.equals(response.body().getModule().get(53).getStatus(), "no")
+                                                    || Objects.equals(response.body().getModule().get(54).getStatus(), "no")
+                                                    || Objects.equals(response.body().getModule().get(55).getStatus(), "no")
+                                                    )
+                                            {
+                                                intent.putExtra("stay" , "no");
+                                            }
+                                            else
+                                            {
+                                                intent.putExtra("stay" , "yes");
+                                            }
+
+                                            if (Objects.equals(response.body().getModule().get(44).getStatus(), "no")
+                                                    || Objects.equals(response.body().getModule().get(45).getStatus(), "no")
+                                                    )
+                                            {
+                                                intent.putExtra("survey" , "no");
+                                            }
+                                            else
+                                            {
+                                                intent.putExtra("survey" , "yes");
+                                            }
+
+                                            if (Objects.equals(response.body().getModule().get(46).getStatus(), "no")
+                                                    || Objects.equals(response.body().getModule().get(47).getStatus(), "no")
+                                                    || Objects.equals(response.body().getModule().get(48).getStatus(), "no")
+                                                    || Objects.equals(response.body().getModule().get(50).getStatus(), "no")
+                                                    )
+                                            {
+
+                                                intent.putExtra("profile" , "no");
+
+                                            }
+                                            else
+                                            {
+                                                intent.putExtra("profile" , "yes");
+                                            }
+
+
+                                            startActivity(intent);
+                                            finish();
+
+                                        }
+                                        else
+                                        {
+
+                                            b.school_id = response.body().getSchoolId();
+                                            b.user_id = response.body().getId();
+                                            b.user_type = response.body().getUserType();
+                                            b.user_name=response.body().getName();
+                                            b.user_class=response.body().getClassId();
+                                            b.user_section=response.body().getSectionId();
+                                            b.class_teacher=response.body().getClassTeacher();
+                                            b.class_Name=response.body().getClassName();
+                                            b.section_Name=response.body().getSectionName();
+                                            b.studName = response.body().getName();
+
+
+                                            edit.putString("type", s);
+                                            edit.putString("username", Susername);
+                                            edit.putString("pass", Spassword);
+                                            edit.apply();
+
+                                            Intent intent = new Intent(LoginPage.this, TeacherHome.class);
+                                            intent.putExtra("teacher" , "no");
+
+                                            if (Objects.equals(response.body().getModule().get(0).getStatus(), "no") || Objects.equals(response.body().getModule().get(26).getStatus(), "no"))
+                                            {
+                                                intent.putExtra("academic" , "no");
+                                            }
+                                            else
+                                            {
+                                                intent.putExtra("academic" , "yes");
+                                            }
+
+                                            if (Objects.equals(response.body().getModule().get(1).getStatus(), "no") || Objects.equals(response.body().getModule().get(22).getStatus(), "no") || Objects.equals(response.body().getModule().get(23).getStatus(), "no"))
+                                            {
+                                                intent.putExtra("classwork" , "no");
+                                            }
+                                            else
+                                            {
+                                                intent.putExtra("classwork" , "yes");
+                                            }
+
+                                            if (Objects.equals(response.body().getModule().get(4).getStatus(), "no") || Objects.equals(response.body().getModule().get(5).getStatus(), "no") || Objects.equals(response.body().getModule().get(6).getStatus(), "no"))
+                                            {
+                                                intent.putExtra("homework" , "no");
+                                            }
+                                            else
+                                            {
+                                                intent.putExtra("homework" , "yes");
+                                            }
+
+                                            if (Objects.equals(response.body().getModule().get(7).getStatus(), "no") || Objects.equals(response.body().getModule().get(10).getStatus(), "no"))
+                                            {
+                                                intent.putExtra("event" , "no");
+                                            }
+                                            else
+                                            {
+                                                intent.putExtra("event" , "yes");
+                                            }
+
+                                            if (Objects.equals(response.body().getModule().get(8).getStatus(), "no") || Objects.equals(response.body().getModule().get(11).getStatus(), "no") || Objects.equals(response.body().getModule().get(12).getStatus(), "no") || Objects.equals(response.body().getModule().get(13).getStatus(), "no"))
+                                            {
+                                                intent.putExtra("communication" , "no");
+                                            }
+                                            else
+                                            {
+                                                intent.putExtra("communication" , "yes");
+                                            }
+
+                                            if (Objects.equals(response.body().getModule().get(9).getStatus(), "no") || Objects.equals(response.body().getModule().get(14).getStatus(), "no"))
+                                            {
+                                                intent.putExtra("calendar" , "no");
+                                            }
+                                            else
+                                            {
+                                                intent.putExtra("calendar" , "yes");
+                                            }
+
+                                            if (Objects.equals(response.body().getModule().get(15).getStatus(), "no") || Objects.equals(response.body().getModule().get(16).getStatus(), "no") || Objects.equals(response.body().getModule().get(18).getStatus(), "no"))
+                                            {
+                                                intent.putExtra("exam" , "no");
+                                            }
+                                            else
+                                            {
+                                                intent.putExtra("exam" , "yes");
+                                            }
+
+                                            if (Objects.equals(response.body().getModule().get(19).getStatus(), "no") || Objects.equals(response.body().getModule().get(20).getStatus(), "no")
+                                                    || Objects.equals(response.body().getModule().get(21).getStatus(), "no")
+                                                    || Objects.equals(response.body().getModule().get(22).getStatus(), "no")
+                                                    || Objects.equals(response.body().getModule().get(23).getStatus(), "no")
+                                                    || Objects.equals(response.body().getModule().get(24).getStatus(), "no")
+                                                    || Objects.equals(response.body().getModule().get(25).getStatus(), "no")
+                                                    )
+                                            {
+                                                intent.putExtra("gallery" , "no");
+                                            }
+                                            else
+                                            {
+                                                intent.putExtra("gallery" , "yes");
+                                            }
+
+
+                                            if (Objects.equals(response.body().getModule().get(27).getStatus(), "no")
+                                                    || Objects.equals(response.body().getModule().get(28).getStatus(), "no")
+                                                    || Objects.equals(response.body().getModule().get(32).getStatus(), "no")
+                                                    || Objects.equals(response.body().getModule().get(33).getStatus(), "no")
+                                                    || Objects.equals(response.body().getModule().get(34).getStatus(), "no")
+                                                    || Objects.equals(response.body().getModule().get(35).getStatus(), "no")
+                                                    || Objects.equals(response.body().getModule().get(36).getStatus(), "no")
+                                                    || Objects.equals(response.body().getModule().get(37).getStatus(), "no")
+                                                    || Objects.equals(response.body().getModule().get(38).getStatus(), "no")
+                                                    || Objects.equals(response.body().getModule().get(39).getStatus(), "no"))
+                                            {
+                                                intent.putExtra("library" , "no");
+                                            }
+                                            else
+                                            {
+                                                intent.putExtra("library" , "yes");
+                                            }
+
+
+                                            if (Objects.equals(response.body().getModule().get(29).getStatus(), "no")
+                                                    || Objects.equals(response.body().getModule().get(30).getStatus(), "no")
+                                                    || Objects.equals(response.body().getModule().get(31).getStatus(), "no")
+                                                    )
+                                            {
+                                                intent.putExtra("attendance" , "no");
+                                            }
+                                            else
+                                            {
+                                                intent.putExtra("attendance" , "yes");
+                                            }
+
+                                            if (Objects.equals(response.body().getModule().get(43).getStatus(), "no"))
+                                            {
+                                                intent.putExtra("summary" , "no");
+                                            }
+                                            else
+                                            {
+                                                intent.putExtra("summary" , "yes");
+                                            }
+
+                                            if (Objects.equals(response.body().getModule().get(49).getStatus(), "no"))
+                                            {
+                                                intent.putExtra("time" , "no");
+                                            }
+                                            else
+                                            {
+                                                intent.putExtra("time" , "yes");
+                                            }
+
+                                            if (Objects.equals(response.body().getModule().get(51).getStatus(), "no")
+                                                    || Objects.equals(response.body().getModule().get(52).getStatus(), "no")
+                                                    || Objects.equals(response.body().getModule().get(53).getStatus(), "no")
+                                                    || Objects.equals(response.body().getModule().get(54).getStatus(), "no")
+                                                    || Objects.equals(response.body().getModule().get(55).getStatus(), "no")
+                                                    )
+                                            {
+                                                intent.putExtra("stay" , "no");
+                                            }
+                                            else
+                                            {
+                                                intent.putExtra("stay" , "yes");
+                                            }
+
+                                            if (Objects.equals(response.body().getModule().get(44).getStatus(), "no")
+                                                    || Objects.equals(response.body().getModule().get(45).getStatus(), "no")
+                                                    )
+                                            {
+                                                intent.putExtra("survey" , "no");
+                                            }
+                                            else
+                                            {
+                                                intent.putExtra("survey" , "yes");
+                                            }
+
+                                            if (Objects.equals(response.body().getModule().get(46).getStatus(), "no")
+                                                    || Objects.equals(response.body().getModule().get(47).getStatus(), "no")
+                                                    || Objects.equals(response.body().getModule().get(48).getStatus(), "no")
+                                                    || Objects.equals(response.body().getModule().get(50).getStatus(), "no")
+                                                    )
+                                            {
+
+                                                intent.putExtra("profile" , "no");
+
+                                            }
+                                            else
+                                            {
+                                                intent.putExtra("profile" , "yes");
+                                            }
+                                            startActivity(intent);
+                                            finish();
+
+                                        }
+
+
 
                                     } else if (s.equals("Parent")) {
 

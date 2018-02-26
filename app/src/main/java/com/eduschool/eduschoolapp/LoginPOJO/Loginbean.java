@@ -3,6 +3,8 @@ package com.eduschool.eduschoolapp.LoginPOJO;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 /**
  * Created by user on 7/14/2017.
  */
@@ -21,6 +23,9 @@ public class Loginbean {
     @SerializedName("status")
     @Expose
     private String status;
+    @SerializedName("name")
+    @Expose
+    private String name;
     @SerializedName("class_teacher")
     @Expose
     private String classTeacher;
@@ -36,9 +41,9 @@ public class Loginbean {
     @SerializedName("section_name")
     @Expose
     private String sectionName;
-    @SerializedName("name")
+    @SerializedName("module")
     @Expose
-    private String name;
+    private List<Module> module = null;
 
     public String getId() {
         return id;
@@ -70,6 +75,14 @@ public class Loginbean {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getClassTeacher() {
@@ -112,12 +125,11 @@ public class Loginbean {
         this.sectionName = sectionName;
     }
 
-    public String getName() {
-        return name;
+    public List<Module> getModule() {
+        return module;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setModule(List<Module> module) {
+        this.module = module;
     }
-
 }
