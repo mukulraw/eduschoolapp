@@ -96,7 +96,13 @@ public class One extends Fragment {
             @Override
             public void onResponse(Call<communicationTeacherBean> call, Response<communicationTeacherBean> response) {
 
-                adapter.setGridData(response.body().getRequestList());
+                try {
+                    adapter.setGridData(response.body().getRequestList());
+                }catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
+
                 progress.setVisibility(View.GONE);
 
             }

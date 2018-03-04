@@ -41,7 +41,10 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
+import okhttp3.Cache;
+import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -275,10 +278,20 @@ public class ViewCalendarFrgmnt extends Fragment {
 
         User u = (User) getContext().getApplicationContext();
 
+        int cacheSize = 10 * 1024 * 1024; // 10 MB
+        Cache cache = new Cache(getContext().getCacheDir(), cacheSize);
+
+        final OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .readTimeout(120, TimeUnit.SECONDS)
+                .connectTimeout(120, TimeUnit.SECONDS)
+                .cache(cache)
+                .build();
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(u.baseURL)
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
+                .client(okHttpClient)
                 .build();
 
         AllAPIs cr = retrofit.create(AllAPIs.class);

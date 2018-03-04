@@ -371,6 +371,9 @@ public class UpdateAttndncDffCls extends Fragment {
 
         Call<AttendanceListBean> call = cr.attnce_list(b.school_id,Sdate, classId, sectionId);
 
+        Log.d("date" , Sdate);
+        Log.d("class" , classId);
+        Log.d("section" , sectionId);
 
         call.enqueue(new Callback<AttendanceListBean>() {
             @Override

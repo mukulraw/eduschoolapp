@@ -199,12 +199,20 @@ public class TeacherOwnCls extends Fragment {
                             body1.add(sub);
                         }
 
+                        try {
+                            adapter.setBody(body1);
+                            adapter.setSection(body1);
 
-                        adapter.setBody(body1);
-                        adapter.setSection(body1);
+                            tablefixheaders.setAdapter(adapter);
+                            tablefixheaders.setVisibility(View.VISIBLE);
+                        }catch (Exception e)
+                        {
+                            tablefixheaders.setVisibility(View.GONE);
+                            Toast.makeText(getContext() , "No Data Found" , Toast.LENGTH_SHORT).show();
+                            e.printStackTrace();
+                        }
 
-                        tablefixheaders.setAdapter(adapter);
-                        tablefixheaders.setVisibility(View.VISIBLE);
+
                     }
                     else
                     {

@@ -112,7 +112,13 @@ public class Two extends Fragment {
             @Override
             public void onResponse(Call<sentCommunicationTeacherBean> call, Response<sentCommunicationTeacherBean> response) {
 
-                adapter.setGridData(response.body().getRequestList());
+                try {
+                    adapter.setGridData(response.body().getRequestList());
+                }catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
+
 
                 progress.setVisibility(View.GONE);
 

@@ -25,6 +25,7 @@ import android.widget.TextView;
 import com.eduschool.eduschoolapp.AllAPIs;
 import com.eduschool.eduschoolapp.AttendanceSummaryPOJO.AttendanceSummaryBean;
 import com.eduschool.eduschoolapp.Events.ViewCalendarFrgmnt;
+import com.eduschool.eduschoolapp.HomeWork.TeacherHw;
 import com.eduschool.eduschoolapp.HomeWork.TeacherHwFrgmntTwo;
 import com.eduschool.eduschoolapp.SyllabusManagement.TeacherAcademic;
 import com.eduschool.eduschoolapp.Attendance.Attendance;
@@ -98,6 +99,8 @@ public class TeacherHomeFrgmnt extends Fragment {
 
     TextView timeTable;
 
+    TextView hwTitle;
+
     public TeacherHomeFrgmnt() {
 
     }
@@ -128,6 +131,8 @@ public class TeacherHomeFrgmnt extends Fragment {
         timeTable = (TextView)view.findViewById(R.id.time_table);
 
         eventList = (RecyclerView)view.findViewById(R.id.eventList);
+
+        hwTitle = (TextView)view.findViewById(R.id.hwtitle);
 
         attendance = (LinearLayout) view.findViewById(R.id.attendance);
         academic = (TextView) view.findViewById(R.id.academic);
@@ -334,6 +339,17 @@ public class TeacherHomeFrgmnt extends Fragment {
         });*/
 
 
+        hwTitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fm = getFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+                TeacherHw frag1 = new TeacherHw();
+                ft.replace(R.id.replace, frag1);
+                //ft.addToBackStack(null);
+                ft.commit();
+            }
+        });
 
         timeTable.setOnClickListener(new View.OnClickListener() {
             @Override

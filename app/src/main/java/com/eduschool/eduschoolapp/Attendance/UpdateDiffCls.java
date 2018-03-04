@@ -150,7 +150,11 @@ public class UpdateDiffCls extends AppCompatActivity {
         final AllAPIs cr = retrofit.create(AllAPIs.class);
         progress.setVisibility(View.VISIBLE);
 
-        Call<AttendanceListBean> call3 = cr.attnce_list(b.user_id , sDate , Class_id, Section_id);
+        Call<AttendanceListBean> call3 = cr.attnce_list(b.school_id , sDate , Class_id, Section_id);
+
+        Log.d("date" , sDate);
+        Log.d("class" , Class_id);
+        Log.d("section" , Section_id);
 
         progress.setVisibility(View.VISIBLE);
 

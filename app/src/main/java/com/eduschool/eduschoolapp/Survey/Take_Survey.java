@@ -427,7 +427,9 @@ public class Take_Survey extends AppCompatActivity {
 
                                         Toast.makeText(getContext() , "Survey Submitted Successfully" , Toast.LENGTH_SHORT).show();
 
-                                        ((Take_Survey) getActivity()).load();
+                                        getActivity().finish();
+
+                                        //((Take_Survey) getActivity()).load();
 
 
                                         progress.setVisibility(View.GONE);

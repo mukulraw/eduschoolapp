@@ -413,9 +413,15 @@ public class GalleryTeacher extends Fragment implements DatePickerDialog.OnDateS
                 @Override
                 public void onResponse(Call<AlbumListBean> call, Response<AlbumListBean> response) {
 
+                    try {
+                        adapter.setGridData(response.body().getAlbumList());
+                        adapter.notifyDataSetChanged();
+                    }catch (Exception e)
+                    {
+                        e.printStackTrace();
+                    }
 
-                    adapter.setGridData(response.body().getAlbumList());
-                    adapter.notifyDataSetChanged();
+
                     progress.setVisibility(View.GONE);
 
                     Log.d("ddddd", String.valueOf(response.body().getAlbumList().size()));

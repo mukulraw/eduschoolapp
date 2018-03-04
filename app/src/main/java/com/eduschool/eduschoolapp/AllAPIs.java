@@ -577,6 +577,11 @@ public interface AllAPIs {
     Call<ResponseBody> getFile(@Url String url);
 
     @Multipart
+    @POST("eduschool_app/list_exam_type.php")
+    Call<examTypeBean> getExamTeacher(@Part("school_id") String school_id);
+
+
+    @Multipart
     @POST("eduschool_app/parentlist_exam_type.php")
     Call<examTypeBean> getExamList(@Part("school_id") String school_id, @Part("class") String classId, @Part("section") String section);
 

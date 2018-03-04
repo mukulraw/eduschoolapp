@@ -413,7 +413,7 @@ public class TeacherHw extends Fragment {
 
 
 //                    Log.d("subjectId", String.valueOf(subjectId.get(0)));
-                    Call<ChapterListbean> call = cr.chapterList(b.school_id, cId, ssId);
+                    /*Call<ChapterListbean> call = cr.chapterList(b.school_id, cId, ssId);
 
 
                     progress.setVisibility(View.VISIBLE);
@@ -453,7 +453,7 @@ public class TeacherHw extends Fragment {
                             progress.setVisibility(View.GONE);
 
                         }
-                    });
+                    });*/
 
 
                 }
@@ -471,20 +471,9 @@ public class TeacherHw extends Fragment {
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                     ssId = subjectId.get(i);
                     subName = subjectlist.get(i);
-                    Call<SubjectListBean> call1 = cr.subjectList(b.school_id, cId, sId);
+                    //Call<SubjectListBean> call1 = cr.subjectList(b.school_id, cId, sId);
 
-                    progress.setVisibility(View.VISIBLE);
-
-                    call1.enqueue(new Callback<SubjectListBean>() {
-
-                        @Override
-                        public void onResponse(Call<SubjectListBean> call, Response<SubjectListBean> response) {
-
-
-                            for (int i = 0; i < response.body().getSubjectList().size(); i++) {
-
-                            }
-
+                    //progress.setVisibility(View.VISIBLE);
 
                             Call<ChapterListbean> call2 = cr.chapterList(b.school_id, cId, ssId);
 
@@ -531,14 +520,7 @@ public class TeacherHw extends Fragment {
                             });
 
 
-                        }
 
-                        @Override
-                        public void onFailure(Call<SubjectListBean> call, Throwable throwable) {
-                            progress.setVisibility(View.GONE);
-
-                        }
-                    });
 
 
                 }
@@ -689,36 +671,12 @@ public class TeacherHw extends Fragment {
 
                     final AllAPIs cr = retrofit.create(AllAPIs.class);
 
-                    Call<SectionListbean> call2 = cr.sectionList(b.school_id, classId.get(i));
-
-                    progress.setVisibility(View.VISIBLE);
-
-
-                    call2.enqueue(new Callback<SectionListbean>() {
-
-                        @Override
-                        public void onResponse(Call<SectionListbean> call, Response<SectionListbean> response) {
+                    Log.d("section", String.valueOf(sectionId.get(i)));
+                    sId = sectionId.get(i);
 
 
-                            for (int i = 0; i < response.body().getSectionList().size(); i++) {
 
-
-                            }
-                            Log.d("section", String.valueOf(sectionId.get(i)));
-                            sId = sectionId.get(i);
-
-
-                        }
-
-                        @Override
-                        public void onFailure(Call<SectionListbean> call, Throwable throwable) {
-                            progress.setVisibility(View.GONE);
-
-                        }
-                    });
-
-
-                    Call<SubjectListBean> call1 = cr.subjectList(b.school_id, classId.get(i), sectionId.get(i));
+                    Call<SubjectListBean> call1 = cr.subjectList(b.school_id, cId, sId);
 
                     progress.setVisibility(View.VISIBLE);
 

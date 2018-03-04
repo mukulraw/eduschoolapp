@@ -20,7 +20,7 @@
             android:padding="12dp"
             android:textColor="#000000"
             android:id="@+id/class_sec"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <TextView

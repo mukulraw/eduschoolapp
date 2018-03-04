@@ -304,6 +304,7 @@ public class Teacherclswrk extends Fragment {
                 public void onFailure(Call<ClassListbean> call, Throwable throwable) {
 
                     progress.setVisibility(View.GONE);
+                    Log.d("class" , throwable.toString());
 
                 }
             });
@@ -361,7 +362,7 @@ public class Teacherclswrk extends Fragment {
                         @Override
                         public void onFailure(Call<SectionListbean> call, Throwable throwable) {
                             progress.setVisibility(View.GONE);
-
+                            Log.d("section" , throwable.toString());
                         }
 
                     });
@@ -406,7 +407,7 @@ public class Teacherclswrk extends Fragment {
                         @Override
                         public void onFailure(Call<ChapterListbean> call, Throwable throwable) {
                             progress.setVisibility(View.GONE);
-
+                            Log.d("chapter" , throwable.toString());
                         }
                     });
 
@@ -427,20 +428,9 @@ public class Teacherclswrk extends Fragment {
                     ssId = subjectId.get(i);
                     subName = subjectlist.get(i);
 
-                    Call<SubjectListBean> call1 = cr.subjectList(b.school_id, cId,sId);
 
-                    progress.setVisibility(View.VISIBLE);
-
-                    call1.enqueue(new Callback<SubjectListBean>() {
-
-                        @Override
-                        public void onResponse(Call<SubjectListBean> call, Response<SubjectListBean> response) {
-
-
-                            for (int i = 0; i < response.body().getSubjectList().size(); i++) {
-
-                            }
-
+                    Log.d("class" , cId);
+                    Log.d("section" , ssId);
 
                             Call<ChapterListbean> call2 = cr.chapterList(b.school_id, cId, ssId);
 
@@ -485,19 +475,10 @@ public class Teacherclswrk extends Fragment {
                                 @Override
                                 public void onFailure(Call<ChapterListbean> call2, Throwable throwable) {
                                     progress.setVisibility(View.GONE);
-
+                                    Log.d("chapter" , throwable.toString());
                                 }
                             });
 
-
-                        }
-
-                        @Override
-                        public void onFailure(Call<SubjectListBean> call, Throwable throwable) {
-                            progress.setVisibility(View.GONE);
-
-                        }
-                    });
 
 
                 }
@@ -536,7 +517,7 @@ public class Teacherclswrk extends Fragment {
                         @Override
                         public void onFailure(Call<ChapterListbean> call, Throwable throwable) {
                             progress.setVisibility(View.GONE);
-
+                            Log.d("chapter" , throwable.toString());
                         }
                     });
                 }
@@ -559,27 +540,18 @@ public class Teacherclswrk extends Fragment {
                             .build();
 
                     final AllAPIs cr = retrofit.create(AllAPIs.class);
+                    Log.d("section", String.valueOf(sectionId.get(i)));
+                    sId = sectionId.get(i);
 
-                    Call<SectionListbean> call2 = cr.sectionList(b.school_id, classId.get(i));
+
 
                     progress.setVisibility(View.VISIBLE);
 
 
-                    call2.enqueue(new Callback<SectionListbean>() {
-
-                        @Override
-                        public void onResponse(Call<SectionListbean> call, Response<SectionListbean> response) {
 
 
-                            for (int i = 0; i < response.body().getSectionList().size(); i++) {
 
-
-                            }
-                            Log.d("section", String.valueOf(sectionId.get(i)));
-                            sId = sectionId.get(i);
-
-
-                            Call<StudentListbean> call3 = cr.student_list(b.school_id, cId, sId);
+                            Call<StudentListbean> call3 = cr.student_list(b.school_id, cId, sectionId.get(i));
 
                             progress.setVisibility(View.VISIBLE);
 
@@ -589,43 +561,47 @@ public class Teacherclswrk extends Fragment {
                                 @Override
                                 public void onResponse(Call<StudentListbean> call3, Response<StudentListbean> response) {
 
+                                    try {
+                                        listStudent = response.body().getStudentList();
+                                        studentlist.clear();
+                                        studentId.clear();
+                                        for (int i = 0; i < response.body().getStudentList().size(); i++) {
 
-                                    listStudent = response.body().getStudentList();
-                                    studentlist.clear();
-                                    studentId.clear();
-                                    for (int i = 0; i < response.body().getStudentList().size(); i++) {
+                                            studentlist.add(response.body().getStudentList().get(i).getStudentName());
 
-                                        studentlist.add(response.body().getStudentList().get(i).getStudentName());
+                                            studentId.add(response.body().getStudentList().get(i).getStudentId());
 
-                                        studentId.add(response.body().getStudentList().get(i).getStudentId());
 
+
+                                        }
+                                    }catch (Exception e)
+                                    {
+                                        e.printStackTrace();
                                     }
+
+
 
                                     progress.setVisibility(View.GONE);
 
-                                    Log.d("name", String.valueOf(studentlist.get(0)));
+                                    //Log.d("name", String.valueOf(studentlist.get(0)));
 
                                 }
 
                                 @Override
                                 public void onFailure(Call<StudentListbean> call, Throwable throwable) {
                                     progress.setVisibility(View.GONE);
-
+                                    Log.d("section" , throwable.toString());
                                 }
                             });
 
 
-                        }
-
-                        @Override
-                        public void onFailure(Call<SectionListbean> call, Throwable throwable) {
-                            progress.setVisibility(View.GONE);
-
-                        }
-                    });
 
 
-                    Call<SubjectListBean> call1 = cr.subjectList(b.school_id, classId.get(i),sectionId.get(i));
+
+
+
+
+                    Call<SubjectListBean> call1 = cr.subjectList(b.school_id, cId,sId);
 
                     progress.setVisibility(View.VISIBLE);
 
@@ -669,7 +645,7 @@ public class Teacherclswrk extends Fragment {
                         @Override
                         public void onFailure(Call<SubjectListBean> call, Throwable throwable) {
                             progress.setVisibility(View.GONE);
-
+                            Log.d("subject" , throwable.toString());
                         }
                     });
 

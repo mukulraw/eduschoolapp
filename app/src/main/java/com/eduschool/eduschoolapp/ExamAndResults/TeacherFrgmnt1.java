@@ -85,7 +85,7 @@ public class TeacherFrgmnt1 extends Fragment {
 
         AllAPIs cr = retrofit.create(AllAPIs.class);
 
-        Call<examTypeBean> call = cr.getExamList(u.school_id , u.user_class,  u.user_section);
+        Call<examTypeBean> call = cr.getExamTeacher(u.school_id);
 
         call.enqueue(new Callback<examTypeBean>() {
             @Override
