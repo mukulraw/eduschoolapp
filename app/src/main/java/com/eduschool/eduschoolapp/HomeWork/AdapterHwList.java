@@ -45,6 +45,7 @@ public class AdapterHwList extends RecyclerView.Adapter<AdapterHwList.myviewhold
     @Override
     public void onBindViewHolder(final AdapterHwList.myviewholder holder, int position) {
 
+
         HomeworkList item = list.get(position);
 
 
@@ -53,6 +54,8 @@ public class AdapterHwList extends RecyclerView.Adapter<AdapterHwList.myviewhold
         holder.className.setText(item.getClass_());
         holder.section.setText(item.getSection());
         holder.subject.setText("Subject : "+item.getSubject());
+
+        holder.due.setText("Due Date (" + item.getDueDate() + ")");
 
 
     }
@@ -69,6 +72,7 @@ public class AdapterHwList extends RecyclerView.Adapter<AdapterHwList.myviewhold
         TextView title, section, subject;
         TextView className;
         CardView card;
+        TextView due;
 
 
         public myviewholder(View itemView) {
@@ -79,6 +83,7 @@ public class AdapterHwList extends RecyclerView.Adapter<AdapterHwList.myviewhold
             subject = (TextView) itemView.findViewById(R.id.subject);
             className = (TextView) itemView.findViewById(R.id.className);
             card = (CardView) itemView.findViewById(R.id.card);
+            due = (TextView)itemView.findViewById(R.id.due);
 
            itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
