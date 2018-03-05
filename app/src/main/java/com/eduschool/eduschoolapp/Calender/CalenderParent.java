@@ -109,7 +109,7 @@ public class CalenderParent  extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        toolbar.setTitle("Calender");
+        toolbar.setTitle("Calendar");
         User u = (User) getContext().getApplicationContext();
 
         u.back = true;

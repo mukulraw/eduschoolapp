@@ -204,7 +204,7 @@ public class TimeTableParent extends Fragment {
         c2.add(Calendar.DATE,6);
         System.out.println(df.format(c2.getTime()));        // Next Sunday
 
-        Call<parentTimeBean> call = cr.getParentTimeTable(u.school_id , u.user_class , u.user_section , df.format(c2.getTime()));
+        Call<parentTimeBean> call = cr.getParentTimeTable(u.school_id , u.user_class , u.user_section , mon , df.format(c2.getTime()));
 
         date.setText(df2.format(c.getTime()) + "  to  " + df2.format(c2.getTime()));
 

@@ -603,7 +603,13 @@ public interface AllAPIs {
 
     @Multipart
     @POST("eduschool_app/student_time_table.php")
-    Call<parentTimeBean> getParentTimeTable(@Part("school_id") String schoolId, @Part("class") String class_id, @Part("section") String section , @Part("date") String date);
+    Call<parentTimeBean> getParentTimeTable(
+            @Part("school_id") String schoolId,
+            @Part("class") String class_id,
+            @Part("section") String section,
+            @Part("fdate") String fdate,
+            @Part("tdate") String tdate
+    );
 
 
     @Multipart
