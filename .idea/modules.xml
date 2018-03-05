@@ -3,13 +3,11 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://C:\Users\Mukul\StudioProjects\eduschoolapp\app\app.iml" filepath="C:\Users\Mukul\StudioProjects\eduschoolapp\app\app.iml" />
       <module fileurl="file://E:\AndroidStudioProjects\eduschoolapp\eSkoolApp 4 3 2 2.iml" filepath="E:\AndroidStudioProjects\eduschoolapp\eSkoolApp 4 3 2 2.iml" />
       <module fileurl="file://$PROJECT_DIR$/eduschoolapp.iml" filepath="$PROJECT_DIR$/eduschoolapp.iml" />
       <module fileurl="file://C:\Users\Mukul\StudioProjects\eduschoolapp\.idea\eduschoolapp.iml" filepath="C:\Users\Mukul\StudioProjects\eduschoolapp\.idea\eduschoolapp.iml" />
       <module fileurl="file://D:\TBXAndroid\jjoin\eduschoolapp\eduschoolappgit.iml" filepath="D:\TBXAndroid\jjoin\eduschoolapp\eduschoolappgit.iml" />
       <module fileurl="file://$PROJECT_DIR$/multispinner/multispinner.iml" filepath="$PROJECT_DIR$/multispinner/multispinner.iml" />
-      <module fileurl="file://C:\Users\Mukul\StudioProjects\eduschoolapp\multispinner\multispinner.iml" filepath="C:\Users\Mukul\StudioProjects\eduschoolapp\multispinner\multispinner.iml" />
     </modules>
   </component>
 </project>

@@ -272,16 +272,24 @@ public class ParentAttendanceFrgmnt extends Fragment {
 
         Call<paraneAttendanceBean> call = cr.getAttendance(u.school_id , u.user_class , u.user_section , mon[Integer.parseInt(d1[1]) - 1] , d1[0] , u.user_id);
 
+        Log.d("schoolid" , u.school_id);
+        Log.d("class" , u.user_class);
+        Log.d("section" , u.user_section);
+        Log.d("month" , mon[Integer.parseInt(d1[1]) - 1]);
+        Log.d("year" , d1[0]);
+        Log.d("userid" , u.user_id);
+
         call.enqueue(new Callback<paraneAttendanceBean>() {
             @Override
             public void onResponse(Call<paraneAttendanceBean> call, Response<paraneAttendanceBean> response) {
 
+                Log.d("asdasd" , "method0");
 
                 for (int i = 0 ; i < response.body().getAttendanceList().get(0).getAttendanceData().size() ; i++) {
 
-
+                    Log.d("asdasd" , "method1");
                     try {
-
+                        Log.d("asdasd" , "method2");
                         String dd = response.body().getAttendanceList().get(0).getAttendanceData().get(i).getAttendanceDate();
 
                         String d1[] = dd.split("-");
@@ -321,7 +329,7 @@ public class ParentAttendanceFrgmnt extends Fragment {
 
             @Override
             public void onFailure(Call<paraneAttendanceBean> call, Throwable t) {
-
+t.printStackTrace();
             }
         });
     }

@@ -60,7 +60,7 @@ public class TeacherHwFrgmntTwo extends Fragment {
     Toolbar toolbar;
     Button edit;
     ProgressBar progress;
-    TextView subjectName, classSection, createDate, dueDate, title, completed, incomplete, note;
+    TextView subjectName, classSection, createDate, dueDate, title, completed, incomplete, note , dd;
     LinearLayout complited, incomplited;
     List<String> list, complete;
 
@@ -86,6 +86,7 @@ public class TeacherHwFrgmntTwo extends Fragment {
         complited = (LinearLayout) view.findViewById(R.id.complitedLayout);
         incomplited = (LinearLayout) view.findViewById(R.id.incompletelayout);
         subjectName = (TextView) view.findViewById(R.id.subjectName);
+        dd = (TextView) view.findViewById(R.id.dd);
         classSection = (TextView) view.findViewById(R.id.classSection);
         createDate = (TextView) view.findViewById(R.id.createDate);
         dueDate = (TextView) view.findViewById(R.id.dueDate);
@@ -236,6 +237,7 @@ public class TeacherHwFrgmntTwo extends Fragment {
                 createDate.setText(response.body().getHomeworkData().get(0).getCreateDate());
                 title.setText(response.body().getHomeworkData().get(0).getTitle());
                 dueDate.setText("(" + response.body().getHomeworkData().get(0).getDueDate() + ")");
+                dd.setText("Due Date (" + response.body().getHomeworkData().get(0).getDueDate() + ")");
                 note.setText(response.body().getHomeworkData().get(0).getNotes());
                 completed.setText(response.body().getHomeworkData().get(0).getTotalCompletehomworkStudent().toString());
                 incomplete.setText(response.body().getHomeworkData().get(0).getTotalPendinghomworkStudent().toString());

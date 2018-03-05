@@ -127,6 +127,7 @@ public class Two extends Fragment {
             @Override
             public void onFailure(Call<sentCommunicationTeacherBean> call, Throwable t) {
                 progress.setVisibility(View.GONE);
+                t.printStackTrace();
             }
         });
 

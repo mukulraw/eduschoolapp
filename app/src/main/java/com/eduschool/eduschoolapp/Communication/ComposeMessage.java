@@ -547,19 +547,21 @@ public class ComposeMessage extends AppCompatActivity {
                                         public void onClick(View v) {
 
 
-
-
                                             MultipartBody.Part body = null;
 
+                                            File file = null;
+                                            if (selectedImageUri != null) {
+                                                String mCurrentPhotoPath = getPath(ComposeMessage.this, selectedImageUri);
 
-                                            String mCurrentPhotoPath = getPath(ComposeMessage.this, selectedImageUri);
+                                                file = new File(mCurrentPhotoPath);
 
-                                            File file = new File(mCurrentPhotoPath);
+                                                RequestBody reqFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+
+                                                body = MultipartBody.Part.createFormData("attach", file.getName(), reqFile);
+                                            }
 
 
-                                            RequestBody reqFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
 
-                                            body = MultipartBody.Part.createFormData("attach", file.getName(), reqFile);
 
 
 
@@ -576,18 +578,16 @@ public class ComposeMessage extends AppCompatActivity {
 
                                             AllAPIs cr = retrofit.create(AllAPIs.class);
 
-                                            Log.d("sd" , sd);
-                                            Log.d("ed" , ed);
+                                            Log.d("sd", sd);
+                                            Log.d("ed", ed);
 
 
                                             String imp = "";
 
 
-                                            if (check.isChecked())
-                                            {
+                                            if (check.isChecked()) {
                                                 imp = "yes";
-                                            }
-                                            else {
+                                            } else {
                                                 imp = "no";
                                             }
 
@@ -604,7 +604,7 @@ public class ComposeMessage extends AppCompatActivity {
                                                     u.user_id,
                                                     "Teacher",
                                                     "Parent",
-                                                    "," + TextUtils.join("," ,checkedClasses),
+                                                    "," + TextUtils.join(",", checkedClasses),
                                                     "," + TextUtils.join(",", checkedSections),
                                                     imp,
                                                     body
@@ -621,7 +621,6 @@ public class ComposeMessage extends AppCompatActivity {
                                                     d1.setCancelable(true);
                                                     d1.setContentView(R.layout.compose_success_popup);
                                                     d1.show();
-
 
 
                                                     d1.setOnDismissListener(new DialogInterface.OnDismissListener() {
