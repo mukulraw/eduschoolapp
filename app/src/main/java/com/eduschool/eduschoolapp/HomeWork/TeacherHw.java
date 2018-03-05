@@ -72,7 +72,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Objects;
 
+import io.apptik.widget.multiselectspinner.BaseMultiSelectSpinner;
+import io.apptik.widget.multiselectspinner.MultiSelectSpinner;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -96,6 +99,9 @@ public class TeacherHw extends Fragment {
     Toolbar toolbar;
     static PagerAdapter adapter;
 
+    static List<String> ll;
+    static List<String> names;
+
     public TeacherHw() {
 
     }
@@ -107,6 +113,9 @@ public class TeacherHw extends Fragment {
 
         View view = inflater.inflate(R.layout.teacher_hw, container, false);
         toolbar = (Toolbar) ((TeacherHome) getContext()).findViewById(R.id.tool_bar);
+
+        ll = new ArrayList<>();
+        names = new ArrayList<>();
 
 
         viewPager = (ViewPager) view.findViewById(R.id.viewpager);
@@ -184,7 +193,7 @@ public class TeacherHw extends Fragment {
         Spinner className, sectionName, subjectName, chapter;
         AlertDialog.Builder alertDialog;
         View convertView;
-        TextView stuSelect;
+        MultiSelectSpinner stuSelect;
         TextView date, due_date, upload;
         public String a;
         String mCurrentPhotoPath;
@@ -218,14 +227,14 @@ public class TeacherHw extends Fragment {
 
         @Nullable
         @Override
-        public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        public View onCreateView(final LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
             View v = inflater.inflate(R.layout.teacher_hw_frgmnt1, container, false);
             toolbar = (Toolbar) ((TeacherHome) getContext()).findViewById(R.id.tool_bar);
 
             checked = new ArrayList<>();
 
-            stuSelect = (TextView) v.findViewById(R.id.stu_select);
+            stuSelect = (MultiSelectSpinner) v.findViewById(R.id.stu_select);
             className = (Spinner) v.findViewById(R.id.className);
             date = (TextView) v.findViewById(R.id.date);
             upload = (TextView) v.findViewById(R.id.upload);
@@ -536,6 +545,11 @@ public class TeacherHw extends Fragment {
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, final int i, long l) {
 
+
+                    ll.clear();
+                    names.clear();
+
+
                     Call<ChapterListbean> call = cr.chapterList(b.school_id, cId, ssId);
 
                     progress.setVisibility(View.VISIBLE);
@@ -549,6 +563,54 @@ public class TeacherHw extends Fragment {
                             sChapter = chapterId.get(i);
                             chapName = chapterlist.get(i);
                             progress.setVisibility(View.GONE);
+
+
+                            Call<StudentListbean> call3 = cr.student_list(b.school_id, cId, sId);
+
+                            progress.setVisibility(View.VISIBLE);
+
+
+                            call3.enqueue(new Callback<StudentListbean>() {
+
+                                @Override
+                                public void onResponse(Call<StudentListbean> call3, Response<StudentListbean> response) {
+
+
+                                    for (int i = 0 ; i < response.body().getStudentList().size() ; i++)
+                                    {
+
+                                        ll.add(response.body().getStudentList().get(i).getStudentName());
+                                        names.add(response.body().getStudentList().get(i).getStudentId());
+
+                                    }
+
+
+                                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_multiple_choice, ll);
+
+                                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+
+                                    stuSelect.setListAdapter(adapter);
+
+                                    stuSelect.setSelectAll(true);
+
+
+
+
+                                    progress.setVisibility(View.GONE);
+
+//                        Log.d("name", String.valueOf(studentlist.get(0)));
+
+                                }
+
+                                @Override
+                                public void onFailure(Call<StudentListbean> call, Throwable throwable) {
+                                    progress.setVisibility(View.GONE);
+
+                                }
+                            });
+
+
 
                         }
 
@@ -567,7 +629,31 @@ public class TeacherHw extends Fragment {
             });
 
 
-            stuSelect.setOnClickListener(new View.OnClickListener() {
+
+
+
+            stuSelect.setListener(new BaseMultiSelectSpinner.MultiSpinnerListener() {
+                @Override
+                public void onItemsSelected(boolean[] booleans) {
+
+
+                    for (int i = 0; i < booleans.length; i++) {
+                        if (booleans[i]) {
+                            checked.add(names.get(i));
+                        }
+
+                    }
+
+
+                }
+            });
+
+
+
+
+
+
+            /*stuSelect.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
@@ -585,8 +671,9 @@ public class TeacherHw extends Fragment {
 
                     List<StudentList> ll = new ArrayList<>();
                     List<String> names = new ArrayList<>();
+                    final List<Boolean> clist = new ArrayList<>();
 
-                    adapter[0] = new StuAdapter(getContext(), ll, checked, names);
+                    adapter[0] = new StuAdapter(getContext(), ll, checked, names , clist);
 
                     GridLayoutManager manager = new GridLayoutManager(getContext(), 1);
 
@@ -613,33 +700,7 @@ public class TeacherHw extends Fragment {
 
                     final AllAPIs cr = retrofit.create(AllAPIs.class);
 
-                    Call<StudentListbean> call3 = cr.student_list(b.school_id, cId, sId);
 
-                    progress.setVisibility(View.VISIBLE);
-
-
-                    call3.enqueue(new Callback<StudentListbean>() {
-
-                        @Override
-                        public void onResponse(Call<StudentListbean> call3, Response<StudentListbean> response) {
-
-                            checked.clear();
-
-                            adapter[0].setGridData(response.body().getStudentList());
-
-
-                            progress.setVisibility(View.GONE);
-
-//                        Log.d("name", String.valueOf(studentlist.get(0)));
-
-                        }
-
-                        @Override
-                        public void onFailure(Call<StudentListbean> call, Throwable throwable) {
-                            progress.setVisibility(View.GONE);
-
-                        }
-                    });
 
                     submit.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -648,7 +709,17 @@ public class TeacherHw extends Fragment {
                             List<String> ll = adapter[0].getChecked();
                             List<String> ll2 = adapter[0].getNames();
 
-                            stuSelect.setText(String.valueOf(ll2.size()) + " Students Selected");
+
+                            for (int i = 0 ; i < ll.size() ; i++)
+                            {
+                                if (Objects.equals(ll.get(i), "0"))
+                                {
+                                    ll.remove(i);
+                                }
+                            }
+
+
+                            stuSelect.setText(String.valueOf(ll.size()) + " Students Selected");
 
                             dialog.dismiss();
 
@@ -656,7 +727,7 @@ public class TeacherHw extends Fragment {
                     });
 
                 }
-            });
+            });*/
 
 
             sectionName.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -756,139 +827,167 @@ public class TeacherHw extends Fragment {
                 public void onClick(final View view) {
 
 
-                    if (checked.size() > 0)
+
+
+                    /*for (int i = 0 ; i < checked.size() ; i++)
                     {
-                        if (!due_date.getText().toString().equals("Due Date")) {
+                        if (Objects.equals(checked.get(i), "0"))
+                        {
+                            checked.remove(i);
+                        }
+                    }
+*/
 
 
-                            AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
-                            dialog.setCancelable(false);
-                            dialog.setMessage("Are you sure you want to add Home Work ?");
-                            dialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int id) {
 
-                                    sNote = note.getText().toString().trim();
+                    if (date.getText().toString().length() > 0)
+                    {
+                        if (checked.size() > 0)
+                        {
+                            if (!due_date.getText().toString().equals("Due Date")) {
 
 
-                                    MultipartBody.Part body = null;
+                                AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
+                                dialog.setCancelable(false);
+                                dialog.setMessage("Are you sure you want to add Home Work ?");
+                                dialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int id) {
 
-                                    Log.d("note", cId);
-
-
-                                    try {
-
-                                        File file = new File(mCurrentPhotoPath);
-                                        final User b = (User) getActivity().getApplicationContext();
-
-                                        RequestBody reqFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
-
-                                        body = MultipartBody.Part.createFormData("attach", file.getName(), reqFile);
-
-                                    } catch (Exception e) {
-                                        e.printStackTrace();
-                                    }
+                                        sNote = note.getText().toString().trim();
 
 
-                                    Retrofit retrofit = new Retrofit.Builder()
-                                            .baseUrl(b.baseURL)
-                                            .addConverterFactory(ScalarsConverterFactory.create())
-                                            .addConverterFactory(GsonConverterFactory.create())
-                                            .build();
+                                        MultipartBody.Part body = null;
+
+                                        Log.d("note", cId);
 
 
-                                    final AllAPIs cr = retrofit.create(AllAPIs.class);
-                                    JSONObject oo = new JSONObject();
-                                    try {
+                                        try {
 
-                                        JSONArray arr = new JSONArray();
+                                            File file = new File(mCurrentPhotoPath);
+                                            final User b = (User) getActivity().getApplicationContext();
 
-                                        for (int i = 0; i < checked.size(); i++) {
+                                            RequestBody reqFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
 
+                                            body = MultipartBody.Part.createFormData("attach", file.getName(), reqFile);
 
-                                            JSONObject obj = new JSONObject();
-
-                                            obj.put("id", checked.get(i));
-                                            arr.put(obj);
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
                                         }
 
 
-                                        oo.put("student", arr);
-
-                                    } catch (JSONException e) {
-                                        e.printStackTrace();
-                                    }
-
-
-                                    Call<AssignHWbean> call3 = cr.assign_hw(b.school_id, date.getText().toString() ,  cId, sId, ssId, sChapter, sNote, due_date.getText().toString(), TextUtils.join(",", checked), body, b.user_id, subName, chapName);
-
-                                    progress.setVisibility(View.VISIBLE);
-
-                                    Log.d("jdklfgjdf", TextUtils.join(",", checked));
-
-                                    Log.d("outputtt", String.valueOf(sId));
-                                    call3.enqueue(new Callback<AssignHWbean>() {
-
-                                        @Override
-                                        public void onResponse(Call<AssignHWbean> call3, Response<AssignHWbean> response) {
+                                        Retrofit retrofit = new Retrofit.Builder()
+                                                .baseUrl(b.baseURL)
+                                                .addConverterFactory(ScalarsConverterFactory.create())
+                                                .addConverterFactory(GsonConverterFactory.create())
+                                                .build();
 
 
-                                            if (response.body().getStatus().equals("1")) {
-                                                Toast.makeText(getContext(), "Home Work has Added Successfully.", Toast.LENGTH_LONG).show();
-                                                note.setText(" ");
+                                        final AllAPIs cr = retrofit.create(AllAPIs.class);
+                                        JSONObject oo = new JSONObject();
+                                        try {
+
+                                            JSONArray arr = new JSONArray();
+
+                                            for (int i = 0; i < checked.size(); i++) {
 
 
-                                                //FrgmntTwo fg = new FrgmntTwo();
+                                                JSONObject obj = new JSONObject();
 
-
-                                                //adapter.notifyDataSetChanged();
-
-
-                                                //fg.loadData();
-                                                viewPager.setAdapter(adapter);
-
-                                                viewPager.setCurrentItem(1);
-
-
-                                            } else {
-                                                Toast.makeText(getContext(), "Home work did not add Successfully!", Toast.LENGTH_LONG).show();
+                                                obj.put("id", checked.get(i));
+                                                arr.put(obj);
                                             }
-                                            progress.setVisibility(View.GONE);
 
+
+                                            oo.put("student", arr);
+
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
                                         }
 
-                                        @Override
-                                        public void onFailure(Call<AssignHWbean> call3, Throwable throwable) {
-                                            Log.d("yooooo", "sds");
-                                            progress.setVisibility(View.GONE);
-
-                                        }
-                                    });
-
-                                    dialog.dismiss();
-
-                                }
-                            })
-                                    .setNegativeButton("No ", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            //Action for "Cancel".
-                                        }
-                                    });
 
 
-                            final AlertDialog alert = dialog.create();
-                            alert.show();
 
-                        } else
-                            //due_date.setError("Please Choose a Date");
-                        Toast.makeText(getContext() , "Please Choose a Date" , Toast.LENGTH_SHORT).show();
+
+
+
+                                        Call<AssignHWbean> call3 = cr.assign_hw(b.school_id, date.getText().toString() ,  cId, sId, ssId, sChapter, sNote, due_date.getText().toString(), TextUtils.join(",", checked), body, b.user_id, subName, chapName);
+
+                                        progress.setVisibility(View.VISIBLE);
+
+                                        Log.d("jdklfgjdf", TextUtils.join(",", checked));
+
+                                        Log.d("outputtt", String.valueOf(sId));
+                                        call3.enqueue(new Callback<AssignHWbean>() {
+
+                                            @Override
+                                            public void onResponse(Call<AssignHWbean> call3, Response<AssignHWbean> response) {
+
+
+                                                if (response.body().getStatus().equals("1")) {
+                                                    Toast.makeText(getContext(), "Home Work has Added Successfully.", Toast.LENGTH_LONG).show();
+                                                    note.setText(" ");
+
+
+                                                    //FrgmntTwo fg = new FrgmntTwo();
+
+
+                                                    //adapter.notifyDataSetChanged();
+
+
+                                                    //fg.loadData();
+                                                    viewPager.setAdapter(adapter);
+
+                                                    viewPager.setCurrentItem(1);
+
+
+                                                } else {
+                                                    Toast.makeText(getContext(), "Home work did not add Successfully!", Toast.LENGTH_LONG).show();
+                                                }
+                                                progress.setVisibility(View.GONE);
+
+                                            }
+
+                                            @Override
+                                            public void onFailure(Call<AssignHWbean> call3, Throwable throwable) {
+                                                Log.d("yooooo", "sds");
+                                                progress.setVisibility(View.GONE);
+
+                                            }
+                                        });
+
+                                        dialog.dismiss();
+
+                                    }
+                                })
+                                        .setNegativeButton("No ", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                //Action for "Cancel".
+                                            }
+                                        });
+
+
+                                final AlertDialog alert = dialog.create();
+                                alert.show();
+
+                            } else
+                                //due_date.setError("Please Choose a Date");
+                                Toast.makeText(getContext() , "Please Choose a Due Date" , Toast.LENGTH_SHORT).show();
+                        }
+                        else
+                        {
+                            //stuSelect.setError("Please Select Students");
+                            Toast.makeText(getContext() , "Please Select Students" , Toast.LENGTH_SHORT).show();
+                        }
                     }
                     else
                     {
-                        //stuSelect.setError("Please Select Students");
-                        Toast.makeText(getContext() , "Please Select Students" , Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext() , "Please Choose a Date" , Toast.LENGTH_SHORT).show();
                     }
+
+
+
 
 
 
@@ -1141,17 +1240,21 @@ public class TeacherHw extends Fragment {
             List<StudentList> list = new ArrayList<>();
             List<String> checked = new ArrayList<>();
             List<String> names = new ArrayList<>();
+            List<Boolean> clist = new ArrayList<>();
             boolean all = false;
 
-            public StuAdapter(Context context, List<StudentList> list, List<String> checked, List<String> names) {
+            public StuAdapter(Context context, List<StudentList> list, List<String> checked, List<String> names , List<Boolean> clist) {
                 this.list = list;
                 this.context = context;
                 this.checked = checked;
                 this.names = names;
+                this.clist = clist;
             }
 
-            public void setGridData(List<StudentList> list) {
+            public void setGridData(List<StudentList> list , List<Boolean> clist , List<String> checked) {
                 this.list = list;
+                this.clist = clist;
+                this.checked = checked;
                 notifyDataSetChanged();
             }
 
@@ -1168,14 +1271,31 @@ public class TeacherHw extends Fragment {
             }
 
             @Override
-            public void onBindViewHolder(final ViewHolder holder, int position) {
+            public void onBindViewHolder(final ViewHolder holder, final int position) {
+
+                holder.setIsRecyclable(false);
 
                 final StudentList item = list.get(position);
 
                 holder.name.setText(list.get(position).getStudentName());
 
 
-                holder.name.setChecked(all);
+                //holder.name.setChecked(all);
+                //clist.set(position , all);
+
+
+                if (clist.get(position))
+                {
+                    holder.name.setChecked(true);
+                    checked.set(position , item.getStudentId());
+                    names.add(item.getStudentName());
+                }
+                else
+                {
+                    checked.set(position , "0");
+                    names.remove(item.getStudentName());
+                    holder.name.setChecked(false);
+                }
 
 
                 holder.name.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -1183,11 +1303,13 @@ public class TeacherHw extends Fragment {
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
                         if (isChecked) {
-                            checked.add(item.getStudentId());
+                            checked.set(position , item.getStudentId());
                             names.add(item.getStudentName());
+                            clist.set(position , true);
                         } else {
-                            checked.remove(item.getStudentId());
+                            checked.set(position , "0");
                             names.remove(item.getStudentName());
+                            clist.set(position , false);
                         }
 
                     }
@@ -1215,6 +1337,8 @@ public class TeacherHw extends Fragment {
 
                 public ViewHolder(View itemView) {
                     super(itemView);
+
+                    this.setIsRecyclable(false);
 
                     name = (CheckBox) itemView.findViewById(R.id.name);
 

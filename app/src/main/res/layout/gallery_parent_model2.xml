@@ -9,6 +9,6 @@
         android:layout_height="100dp"
         android:layout_margin="12dp"
         android:id="@+id/img"
-        android:src="@drawable/folder" />
+        />
 
 </LinearLayout>

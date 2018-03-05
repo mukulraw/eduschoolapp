@@ -230,6 +230,10 @@ public class ViewDffClsfrgmnt extends Fragment {
                         cId[0] = clasIds.get(position);
 
 
+                        secNames.clear();
+                        secIds.clear();
+
+
                         progressBar.setVisibility(View.VISIBLE);
 
 

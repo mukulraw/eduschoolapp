@@ -16,6 +16,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/all"
             android:padding="10dp"
+            android:visibility="gone"
             android:text="Select All"
             />
 

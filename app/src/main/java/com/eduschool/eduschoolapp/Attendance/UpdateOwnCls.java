@@ -147,7 +147,7 @@ public class UpdateOwnCls extends AppCompatActivity {
 
         final AllAPIs cr = retrofit.create(AllAPIs.class);
         progress.setVisibility(View.VISIBLE);
-        Call<AttendanceListBean> call3 = cr.attnce_list(b.user_id , date , b.user_class, b.user_section);
+        Call<AttendanceListBean> call3 = cr.attnce_list(b.school_id , date , b.user_class, b.user_section);
 
         progress.setVisibility(View.VISIBLE);
 

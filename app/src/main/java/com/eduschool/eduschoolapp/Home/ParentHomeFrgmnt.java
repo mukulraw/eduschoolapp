@@ -159,6 +159,10 @@ public class ParentHomeFrgmnt extends Fragment{
 
         Call<parentHomeBean> call = cr.getParentHome(u.school_id , u.user_class , u.user_section);
 
+        Log.d("school" , u.school_id);
+        Log.d("class" , u.user_class);
+        Log.d("section" , u.user_section);
+
         call.enqueue(new Callback<parentHomeBean>() {
             @Override
             public void onResponse(Call<parentHomeBean> call, Response<parentHomeBean> response) {
@@ -196,6 +200,7 @@ public class ParentHomeFrgmnt extends Fragment{
             @Override
             public void onFailure(Call<parentHomeBean> call, Throwable throwable) {
                 progress.setVisibility(View.GONE);
+                throwable.printStackTrace();
             }
         });
 

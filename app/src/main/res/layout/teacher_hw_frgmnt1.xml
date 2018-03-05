@@ -107,7 +107,7 @@
                     android:background="#cdcdcd"
                     />
 
-                <TextView
+                <io.apptik.widget.multiselectspinner.MultiSelectSpinner
                     android:id="@+id/stu_select"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

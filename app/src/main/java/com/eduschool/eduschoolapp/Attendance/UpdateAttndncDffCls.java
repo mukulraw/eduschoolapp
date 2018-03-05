@@ -154,6 +154,7 @@ public class UpdateAttndncDffCls extends Fragment {
             }
         });
 
+
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -239,6 +240,8 @@ public class UpdateAttndncDffCls extends Fragment {
 
                         progressBar.setVisibility(View.VISIBLE);
 
+                        secNames.clear();
+                        secIds.clear();
 
                         Retrofit retrofit = new Retrofit.Builder()
                                 .baseUrl(b.baseURL)

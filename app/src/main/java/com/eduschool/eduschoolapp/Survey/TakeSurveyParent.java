@@ -333,7 +333,6 @@ public class TakeSurveyParent extends AppCompatActivity {
 
         String ansId, surveyId;
 
-
         String positiom;
 
 
@@ -424,7 +423,11 @@ public class TakeSurveyParent extends AppCompatActivity {
 
                                         Toast.makeText(getContext() , "Survey Submitted Successfully" , Toast.LENGTH_SHORT).show();
 
-                                        ((TakeSurveyParent) getActivity()).load();
+
+                                        getActivity().finish();
+
+
+                                        //((TakeSurveyParent) getActivity()).load();
 
 
                                         progress.setVisibility(View.GONE);
