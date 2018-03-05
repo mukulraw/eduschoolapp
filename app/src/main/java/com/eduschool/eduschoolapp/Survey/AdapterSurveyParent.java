@@ -13,6 +13,7 @@ import com.eduschool.eduschoolapp.SurveyListParentPOJO.ServeyDatum;
 import com.eduschool.eduschoolapp.SurveyListParentPOJO.SurveyListteacher;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by user on 8/18/2017.
@@ -21,15 +22,15 @@ import java.util.List;
 public class AdapterSurveyParent extends RecyclerView.Adapter<AdapterSurveyParent.myviewholder> {
 
     Context context;
-    private List<ServeyDatum> list;
+    private List<SurveyListteacher> list;
 
-    public AdapterSurveyParent(Context context, List<ServeyDatum> albumList) {
+    public AdapterSurveyParent(Context context, List<SurveyListteacher> albumList) {
         this.context = context;
         this.list = albumList;
 
     }
 
-    public void setGridData(List<ServeyDatum> list)
+    public void setGridData(List<SurveyListteacher> list)
     {
         this.list = list;
         notifyDataSetChanged();
@@ -47,11 +48,35 @@ public class AdapterSurveyParent extends RecyclerView.Adapter<AdapterSurveyParen
 
     @Override
     public void onBindViewHolder(final AdapterSurveyParent.myviewholder holder, int position) {
-        ServeyDatum item = list.get(position);
+        SurveyListteacher item = list.get(position);
 
-        holder.qus.setText(item.getQuestion());
-        holder.date.setText(item.getPostDate());
-        holder.status.setText(item.getQuestionStatus());
+        holder.qus.setText(item.getSurveyTitle());
+        //holder.date.setText(item.getPostDate());
+
+
+        for (int i = 0 ; i < item.getServeyData().size() ; i++)
+        {
+            if (Objects.equals(item.getServeyData().get(i).getQuestionStatus(), "Pending"))
+            {
+                //if (!Objects.equals(item.getOpenSurvey(), "yes"))
+                //{
+                  //  holder.status.setText("Closed");
+                //}
+                //else
+                //{
+                    holder.status.setText("Pending");
+                //}
+
+
+            }
+            else
+            {
+                holder.status.setText("Complete");
+            }
+        }
+
+
+        //holder.status.setText(item.getQuestionStatus());
 
     }
 
@@ -78,13 +103,14 @@ public class AdapterSurveyParent extends RecyclerView.Adapter<AdapterSurveyParen
                 @Override
                 public void onClick(View view) {
 
-                    String Id = list.get(getAdapterPosition()).getSurveyid();
-                    String qusId = list.get(getAdapterPosition()).getQuestionId();
+                    String Id = list.get(getAdapterPosition()).getSurveyId();
+                    //String qusId = list.get(getAdapterPosition()).();
 
                     Intent intent=new Intent(context,TakeSurveyParent.class);
                     intent.putExtra("Id", Id);
-                    intent.putExtra("QusId", qusId);
-                    intent.putExtra("status", list.get(getAdapterPosition()).getQuestionStatus());
+                    //intent.putExtra("QusId", qusId);
+                    intent.putExtra("title" , list.get(getAdapterPosition()).getSurveyTitle());
+                    //intent.putExtra("status", list.get(getAdapterPosition()).getQuestionStatus());
                     context.startActivity(intent);
 
 

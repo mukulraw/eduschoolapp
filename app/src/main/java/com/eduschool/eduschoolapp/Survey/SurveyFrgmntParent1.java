@@ -38,7 +38,7 @@ public class SurveyFrgmntParent1 extends Fragment {
     private RecyclerView recyclerView;
     private AdapterSurveyParent adapter;
     ProgressBar progress;
-    private List<ServeyDatum> albumList;
+    private List<SurveyListteacher> albumList;
 
     @Nullable
     @Override
@@ -131,17 +131,17 @@ public class SurveyFrgmntParent1 extends Fragment {
             @Override
             public void onResponse(Call<SurveyListBeanParent> call, Response<SurveyListBeanParent> response) {
 
-                List<ServeyDatum> ll = new ArrayList<>();
+                List<SurveyListteacher> ll = new ArrayList<>();
 
-                for (int i = 0 ; i < response.body().getSurveyListteacher().size() ; i++)
+                /*for (int i = 0 ; i < response.body().getSurveyListteacher().size() ; i++)
                 {
                     for (int j = 0 ; j < response.body().getSurveyListteacher().get(i).getServeyData().size() ; j++)
                     {
-                        ll.add(response.body().getSurveyListteacher().get(i).getServeyData().get(j));
+                        ll.add();
                     }
-                }
+                }*/
 
-                adapter.setGridData(ll);
+                adapter.setGridData(response.body().getSurveyListteacher());
                 adapter.notifyDataSetChanged();
                 progress.setVisibility(View.GONE);
 
