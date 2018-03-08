@@ -702,7 +702,7 @@ public class TeacherHomeFrgmnt extends Fragment {
             String dat = item.getClass_();
             String[] dd = dat.split("-");
 
-            holder.classSec.setText(dd[0] + System.getProperty("line.separator") + dd[1] + " " + dd[2]);
+            holder.classSec.setText(dd[0] + " " + dd[1] + " " + dd[2]);
 
 
 

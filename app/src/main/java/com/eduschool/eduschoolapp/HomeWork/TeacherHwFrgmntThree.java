@@ -56,6 +56,8 @@ import com.eduschool.eduschoolapp.deleteFileBean;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -317,96 +319,123 @@ public class TeacherHwFrgmntThree extends Fragment {
             @Override
             public void onClick(View view) {
 
-                AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
-                dialog.setCancelable(false);
-                dialog.setMessage("Are you sure you want to Update Home work ?");
-                dialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int id) {
-
-                        sNote = note.getText().toString().trim();
-
-                        MultipartBody.Part body = null;
 
 
-                        //String mCurrentPhotoPath = "";
+                SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
+                Date strDate = null;
 
-                        try {
+                Date strDate2 = null;
 
-                            File file1 = new File(mCurrentPhotoPath);
+                try {
+                    strDate = sdf.parse(createDate.getText().toString());
+                    strDate2 = sdf.parse(DueDate.getText().toString());
 
-
-                            final RequestBody reqFile = RequestBody.create(MediaType.parse("multipart/form-data"), file1);
-
-                            body = MultipartBody.Part.createFormData("homeattach", file1.getName(), reqFile);
-
-
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
 
 
-                        final User b = (User) getActivity().getApplicationContext();
-                        Retrofit retrofit = new Retrofit.Builder()
-                                .baseUrl(b.baseURL)
-                                .addConverterFactory(ScalarsConverterFactory.create())
-                                .addConverterFactory(GsonConverterFactory.create())
-                                .build();
+                if (!strDate2.before(strDate))
+                {
+                    AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
+                    dialog.setCancelable(false);
+                    dialog.setMessage("Are you sure you want to Update Home work ?");
+                    dialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int id) {
 
-                        final AllAPIs cr = retrofit.create(AllAPIs.class);
+                            sNote = note.getText().toString().trim();
 
-
-                        Call<UpdateHwBean> call = cr.update_hw(hId, b.school_id, b.user_id, cId, sId, ssId, chapId, sNote, DueDate.getText().toString(), TextUtils.join(",", studentId) , body);
-
-
-                        progress.setVisibility(View.VISIBLE);
+                            MultipartBody.Part body = null;
 
 
-                        call.enqueue(new Callback<UpdateHwBean>() {
+                            //String mCurrentPhotoPath = "";
 
-                            @Override
-                            public void onResponse(Call<UpdateHwBean> call, Response<UpdateHwBean> response) {
+                            try {
 
-                                try {
-                                    if (response.body().getStatus().equals("1")) {
-                                        Toast.makeText(getContext(), "Home Work Updated Successfully", Toast.LENGTH_LONG).show();
+                                File file1 = new File(mCurrentPhotoPath);
 
-                                        getFragmentManager().popBackStack();
-                                    } else {
-                                        Toast.makeText(getContext(), "Home Work did Not updated successfully!", Toast.LENGTH_LONG).show();
+
+                                final RequestBody reqFile = RequestBody.create(MediaType.parse("multipart/form-data"), file1);
+
+                                body = MultipartBody.Part.createFormData("homeattach", file1.getName(), reqFile);
+
+
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+
+
+                            final User b = (User) getActivity().getApplicationContext();
+                            Retrofit retrofit = new Retrofit.Builder()
+                                    .baseUrl(b.baseURL)
+                                    .addConverterFactory(ScalarsConverterFactory.create())
+                                    .addConverterFactory(GsonConverterFactory.create())
+                                    .build();
+
+                            final AllAPIs cr = retrofit.create(AllAPIs.class);
+
+
+                            Call<UpdateHwBean> call = cr.update_hw(hId, b.school_id, b.user_id, cId, sId, ssId, chapId, sNote, DueDate.getText().toString(), TextUtils.join(",", studentId) , body);
+
+
+                            progress.setVisibility(View.VISIBLE);
+
+
+                            call.enqueue(new Callback<UpdateHwBean>() {
+
+                                @Override
+                                public void onResponse(Call<UpdateHwBean> call, Response<UpdateHwBean> response) {
+
+                                    try {
+                                        if (response.body().getStatus().equals("1")) {
+                                            Toast.makeText(getContext(), "Home Work Updated Successfully", Toast.LENGTH_LONG).show();
+
+                                            getFragmentManager().popBackStack();
+                                        } else {
+                                            Toast.makeText(getContext(), "Home Work did Not updated successfully!", Toast.LENGTH_LONG).show();
+                                        }
+                                    }catch (Exception e)
+                                    {
+                                        e.printStackTrace();
                                     }
-                                }catch (Exception e)
-                                {
-                                    e.printStackTrace();
+
+
+
+                                    progress.setVisibility(View.GONE);
+
                                 }
 
+                                @Override
+                                public void onFailure(Call<UpdateHwBean> call, Throwable throwable) {
+                                    progress.setVisibility(View.GONE);
+
+                                    throwable.printStackTrace();
+                                }
+                            });
+
+                            dialog.dismiss();
+                        }
+                    })
+                            .setNegativeButton("No ", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    //Action for "Cancel".
+                                }
+                            });
 
 
-                                progress.setVisibility(View.GONE);
+                    final AlertDialog alert = dialog.create();
+                    alert.show();
+                }
+                else
+                {
+                    Toast.makeText(getContext(), "Invalid Due Date", Toast.LENGTH_SHORT).show();
 
-                            }
-
-                            @Override
-                            public void onFailure(Call<UpdateHwBean> call, Throwable throwable) {
-                                progress.setVisibility(View.GONE);
-
-                                throwable.printStackTrace();
-                            }
-                        });
-
-                        dialog.dismiss();
-                    }
-                })
-                        .setNegativeButton("No ", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                //Action for "Cancel".
-                            }
-                        });
+                }
 
 
-                final AlertDialog alert = dialog.create();
-                alert.show();
+
 
             }
         });

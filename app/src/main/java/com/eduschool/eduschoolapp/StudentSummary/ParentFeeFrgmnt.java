@@ -137,7 +137,7 @@ public class ParentFeeFrgmnt extends Fragment {
     public class PagerAdapter extends FragmentStatePagerAdapter {
         int mNumOfTabs;
         List<FeesDetail> list = new ArrayList<>();
-        private String[] tabTitles = new String[]{"Jan","Feb","March","April","May","June","July","August","September","October","November","December"};
+        private String[] tabTitles = new String[]{"April","May","June","July","August","September","October","November","December","Jan","Feb","March"};
 
         public PagerAdapter(FragmentManager fm, int NumOfTabs , List<FeesDetail> list) {
             super(fm);

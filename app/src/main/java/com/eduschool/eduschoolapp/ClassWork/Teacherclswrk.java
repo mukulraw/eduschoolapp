@@ -162,7 +162,7 @@ public class Teacherclswrk extends Fragment {
         EditText note;
         View convertView;
         Button add;
-        String cId, sId, ssId, sChapter, sNote;
+        String cId = "", sId = "", ssId = "", sChapter = "", sNote;
         ProgressBar progress;
 
         String subName , chapName;
@@ -248,6 +248,8 @@ public class Teacherclswrk extends Fragment {
                     classlist.clear();
                     classId.clear();
 
+                    classlist.add("Class");
+
 
                     for (int i = 0; i < list.size(); i++) {
 
@@ -314,102 +316,109 @@ public class Teacherclswrk extends Fragment {
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
-                    cId = classId.get(i);
-                    Call<SectionListbean> call2 = cr.sectionList(b.school_id, classId.get(i));
+                    if (i > 0)
+                    {
+                        cId = classId.get(i - 1);
+                        Call<SectionListbean> call2 = cr.sectionList(b.school_id, classId.get(i - 1));
 
-                    //Toast.makeText(getActivity(), a, Toast.LENGTH_SHORT).show();
-                    progress.setVisibility(View.VISIBLE);
-
-
-                    call2.enqueue(new Callback<SectionListbean>() {
-
-                        @Override
-                        public void onResponse(Call<SectionListbean> call, Response<SectionListbean> response) {
+                        //Toast.makeText(getActivity(), a, Toast.LENGTH_SHORT).show();
+                        progress.setVisibility(View.VISIBLE);
 
 
-                            listSection = response.body().getSectionList();
+                        call2.enqueue(new Callback<SectionListbean>() {
 
-                            sectionId.clear();
-                            sectionlist.clear();
+                            @Override
+                            public void onResponse(Call<SectionListbean> call, Response<SectionListbean> response) {
 
-                            for (int i = 0; i < response.body().getSectionList().size(); i++) {
 
-                                sectionlist.add(response.body().getSectionList().get(i).getSectionName());
+                                listSection = response.body().getSectionList();
 
-                                sectionId.add(response.body().getSectionList().get(i).getSectionId());
+                                sectionId.clear();
+                                sectionlist.clear();
+
+                                sectionlist.add("Section");
+
+                                for (int i = 0; i < response.body().getSectionList().size(); i++) {
+
+                                    sectionlist.add(response.body().getSectionList().get(i).getSectionName());
+
+                                    sectionId.add(response.body().getSectionList().get(i).getSectionId());
+                                }
+
+
+                                try {
+                                    ArrayAdapter<String> adp = new ArrayAdapter<String>(getContext(),
+                                            android.R.layout.simple_list_item_1, sectionlist);
+
+                                    adp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                    adp.notifyDataSetChanged();
+                                    sectionName.setAdapter(adp);
+                                }catch (Exception e)
+                                {
+                                    e.printStackTrace();
+                                }
+
+
+
+                                progress.setVisibility(View.GONE);
+
+
                             }
 
-
-                            try {
-                                ArrayAdapter<String> adp = new ArrayAdapter<String>(getContext(),
-                                        android.R.layout.simple_list_item_1, sectionlist);
-
-                                adp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                                adp.notifyDataSetChanged();
-                                sectionName.setAdapter(adp);
-                            }catch (Exception e)
-                            {
-                                e.printStackTrace();
+                            @Override
+                            public void onFailure(Call<SectionListbean> call, Throwable throwable) {
+                                progress.setVisibility(View.GONE);
+                                Log.d("section" , throwable.toString());
                             }
 
-
-
-                            progress.setVisibility(View.GONE);
-
-
-                        }
-
-                        @Override
-                        public void onFailure(Call<SectionListbean> call, Throwable throwable) {
-                            progress.setVisibility(View.GONE);
-                            Log.d("section" , throwable.toString());
-                        }
-
-                    });
+                        });
 
 
 //                    Log.d("subjectId", String.valueOf(subjectId.get(0)));
-                    Call<ChapterListbean> call = cr.chapterList(b.school_id, cId, ssId);
+                        Call<ChapterListbean> call = cr.chapterList(b.school_id, cId, ssId);
 
 
-                    progress.setVisibility(View.VISIBLE);
+                        progress.setVisibility(View.VISIBLE);
 
 
-                    call.enqueue(new Callback<ChapterListbean>() {
+                        call.enqueue(new Callback<ChapterListbean>() {
 
-                        @Override
-                        public void onResponse(Call<ChapterListbean> call, Response<ChapterListbean> response) {
+                            @Override
+                            public void onResponse(Call<ChapterListbean> call, Response<ChapterListbean> response) {
 
 
-                            listChapter = response.body().getChapterList();
-                            chapterlist.clear();
-                            chapterId.clear();
-                            for (int i = 0; i < response.body().getChapterList().size(); i++) {
+                                listChapter = response.body().getChapterList();
+                                chapterlist.clear();
+                                chapterId.clear();
+                                for (int i = 0; i < response.body().getChapterList().size(); i++) {
 
-                                chapterlist.add(response.body().getChapterList().get(i).getChapterName());
+                                    chapterlist.add(response.body().getChapterList().get(i).getChapterName());
 
-                                chapterId.add(response.body().getChapterList().get(i).getChapterId());
+                                    chapterId.add(response.body().getChapterList().get(i).getChapterId());
+
+                                }
+
+
+                                ArrayAdapter<String> adp2 = new ArrayAdapter<String>(getContext(),
+                                        android.R.layout.simple_list_item_1, chapterlist);
+
+                                adp2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                adp2.notifyDataSetChanged();
+                                chapter.setAdapter(adp2);
+
+                                progress.setVisibility(View.GONE);
 
                             }
 
+                            @Override
+                            public void onFailure(Call<ChapterListbean> call, Throwable throwable) {
+                                progress.setVisibility(View.GONE);
+                                Log.d("chapter" , throwable.toString());
+                            }
+                        });
+                    }
 
-                            ArrayAdapter<String> adp2 = new ArrayAdapter<String>(getContext(),
-                                    android.R.layout.simple_list_item_1, chapterlist);
 
-                            adp2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                            adp2.notifyDataSetChanged();
-                            chapter.setAdapter(adp2);
-
-                            progress.setVisibility(View.GONE);
-
-                        }
-
-                        @Override
-                        public void onFailure(Call<ChapterListbean> call, Throwable throwable) {
-                            progress.setVisibility(View.GONE);
-                            Log.d("chapter" , throwable.toString());
-                        }
-                    });
 
 
                 }
@@ -425,59 +434,68 @@ public class Teacherclswrk extends Fragment {
 
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                    ssId = subjectId.get(i);
-                    subName = subjectlist.get(i);
+
+                    if (i > 0)
+                    {
+                        ssId = subjectId.get(i - 1);
+                        subName = subjectlist.get(i);
 
 
-                    Log.d("class" , cId);
-                    Log.d("section" , ssId);
+                        Log.d("class" , cId);
+                        Log.d("section" , ssId);
 
-                            Call<ChapterListbean> call2 = cr.chapterList(b.school_id, cId, ssId);
-
-
-                            progress.setVisibility(View.VISIBLE);
+                        Call<ChapterListbean> call2 = cr.chapterList(b.school_id, cId, ssId);
 
 
-                            call2.enqueue(new Callback<ChapterListbean>() {
-
-                                @Override
-                                public void onResponse(Call<ChapterListbean> call2, Response<ChapterListbean> response) {
+                        progress.setVisibility(View.VISIBLE);
 
 
-                                    listChapter = response.body().getChapterList();
-                                    chapterlist.clear();
-                                    chapterId.clear();
-                                    for (int i = 0; i < response.body().getChapterList().size(); i++) {
+                        call2.enqueue(new Callback<ChapterListbean>() {
 
-                                        chapterlist.add(response.body().getChapterList().get(i).getChapterName());
-
-                                        chapterId.add(response.body().getChapterList().get(i).getChapterId());
-
-                                    }
-
-                                    try {
-                                        ArrayAdapter<String> adp2 = new ArrayAdapter<String>(getContext(),
-                                                android.R.layout.simple_list_item_1, chapterlist);
-
-                                        adp2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                                        adp2.notifyDataSetChanged();
-                                        chapter.setAdapter(adp2);
-                                    }catch (Exception e)
-                                    {
-                                        e.printStackTrace();
-                                    }
+                            @Override
+                            public void onResponse(Call<ChapterListbean> call2, Response<ChapterListbean> response) {
 
 
-                                    progress.setVisibility(View.GONE);
+                                listChapter = response.body().getChapterList();
+                                chapterlist.clear();
+                                chapterId.clear();
+
+                                chapterlist.add("Chapter");
+
+                                for (int i = 0; i < response.body().getChapterList().size(); i++) {
+
+                                    chapterlist.add(response.body().getChapterList().get(i).getChapterName());
+
+                                    chapterId.add(response.body().getChapterList().get(i).getChapterId());
 
                                 }
 
-                                @Override
-                                public void onFailure(Call<ChapterListbean> call2, Throwable throwable) {
-                                    progress.setVisibility(View.GONE);
-                                    Log.d("chapter" , throwable.toString());
+                                try {
+                                    ArrayAdapter<String> adp2 = new ArrayAdapter<String>(getContext(),
+                                            android.R.layout.simple_list_item_1, chapterlist);
+
+                                    adp2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                    adp2.notifyDataSetChanged();
+                                    chapter.setAdapter(adp2);
+                                }catch (Exception e)
+                                {
+                                    e.printStackTrace();
                                 }
-                            });
+
+
+                                progress.setVisibility(View.GONE);
+
+                            }
+
+                            @Override
+                            public void onFailure(Call<ChapterListbean> call2, Throwable throwable) {
+                                progress.setVisibility(View.GONE);
+                                Log.d("chapter" , throwable.toString());
+                            }
+                        });
+                    }
+
+
 
 
 
@@ -494,32 +512,37 @@ public class Teacherclswrk extends Fragment {
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, final int i, long l) {
 
-                    Call<ChapterListbean> call = cr.chapterList(b.school_id, cId, ssId);
+                    if (i > 0)
+                    {
+                        Call<ChapterListbean> call = cr.chapterList(b.school_id, cId, ssId);
 
-                    progress.setVisibility(View.VISIBLE);
+                        progress.setVisibility(View.VISIBLE);
 
-                    call.enqueue(new Callback<ChapterListbean>() {
+                        call.enqueue(new Callback<ChapterListbean>() {
 
-                        @Override
-                        public void onResponse(Call<ChapterListbean> call, Response<ChapterListbean> response) {
+                            @Override
+                            public void onResponse(Call<ChapterListbean> call, Response<ChapterListbean> response) {
 
-                            for (int i = 0; i < response.body().getChapterList().size(); i++) {
+                                for (int i = 0; i < response.body().getChapterList().size(); i++) {
 
+
+                                }
+
+                                sChapter = chapterId.get(i - 1);
+                                chapName = chapterlist.get(i);
+                                progress.setVisibility(View.GONE);
 
                             }
 
-                            sChapter = chapterId.get(i);
-                            chapName = chapterlist.get(i);
-                            progress.setVisibility(View.GONE);
+                            @Override
+                            public void onFailure(Call<ChapterListbean> call, Throwable throwable) {
+                                progress.setVisibility(View.GONE);
+                                Log.d("chapter" , throwable.toString());
+                            }
+                        });
+                    }
 
-                        }
 
-                        @Override
-                        public void onFailure(Call<ChapterListbean> call, Throwable throwable) {
-                            progress.setVisibility(View.GONE);
-                            Log.d("chapter" , throwable.toString());
-                        }
-                    });
                 }
 
                 @Override
@@ -533,121 +556,132 @@ public class Teacherclswrk extends Fragment {
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, final int i, long l) {
 
-                    Retrofit retrofit = new Retrofit.Builder()
-                            .baseUrl(b.baseURL)
-                            .addConverterFactory(ScalarsConverterFactory.create())
-                            .addConverterFactory(GsonConverterFactory.create())
-                            .build();
+                    if (i > 0)
+                    {
+                        Retrofit retrofit = new Retrofit.Builder()
+                                .baseUrl(b.baseURL)
+                                .addConverterFactory(ScalarsConverterFactory.create())
+                                .addConverterFactory(GsonConverterFactory.create())
+                                .build();
 
-                    final AllAPIs cr = retrofit.create(AllAPIs.class);
-                    Log.d("section", String.valueOf(sectionId.get(i)));
-                    sId = sectionId.get(i);
-
-
-
-                    progress.setVisibility(View.VISIBLE);
+                        final AllAPIs cr = retrofit.create(AllAPIs.class);
+                        Log.d("section", String.valueOf(sectionId.get(i - 1)));
+                        sId = sectionId.get(i -1);
 
 
 
-
-
-                            Call<StudentListbean> call3 = cr.student_list(b.school_id, cId, sectionId.get(i));
-
-                            progress.setVisibility(View.VISIBLE);
-
-
-                            call3.enqueue(new Callback<StudentListbean>() {
-
-                                @Override
-                                public void onResponse(Call<StudentListbean> call3, Response<StudentListbean> response) {
-
-                                    try {
-                                        listStudent = response.body().getStudentList();
-                                        studentlist.clear();
-                                        studentId.clear();
-                                        for (int i = 0; i < response.body().getStudentList().size(); i++) {
-
-                                            studentlist.add(response.body().getStudentList().get(i).getStudentName());
-
-                                            studentId.add(response.body().getStudentList().get(i).getStudentId());
+                        progress.setVisibility(View.VISIBLE);
 
 
 
-                                        }
-                                    }catch (Exception e)
-                                    {
-                                        e.printStackTrace();
+
+
+                        Call<StudentListbean> call3 = cr.student_list(b.school_id, cId, sectionId.get(i - 1));
+
+                        progress.setVisibility(View.VISIBLE);
+
+
+                        call3.enqueue(new Callback<StudentListbean>() {
+
+                            @Override
+                            public void onResponse(Call<StudentListbean> call3, Response<StudentListbean> response) {
+
+                                try {
+                                    listStudent = response.body().getStudentList();
+                                    studentlist.clear();
+                                    studentId.clear();
+
+                                    //.add("Stu")
+
+                                    for (int i = 0; i < response.body().getStudentList().size(); i++) {
+
+                                        studentlist.add(response.body().getStudentList().get(i).getStudentName());
+
+                                        studentId.add(response.body().getStudentList().get(i).getStudentId());
+
+
+
                                     }
-
-
-
-                                    progress.setVisibility(View.GONE);
-
-                                    //Log.d("name", String.valueOf(studentlist.get(0)));
-
+                                }catch (Exception e)
+                                {
+                                    e.printStackTrace();
                                 }
 
-                                @Override
-                                public void onFailure(Call<StudentListbean> call, Throwable throwable) {
-                                    progress.setVisibility(View.GONE);
-                                    Log.d("section" , throwable.toString());
+
+
+                                progress.setVisibility(View.GONE);
+
+                                //Log.d("name", String.valueOf(studentlist.get(0)));
+
+                            }
+
+                            @Override
+                            public void onFailure(Call<StudentListbean> call, Throwable throwable) {
+                                progress.setVisibility(View.GONE);
+                                Log.d("section" , throwable.toString());
+                            }
+                        });
+
+
+
+
+
+
+
+
+                        Call<SubjectListBean> call1 = cr.subjectList(b.school_id, cId,sId);
+
+                        progress.setVisibility(View.VISIBLE);
+
+                        call1.enqueue(new Callback<SubjectListBean>() {
+
+                            @Override
+                            public void onResponse(Call<SubjectListBean> call, Response<SubjectListBean> response) {
+
+                                listSubject = response.body().getSubjectList();
+                                subjectlist.clear();
+                                subjectId.clear();
+
+
+                                subjectlist.add("Subject");
+
+
+                                for (int i = 0; i < response.body().getSubjectList().size(); i++) {
+
+                                    subjectlist.add(response.body().getSubjectList().get(i).getSubjectName());
+                                    subjectId.add(response.body().getSubjectList().get(i).getSubjectId());
                                 }
-                            });
+
+                                try {
+
+                                    ArrayAdapter<String> adp1 = new ArrayAdapter<String>(getContext(),
+                                            android.R.layout.simple_list_item_1, subjectlist);
+
+                                    adp1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                    subject.setAdapter(adp1);
+                                    adp1.notifyDataSetChanged();
+
+                                }catch (Exception e)
+                                {
+                                    e.printStackTrace();
+                                }
 
 
 
+                                progress.setVisibility(View.GONE);
 
 
-
-
-
-                    Call<SubjectListBean> call1 = cr.subjectList(b.school_id, cId,sId);
-
-                    progress.setVisibility(View.VISIBLE);
-
-                    call1.enqueue(new Callback<SubjectListBean>() {
-
-                        @Override
-                        public void onResponse(Call<SubjectListBean> call, Response<SubjectListBean> response) {
-
-                            listSubject = response.body().getSubjectList();
-                            subjectlist.clear();
-                            subjectId.clear();
-
-
-                            for (int i = 0; i < response.body().getSubjectList().size(); i++) {
-
-                                subjectlist.add(response.body().getSubjectList().get(i).getSubjectName());
-                                subjectId.add(response.body().getSubjectList().get(i).getSubjectId());
                             }
 
-                            try {
-
-                                ArrayAdapter<String> adp1 = new ArrayAdapter<String>(getContext(),
-                                        android.R.layout.simple_list_item_1, subjectlist);
-
-                                adp1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                                subject.setAdapter(adp1);
-                                adp1.notifyDataSetChanged();
-
-                            }catch (Exception e)
-                            {
-                                e.printStackTrace();
+                            @Override
+                            public void onFailure(Call<SubjectListBean> call, Throwable throwable) {
+                                progress.setVisibility(View.GONE);
+                                Log.d("subject" , throwable.toString());
                             }
+                        });
+                    }
 
 
-
-                            progress.setVisibility(View.GONE);
-
-
-                        }
-
-                        @Override
-                        public void onFailure(Call<SubjectListBean> call, Throwable throwable) {
-                            progress.setVisibility(View.GONE);
-                            Log.d("subject" , throwable.toString());
-                        }
-                    });
 
                 }
 
@@ -691,72 +725,111 @@ public class Teacherclswrk extends Fragment {
 
                     if (date.getText().toString().length() > 0)
                     {
-                        AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
-                        dialog.setCancelable(false);
-                        dialog.setMessage("Are you sure you want to add Class Work ?");
-                        dialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int id) {
-
-                                sNote = note.getText().toString().trim();
-
-                                Retrofit retrofit = new Retrofit.Builder()
-                                        .baseUrl(b.baseURL)
-                                        .addConverterFactory(ScalarsConverterFactory.create())
-                                        .addConverterFactory(GsonConverterFactory.create())
-                                        .build();
-
-                                final AllAPIs cr = retrofit.create(AllAPIs.class);
-                                String text = status.getSelectedItem().toString();
-
-                                Call<AssignClsWrkBean> call3 = cr.assign_cw(b.school_id, cId, sId, ssId, sChapter, sNote, text, TextUtils.join(",", studentId), "image", b.user_id , subName , chapName , date.getText().toString());
-
-                                progress.setVisibility(View.VISIBLE);
-
-                                Log.d("outputtt", String.valueOf(sId));
-                                call3.enqueue(new Callback<AssignClsWrkBean>() {
-
-                                    @Override
-                                    public void onResponse(Call<AssignClsWrkBean> call3, Response<AssignClsWrkBean> response) {
 
 
-                                        if (response.body().getStatus().equals("1")) {
-                                            Toast.makeText(getContext(), "Class Work Added Successfully.", Toast.LENGTH_LONG).show();
-                                            note.setText("");
 
-                                            viewPager.setAdapter(adapter);
+                        if (cId.length() >0 )
+                        {
+                            if (sId.length() > 0)
+                            {
 
-                                            viewPager.setCurrentItem(1);
+                                if (ssId.length() > 0)
+                                {
+                                    if (sChapter.length() > 0)
+                                    {
+
+                                        AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
+                                        dialog.setCancelable(false);
+                                        dialog.setMessage("Are you sure you want to add Class Work ?");
+                                        dialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int id) {
+
+                                                sNote = note.getText().toString().trim();
+
+                                                Retrofit retrofit = new Retrofit.Builder()
+                                                        .baseUrl(b.baseURL)
+                                                        .addConverterFactory(ScalarsConverterFactory.create())
+                                                        .addConverterFactory(GsonConverterFactory.create())
+                                                        .build();
+
+                                                final AllAPIs cr = retrofit.create(AllAPIs.class);
+                                                String text = status.getSelectedItem().toString();
+
+                                                Call<AssignClsWrkBean> call3 = cr.assign_cw(b.school_id, cId, sId, ssId, sChapter, sNote, text, TextUtils.join(",", studentId), "image", b.user_id , subName , chapName , date.getText().toString());
+
+                                                progress.setVisibility(View.VISIBLE);
+
+                                                Log.d("outputtt", String.valueOf(sId));
+                                                call3.enqueue(new Callback<AssignClsWrkBean>() {
+
+                                                    @Override
+                                                    public void onResponse(Call<AssignClsWrkBean> call3, Response<AssignClsWrkBean> response) {
 
 
-                                        } else {
-                                            Toast.makeText(getContext(), "Class work did not added Successfully!", Toast.LENGTH_LONG).show();
-                                        }
-                                        progress.setVisibility(View.GONE);
+                                                        if (response.body().getStatus().equals("1")) {
+                                                            Toast.makeText(getContext(), "Class Work Added Successfully.", Toast.LENGTH_LONG).show();
+                                                            note.setText("");
+
+                                                            viewPager.setAdapter(adapter);
+
+                                                            viewPager.setCurrentItem(1);
+
+
+                                                        } else {
+                                                            Toast.makeText(getContext(), "Class work did not added Successfully!", Toast.LENGTH_LONG).show();
+                                                        }
+                                                        progress.setVisibility(View.GONE);
+
+                                                    }
+
+                                                    @Override
+                                                    public void onFailure(Call<AssignClsWrkBean> call3, Throwable throwable) {
+                                                        Log.d("yooooo", "sds");
+                                                        progress.setVisibility(View.GONE);
+
+                                                    }
+                                                });
+
+
+                                            }
+                                        })
+                                                .setNegativeButton("No ", new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialog, int which) {
+                                                        //Action for "Cancel".
+                                                    }
+                                                });
+
+
+                                        final AlertDialog alert = dialog.create();
+                                        alert.show();
 
                                     }
-
-                                    @Override
-                                    public void onFailure(Call<AssignClsWrkBean> call3, Throwable throwable) {
-                                        Log.d("yooooo", "sds");
-                                        progress.setVisibility(View.GONE);
-
+                                    else
+                                    {
+                                        Toast.makeText(getContext() , "Please Select Chapter" , Toast.LENGTH_SHORT).show();
                                     }
-                                });
-
+                                }
+                                else
+                                {
+                                    Toast.makeText(getContext() , "Please Select Subject" , Toast.LENGTH_SHORT).show();
+                                }
 
                             }
-                        })
-                                .setNegativeButton("No ", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        //Action for "Cancel".
-                                    }
-                                });
+                            else
+                            {
+                                Toast.makeText(getContext() , "Please Select Section" , Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                        else
+                        {
+                            Toast.makeText(getContext() , "Please Select Class" , Toast.LENGTH_SHORT).show();
+                        }
 
 
-                        final AlertDialog alert = dialog.create();
-                        alert.show();
+
+
                     }
                     else
                     {

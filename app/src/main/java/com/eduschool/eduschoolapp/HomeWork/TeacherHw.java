@@ -69,8 +69,11 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -198,11 +201,11 @@ public class TeacherHw extends Fragment {
         public String a;
         String mCurrentPhotoPath;
         ProgressBar progress;
-        String cId, sId, ssId;
+        String cId = "", sId = "", ssId = "";
         Button submit;
         Bitmap bmp;
         EditText note;
-        String sNote, sChapter;
+        String sNote, sChapter = "";
         String subName;
         String chapName;
 
@@ -253,7 +256,6 @@ public class TeacherHw extends Fragment {
             list = new ArrayList<>();
             classlist = new ArrayList<>();
             classId = new ArrayList<>();
-
 
 
             listSection = new ArrayList<>();
@@ -319,6 +321,8 @@ public class TeacherHw extends Fragment {
                     classlist.clear();
                     classId.clear();
 
+                    classlist.add("Class");
+
 
                     for (int i = 0; i < list.size(); i++) {
 
@@ -374,51 +378,55 @@ public class TeacherHw extends Fragment {
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
-                    cId = classId.get(i);
-                    Call<SectionListbean> call2 = cr.sectionList(b.school_id, classId.get(i));
+                    if (i > 0) {
+                        cId = classId.get(i - 1);
+                        Call<SectionListbean> call2 = cr.sectionList(b.school_id, classId.get(i - 1));
 
-                    //Toast.makeText(getActivity(), a, Toast.LENGTH_SHORT).show();
-                    progress.setVisibility(View.VISIBLE);
-
-
-                    call2.enqueue(new Callback<SectionListbean>() {
-
-                        @Override
-                        public void onResponse(Call<SectionListbean> call, Response<SectionListbean> response) {
+                        //Toast.makeText(getActivity(), a, Toast.LENGTH_SHORT).show();
+                        progress.setVisibility(View.VISIBLE);
 
 
-                            listSection = response.body().getSectionList();
+                        call2.enqueue(new Callback<SectionListbean>() {
 
-                            sectionId.clear();
-                            sectionlist.clear();
+                            @Override
+                            public void onResponse(Call<SectionListbean> call, Response<SectionListbean> response) {
 
-                            for (int i = 0; i < response.body().getSectionList().size(); i++) {
 
-                                sectionlist.add(response.body().getSectionList().get(i).getSectionName());
+                                listSection = response.body().getSectionList();
 
-                                sectionId.add(response.body().getSectionList().get(i).getSectionId());
+                                sectionId.clear();
+                                sectionlist.clear();
+
+                                sectionlist.add("Section");
+
+                                for (int i = 0; i < response.body().getSectionList().size(); i++) {
+
+                                    sectionlist.add(response.body().getSectionList().get(i).getSectionName());
+
+                                    sectionId.add(response.body().getSectionList().get(i).getSectionId());
+                                }
+
+
+                                ArrayAdapter<String> adp = new ArrayAdapter<String>(getContext(),
+                                        android.R.layout.simple_list_item_1, sectionlist);
+
+                                adp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                adp.notifyDataSetChanged();
+                                sectionName.setAdapter(adp);
+
+                                progress.setVisibility(View.GONE);
+
+
                             }
 
+                            @Override
+                            public void onFailure(Call<SectionListbean> call, Throwable throwable) {
+                                progress.setVisibility(View.GONE);
 
-                            ArrayAdapter<String> adp = new ArrayAdapter<String>(getContext(),
-                                    android.R.layout.simple_list_item_1, sectionlist);
+                            }
 
-                            adp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                            adp.notifyDataSetChanged();
-                            sectionName.setAdapter(adp);
-
-                            progress.setVisibility(View.GONE);
-
-
-                        }
-
-                        @Override
-                        public void onFailure(Call<SectionListbean> call, Throwable throwable) {
-                            progress.setVisibility(View.GONE);
-
-                        }
-
-                    });
+                        });
+                    }
 
 
 //                    Log.d("subjectId", String.valueOf(subjectId.get(0)));
@@ -478,58 +486,64 @@ public class TeacherHw extends Fragment {
 
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                    ssId = subjectId.get(i);
-                    subName = subjectlist.get(i);
-                    //Call<SubjectListBean> call1 = cr.subjectList(b.school_id, cId, sId);
-
-                    //progress.setVisibility(View.VISIBLE);
-
-                            Call<ChapterListbean> call2 = cr.chapterList(b.school_id, cId, ssId);
 
 
-                            progress.setVisibility(View.VISIBLE);
+                    if (i > 0) {
+                        ssId = subjectId.get(i - 1);
+                        subName = subjectlist.get(i - 1);
+                        //Call<SubjectListBean> call1 = cr.subjectList(b.school_id, cId, sId);
+
+                        //progress.setVisibility(View.VISIBLE);
+
+                        Call<ChapterListbean> call2 = cr.chapterList(b.school_id, cId, ssId);
 
 
-                            call2.enqueue(new Callback<ChapterListbean>() {
+                        progress.setVisibility(View.VISIBLE);
 
-                                @Override
-                                public void onResponse(Call<ChapterListbean> call2, Response<ChapterListbean> response) {
 
-                                    try {
-                                        listChapter = response.body().getChapterList();
-                                        chapterlist.clear();
-                                        chapterId.clear();
-                                        for (int i = 0; i < response.body().getChapterList().size(); i++) {
+                        call2.enqueue(new Callback<ChapterListbean>() {
 
-                                            chapterlist.add(response.body().getChapterList().get(i).getChapterName());
+                            @Override
+                            public void onResponse(Call<ChapterListbean> call2, Response<ChapterListbean> response) {
 
-                                            chapterId.add(response.body().getChapterList().get(i).getChapterId());
+                                try {
+                                    listChapter = response.body().getChapterList();
+                                    chapterlist.clear();
+                                    chapterId.clear();
 
-                                        }
-                                        ArrayAdapter<String> adp2 = new ArrayAdapter<String>(getContext(),
-                                                android.R.layout.simple_list_item_1, chapterlist);
+                                    chapterlist.add("Chapter");
 
-                                        adp2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                                        adp2.notifyDataSetChanged();
-                                        chapter.setAdapter(adp2);
+                                    for (int i = 0; i < response.body().getChapterList().size(); i++) {
 
-                                    } catch (Exception e) {
-                                        e.printStackTrace();
+                                        chapterlist.add(response.body().getChapterList().get(i).getChapterName());
+
+                                        chapterId.add(response.body().getChapterList().get(i).getChapterId());
+
                                     }
+                                    ArrayAdapter<String> adp2 = new ArrayAdapter<String>(getContext(),
+                                            android.R.layout.simple_list_item_1, chapterlist);
 
-                                    progress.setVisibility(View.GONE);
+                                    adp2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                    adp2.notifyDataSetChanged();
+                                    chapter.setAdapter(adp2);
 
+                                } catch (Exception e) {
+                                    e.printStackTrace();
                                 }
 
-                                @Override
-                                public void onFailure(Call<ChapterListbean> call2, Throwable throwable) {
-                                    progress.setVisibility(View.GONE);
+                                progress.setVisibility(View.GONE);
 
-                                }
-                            });
+                            }
+
+                            @Override
+                            public void onFailure(Call<ChapterListbean> call2, Throwable throwable) {
+                                progress.setVisibility(View.GONE);
+
+                            }
+                        });
 
 
-
+                    }
 
 
                 }
@@ -546,80 +560,81 @@ public class TeacherHw extends Fragment {
                 public void onItemSelected(AdapterView<?> adapterView, View view, final int i, long l) {
 
 
-                    ll.clear();
-                    names.clear();
+                    if (i > 0) {
+                        ll.clear();
+                        names.clear();
 
 
-                    Call<ChapterListbean> call = cr.chapterList(b.school_id, cId, ssId);
+                        Call<ChapterListbean> call = cr.chapterList(b.school_id, cId, ssId);
 
-                    progress.setVisibility(View.VISIBLE);
+                        progress.setVisibility(View.VISIBLE);
 
-                    call.enqueue(new Callback<ChapterListbean>() {
+                        call.enqueue(new Callback<ChapterListbean>() {
 
-                        @Override
-                        public void onResponse(Call<ChapterListbean> call, Response<ChapterListbean> response) {
-
-
-                            sChapter = chapterId.get(i);
-                            chapName = chapterlist.get(i);
-                            progress.setVisibility(View.GONE);
+                            @Override
+                            public void onResponse(Call<ChapterListbean> call, Response<ChapterListbean> response) {
 
 
-                            Call<StudentListbean> call3 = cr.student_list(b.school_id, cId, sId);
-
-                            progress.setVisibility(View.VISIBLE);
-
-
-                            call3.enqueue(new Callback<StudentListbean>() {
-
-                                @Override
-                                public void onResponse(Call<StudentListbean> call3, Response<StudentListbean> response) {
+                                sChapter = chapterId.get(i - 1);
+                                chapName = chapterlist.get(i);
+                                progress.setVisibility(View.GONE);
 
 
-                                    for (int i = 0 ; i < response.body().getStudentList().size() ; i++)
-                                    {
+                                Call<StudentListbean> call3 = cr.student_list(b.school_id, cId, sId);
 
-                                        ll.add(response.body().getStudentList().get(i).getStudentName());
-                                        names.add(response.body().getStudentList().get(i).getStudentId());
-
-                                    }
+                                progress.setVisibility(View.VISIBLE);
 
 
-                                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_multiple_choice, ll);
+                                call3.enqueue(new Callback<StudentListbean>() {
 
-                                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                    @Override
+                                    public void onResponse(Call<StudentListbean> call3, Response<StudentListbean> response) {
+
+                                        //ll.add("Select Students");
+
+                                        for (int i = 0; i < response.body().getStudentList().size(); i++) {
+
+                                            ll.add(response.body().getStudentList().get(i).getStudentName());
+                                            names.add(response.body().getStudentList().get(i).getStudentId());
+
+                                        }
 
 
-                                    stuSelect.setListAdapter(adapter);
+                                        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_multiple_choice, ll);
 
-                                    stuSelect.setSelectAll(true);
-
-
+                                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
 
-                                    progress.setVisibility(View.GONE);
+                                        stuSelect.setListAdapter(adapter);
+
+                                        stuSelect.setSelectAll(true);
+
+
+                                        progress.setVisibility(View.GONE);
 
 //                        Log.d("name", String.valueOf(studentlist.get(0)));
 
-                                }
+                                    }
 
-                                @Override
-                                public void onFailure(Call<StudentListbean> call, Throwable throwable) {
-                                    progress.setVisibility(View.GONE);
+                                    @Override
+                                    public void onFailure(Call<StudentListbean> call, Throwable throwable) {
+                                        progress.setVisibility(View.GONE);
 
-                                }
-                            });
+                                    }
+                                });
 
 
+                            }
 
-                        }
+                            @Override
+                            public void onFailure(Call<ChapterListbean> call, Throwable throwable) {
+                                progress.setVisibility(View.GONE);
 
-                        @Override
-                        public void onFailure(Call<ChapterListbean> call, Throwable throwable) {
-                            progress.setVisibility(View.GONE);
+                            }
+                        });
+                    }
 
-                        }
-                    });
+
                 }
 
                 @Override
@@ -627,9 +642,6 @@ public class TeacherHw extends Fragment {
 
                 }
             });
-
-
-
 
 
             stuSelect.setListener(new BaseMultiSelectSpinner.MultiSpinnerListener() {
@@ -734,58 +746,62 @@ public class TeacherHw extends Fragment {
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, final int i, long l) {
 
-                    Retrofit retrofit = new Retrofit.Builder()
-                            .baseUrl(b.baseURL)
-                            .addConverterFactory(ScalarsConverterFactory.create())
-                            .addConverterFactory(GsonConverterFactory.create())
-                            .build();
 
-                    final AllAPIs cr = retrofit.create(AllAPIs.class);
+                    if (i > 0) {
+                        Retrofit retrofit = new Retrofit.Builder()
+                                .baseUrl(b.baseURL)
+                                .addConverterFactory(ScalarsConverterFactory.create())
+                                .addConverterFactory(GsonConverterFactory.create())
+                                .build();
 
-                    Log.d("section", String.valueOf(sectionId.get(i)));
-                    sId = sectionId.get(i);
+                        final AllAPIs cr = retrofit.create(AllAPIs.class);
 
-
-
-                    Call<SubjectListBean> call1 = cr.subjectList(b.school_id, cId, sId);
-
-                    progress.setVisibility(View.VISIBLE);
-
-                    call1.enqueue(new Callback<SubjectListBean>() {
-
-                        @Override
-                        public void onResponse(Call<SubjectListBean> call, Response<SubjectListBean> response) {
-
-                            listSubject = response.body().getSubjectList();
-                            subjectlist.clear();
-                            subjectId.clear();
+                        Log.d("section", String.valueOf(sectionId.get(i - 1)));
+                        sId = sectionId.get(i - 1);
 
 
-                            for (int i = 0; i < response.body().getSubjectList().size(); i++) {
+                        Call<SubjectListBean> call1 = cr.subjectList(b.school_id, cId, sId);
 
-                                subjectlist.add(response.body().getSubjectList().get(i).getSubjectName());
-                                subjectId.add(response.body().getSubjectList().get(i).getSubjectId());
+                        progress.setVisibility(View.VISIBLE);
+
+                        call1.enqueue(new Callback<SubjectListBean>() {
+
+                            @Override
+                            public void onResponse(Call<SubjectListBean> call, Response<SubjectListBean> response) {
+
+                                listSubject = response.body().getSubjectList();
+                                subjectlist.clear();
+                                subjectId.clear();
+
+                                subjectlist.add("Subject");
+
+                                for (int i = 0; i < response.body().getSubjectList().size(); i++) {
+
+                                    subjectlist.add(response.body().getSubjectList().get(i).getSubjectName());
+                                    subjectId.add(response.body().getSubjectList().get(i).getSubjectId());
+                                }
+
+                                ArrayAdapter<String> adp1 = new ArrayAdapter<String>(getContext(),
+                                        android.R.layout.simple_list_item_1, subjectlist);
+
+                                adp1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                subjectName.setAdapter(adp1);
+                                adp1.notifyDataSetChanged();
+
+
+                                progress.setVisibility(View.GONE);
+
+
                             }
 
-                            ArrayAdapter<String> adp1 = new ArrayAdapter<String>(getContext(),
-                                    android.R.layout.simple_list_item_1, subjectlist);
+                            @Override
+                            public void onFailure(Call<SubjectListBean> call, Throwable throwable) {
+                                progress.setVisibility(View.GONE);
 
-                            adp1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                            subjectName.setAdapter(adp1);
-                            adp1.notifyDataSetChanged();
+                            }
+                        });
+                    }
 
-
-                            progress.setVisibility(View.GONE);
-
-
-                        }
-
-                        @Override
-                        public void onFailure(Call<SubjectListBean> call, Throwable throwable) {
-                            progress.setVisibility(View.GONE);
-
-                        }
-                    });
 
                 }
 
@@ -839,157 +855,190 @@ public class TeacherHw extends Fragment {
 */
 
 
-
-                    if (date.getText().toString().length() > 0)
-                    {
-                        if (checked.size() > 0)
-                        {
-                            if (!due_date.getText().toString().equals("Due Date")) {
+                    if (date.getText().toString().length() > 0) {
 
 
-                                AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
-                                dialog.setCancelable(false);
-                                dialog.setMessage("Are you sure you want to add Home Work ?");
-                                dialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int id) {
+                        if (cId.length() > 0) {
 
-                                        sNote = note.getText().toString().trim();
+                            if (sId.length() > 0) {
 
+                                if (ssId.length() > 0) {
 
-                                        MultipartBody.Part body = null;
-
-                                        Log.d("note", cId);
+                                    if (sChapter.length() > 0) {
+                                        if (checked.size() > 0) {
 
 
-                                        try {
-
-                                            File file = new File(mCurrentPhotoPath);
-                                            final User b = (User) getActivity().getApplicationContext();
-
-                                            RequestBody reqFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
-
-                                            body = MultipartBody.Part.createFormData("attach", file.getName(), reqFile);
-
-                                        } catch (Exception e) {
-                                            e.printStackTrace();
-                                        }
+                                            if (!due_date.getText().toString().equals("Due Date")) {
 
 
-                                        Retrofit retrofit = new Retrofit.Builder()
-                                                .baseUrl(b.baseURL)
-                                                .addConverterFactory(ScalarsConverterFactory.create())
-                                                .addConverterFactory(GsonConverterFactory.create())
-                                                .build();
+                                                SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
+                                                Date strDate = null;
 
+                                                Date strDate2 = null;
 
-                                        final AllAPIs cr = retrofit.create(AllAPIs.class);
-                                        JSONObject oo = new JSONObject();
-                                        try {
+                                                try {
+                                                    strDate = sdf.parse(date.getText().toString());
+                                                    strDate2 = sdf.parse(due_date.getText().toString());
 
-                                            JSONArray arr = new JSONArray();
-
-                                            for (int i = 0; i < checked.size(); i++) {
-
-
-                                                JSONObject obj = new JSONObject();
-
-                                                obj.put("id", checked.get(i));
-                                                arr.put(obj);
-                                            }
-
-
-                                            oo.put("student", arr);
-
-                                        } catch (JSONException e) {
-                                            e.printStackTrace();
-                                        }
-
-
-
-
-
-
-
-                                        Call<AssignHWbean> call3 = cr.assign_hw(b.school_id, date.getText().toString() ,  cId, sId, ssId, sChapter, sNote, due_date.getText().toString(), TextUtils.join(",", checked), body, b.user_id, subName, chapName);
-
-                                        progress.setVisibility(View.VISIBLE);
-
-                                        Log.d("jdklfgjdf", TextUtils.join(",", checked));
-
-                                        Log.d("outputtt", String.valueOf(sId));
-                                        call3.enqueue(new Callback<AssignHWbean>() {
-
-                                            @Override
-                                            public void onResponse(Call<AssignHWbean> call3, Response<AssignHWbean> response) {
-
-
-                                                if (response.body().getStatus().equals("1")) {
-                                                    Toast.makeText(getContext(), "Home Work has Added Successfully.", Toast.LENGTH_LONG).show();
-                                                    note.setText(" ");
-
-
-                                                    //FrgmntTwo fg = new FrgmntTwo();
-
-
-                                                    //adapter.notifyDataSetChanged();
-
-
-                                                    //fg.loadData();
-                                                    viewPager.setAdapter(adapter);
-
-                                                    viewPager.setCurrentItem(1);
-
-
-                                                } else {
-                                                    Toast.makeText(getContext(), "Home work did not add Successfully!", Toast.LENGTH_LONG).show();
+                                                } catch (ParseException e) {
+                                                    e.printStackTrace();
                                                 }
-                                                progress.setVisibility(View.GONE);
+                                                if (!strDate2.before(strDate)) {
 
-                                            }
+                                                    AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
+                                                    dialog.setCancelable(false);
+                                                    dialog.setMessage("Are you sure you want to add Home Work ?");
+                                                    dialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(DialogInterface dialog, int id) {
 
-                                            @Override
-                                            public void onFailure(Call<AssignHWbean> call3, Throwable throwable) {
-                                                Log.d("yooooo", "sds");
-                                                progress.setVisibility(View.GONE);
+                                                            sNote = note.getText().toString().trim();
 
-                                            }
-                                        });
 
-                                        dialog.dismiss();
+                                                            MultipartBody.Part body = null;
 
+                                                            Log.d("note", cId);
+
+
+                                                            try {
+
+                                                                File file = new File(mCurrentPhotoPath);
+                                                                final User b = (User) getActivity().getApplicationContext();
+
+                                                                RequestBody reqFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+
+                                                                body = MultipartBody.Part.createFormData("attach", file.getName(), reqFile);
+
+                                                            } catch (Exception e) {
+                                                                e.printStackTrace();
+                                                            }
+
+
+                                                            Retrofit retrofit = new Retrofit.Builder()
+                                                                    .baseUrl(b.baseURL)
+                                                                    .addConverterFactory(ScalarsConverterFactory.create())
+                                                                    .addConverterFactory(GsonConverterFactory.create())
+                                                                    .build();
+
+
+                                                            final AllAPIs cr = retrofit.create(AllAPIs.class);
+                                                            JSONObject oo = new JSONObject();
+                                                            try {
+
+                                                                JSONArray arr = new JSONArray();
+
+                                                                for (int i = 0; i < checked.size(); i++) {
+
+
+                                                                    JSONObject obj = new JSONObject();
+
+                                                                    obj.put("id", checked.get(i));
+                                                                    arr.put(obj);
+                                                                }
+
+
+                                                                oo.put("student", arr);
+
+                                                            } catch (JSONException e) {
+                                                                e.printStackTrace();
+                                                            }
+
+
+                                                            Call<AssignHWbean> call3 = cr.assign_hw(b.school_id, date.getText().toString(), cId, sId, ssId, sChapter, sNote, due_date.getText().toString(), TextUtils.join(",", checked), body, b.user_id, subName, chapName);
+
+                                                            progress.setVisibility(View.VISIBLE);
+
+                                                            Log.d("jdklfgjdf", TextUtils.join(",", checked));
+
+                                                            Log.d("outputtt", String.valueOf(sId));
+                                                            call3.enqueue(new Callback<AssignHWbean>() {
+
+                                                                @Override
+                                                                public void onResponse(Call<AssignHWbean> call3, Response<AssignHWbean> response) {
+
+
+                                                                    if (response.body().getStatus().equals("1")) {
+                                                                        Toast.makeText(getContext(), "Home Work has Added Successfully.", Toast.LENGTH_LONG).show();
+                                                                        note.setText(" ");
+
+
+                                                                        //FrgmntTwo fg = new FrgmntTwo();
+
+
+                                                                        //adapter.notifyDataSetChanged();
+
+
+                                                                        //fg.loadData();
+                                                                        viewPager.setAdapter(adapter);
+
+                                                                        viewPager.setCurrentItem(1);
+
+
+                                                                    } else {
+                                                                        Toast.makeText(getContext(), "Home work did not add Successfully!", Toast.LENGTH_LONG).show();
+                                                                    }
+                                                                    progress.setVisibility(View.GONE);
+
+                                                                }
+
+                                                                @Override
+                                                                public void onFailure(Call<AssignHWbean> call3, Throwable throwable) {
+                                                                    Log.d("yooooo", "sds");
+                                                                    progress.setVisibility(View.GONE);
+
+                                                                }
+                                                            });
+
+                                                            dialog.dismiss();
+
+                                                        }
+                                                    })
+                                                            .setNegativeButton("No ", new DialogInterface.OnClickListener() {
+                                                                @Override
+                                                                public void onClick(DialogInterface dialog, int which) {
+                                                                    //Action for "Cancel".
+                                                                }
+                                                            });
+
+
+                                                    final AlertDialog alert = dialog.create();
+                                                    alert.show();
+
+                                                }
+                                                else
+                                                {
+                                                    Toast.makeText(getContext(), "Invalid Due Date", Toast.LENGTH_SHORT).show();
+                                                }
+
+
+
+                                            } else
+                                                //due_date.setError("Please Choose a Date");
+                                                Toast.makeText(getContext(), "Please Choose a Due Date", Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            //stuSelect.setError("Please Select Students");
+                                            Toast.makeText(getContext(), "Please Select Students", Toast.LENGTH_SHORT).show();
+                                        }
+                                    } else {
+                                        Toast.makeText(getContext(), "Please Select Chapter", Toast.LENGTH_SHORT).show();
                                     }
-                                })
-                                        .setNegativeButton("No ", new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
-                                                //Action for "Cancel".
-                                            }
-                                        });
 
+                                } else {
+                                    Toast.makeText(getContext(), "Please Select Subject", Toast.LENGTH_SHORT).show();
+                                }
 
-                                final AlertDialog alert = dialog.create();
-                                alert.show();
+                            } else {
+                                Toast.makeText(getContext(), "Please Select Section", Toast.LENGTH_SHORT).show();
+                            }
 
-                            } else
-                                //due_date.setError("Please Choose a Date");
-                                Toast.makeText(getContext() , "Please Choose a Due Date" , Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(getContext(), "Please Select Class", Toast.LENGTH_SHORT).show();
                         }
-                        else
-                        {
-                            //stuSelect.setError("Please Select Students");
-                            Toast.makeText(getContext() , "Please Select Students" , Toast.LENGTH_SHORT).show();
-                        }
+
+
+                    } else {
+                        Toast.makeText(getContext(), "Please Choose a Date", Toast.LENGTH_SHORT).show();
                     }
-                    else
-                    {
-                        Toast.makeText(getContext() , "Please Choose a Date" , Toast.LENGTH_SHORT).show();
-                    }
-
-
-
-
-
 
 
                 }
@@ -1243,7 +1292,7 @@ public class TeacherHw extends Fragment {
             List<Boolean> clist = new ArrayList<>();
             boolean all = false;
 
-            public StuAdapter(Context context, List<StudentList> list, List<String> checked, List<String> names , List<Boolean> clist) {
+            public StuAdapter(Context context, List<StudentList> list, List<String> checked, List<String> names, List<Boolean> clist) {
                 this.list = list;
                 this.context = context;
                 this.checked = checked;
@@ -1251,7 +1300,7 @@ public class TeacherHw extends Fragment {
                 this.clist = clist;
             }
 
-            public void setGridData(List<StudentList> list , List<Boolean> clist , List<String> checked) {
+            public void setGridData(List<StudentList> list, List<Boolean> clist, List<String> checked) {
                 this.list = list;
                 this.clist = clist;
                 this.checked = checked;
@@ -1284,15 +1333,12 @@ public class TeacherHw extends Fragment {
                 //clist.set(position , all);
 
 
-                if (clist.get(position))
-                {
+                if (clist.get(position)) {
                     holder.name.setChecked(true);
-                    checked.set(position , item.getStudentId());
+                    checked.set(position, item.getStudentId());
                     names.add(item.getStudentName());
-                }
-                else
-                {
-                    checked.set(position , "0");
+                } else {
+                    checked.set(position, "0");
                     names.remove(item.getStudentName());
                     holder.name.setChecked(false);
                 }
@@ -1303,13 +1349,13 @@ public class TeacherHw extends Fragment {
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
                         if (isChecked) {
-                            checked.set(position , item.getStudentId());
+                            checked.set(position, item.getStudentId());
                             names.add(item.getStudentName());
-                            clist.set(position , true);
+                            clist.set(position, true);
                         } else {
-                            checked.set(position , "0");
+                            checked.set(position, "0");
                             names.remove(item.getStudentName());
-                            clist.set(position , false);
+                            clist.set(position, false);
                         }
 
                     }

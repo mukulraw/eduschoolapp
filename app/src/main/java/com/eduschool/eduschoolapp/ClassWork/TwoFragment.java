@@ -374,6 +374,7 @@ public class TwoFragment extends Fragment {
                         classlist.clear();
                         classId.clear();
 
+                        classlist.add("Class");
 
                         for (int i = 0 ; i < response.body().getClassList().size() ; i++)
                         {
@@ -412,57 +413,68 @@ public class TwoFragment extends Fragment {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                        clasId[0] = classId.get(position);
+                        if (position > 0)
+                        {
+                            clasId[0] = classId.get(position - 1);
 
-                        Retrofit retrofit = new Retrofit.Builder()
-                                .baseUrl(b.baseURL)
-                                .addConverterFactory(ScalarsConverterFactory.create())
-                                .addConverterFactory(GsonConverterFactory.create())
-                                .build();
+                            Retrofit retrofit = new Retrofit.Builder()
+                                    .baseUrl(b.baseURL)
+                                    .addConverterFactory(ScalarsConverterFactory.create())
+                                    .addConverterFactory(GsonConverterFactory.create())
+                                    .build();
 
-                        final AllAPIs cr = retrofit.create(AllAPIs.class);
+                            final AllAPIs cr = retrofit.create(AllAPIs.class);
 
-                        Call<SectionListbean> call2 = cr.sectionList(b.school_id, clasId[0]);
-
-
-                        Log.d("asdasd" , clasId[0]);
-
-
-                        progressBar.setVisibility(View.VISIBLE);
+                            Call<SectionListbean> call2 = cr.sectionList(b.school_id, clasId[0]);
 
 
-                        call2.enqueue(new Callback<SectionListbean>() {
-
-                            @Override
-                            public void onResponse(Call<SectionListbean> call, Response<SectionListbean> response) {
+                            Log.d("asdasd" , clasId[0]);
 
 
-                                for (int i = 0; i < response.body().getSectionList().size(); i++)
-                                {
-                                    sectionlist.add(response.body().getSectionList().get(i).getSectionName());
-                                    sectionid.add(response.body().getSectionList().get(i).getSectionId());
+                            progressBar.setVisibility(View.VISIBLE);
+
+                            sectionid.clear();
+                            sectionlist.clear();
+
+
+                            sectionlist.add("Section");
+
+
+                            call2.enqueue(new Callback<SectionListbean>() {
+
+                                @Override
+                                public void onResponse(Call<SectionListbean> call, Response<SectionListbean> response) {
+
+
+                                    for (int i = 0; i < response.body().getSectionList().size(); i++)
+                                    {
+                                        sectionlist.add(response.body().getSectionList().get(i).getSectionName());
+                                        sectionid.add(response.body().getSectionList().get(i).getSectionId());
+                                    }
+
+
+                                    ArrayAdapter<String> adp = new ArrayAdapter<String>(getContext(),
+                                            android.R.layout.simple_list_item_1, sectionlist);
+
+                                    adp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+                                    section.setAdapter(adp);
+
+
+
+                                    progressBar.setVisibility(View.GONE);
+
                                 }
 
+                                @Override
+                                public void onFailure(Call<SectionListbean> call, Throwable throwable) {
+                                    progressBar.setVisibility(View.GONE);
+                                    throwable.printStackTrace();
+                                }
+                            });
+                        }
 
-                                ArrayAdapter<String> adp = new ArrayAdapter<String>(getContext(),
-                                        android.R.layout.simple_list_item_1, sectionlist);
 
-                                adp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-                                section.setAdapter(adp);
-
-
-
-                                progressBar.setVisibility(View.GONE);
-
-                            }
-
-                            @Override
-                            public void onFailure(Call<SectionListbean> call, Throwable throwable) {
-                                progressBar.setVisibility(View.GONE);
-                                throwable.printStackTrace();
-                            }
-                        });
 
 
 
@@ -480,43 +492,49 @@ public class TwoFragment extends Fragment {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                        Call<SubjectListBean> call1 = cr.subjectList(b.school_id, clasId[0], sectionid.get(position));
+                        if (position > 0)
+                        {
+                            Call<SubjectListBean> call1 = cr.subjectList(b.school_id, clasId[0], sectionid.get(position - 1));
 
-                        progressBar.setVisibility(View.VISIBLE);
+                            progressBar.setVisibility(View.VISIBLE);
 
-                        call1.enqueue(new Callback<SubjectListBean>() {
+                            call1.enqueue(new Callback<SubjectListBean>() {
 
-                            @Override
-                            public void onResponse(Call<SubjectListBean> call, Response<SubjectListBean> response) {
+                                @Override
+                                public void onResponse(Call<SubjectListBean> call, Response<SubjectListBean> response) {
 
-                                listSubject = response.body().getSubjectList();
-                                subjectlist.clear();
-                                subjectId.clear();
+                                    listSubject = response.body().getSubjectList();
+                                    subjectlist.clear();
+                                    subjectId.clear();
+
+                                    subjectlist.add("Subject");
+
+                                    for (int i = 0; i < response.body().getSubjectList().size(); i++) {
+
+                                        subjectlist.add(response.body().getSubjectList().get(i).getSubjectName());
+                                        subjectId.add(response.body().getSubjectList().get(i).getSubjectId());
+                                    }
+
+                                    ArrayAdapter<String> adp = new ArrayAdapter<String>(getContext(),
+                                            android.R.layout.simple_list_item_1, subjectlist);
+
+                                    adp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+                                    subject.setAdapter(adp);
+                                    progressBar.setVisibility(View.GONE);
 
 
-                                for (int i = 0; i < response.body().getSubjectList().size(); i++) {
-
-                                    subjectlist.add(response.body().getSubjectList().get(i).getSubjectName());
-                                    subjectId.add(response.body().getSubjectList().get(i).getSubjectId());
                                 }
 
-                                ArrayAdapter<String> adp = new ArrayAdapter<String>(getContext(),
-                                        android.R.layout.simple_list_item_1, subjectlist);
+                                @Override
+                                public void onFailure(Call<SubjectListBean> call, Throwable throwable) {
+                                    progressBar.setVisibility(View.GONE);
 
-                                adp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                }
+                            });
+                        }
 
-                                subject.setAdapter(adp);
-                                progressBar.setVisibility(View.GONE);
 
-
-                            }
-
-                            @Override
-                            public void onFailure(Call<SubjectListBean> call, Throwable throwable) {
-                                progressBar.setVisibility(View.GONE);
-
-                            }
-                        });
 
 
                     }
@@ -534,6 +552,7 @@ public class TwoFragment extends Fragment {
                 subject.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
 
 
                         selectedSubId = subjectlist.get(position);

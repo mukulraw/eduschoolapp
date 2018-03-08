@@ -196,8 +196,7 @@ public class MarkAttndncDiffCls extends AppCompatActivity {
                                 public void onResponse(Call<studentLeaveBean> call3, Response<studentLeaveBean> response) {
 
 
-                                    classSection.setText(b.class_Name + " " + b.section_Name);
-
+                                    classSection.setText(className + " " + sectionName);
                                     studentlist.clear();
                                     studentId.clear();
 
@@ -273,7 +272,7 @@ public class MarkAttndncDiffCls extends AppCompatActivity {
                             public void onResponse(Call<studentLeaveBean> call3, Response<studentLeaveBean> response) {
 
 
-                                classSection.setText(b.class_Name + " " + b.section_Name);
+                                classSection.setText(className + " " + sectionName);
 
                                 studentlist.clear();
                                 studentId.clear();

@@ -396,7 +396,7 @@ public class UpdateAttndncDffCls extends Fragment {
                         List<AttendanceDatum> list = new ArrayList<>();
                         adapter.setGridData(list);
                         adapter.notifyDataSetChanged();
-                        Toast.makeText(getContext() , "No Data Found" , Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext() , "No attendance taken" , Toast.LENGTH_SHORT).show();
                     }
 
 

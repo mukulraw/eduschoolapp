@@ -64,6 +64,8 @@ public class AdapterClsWrkList extends RecyclerView.Adapter<AdapterClsWrkList.my
         holder.section.setText(item.getSection());
         holder.subject.setText("Subject : "+item.getSubject());
 
+        holder.due.setVisibility(View.GONE);
+
 
     }
 
@@ -75,7 +77,7 @@ public class AdapterClsWrkList extends RecyclerView.Adapter<AdapterClsWrkList.my
     public class myviewholder extends RecyclerView.ViewHolder {
 
 
-        TextView title, section, subject;
+        TextView title, section, subject , due;
         TextView className;
         CardView card;
 
@@ -85,6 +87,7 @@ public class AdapterClsWrkList extends RecyclerView.Adapter<AdapterClsWrkList.my
 
             title = (TextView) itemView.findViewById(R.id.title);
             section=(TextView) itemView.findViewById(R.id.section);
+            due=(TextView) itemView.findViewById(R.id.due);
             subject = (TextView) itemView.findViewById(R.id.subject);
             className = (TextView) itemView.findViewById(R.id.className);
             card = (CardView) itemView.findViewById(R.id.card);
