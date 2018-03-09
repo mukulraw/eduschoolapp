@@ -490,7 +490,7 @@ public class TeacherHw extends Fragment {
 
                     if (i > 0) {
                         ssId = subjectId.get(i - 1);
-                        subName = subjectlist.get(i - 1);
+                        subName = subjectlist.get(i);
                         //Call<SubjectListBean> call1 = cr.subjectList(b.school_id, cId, sId);
 
                         //progress.setVisibility(View.VISIBLE);
@@ -945,6 +945,21 @@ public class TeacherHw extends Fragment {
 
 
                                                             Call<AssignHWbean> call3 = cr.assign_hw(b.school_id, date.getText().toString(), cId, sId, ssId, sChapter, sNote, due_date.getText().toString(), TextUtils.join(",", checked), body, b.user_id, subName, chapName);
+
+
+
+
+                                                            Log.d("date" , date.getText().toString());
+                                                            Log.d("class" , cId);
+                                                            Log.d("section" , sId);
+                                                            Log.d("subject" , ssId);
+                                                            Log.d("chapter" , sChapter);
+                                                            Log.d("dueDate" , due_date.getText().toString());
+                                                            Log.d("subjectName" , subName);
+                                                            Log.d("chapterName" , chapName);
+
+
+
 
                                                             progress.setVisibility(View.VISIBLE);
 
