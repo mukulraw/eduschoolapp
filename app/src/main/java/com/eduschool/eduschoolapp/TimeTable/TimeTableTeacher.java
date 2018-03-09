@@ -174,6 +174,47 @@ public class TimeTableTeacher extends Fragment {
                     FragStatePagerAdapter adapter = new FragStatePagerAdapter(getChildFragmentManager() , response.body().getTimeTableList().get(0).getDay());
                     pager.setAdapter(adapter);
 
+
+                    Calendar calendar = Calendar.getInstance();
+                    int day = calendar.get(Calendar.DAY_OF_WEEK);
+
+                    switch (day) {
+                        case Calendar.MONDAY:
+                            // Current day is Monday
+                            pager.setCurrentItem(0);
+                            break;
+
+                        case Calendar.TUESDAY:
+                            pager.setCurrentItem(1);
+                            // etc.
+
+                            break;
+                        case Calendar.WEDNESDAY:
+                            pager.setCurrentItem(2);
+
+                            break;
+                        case Calendar.THURSDAY:
+                            pager.setCurrentItem(3);
+
+                            break;
+                        case Calendar.FRIDAY:
+                            pager.setCurrentItem(4);
+
+                            break;
+                        case Calendar.SATURDAY:
+                            pager.setCurrentItem(5);
+
+                            break;
+                        case Calendar.SUNDAY:
+                            pager.setCurrentItem(6);
+                            break;
+                    }
+
+
+
+
+
+
                     text.setVisibility(View.GONE);
                     pager.setVisibility(View.VISIBLE);
 
