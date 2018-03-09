@@ -273,134 +273,141 @@ public class TeacherNotificationFrgmnt extends Fragment {
                 }
 
 
-                for (int i = 0; i < response.body().getOther().size(); i++) {
+                try {
+                    for (int i = 0; i < response.body().getOther().size(); i++) {
 
 
-                    String type = response.body().getOther().get(i).getType();
+                        String type = response.body().getOther().get(i).getType();
 
-                    if (Objects.equals(type, "Communication"))
-                    {
+                        if (Objects.equals(type, "Communication"))
+                        {
 
 
-                        try {
+                            try {
 
-                            notiBean bean = new notiBean();
+                                notiBean bean = new notiBean();
 
-                            bean.setDate(response.body().getOther().get(i).getDates());
-                            //bean.setTitle(response.body().getHomeworkDue().get(i).getTitle());
-                            bean.setType(response.body().getOther().get(i).getType() + " Notification");
+                                bean.setDate(response.body().getOther().get(i).getDates());
+                                //bean.setTitle(response.body().getHomeworkDue().get(i).getTitle());
+                                bean.setType(response.body().getOther().get(i).getType() + " Notification");
 
-                            Gson gson = new Gson();
+                                Gson gson = new Gson();
 
-                            String json = gson.toJson(response.body().getOther().get(i).getData());
+                                String json = gson.toJson(response.body().getOther().get(i).getData());
 
-                            JSONObject object = new JSONObject(json);
+                                JSONObject object = new JSONObject(json);
 
-                            Log.d("data" , json);
+                                Log.d("data" , json);
 
-                            String name = object.getString("from_name");
-                            String clas = object.getString("class");
-                            String sec = object.getString("section");
+                                String name = object.getString("from_name");
+                                String clas = object.getString("class");
+                                String sec = object.getString("section");
 
-                            String title = name + " (" + clas + " " + sec + ")";
+                                String title = name + " (" + clas + " " + sec + ")";
 
-                            bean.setTitle(title);
+                                bean.setTitle(title);
 
-                            String desc = object.getString("type");
+                                String desc = object.getString("type");
 
-                            bean.setDesc(desc);
+                                bean.setDesc(desc);
 
-                            bean.setNoti(response.body().getOther().get(i).getNotifyId());
+                                bean.setNoti(response.body().getOther().get(i).getNotifyId());
 
-                            if (bean.getDate() != null)
-                            {
-                                list.add(bean);
+                                if (bean.getDate() != null)
+                                {
+                                    list.add(bean);
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
                             }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+
+
+                        }
+                        else if (Objects.equals(type, "Attendance"))
+                        {
+
+                            try {
+
+                                notiBean bean = new notiBean();
+
+                                bean.setDate(response.body().getOther().get(i).getDates());
+                                //bean.setTitle(response.body().getHomeworkDue().get(i).getTitle());
+                                bean.setType(response.body().getOther().get(i).getType() + " Notification");
+                                bean.setDesc("Attendance Pending");
+
+                                bean.setData(response.body().getOther().get(i).getNotifyId());
+
+                                Gson gson = new Gson();
+
+                                String json = gson.toJson(response.body().getOther().get(i).getData());
+
+                                JSONObject object = new JSONObject(json);
+
+                                String clas = object.getString("class");
+                                String sec = object.getString("section");
+
+                                bean.setTitle(clas + " " + sec);
+                                bean.setNoti(response.body().getOther().get(i).getNotifyId());
+                                if (bean.getDate() != null)
+                                {
+                                    list.add(bean);
+                                }
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+
+
+                        }
+                        else if (Objects.equals(type, "Survey"))
+                        {
+                            try {
+
+                                notiBean bean = new notiBean();
+
+                                bean.setDate(response.body().getOther().get(i).getDates());
+                                //bean.setTitle(response.body().getHomeworkDue().get(i).getTitle());
+                                bean.setType(response.body().getOther().get(i).getType() + " Notification");
+
+
+                                Gson gson = new Gson();
+
+                                String json = gson.toJson(response.body().getOther().get(i).getData());
+
+                                JSONObject object = new JSONObject(json);
+
+                                String tiele = object.getString("survey_title");
+                                String ques = object.getString("total_question");
+
+                                bean.setTitle("New Survey Added (" + tiele + ")");
+
+                                bean.setDesc("Total Questions " + ques);
+
+                                bean.setNoti(response.body().getOther().get(i).getNotifyId());
+
+                                if (bean.getDate() != null)
+                                {
+                                    list.add(bean);
+                                }
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+
+
                         }
 
 
-                    }
-                    else if (Objects.equals(type, "Attendance"))
-                    {
-
-                        try {
-
-                            notiBean bean = new notiBean();
-
-                            bean.setDate(response.body().getOther().get(i).getDates());
-                            //bean.setTitle(response.body().getHomeworkDue().get(i).getTitle());
-                            bean.setType(response.body().getOther().get(i).getType() + " Notification");
-                            bean.setDesc("Attendance Pending");
-
-                            bean.setData(response.body().getOther().get(i).getNotifyId());
-
-                            Gson gson = new Gson();
-
-                            String json = gson.toJson(response.body().getOther().get(i).getData());
-
-                            JSONObject object = new JSONObject(json);
-
-                            String clas = object.getString("class");
-                            String sec = object.getString("section");
-
-                            bean.setTitle(clas + " " + sec);
-                            bean.setNoti(response.body().getOther().get(i).getNotifyId());
-                            if (bean.getDate() != null)
-                            {
-                                list.add(bean);
-                            }
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-
 
                     }
-                    else if (Objects.equals(type, "Survey"))
-                    {
-                        try {
-
-                            notiBean bean = new notiBean();
-
-                            bean.setDate(response.body().getOther().get(i).getDates());
-                            //bean.setTitle(response.body().getHomeworkDue().get(i).getTitle());
-                            bean.setType(response.body().getOther().get(i).getType() + " Notification");
-
-
-                            Gson gson = new Gson();
-
-                            String json = gson.toJson(response.body().getOther().get(i).getData());
-
-                            JSONObject object = new JSONObject(json);
-
-                            String tiele = object.getString("survey_title");
-                            String ques = object.getString("total_question");
-
-                            bean.setTitle("New Survey Added (" + tiele + ")");
-
-                            bean.setDesc("Total Questions " + ques);
-
-                            bean.setNoti(response.body().getOther().get(i).getNotifyId());
-
-                            if (bean.getDate() != null)
-                            {
-                                list.add(bean);
-                            }
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-
-
-                    }
-
-
-
+                }catch (Exception e)
+                {
+                    e.printStackTrace();
                 }
+
+
 
 
                 for (int i = 0; i < response.body().getClassworkUnupdate().size(); i++) {
