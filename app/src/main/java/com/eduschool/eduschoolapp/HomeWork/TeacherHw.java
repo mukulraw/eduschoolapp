@@ -1007,7 +1007,7 @@ public class TeacherHw extends Fragment {
                                                 }
                                                 else
                                                 {
-                                                    Toast.makeText(getContext(), "Invalid Due Date", Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(getContext(), "Due Date can't be less than created Date", Toast.LENGTH_SHORT).show();
                                                 }
 
 

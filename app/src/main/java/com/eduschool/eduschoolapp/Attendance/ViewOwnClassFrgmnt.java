@@ -149,7 +149,7 @@ public class ViewOwnClassFrgmnt extends Fragment {
                     }
                     else
                     {
-                        Toast.makeText(getContext() , "No Data Found" , Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext() , "No attendance taken" , Toast.LENGTH_SHORT).show();
                     }
 
 

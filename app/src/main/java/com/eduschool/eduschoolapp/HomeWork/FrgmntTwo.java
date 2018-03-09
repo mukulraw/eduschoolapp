@@ -195,7 +195,7 @@ public class FrgmntTwo extends Fragment {
         } else {
             Log.d("elseSearchh", String.valueOf(isSearch));
 
-            final User b = (User) getActivity().getApplicationContext();
+            /*final User b = (User) getActivity().getApplicationContext();
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl(b.baseURL)
                     .addConverterFactory(ScalarsConverterFactory.create())
@@ -206,7 +206,7 @@ public class FrgmntTwo extends Fragment {
 
             progress.setVisibility(View.VISIBLE);
 
-            Call<HomewrkListbean> call = cr.homwwrk_list(b.school_id, b.user_id, cId, sId, ssId);
+            Call<HomewrkListbean> call = cr.homwwrk_listsearch(b.school_id, b.user_id, cId, sId, ssId);
 
             call.enqueue(new Callback<HomewrkListbean>() {
                 @Override
@@ -242,7 +242,7 @@ public class FrgmntTwo extends Fragment {
                     progress.setVisibility(View.GONE);
                     Log.d("1234", throwable.toString());
                 }
-            });
+            });*/
 
 
         }
@@ -275,6 +275,7 @@ public class FrgmntTwo extends Fragment {
                 String su = "";
 
                 final String[] clasId = new String[1];
+                final String[] secId = new String[1];
 
                 final Dialog dialog = new Dialog(getActivity());
                 dialog.setCancelable(true);
@@ -505,6 +506,9 @@ public class FrgmntTwo extends Fragment {
 
                         if (position > 0)
                         {
+
+                            secId[0] = sectionid.get(position - 1);
+
                             Call<SubjectListBean> call1 = cr.subjectList(b.school_id, clasId[0], sectionid.get(position - 1));
 
                             progressBar.setVisibility(View.VISIBLE);
@@ -602,8 +606,7 @@ public class FrgmntTwo extends Fragment {
 
                         if (position > 0)
                         {
-                            selectedSubId = subjectlist.get(position - 1);
-
+                            selectedSubId = subjectId.get(position - 1);
 
                             subject1 = selectedSubId;
                         }
@@ -642,7 +645,66 @@ public class FrgmntTwo extends Fragment {
 
                             if (ed[0].length() > 0) {
 
-                                List<HomeworkList> l2 = new ArrayList<>();
+
+
+
+                                Log.d("class" , clasId[0]);
+                                Log.d("section" , secId[0]);
+                                Log.d("subject" , selectedSubId);
+                                Log.d("fdate" , sd[0]);
+                                Log.d("edate" , ed[0]);
+
+
+
+
+
+                                final User b = (User) getContext().getApplicationContext();
+
+
+                                Retrofit retrofit = new Retrofit.Builder()
+                                        .baseUrl(b.baseURL)
+                                        .addConverterFactory(ScalarsConverterFactory.create())
+                                        .addConverterFactory(GsonConverterFactory.create())
+                                        .build();
+
+                                final AllAPIs cr = retrofit.create(AllAPIs.class);
+                                progressBar.setVisibility(View.VISIBLE);
+
+
+
+
+                                Call<HomewrkListbean> cal = cr.homwwrk_listsearch(
+                                        b.school_id,
+                                        b.user_id,
+                                        clasId[0],
+                                        secId[0],
+                                        selectedSubId,
+                                        sd[0],
+                                        ed[0]
+                                );
+
+                                cal.enqueue(new Callback<HomewrkListbean>() {
+                                    @Override
+                                    public void onResponse(Call<HomewrkListbean> call, Response<HomewrkListbean> response) {
+
+
+                                        adapter.setGridData(response.body().getHomeworkList());
+
+
+                                        progressBar.setVisibility(View.GONE);
+
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<HomewrkListbean> call, Throwable t) {
+                                        progressBar.setVisibility(View.GONE);
+                                    }
+                                });
+
+
+
+
+                                /*List<HomeworkList> l2 = new ArrayList<>();
 
 
                                 for (int i = 0; i < list.size(); i++) {
@@ -663,11 +725,11 @@ public class FrgmntTwo extends Fragment {
                                 HashSet<HomeworkList> hs1 = new HashSet<>();
 
 
-                                /*hs1.addAll(l2);
+                                *//*hs1.addAll(l2);
                                 l2.clear();
                                 l2.addAll(hs1);
                                 adapter.setGridData(l2);
-*/
+*//*
 
                                 List<HomeworkList> l3 = new ArrayList<>();
 
@@ -696,7 +758,7 @@ public class FrgmntTwo extends Fragment {
                                     }
 
 
-                            /*try {
+                            *//*try {
                                 if (Objects.equals(selectedSubId, ssuubb)) {
                                     Log.d("asdasd" , "subject");
                                     l2.add(list.get(i));
@@ -704,10 +766,10 @@ public class FrgmntTwo extends Fragment {
                             }catch (Exception e)
                             {
                                 e.printStackTrace();
-                            }*/
+                            }*//*
 
 
-                            /*try {
+                            *//*try {
                                 if (date1.after(date2)) {
                                     Log.d("asdasd" , "date1");
                                     l3.add(l2.get(i));
@@ -729,7 +791,7 @@ public class FrgmntTwo extends Fragment {
                             }catch (Exception e)
                             {
                                 e.printStackTrace();
-                            }*/
+                            }*//*
 
                                     try {
                                         if (date1.before(date3) && date1.after(date2) || date1.equals(date3) || date1.equals(date2)) {
@@ -751,7 +813,7 @@ public class FrgmntTwo extends Fragment {
                                 l3.addAll(hs);
 
 
-                                adapter.setGridData(l3);
+                                adapter.setGridData(l3);*/
 
 
                                 dialog.dismiss();

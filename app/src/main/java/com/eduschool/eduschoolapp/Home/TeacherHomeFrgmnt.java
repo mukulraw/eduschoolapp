@@ -544,13 +544,21 @@ public class TeacherHomeFrgmnt extends Fragment {
             final Event item = list.get(position);
 
 
-            String date = item.getStartDate();
+            try {
 
-            String[] dd = date.split("-");
+                String date = item.getStartDate();
 
-            holder.eDay.setText(dd[0]);
+                String[] dd = date.split("-");
 
-            holder.eMonth.setText(dd[1] + " " + dd[2]);
+                holder.eDay.setText(dd[0]);
+
+                holder.eMonth.setText(dd[1] + " " + dd[2]);
+
+            }catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+
 
             holder.eTitle.setText(item.getEventType());
 
@@ -690,7 +698,7 @@ public class TeacherHomeFrgmnt extends Fragment {
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View view = inflater.inflate(R.layout.home_homework_model, parent, false);
+            View view = inflater.inflate(R.layout.classwork_model, parent, false);
             return new ViewHolder(view);
         }
 
@@ -699,12 +707,11 @@ public class TeacherHomeFrgmnt extends Fragment {
 
             ClassWork item = list.get(position);
 
-            String dat = item.getClass_();
-            String[] dd = dat.split("-");
-
-            holder.classSec.setText(dd[0] + " " + dd[1] + " " + dd[2]);
 
 
+            holder.classSec.setText(item.getClass_() + " " + item.getSection());
+
+            holder.subject.setText("(" + item.getSubject() + ")");
 
             holder.text.setText("Pending");
 
@@ -713,6 +720,22 @@ public class TeacherHomeFrgmnt extends Fragment {
             } else {
                 holder.line.setVisibility(View.VISIBLE);
             }
+
+
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    android.support.v4.app.FragmentManager fm = ((AppCompatActivity) context).getSupportFragmentManager();
+                    android.support.v4.app.FragmentTransaction ft = fm.beginTransaction();
+                    Teacherclswrk frag1 = new Teacherclswrk();
+                    ft.replace(R.id.replace, frag1);
+                    //ft.addToBackStack(null);
+                    ft.commit();
+
+                }
+            });
+
 
         }
 
@@ -723,7 +746,7 @@ public class TeacherHomeFrgmnt extends Fragment {
 
         class ViewHolder extends RecyclerView.ViewHolder {
 
-            TextView classSec, text, line;
+            TextView classSec, text, line , subject;
 
             public ViewHolder(View itemView) {
                 super(itemView);
@@ -731,6 +754,7 @@ public class TeacherHomeFrgmnt extends Fragment {
                 classSec = (TextView) itemView.findViewById(R.id.class_sec);
                 text = (TextView) itemView.findViewById(R.id.text);
                 line = (TextView) itemView.findViewById(R.id.line);
+                subject = (TextView) itemView.findViewById(R.id.subject);
 
             }
         }

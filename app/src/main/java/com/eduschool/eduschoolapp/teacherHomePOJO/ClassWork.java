@@ -18,9 +18,9 @@ public class ClassWork {
     @SerializedName("section")
     @Expose
     private String section;
-    @SerializedName("chapter")
+    @SerializedName("subject")
     @Expose
-    private String chapter;
+    private String subject;
     @SerializedName("title")
     @Expose
     private String title;
@@ -61,12 +61,12 @@ public class ClassWork {
         this.section = section;
     }
 
-    public String getChapter() {
-        return chapter;
+    public String getSubject() {
+        return subject;
     }
 
-    public void setChapter(String chapter) {
-        this.chapter = chapter;
+    public void setSubject(String subject) {
+        this.subject = subject;
     }
 
     public String getTitle() {

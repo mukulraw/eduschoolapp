@@ -226,21 +226,27 @@ public interface AllAPIs {
 
     @Multipart
     @POST("eduschool_app/homework_searchlist.php")
-    Call<HomewrkListbean> homwwrk_list
+    Call<HomewrkListbean> homwwrk_listsearch
             (@Part("school_id") String school_id,
              @Part("teacher_id") String teacher_id,
              @Part("class") String className,
              @Part("section") String section,
-             @Part("subject") String subject );
+             @Part("subject") String subject,
+             @Part("fromdate") String fdate,
+             @Part("todate") String tdate
+            );
 
     @Multipart
     @POST("eduschool_app/classlistsearch.php")
-    Call<ClassWrkListbean> classwrk_list
+    Call<ClassWrkListbean> classwrk_listsearch
             (@Part("school_id") String school_id,
              @Part("teacher_id") String teacher_id,
              @Part("class") String className,
              @Part("section") String section,
-             @Part("subject") String subject );
+             @Part("subject") String subject,
+             @Part("start_date") String start,
+             @Part("end_date") String end
+            );
 
 
     @Multipart
@@ -913,6 +919,7 @@ public interface AllAPIs {
             @Part("query") String query,
             @Part("type_exam") String typeExam
     );
+
 
 
 }

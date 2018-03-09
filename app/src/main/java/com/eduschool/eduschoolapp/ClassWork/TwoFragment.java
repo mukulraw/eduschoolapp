@@ -234,6 +234,7 @@ public class TwoFragment extends Fragment {
                 String su = "";
 
                 final String[] clasId = new String[1];
+                final String[] secId = new String[1];
 
                 final Dialog dialog = new Dialog(getActivity());
                 dialog.setCancelable(true);
@@ -494,6 +495,10 @@ public class TwoFragment extends Fragment {
 
                         if (position > 0)
                         {
+
+                            secId[0] = sectionid.get(position - 1);
+
+
                             Call<SubjectListBean> call1 = cr.subjectList(b.school_id, clasId[0], sectionid.get(position - 1));
 
                             progressBar.setVisibility(View.VISIBLE);
@@ -554,8 +559,7 @@ public class TwoFragment extends Fragment {
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
 
-
-                        selectedSubId = subjectlist.get(position);
+                        selectedSubId = subjectId.get(position);
 
 
                     }
@@ -581,8 +585,68 @@ public class TwoFragment extends Fragment {
                                 List<ClassworkList> l2 = new ArrayList<>();
 
 
+                                Log.d("class" , clasId[0]);
+                                Log.d("section" , secId[0]);
+                                Log.d("subject" , selectedSubId);
+                                Log.d("start" , sd[0]);
+                                Log.d("end" , ed[0]);
 
-                                for (int i = 0 ; i < list.size() ; i++)
+
+
+
+
+
+                                User b = (User) getActivity().getApplicationContext();
+
+
+                                Retrofit retrofit = new Retrofit.Builder()
+                                        .baseUrl(b.baseURL)
+                                        .addConverterFactory(ScalarsConverterFactory.create())
+                                        .addConverterFactory(GsonConverterFactory.create())
+                                        .build();
+
+                                AllAPIs cr = retrofit.create(AllAPIs.class);
+                                progressBar.setVisibility(View.VISIBLE);
+
+
+                                Call<ClassWrkListbean> cal = cr.classwrk_listsearch(
+                                        b.school_id,
+                                        b.user_id,
+                                        clasId[0],
+                                        secId[0],
+                                        selectedSubId,
+                                        sd[0],
+                                        ed[0]
+                                );
+
+                                cal.enqueue(new Callback<ClassWrkListbean>() {
+                                    @Override
+                                    public void onResponse(Call<ClassWrkListbean> call, Response<ClassWrkListbean> response) {
+
+
+                                        adapter.setGridData(response.body().getClassworkList());
+
+
+                                        progressBar.setVisibility(View.GONE);
+
+
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<ClassWrkListbean> call, Throwable t) {
+                                        progressBar.setVisibility(View.GONE);
+                                    }
+                                });
+
+
+
+
+
+
+
+
+
+                                /*for (int i = 0 ; i < list.size() ; i++)
                                 {
 
                                     String ssuubb = list.get(i).getSubject();
@@ -602,11 +666,11 @@ public class TwoFragment extends Fragment {
                                 HashSet<ClassworkList> hs1 = new HashSet<>();
 
 
-                                /*hs1.addAll(l2);
+                                *//*hs1.addAll(l2);
                                 l2.clear();
                                 l2.addAll(hs1);
                                 adapter.setGridData(l2);
-*/
+*//*
 
                                 List<ClassworkList> l3 = new ArrayList<>();
 
@@ -635,7 +699,7 @@ public class TwoFragment extends Fragment {
                                     }
 
 
-                            /*try {
+                            *//*try {
                                 if (Objects.equals(selectedSubId, ssuubb)) {
                                     Log.d("asdasd" , "subject");
                                     l2.add(list.get(i));
@@ -643,10 +707,10 @@ public class TwoFragment extends Fragment {
                             }catch (Exception e)
                             {
                                 e.printStackTrace();
-                            }*/
+                            }*//*
 
 
-                            /*try {
+                            *//*try {
                                 if (date1.after(date2)) {
                                     Log.d("asdasd" , "date1");
                                     l3.add(l2.get(i));
@@ -668,7 +732,7 @@ public class TwoFragment extends Fragment {
                             }catch (Exception e)
                             {
                                 e.printStackTrace();
-                            }*/
+                            }*//*
 
                                     try {
                                         if (date1.before(date3) && date1.after(date2) || date1.equals(date3) || date1.equals(date2))
@@ -692,7 +756,7 @@ public class TwoFragment extends Fragment {
                                     l3.addAll(hs);
                                     adapter.setGridData(l3);
 
-
+*/
 
                                 dialog.dismiss();
 
@@ -799,7 +863,7 @@ public class TwoFragment extends Fragment {
 
 
         } else {
-            Log.d("elseSearchh", String.valueOf(isSearch));
+            /*Log.d("elseSearchh", String.valueOf(isSearch));
             final User b = (User) getActivity().getApplicationContext();
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl(b.baseURL)
@@ -853,7 +917,7 @@ public class TwoFragment extends Fragment {
                     progress.setVisibility(View.GONE);
 
                 }
-            });
+            });*/
 
 
         }
