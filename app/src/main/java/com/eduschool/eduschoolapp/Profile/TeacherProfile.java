@@ -156,11 +156,28 @@ public class TeacherProfile extends Fragment {
                                                     edit.putString("pass", SconfrmPass);
                                                     edit.commit();
 
-                                                    Toast.makeText(getContext(), "Password Changed Successfully", Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(getContext(), "Password Changed Successfully, Please Login again", Toast.LENGTH_SHORT).show();
                                                     newpass.setText("");
                                                     oldpass.setText("");
                                                     confrmpass.setText("");
                                                     progress.setVisibility(View.GONE);
+
+                                                    dialog.dismiss();
+
+
+
+                                                    Intent intent = new Intent(getContext(), LoginPage.class);
+                                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                                                    edit.remove("username");
+                                                    edit.remove("type");
+                                                    edit.remove("pass");
+                                                    edit.apply();
+                                                    getActivity().finish();
+                                                    startActivity(intent);
+
+
+
                                                 }
                                                 else {
                                                     progress.setVisibility(View.GONE);

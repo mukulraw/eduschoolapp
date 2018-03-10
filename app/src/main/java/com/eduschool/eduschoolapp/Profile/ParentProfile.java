@@ -1,6 +1,7 @@
 package com.eduschool.eduschoolapp.Profile;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -22,6 +23,7 @@ import android.widget.Toast;
 import com.eduschool.eduschoolapp.AllAPIs;
 import com.eduschool.eduschoolapp.ChangePssPOJO.PasswrdChngebean;
 import com.eduschool.eduschoolapp.Home.ParentHome;
+import com.eduschool.eduschoolapp.LoginPages.LoginPage;
 import com.eduschool.eduschoolapp.R;
 import com.eduschool.eduschoolapp.RoundedImageView;
 import com.eduschool.eduschoolapp.User;
@@ -195,11 +197,23 @@ public class ParentProfile extends Fragment {
                                                     edit.putString("pass", SconfrmPass);
                                                     edit.commit();
 
-                                                    Toast.makeText(getContext(), "Password Changed Successfully", Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(getContext(), "Password Changed Successfully, Please Login again", Toast.LENGTH_SHORT).show();
                                                     newpass.setText("");
                                                     oldpass.setText("");
                                                     confrmpass.setText("");
                                                     progress.setVisibility(View.GONE);
+                                                    dialog.dismiss();
+
+                                                    Intent intent = new Intent(getContext(), LoginPage.class);
+                                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                                                    edit.remove("username");
+                                                    edit.remove("type");
+                                                    edit.remove("pass");
+                                                    edit.apply();
+                                                    getActivity().finish();
+                                                    startActivity(intent);
+
                                                 }
                                                 else {
                                                     progress.setVisibility(View.GONE);
