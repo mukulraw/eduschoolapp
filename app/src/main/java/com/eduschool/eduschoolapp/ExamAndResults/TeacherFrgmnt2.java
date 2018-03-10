@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.eduschool.eduschoolapp.AllAPIs;
 import com.eduschool.eduschoolapp.ClassListPOJO.ClassListbean;
@@ -130,6 +131,8 @@ public class TeacherFrgmnt2 extends Fragment {
                         clasNames.clear();
                         clasIds.clear();
 
+                        clasNames.add("Class");
+
                         for (int i = 0; i < response.body().getClassList().size(); i++)
                         {
 
@@ -165,53 +168,60 @@ public class TeacherFrgmnt2 extends Fragment {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                        cid[0] = clasIds.get(position);
-                        cname[0] = clasNames.get(position);
+                        if (position > 0)
+                        {
+                            cid[0] = clasIds.get(position - 1);
+                            cname[0] = clasNames.get(position);
 
 
-                        Call<SectionListbean> call2 = cr.sectionList(b.school_id, cid[0]);
+                            Call<SectionListbean> call2 = cr.sectionList(b.school_id, cid[0]);
 
-                        bar.setVisibility(View.VISIBLE);
-
-
-                        call2.enqueue(new Callback<SectionListbean>() {
-
-                            @Override
-                            public void onResponse(Call<SectionListbean> call, Response<SectionListbean> response) {
+                            bar.setVisibility(View.VISIBLE);
 
 
-                                //listSection = response.body().getSectionList();
+                            call2.enqueue(new Callback<SectionListbean>() {
 
-                                secNames.clear();
-                                secIds.clear();
+                                @Override
+                                public void onResponse(Call<SectionListbean> call, Response<SectionListbean> response) {
 
-                                for (int i = 0; i < response.body().getSectionList().size(); i++) {
 
-                                    secNames.add(response.body().getSectionList().get(i).getSectionName());
+                                    //listSection = response.body().getSectionList();
 
-                                    secIds.add(response.body().getSectionList().get(i).getSectionId());
+                                    secNames.clear();
+                                    secIds.clear();
+
+                                    secNames.add("Section");
+
+                                    for (int i = 0; i < response.body().getSectionList().size(); i++) {
+
+                                        secNames.add(response.body().getSectionList().get(i).getSectionName());
+
+                                        secIds.add(response.body().getSectionList().get(i).getSectionId());
+                                    }
+
+
+                                    ArrayAdapter<String> adp = new ArrayAdapter<String>(getContext(),
+                                            android.R.layout.simple_list_item_1, secNames);
+
+                                    adp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                    adp.notifyDataSetChanged();
+                                    se.setAdapter(adp);
+
+                                    bar.setVisibility(View.GONE);
+
+
                                 }
 
+                                @Override
+                                public void onFailure(Call<SectionListbean> call, Throwable throwable) {
+                                    bar.setVisibility(View.GONE);
 
-                                ArrayAdapter<String> adp = new ArrayAdapter<String>(getContext(),
-                                        android.R.layout.simple_list_item_1, secNames);
+                                }
 
-                                adp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                                adp.notifyDataSetChanged();
-                                se.setAdapter(adp);
+                            });
 
-                                bar.setVisibility(View.GONE);
+                        }
 
-
-                            }
-
-                            @Override
-                            public void onFailure(Call<SectionListbean> call, Throwable throwable) {
-                                bar.setVisibility(View.GONE);
-
-                            }
-
-                        });
 
 
 
@@ -230,8 +240,13 @@ public class TeacherFrgmnt2 extends Fragment {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                        sid[0] = secIds.get(position);
-                        sname[0] = secNames.get(position);
+                        if (position > 0)
+                        {
+                            sid[0] = secIds.get(position - 1);
+                            sname[0] = secNames.get(position);
+                        }
+
+
 
                     }
 
@@ -248,20 +263,42 @@ public class TeacherFrgmnt2 extends Fragment {
                     public void onClick(View view) {
                         dialog.dismiss();
 
-                        FragmentManager fm =getFragmentManager();
-                        FragmentTransaction ft = fm.beginTransaction();
-                        TeacherDiffClass frag1 =new TeacherDiffClass();
 
-                        Bundle b = new Bundle();
-                        b.putString("id" , id);
-                        b.putString("cls" , cid[0]);
-                        b.putString("sec" , sid[0]);
-                        b.putString("cname" , cname[0]);
-                        b.putString("sname" , sname[0]);
-                        frag1.setArguments(b);
-                        ft.replace(R.id.replace, frag1);
-                        ft.addToBackStack(null);
-                        ft.commit();
+                        if (cid[0].length() > 0)
+                        {
+
+                            if (sid[0].length() > 0)
+                            {
+
+                                FragmentManager fm =getFragmentManager();
+                                FragmentTransaction ft = fm.beginTransaction();
+                                TeacherDiffClass frag1 =new TeacherDiffClass();
+
+                                Bundle b = new Bundle();
+                                b.putString("id" , id);
+                                b.putString("cls" , cid[0]);
+                                b.putString("sec" , sid[0]);
+                                b.putString("cname" , cname[0]);
+                                b.putString("sname" , sname[0]);
+                                frag1.setArguments(b);
+                                ft.replace(R.id.replace, frag1);
+                                ft.addToBackStack(null);
+                                ft.commit();
+
+                            }
+                            else
+                            {
+                                Toast.makeText(getContext() , "Please Select Section" , Toast.LENGTH_SHORT).show();
+                            }
+
+                        }
+                        else
+                        {
+                            Toast.makeText(getContext() , "Please Select Class" , Toast.LENGTH_SHORT).show();
+                        }
+
+
+
                     }
                 });
 

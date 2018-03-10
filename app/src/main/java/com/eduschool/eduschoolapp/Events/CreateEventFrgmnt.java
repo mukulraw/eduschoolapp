@@ -446,8 +446,11 @@ public class CreateEventFrgmnt extends Fragment {
                     if (d2.length()>0)
                     {
 
+
                         if (t.length()>0)
                         {
+
+
 
                             AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
                             dialog.setCancelable(false);
@@ -614,6 +617,8 @@ public class CreateEventFrgmnt extends Fragment {
             DatePickerDialog datePickerDialog = null;
             datePickerDialog = new DatePickerDialog(getActivity(), this, year, month, day);
 
+            datePickerDialog.getDatePicker().setMinDate(c.getTimeInMillis());
+
             return datePickerDialog;
         }
 
@@ -660,6 +665,8 @@ public class CreateEventFrgmnt extends Fragment {
 
             DatePickerDialog datePickerDialog = null;
             datePickerDialog = new DatePickerDialog(getActivity(), this, year, month, day);
+
+            datePickerDialog.getDatePicker().setMinDate(c.getTimeInMillis());
 
             return datePickerDialog;
         }

@@ -266,6 +266,7 @@ public class Teacherclswrk extends Fragment {
                     adp1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     className.setAdapter(adp1);
 
+                    sectionlist.add("Section");
 
                     ArrayAdapter<String> adp = new ArrayAdapter<String>(getContext(),
                             android.R.layout.simple_list_item_1, sectionlist);
@@ -274,19 +275,21 @@ public class Teacherclswrk extends Fragment {
                     sectionName.setAdapter(adp);
 
 
+                    subjectlist.add("Subject");
+
                     ArrayAdapter<String> adp2 = new ArrayAdapter<String>(getContext(),
                             android.R.layout.simple_list_item_1, subjectlist);
 
                     adp2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     subject.setAdapter(adp2);
 
+                    chapterlist.add("Chapter");
 
                     ArrayAdapter<String> adp3 = new ArrayAdapter<String>(getContext(),
                             android.R.layout.simple_list_item_1, chapterlist);
 
                     adp3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     chapter.setAdapter(adp3);
-
 
                     ArrayAdapter<String> adp4 = new ArrayAdapter<String>(getContext(),
                             android.R.layout.simple_list_item_1, statuslist);
