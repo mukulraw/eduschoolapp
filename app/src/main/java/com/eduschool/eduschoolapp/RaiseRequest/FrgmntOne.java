@@ -231,8 +231,16 @@ holder.download.setVisibility(View.VISIBLE);
             }
 
 
+            if (item.getFromType().equals("Principal"))
+            {
+                holder.name.setText(item.getEventType() + " (by Principal)");
+            }
+            else
+            {
+                holder.name.setText(item.getEventType() + " (by " + item.getFrom() + ")");
+            }
 
-            holder.name.setText(item.getEventType() + " (by " + item.getFrom() + ")");
+
 
             String e = item.getEndDate();
 

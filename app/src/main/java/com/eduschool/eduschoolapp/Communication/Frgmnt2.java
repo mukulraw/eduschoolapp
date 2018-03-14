@@ -67,7 +67,7 @@ public class Frgmnt2 extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        toolbar.setTitle("Parent Request");
+        toolbar.setTitle("Communication Request");
 
         toolbar.setNavigationIcon(R.drawable.back);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {

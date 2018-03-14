@@ -393,6 +393,8 @@ public class Teacherclswrk extends Fragment {
                                 listChapter = response.body().getChapterList();
                                 chapterlist.clear();
                                 chapterId.clear();
+                                chapterlist.add("Chapter");
+
                                 for (int i = 0; i < response.body().getChapterList().size(); i++) {
 
                                     chapterlist.add(response.body().getChapterList().get(i).getChapterName());

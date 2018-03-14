@@ -113,10 +113,18 @@ public class ExamfrgmntTwo extends Fragment {
                 percent.setText(response.body().getResult().getPercantage() + "%");
                 grade.setText(response.body().getResult().getGrade());
 
-                Double c = Double.parseDouble(response.body().getResult().getPercantage()) / 9.5;
+                try {
+                    Double c = Double.parseDouble(response.body().getResult().getPercantage()) / 9.5;
+                    cgpa.setText(String.format( "%.1f", c ));
+                    marks.setText(response.body().getResult().getTotalObtaimarks());
+                }catch (Exception e)
+                {
+                    e.printStackTrace();
 
-                cgpa.setText(String.format( "%.1f", c ));
-                marks.setText(response.body().getResult().getTotalObtaimarks());
+                }
+
+
+
 
 
                 progress.setVisibility(View.GONE);

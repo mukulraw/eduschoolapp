@@ -53,6 +53,7 @@ import com.eduschool.eduschoolapp.birthPOJO.birthBean;
 import com.eduschool.eduschoolapp.borrowedBookBean.borrowedBookBean;
 import com.eduschool.eduschoolapp.classResultPOJO.classResultBean;
 import com.eduschool.eduschoolapp.communicationTeacherPOJO.communicationTeacherBean;
+import com.eduschool.eduschoolapp.eventParentPOJO.eventParentBean;
 import com.eduschool.eduschoolapp.examTypePOJO.examTypeBean;
 import com.eduschool.eduschoolapp.imageListPOJO.imageListBean;
 import com.eduschool.eduschoolapp.notificationsPOJO.notificationsBean;
@@ -520,6 +521,14 @@ public interface AllAPIs {
     @POST("eduschool_app/holiday_list.php")
     Call<HolidayListBean> holiday_list
             (@Part("school_id") String school_id);
+
+    @Multipart
+    @POST("eduschool_app/holiday_event.php")
+    Call<eventParentBean> event_parent
+            (
+                    @Part("school_id") String school_id,
+                    @Part("userid") String user_id
+            );
 
     @Multipart
     @POST("eduschool_app/view_today_birth_stu.php")

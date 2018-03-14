@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -151,7 +152,17 @@ public class One extends Fragment {
             String d2[] = item.getToDate().split("-");
             holder.day.setText(d[0]);
             holder.month.setText(d[1] + " " + d[2]);
-            holder.name.setText(item.getFromName());
+
+
+            if (item.getFromType().equals("Principal"))
+            {
+                holder.name.setText("By Principal");
+            }
+            else
+            {
+                holder.name.setText(item.getFromName());
+            }
+
             holder.type.setText(item.getType());
             holder.desc.setText(item.getDetail());
             try {

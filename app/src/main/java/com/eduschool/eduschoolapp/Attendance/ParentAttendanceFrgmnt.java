@@ -292,26 +292,35 @@ public class ParentAttendanceFrgmnt extends Fragment {
                         Log.d("asdasd" , "method2");
                         String dd = response.body().getAttendanceList().get(0).getAttendanceData().get(i).getAttendanceDate();
 
-                        String d1[] = dd.split("-");
-
-                        int year = Integer.parseInt(d1[2]);
-                        int day = Integer.parseInt(d1[0]);
 
 
-                        int month1 = 0;
-                        for (int j = 0; j < mon.length; j++) {
-                            if (Objects.equals(d1[1], mon[j])) {
-                                month1 = j;
+                        if (response.body().getAttendanceList().get(0).getAttendanceData().get(i).getAttendance().equals("0"))
+                        {
+                            String d1[] = dd.split("-");
+
+                            int year = Integer.parseInt(d1[2]);
+                            int day = Integer.parseInt(d1[0]);
+
+
+                            int month1 = 0;
+                            for (int j = 0; j < mon.length; j++) {
+                                if (Objects.equals(d1[1], mon[j])) {
+                                    month1 = j;
+                                }
+
                             }
 
+                            //Log.d("asdasd", String.valueOf(day) + " " + String.valueOf(month1) + " " + String.valueOf(year));
+
+                            calendar.set(year, month1, day);
+
+                            CalendarDay calendarDay = CalendarDay.from(calendar);
+                            cl.add(calendarDay);
                         }
 
-                        //Log.d("asdasd", String.valueOf(day) + " " + String.valueOf(month1) + " " + String.valueOf(year));
 
-                        calendar.set(year, month1, day);
 
-                        CalendarDay calendarDay = CalendarDay.from(calendar);
-                        cl.add(calendarDay);
+
                     }catch (Exception e)
                     {
                         e.printStackTrace();
