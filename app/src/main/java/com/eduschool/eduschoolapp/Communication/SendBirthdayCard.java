@@ -348,50 +348,62 @@ public class SendBirthdayCard extends AppCompatActivity {
                                 }
 
 
-                                Call<SendBirthBean> call = cr.send_card(b.school_id, "Teacher", b.user_id, toType, ca, TextUtils.join(",", ll));
 
-                                Log.d("asdasd", TextUtils.join(",", ll));
+                                if (ll.size() > 0)
+                                {
+                                    Call<SendBirthBean> call = cr.send_card(b.school_id, "Teacher", b.user_id, toType, ca, TextUtils.join(",", ll));
 
-                                call.enqueue(new Callback<SendBirthBean>() {
-                                    @Override
-                                    public void onResponse(Call<SendBirthBean> call, Response<SendBirthBean> response) {
+                                    Log.d("asdasd", TextUtils.join(",", ll));
 
-
-                                        if (response.body().getStatus().equals("1")) {
-
-                                            Dialog d1 = new Dialog(SendBirthdayCard.this);
-                                            d1.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                                            d1.setCancelable(true);
-                                            d1.setContentView(R.layout.birthday_success_popup);
-                                            d1.show();
+                                    call.enqueue(new Callback<SendBirthBean>() {
+                                        @Override
+                                        public void onResponse(Call<SendBirthBean> call, Response<SendBirthBean> response) {
 
 
-                                            d1.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                                                @Override
-                                                public void onDismiss(DialogInterface dialog) {
-                                                    finish();
-                                                }
-                                            });
+                                            if (response.body().getStatus().equals("1")) {
 
+                                                Dialog d1 = new Dialog(SendBirthdayCard.this);
+                                                d1.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                                                d1.setCancelable(true);
+                                                d1.setContentView(R.layout.birthday_success_popup);
+                                                d1.show();
+
+
+                                                d1.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                                                    @Override
+                                                    public void onDismiss(DialogInterface dialog) {
+                                                        finish();
+                                                    }
+                                                });
+
+
+                                                progress.setVisibility(View.GONE);
+
+                                            } else {
+                                                Toast.makeText(SendBirthdayCard.this, "Birthday Card did not send Successfully.", Toast.LENGTH_SHORT).show();
+
+                                            }
 
                                             progress.setVisibility(View.GONE);
 
-                                        } else {
-                                            Toast.makeText(SendBirthdayCard.this, "Birthday Card did not send Successfully.", Toast.LENGTH_SHORT).show();
-
                                         }
 
-                                        progress.setVisibility(View.GONE);
+                                        @Override
+                                        public void onFailure(Call<SendBirthBean> call, Throwable throwable) {
+                                            Log.d("imagg", String.valueOf(throwable));
+                                            progress.setVisibility(View.GONE);
 
-                                    }
+                                        }
+                                    });
+                                }
+                                else
+                                {
+                                    Toast.makeText(SendBirthdayCard.this, "Please select a student", Toast.LENGTH_SHORT).show();
+                                }
 
-                                    @Override
-                                    public void onFailure(Call<SendBirthBean> call, Throwable throwable) {
-                                        Log.d("imagg", String.valueOf(throwable));
-                                        progress.setVisibility(View.GONE);
 
-                                    }
-                                });
+
+
 
 
                             } catch (Exception e) {
