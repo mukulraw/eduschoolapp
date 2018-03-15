@@ -24,6 +24,8 @@ import com.eduschool.eduschoolapp.calendarBean;
 import com.eduschool.eduschoolapp.eventParentPOJO.eventParentBean;
 import com.eduschool.eduschoolapp.notiBean;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -78,7 +80,7 @@ public class CalenderParent  extends Fragment {
         User b = (User) getActivity().getApplicationContext();
 
 
-        Retrofit retrofit = new Retrofit.Builder()
+        final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(b.baseURL)
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
@@ -96,6 +98,15 @@ public class CalenderParent  extends Fragment {
             @Override
             public void onResponse(Call<eventParentBean> call, Response<eventParentBean> response) {
 
+                for (int i = 0 ; i < response.body().getEventData().size() ; i++)
+                {
+                    calendarBean bea = new calendarBean();
+                    bea.setFromDate(response.body().getEventData().get(i).getFromDate());
+                    bea.setToDate(response.body().getEventData().get(i).getToDate());
+                    bea.setHolidayId(response.body().getEventData().get(i).getId());
+                    bea.setOccasion(response.body().getEventData().get(i).getOccasion());
+                    list.add(bea);
+                }
 
                 for (int i = 0 ; i < response.body().getHolidayData().size() ; i++)
                 {
@@ -107,16 +118,6 @@ public class CalenderParent  extends Fragment {
                     list.add(bea);
                 }
 
-                for (int i = 0 ; i < response.body().getEventData().size() ; i++)
-                {
-                    calendarBean bea = new calendarBean();
-                    bea.setFromDate(response.body().getEventData().get(i).getFromDate());
-                    bea.setToDate(response.body().getEventData().get(i).getToDate());
-                    bea.setHolidayId(response.body().getEventData().get(i).getId());
-                    bea.setOccasion(response.body().getEventData().get(i).getOccasion());
-                    list.add(bea);
-                }
-
                 Collections.sort(list, new Comparator<calendarBean>() {
                     @Override
                     public int compare(calendarBean o1, calendarBean o2) {
@@ -125,9 +126,18 @@ public class CalenderParent  extends Fragment {
                             return 0;
 
 
-                        return o2.getFromDate().compareTo(o1.getFromDate());
+                        SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
 
 
+                        try {
+                            return sdf.parse(o1.getFromDate()).compareTo(sdf.parse(o2.getFromDate()));
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                            return 0;
+                        }
+
+
+                        //return o2.getFromDate().compareTo(o1.getFromDate());
                     }
                 });
 

@@ -108,6 +108,7 @@ public class ExamfrgmntTwo extends Fragment {
             @Override
             public void onResponse(Call<parentExamBean> call, Response<parentExamBean> response) {
 
+
                 adapter.setGridData(response.body().getResultDetail());
 
                 percent.setText(response.body().getResult().getPercantage() + "%");
@@ -120,7 +121,10 @@ public class ExamfrgmntTwo extends Fragment {
                 }catch (Exception e)
                 {
                     e.printStackTrace();
-
+                    percent.setText("--");
+                    grade.setText("--");
+                    cgpa.setText("--");
+                    marks.setText("--");
                 }
 
 
